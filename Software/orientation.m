@@ -38,11 +38,11 @@ accelEarthWithoutG(:, 3) = accelEarthWithoutG(:, 3) - g; %subtract gravitational
 trajectoryX = cumtrapz(1/Fs, cumtrapz(1/Fs, accelEarthWithoutG(:, 1)));
 trajectoryY = cumtrapz(1/Fs, cumtrapz(1/Fs, accelEarthWithoutG(:, 2)));
 trajectoryZ = cumtrapz(1/Fs, cumtrapz(1/Fs, accelEarthWithoutG(:, 3)));
-
+figure();
 plot3(trajectoryX, trajectoryY, trajectoryZ);
 
 eul =  eulerd( q, 'ZYX', 'frame');
-
+figure()
 % Plot Euler angles in degrees
 plot(eul);
 title('Orientation Estimate');
