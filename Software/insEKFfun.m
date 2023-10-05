@@ -23,8 +23,8 @@ gyroSensor = insGyroscope;
 
 
 filt = insEKF(accelSensor,gyroSensor, model);
-accNoise = 10;
-gyroNoise = 2;
+accNoise = 1000;
+gyroNoise = 200;
 
 
 N = size(accel,1);
