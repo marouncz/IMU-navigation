@@ -3,7 +3,7 @@ clear all;
 clc;
 
 
-imuData = importdata("RegStream_2023-09-30T17-57-50_0000.csv");
+imuData = importdata("RegStream_2023-10-09T21-44-25_0000.csv");
 LSBtoms2 = 2.45e-3/(2^16);
 LSBtorads = deg2rad(0.025)/(2^16);
 
@@ -23,7 +23,7 @@ f.ReferenceLocation = [49.223920 16.588313 250];
 % f.AccelerometerNoise = 2;
 % f.GyroscopeBiasNoise = 1e-16;
 % f.GyroscopeNoise = 1e-5;
-% f.MagnetometerBiasNo   ise = 1e-10;
+% f.MagnetometerBiasNoise = 1e-10;
 % f.GeomagneticVectorNoise = 1e-12;
 % f.StateCovariance = 1e-9*ones(22);
 % f.State = initstate;
@@ -41,3 +41,7 @@ for ii = 1:size(accel,1)               % Fuse IMU
 end
 
 plot3(p(:, 1), p(:, 2), p(:, 3))
+xlabel('X')
+ylabel('Y')
+zlabel('Z')
+axis("equal")
