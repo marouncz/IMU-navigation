@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.6.28)  2 OCT 2023 12:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.6.28)  11 OCT 2023 08:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1349,7 +1349,7 @@ Package rerunfilecheck Info: File `sablona-prace.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  19084 strings out of 476037
- 301477 string characters out of 5779845
+ 300469 string characters out of 5779845
  1914763 words of memory out of 5000000
  39156 multiletter control sequences out of 15000+600000
  689622 words of font info for 118 fonts, out of 8000000 for 9000

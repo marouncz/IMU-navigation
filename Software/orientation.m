@@ -3,7 +3,7 @@ clear all;
 clc;
 
 
-imuData = importdata("RegStream_2023-09-25T22-43-27_0000.csv");
+imuData = importdata("RegStream_2023-10-10T20-09-44_0000.csv");
 LSBtoms2 = 2.45e-3/(2^16);
 LSBtorads = deg2rad(0.025)/(2^16);
 
