@@ -49,4 +49,4 @@ f.close()
 #     for i in (data): 
 #         print(i, end =" ") 
 #     print()
-#     sleep(0.5)
+#     # sleep(0.5)
