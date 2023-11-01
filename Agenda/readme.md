@@ -14,10 +14,23 @@
 
    - [X] Run example to communicate with ADIS-FX-3-Eval
    - [X] Read data from GPS NEO-M8U
-   - [ ] Record GPS + IMU data with Python
+   - [X] Record GPS + IMU data with Python
    - [ ] Make data fusion in Matlab/Python or imu_x_fusion
  
 # [ ] Hardware
+   - [ ] Design decisions \
+         BLE / WiFi / MCU
+   - [ ] Schematic \
+            IMU from Analog Devices \
+            u-Blox M8U \
+            cheaper variant of IMU (acc, gyro, mag) \
+            OLED display \
+            MCU \
+            Micro-SD card / flash IC \
+            USB-C with charging capability \
+            BLE / WiFi
+
+
 
 # [ ] Thesis
 
