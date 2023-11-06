@@ -1,4 +1,4 @@
-22087000322770976
+22090398890341596
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -54893,6 +54893,20 @@ display OLED SSD1306 128x64
 0
 4
 4
+IMUnav
+OSC_ECS-3963-250-BN-TR
+
+
+0
+4
+4
+IMUnav
+TE_A101SYCQ04
+
+
+0
+3
+3
 IMUnav
 USB_C_Receptacle_TYPEC-304S-ACP16
 USB Type C, right-angle, SMT, https://datasheet.lcsc.com/szlcsc/1811141824_XKB-Enterprise-U262-161N-4BVC11_C319148.pdf
