@@ -1,4 +1,4 @@
-22090398890341596
+22092098759920905
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -54851,6 +54851,13 @@ heatsink
 0
 0
 0
+IMUnav
+ADIS16505-PCBZ
+Through hole straight pin header, 2x08, 2.00mm pitch, double rows
+Through hole pin header THT 2x08 2.00mm double row
+0
+16
+16
 IMUnav
 BGA-100_10x10_15.0x15.0mm
 
