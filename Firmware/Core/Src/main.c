@@ -19,10 +19,12 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "cmsis_os.h"
-#include "dma.h"
-#include "quadspi.h"
-#include "ucpd.h"
-#include "usbpd.h"
+#include "adc.h"
+#include "app_fatfs.h"
+#include "i2c.h"
+#include "rtc.h"
+#include "spi.h"
+#include "usart.h"
 #include "usb_device.h"
 #include "gpio.h"
 
@@ -92,18 +94,25 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
-  MX_DMA_Init();
-  MX_QUADSPI1_Init();
-  MX_UCPD1_Init();
   MX_USB_Device_Init();
+  MX_ADC1_Init();
+  MX_I2C1_Init();
+  MX_I2C2_Init();
+  MX_I2C4_Init();
+  MX_RTC_Init();
+  MX_SPI1_Init();
+  MX_SPI2_Init();
+  MX_UART4_Init();
+  MX_USART1_UART_Init();
+  if (MX_FATFS_Init() != APP_OK) {
+    Error_Handler();
+  }
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
 
   /* Init scheduler */
-  osKernelInitialize();
-  /* USBPD initialisation ---------------------------------*/
-  MX_USBPD_Init();  /* Call init function for freertos objects (in freertos.c) */
+  osKernelInitialize();  /* Call init function for freertos objects (in freertos.c) */
   MX_FREERTOS_Init();
 
   /* Start scheduler */
@@ -138,9 +147,11 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_HSI48;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_HSI48
+                              |RCC_OSCILLATORTYPE_LSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  RCC_OscInitStruct.LSIState = RCC_LSI_ON;
   RCC_OscInitStruct.HSI48State = RCC_HSI48_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
