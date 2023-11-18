@@ -4149,7 +4149,7 @@
     (uuid faf10565-d14e-4d56-94e7-94e859ac8940)
   )
 
-  (text "HW notes:\nconsider different module / chip package for ESP32\nConsider high-side switches for peripherals (at leaset those that have high power consumption on reset/shutdown)\nDone - Add battery and switch\nDone - Add 5V and BAT voltage sensing\nAdd diodes/mosfets for powering DC/DC converter from USB/Battery automatically\ncheck max i2c speed of usb hub, so it does not collide with other devices on the same i2c interface\nDecide which antenna connector to use - u.FL/SMA\nUSB voltage connect to STM wake up pin\nAdd LEDs and measure points\n\n\n"
+  (text "HW notes:\nconsider different module / chip package for ESP32\nConsider high-side switches for peripherals (at leaset those that have high power consumption on reset/shutdown)\nDone - Add battery and switch\nDone - Add 5V and BAT voltage sensing\nAdd diodes/mosfets for powering DC/DC converter from USB/Battery automatically\ncheck max i2c speed of usb hub, so it does not collide with other devices on the same i2c interface\nDecide which antenna connector to use - u.FL/SMA\nUSB voltage connect to STM wake up pin\nAdd LEDs and measure points\nCheck recommended design fro USBLC6\n"
     (at 15.24 34.29 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid c45891b9-d852-4322-884e-22a3b8ff7034)
