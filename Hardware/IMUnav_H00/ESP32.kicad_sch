@@ -931,7 +931,7 @@
           (reference "#PWR?") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
-          (reference "#PWR019") (unit 1)
+          (reference "#PWR0133") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -964,7 +964,7 @@
           (reference "#PWR?") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
-          (reference "#PWR0163") (unit 1)
+          (reference "#PWR0134") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -997,7 +997,7 @@
           (reference "#PWR?") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
-          (reference "#PWR017") (unit 1)
+          (reference "#PWR0128") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1034,7 +1034,7 @@
           (reference "R?") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
-          (reference "R2") (unit 1)
+          (reference "R42") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1067,7 +1067,7 @@
           (reference "#PWR?") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
-          (reference "#PWR021") (unit 1)
+          (reference "#PWR0124") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1107,7 +1107,7 @@
           (reference "R32") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
-          (reference "R34") (unit 1)
+          (reference "R39") (unit 1)
         )
       )
     )
@@ -1135,7 +1135,7 @@
           (reference "#PWR?") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
-          (reference "#PWR022") (unit 1)
+          (reference "#PWR0131") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1172,7 +1172,7 @@
           (reference "R?") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
-          (reference "R5") (unit 1)
+          (reference "R45") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1209,7 +1209,7 @@
           (reference "C?") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
-          (reference "C3") (unit 1)
+          (reference "C39") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1261,7 +1261,7 @@
   (symbol (lib_id "PCM_Espressif:ESP32-C3-MINI-1") (at 171.45 121.92 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 6ad3416e-d4a2-423b-bcc8-6cdcd8fe946e)
-    (property "Reference" "U18" (at 173.6441 92.5027 0)
+    (property "Reference" "U10" (at 173.6441 92.5027 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "ESP32-C3-MINI-1" (at 173.6441 94.9269 0)
@@ -1332,7 +1332,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
-          (reference "U18") (unit 1)
+          (reference "U10") (unit 1)
         )
       )
     )
@@ -1367,7 +1367,7 @@
           (reference "R32") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
-          (reference "R35") (unit 1)
+          (reference "R40") (unit 1)
         )
       )
     )
@@ -1436,7 +1436,7 @@
           (reference "R?") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
-          (reference "R4") (unit 1)
+          (reference "R44") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1473,7 +1473,7 @@
           (reference "R?") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
-          (reference "R3") (unit 1)
+          (reference "R43") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1510,7 +1510,7 @@
           (reference "C?") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
-          (reference "C4") (unit 1)
+          (reference "C41") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1543,7 +1543,7 @@
           (reference "#PWR?") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
-          (reference "#PWR020") (unit 1)
+          (reference "#PWR0122") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1576,7 +1576,7 @@
           (reference "#PWR?") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
-          (reference "#PWR016") (unit 1)
+          (reference "#PWR0127") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1609,7 +1609,7 @@
           (reference "#PWR?") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
-          (reference "#PWR018") (unit 1)
+          (reference "#PWR0132") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1642,7 +1642,7 @@
           (reference "#PWR?") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
-          (reference "#PWR09") (unit 1)
+          (reference "#PWR0125") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1693,7 +1693,7 @@
           (reference "U?") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
-          (reference "U3") (unit 1)
+          (reference "U9") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1767,7 +1767,7 @@
           (reference "R?") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
-          (reference "R1") (unit 1)
+          (reference "R41") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1804,7 +1804,7 @@
           (reference "C?") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
-          (reference "C6") (unit 1)
+          (reference "C37") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1837,7 +1837,7 @@
           (reference "#PWR?") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
-          (reference "#PWR011") (unit 1)
+          (reference "#PWR0129") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1870,7 +1870,7 @@
           (reference "#PWR?") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
-          (reference "#PWR015") (unit 1)
+          (reference "#PWR0123") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1907,7 +1907,7 @@
           (reference "C?") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
-          (reference "C7") (unit 1)
+          (reference "C38") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1940,7 +1940,7 @@
           (reference "#PWR?") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
-          (reference "#PWR012") (unit 1)
+          (reference "#PWR0130") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -2011,7 +2011,7 @@
           (reference "#PWR?") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
-          (reference "#PWR010") (unit 1)
+          (reference "#PWR0126") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -2048,7 +2048,7 @@
           (reference "C?") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
-          (reference "C5") (unit 1)
+          (reference "C40") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"

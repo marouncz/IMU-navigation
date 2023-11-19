@@ -1,6 +1,6 @@
 (kicad_sch (version 20230121) (generator eeschema)
 
-  (uuid d2a0940c-f6ef-4a67-8071-e7d3d59c9f3c)
+  (uuid f5e891d5-0fb6-4d7c-b6f2-eb603794edf4)
 
   (paper "A4")
 
@@ -51,6 +51,128 @@
           (number "1" (effects (font (size 1.27 1.27))))
         )
         (pin passive line (at 0 -3.81 90) (length 2.794)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+    (symbol "Device:LED" (pin_numbers hide) (pin_names (offset 1.016) hide) (in_bom yes) (on_board yes)
+      (property "Reference" "D" (at 0 2.54 0)
+        (effects (font (size 1.27 1.27)))
+      )
+      (property "Value" "LED" (at 0 -2.54 0)
+        (effects (font (size 1.27 1.27)))
+      )
+      (property "Footprint" "" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "Datasheet" "~" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_keywords" "LED diode" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_description" "Light emitting diode" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_fp_filters" "LED* LED_SMD:* LED_THT:*" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (symbol "LED_0_1"
+        (polyline
+          (pts
+            (xy -1.27 -1.27)
+            (xy -1.27 1.27)
+          )
+          (stroke (width 0.254) (type default))
+          (fill (type none))
+        )
+        (polyline
+          (pts
+            (xy -1.27 0)
+            (xy 1.27 0)
+          )
+          (stroke (width 0) (type default))
+          (fill (type none))
+        )
+        (polyline
+          (pts
+            (xy 1.27 -1.27)
+            (xy 1.27 1.27)
+            (xy -1.27 0)
+            (xy 1.27 -1.27)
+          )
+          (stroke (width 0.254) (type default))
+          (fill (type none))
+        )
+        (polyline
+          (pts
+            (xy -3.048 -0.762)
+            (xy -4.572 -2.286)
+            (xy -3.81 -2.286)
+            (xy -4.572 -2.286)
+            (xy -4.572 -1.524)
+          )
+          (stroke (width 0) (type default))
+          (fill (type none))
+        )
+        (polyline
+          (pts
+            (xy -1.778 -0.762)
+            (xy -3.302 -2.286)
+            (xy -2.54 -2.286)
+            (xy -3.302 -2.286)
+            (xy -3.302 -1.524)
+          )
+          (stroke (width 0) (type default))
+          (fill (type none))
+        )
+      )
+      (symbol "LED_1_1"
+        (pin passive line (at -3.81 0 0) (length 2.54)
+          (name "K" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at 3.81 0 180) (length 2.54)
+          (name "A" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
+    (symbol "Device:R" (pin_numbers hide) (pin_names (offset 0)) (in_bom yes) (on_board yes)
+      (property "Reference" "R" (at 2.032 0 90)
+        (effects (font (size 1.27 1.27)))
+      )
+      (property "Value" "R" (at 0 0 90)
+        (effects (font (size 1.27 1.27)))
+      )
+      (property "Footprint" "" (at -1.778 0 90)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "Datasheet" "~" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_keywords" "R res resistor" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_description" "Resistor" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_fp_filters" "R_*" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (symbol "R_0_1"
+        (rectangle (start -1.016 -2.54) (end 1.016 2.54)
+          (stroke (width 0.254) (type default))
+          (fill (type none))
+        )
+      )
+      (symbol "R_1_1"
+        (pin passive line (at 0 3.81 270) (length 1.27)
+          (name "~" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at 0 -3.81 90) (length 1.27)
           (name "~" (effects (font (size 1.27 1.27))))
           (number "2" (effects (font (size 1.27 1.27))))
         )
@@ -253,6 +375,10 @@
     (stroke (width 0) (type default))
     (uuid 180b33c5-f6d6-4781-913d-448caa5391e3)
   )
+  (wire (pts (xy 129.54 76.2) (xy 129.54 81.28))
+    (stroke (width 0) (type default))
+    (uuid 1eaced00-9742-429e-868a-48b460b1045c)
+  )
   (wire (pts (xy 160.02 127) (xy 167.64 127))
     (stroke (width 0) (type default))
     (uuid 35fbdcb2-8588-4202-a1e5-cd0c2f70d1e6)
@@ -273,6 +399,10 @@
     (stroke (width 0) (type default))
     (uuid 455ca72c-f628-44b2-b217-41a090d92cc8)
   )
+  (wire (pts (xy 129.54 55.88) (xy 129.54 60.96))
+    (stroke (width 0) (type default))
+    (uuid 5203bb24-6054-4811-b473-dd18138c39a8)
+  )
   (wire (pts (xy 114.3 128.27) (xy 114.3 134.62))
     (stroke (width 0) (type default))
     (uuid 6b4fe62f-e68c-42b1-9092-698d23b9369f)
@@ -281,17 +411,33 @@
     (stroke (width 0) (type default))
     (uuid 74e209a2-5281-48fe-9274-66ccf4b2d7a7)
   )
+  (wire (pts (xy 149.86 76.2) (xy 149.86 81.28))
+    (stroke (width 0) (type default))
+    (uuid 774df3d3-cfb3-450f-92a3-773d224d0668)
+  )
   (wire (pts (xy 149.86 127) (xy 149.86 134.62))
     (stroke (width 0) (type default))
     (uuid 8274533f-b419-45ac-b302-8609527cf316)
+  )
+  (wire (pts (xy 167.64 76.2) (xy 167.64 81.28))
+    (stroke (width 0) (type default))
+    (uuid 90aa8df4-f7ce-4d19-876b-3ab17bd778a7)
   )
   (wire (pts (xy 189.23 106.68) (xy 189.23 114.3))
     (stroke (width 0) (type default))
     (uuid 982d2653-2fc6-4e56-9d28-b704f0fc23ff)
   )
+  (wire (pts (xy 167.64 55.88) (xy 167.64 60.96))
+    (stroke (width 0) (type default))
+    (uuid b1750a7d-e30b-4398-972b-afcfdac4cf5d)
+  )
   (wire (pts (xy 99.06 125.73) (xy 99.06 134.62))
     (stroke (width 0) (type default))
     (uuid dcf1d60c-e002-480c-837c-f296e52c1cda)
+  )
+  (wire (pts (xy 149.86 55.88) (xy 149.86 60.96))
+    (stroke (width 0) (type default))
+    (uuid e18be367-5cb9-43a0-997b-542919ff59ac)
   )
   (wire (pts (xy 189.23 127) (xy 189.23 134.62))
     (stroke (width 0) (type default))
@@ -314,9 +460,21 @@
     (effects (font (size 1.27 1.27)) (justify left))
     (uuid 50ef86d2-b664-4354-8d05-d34e922244b9)
   )
+  (hierarchical_label "LED1" (shape input) (at 129.54 55.88 0) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify left))
+    (uuid 70f947cf-857d-481d-9bac-bb40c6582db3)
+  )
+  (hierarchical_label "LED3" (shape input) (at 167.64 55.88 0) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify left))
+    (uuid 807f26f4-a24b-421d-ae20-3314bbde6d72)
+  )
   (hierarchical_label "BUTTON2" (shape input) (at 167.64 127 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left))
     (uuid 912d0b77-7676-4a69-ab9a-f6e83df63626)
+  )
+  (hierarchical_label "LED2" (shape input) (at 149.86 55.88 0) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify left))
+    (uuid ca85979c-2ee1-4366-9523-97c4dffc132c)
   )
   (hierarchical_label "OLED_SCL" (shape input) (at 99.06 120.65 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left))
@@ -380,7 +538,7 @@
           (reference "C45") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/a9afb5b4-1f6f-482b-94ff-c518cd1be378"
-          (reference "C60") (unit 1)
+          (reference "C70") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -394,7 +552,7 @@
   (symbol (lib_id "power:GND") (at 199.39 134.62 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 35e0cda9-004b-4a62-95c5-033b4d50f0d7)
-    (property "Reference" "#PWR0193" (at 199.39 140.97 0)
+    (property "Reference" "#PWR0239" (at 199.39 140.97 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 199.517 139.0142 0)
@@ -410,12 +568,45 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/a9afb5b4-1f6f-482b-94ff-c518cd1be378"
-          (reference "#PWR0193") (unit 1)
+          (reference "#PWR0239") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
         (path "/68867493-9f89-4388-916e-56f5ada0ac5c"
           (reference "#PWR0106") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "power:GND") (at 129.54 81.28 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid 3dee3fa6-03e0-4d3a-8ab1-131a6a5d73d9)
+    (property "Reference" "#PWR027" (at 129.54 87.63 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (at 129.667 85.6742 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 129.54 81.28 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 129.54 81.28 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 1adbab14-8294-4370-933c-4bf89389a5ac))
+    (instances
+      (project "IMUnav_H00"
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
+          (reference "#PWR027") (unit 1)
+        )
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/a9afb5b4-1f6f-482b-94ff-c518cd1be378"
+          (reference "#PWR0229") (unit 1)
+        )
+      )
+      (project "PaLampa_MoBo_H01"
+        (path "/68867493-9f89-4388-916e-56f5ada0ac5c/4ec8e228-d742-4cd8-8c0d-36879b06f45c"
+          (reference "#PWR?") (unit 1)
         )
       )
     )
@@ -443,7 +634,7 @@
           (reference "#PWR0137") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/a9afb5b4-1f6f-482b-94ff-c518cd1be378"
-          (reference "#PWR0137") (unit 1)
+          (reference "#PWR0227") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -457,7 +648,7 @@
   (symbol (lib_id "power:GND") (at 199.39 114.3 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 40870b7a-73d7-46da-8d38-264f29ad3abf)
-    (property "Reference" "#PWR0192" (at 199.39 120.65 0)
+    (property "Reference" "#PWR0238" (at 199.39 120.65 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 199.517 118.6942 0)
@@ -473,7 +664,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/a9afb5b4-1f6f-482b-94ff-c518cd1be378"
-          (reference "#PWR0192") (unit 1)
+          (reference "#PWR0238") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -510,7 +701,7 @@
           (reference "C45") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/a9afb5b4-1f6f-482b-94ff-c518cd1be378"
-          (reference "C59") (unit 1)
+          (reference "C69") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -521,10 +712,43 @@
     )
   )
 
+  (symbol (lib_id "power:GND") (at 167.64 81.28 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid 4c887723-75c8-4c58-9f92-3dbfdf9a4be0)
+    (property "Reference" "#PWR027" (at 167.64 87.63 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (at 167.767 85.6742 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 167.64 81.28 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 167.64 81.28 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid b78b039e-1c2e-4cc4-a59f-9c4ec8dda786))
+    (instances
+      (project "IMUnav_H00"
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
+          (reference "#PWR027") (unit 1)
+        )
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/a9afb5b4-1f6f-482b-94ff-c518cd1be378"
+          (reference "#PWR0235") (unit 1)
+        )
+      )
+      (project "PaLampa_MoBo_H01"
+        (path "/68867493-9f89-4388-916e-56f5ada0ac5c/4ec8e228-d742-4cd8-8c0d-36879b06f45c"
+          (reference "#PWR?") (unit 1)
+        )
+      )
+    )
+  )
+
   (symbol (lib_id "power:GND") (at 189.23 114.3 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 577998c2-5ec6-4388-aa8c-b4fc3e974649)
-    (property "Reference" "#PWR0190" (at 189.23 120.65 0)
+    (property "Reference" "#PWR0236" (at 189.23 120.65 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 189.357 118.6942 0)
@@ -540,7 +764,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/a9afb5b4-1f6f-482b-94ff-c518cd1be378"
-          (reference "#PWR0190") (unit 1)
+          (reference "#PWR0236") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -551,10 +775,149 @@
     )
   )
 
+  (symbol (lib_id "Device:R") (at 167.64 64.77 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid 59f21063-a5be-4cc3-a59a-d49de1af6558)
+    (property "Reference" "R6" (at 169.418 63.6016 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "1K8" (at 169.418 65.913 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric" (at 165.862 64.77 90)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 167.64 64.77 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "LCSC" "C4177" (at 167.64 64.77 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 9897779c-2e53-4051-9372-5cadeddbe923))
+    (pin "2" (uuid 6d34b4e5-88c1-4a2c-8f2a-3bbba70f978e))
+    (instances
+      (project "IMUnav_H00"
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
+          (reference "R6") (unit 1)
+        )
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/a9afb5b4-1f6f-482b-94ff-c518cd1be378"
+          (reference "R85") (unit 1)
+        )
+      )
+      (project "TrackJet_H01"
+        (path "/be19061b-7390-4ec0-8428-59753cd99ec5/00000000-0000-0000-0000-0000600f65f0"
+          (reference "R21") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "power:GND") (at 149.86 81.28 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid 5e404b0c-cbab-49c8-90d2-9ea3522ae585)
+    (property "Reference" "#PWR027" (at 149.86 87.63 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (at 149.987 85.6742 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 149.86 81.28 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 149.86 81.28 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid f4756757-29df-45b8-9fbb-bae8f0dc4f75))
+    (instances
+      (project "IMUnav_H00"
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
+          (reference "#PWR027") (unit 1)
+        )
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/a9afb5b4-1f6f-482b-94ff-c518cd1be378"
+          (reference "#PWR0230") (unit 1)
+        )
+      )
+      (project "PaLampa_MoBo_H01"
+        (path "/68867493-9f89-4388-916e-56f5ada0ac5c/4ec8e228-d742-4cd8-8c0d-36879b06f45c"
+          (reference "#PWR?") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "Device:R") (at 129.54 64.77 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid 67be1557-6b2b-45d8-85bd-29793941b8fc)
+    (property "Reference" "R6" (at 131.318 63.6016 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "1K8" (at 131.318 65.913 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric" (at 127.762 64.77 90)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 129.54 64.77 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "LCSC" "C4177" (at 129.54 64.77 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid f3ceac04-d9fd-40e0-8d3f-33a843d79207))
+    (pin "2" (uuid f10156c3-f499-419e-86cb-000f6014726c))
+    (instances
+      (project "IMUnav_H00"
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
+          (reference "R6") (unit 1)
+        )
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/a9afb5b4-1f6f-482b-94ff-c518cd1be378"
+          (reference "R83") (unit 1)
+        )
+      )
+      (project "TrackJet_H01"
+        (path "/be19061b-7390-4ec0-8428-59753cd99ec5/00000000-0000-0000-0000-0000600f65f0"
+          (reference "R21") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "Device:LED") (at 167.64 72.39 90) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid 6ac11184-fd20-4360-84ce-2eb1041db30c)
+    (property "Reference" "D3" (at 170.561 72.7654 90)
+      (effects (font (size 1.27 1.27)) (justify right))
+    )
+    (property "Value" "LED_YELLOW" (at 170.561 75.1896 90)
+      (effects (font (size 1.27 1.27)) (justify right))
+    )
+    (property "Footprint" "LED_SMD:LED_0603_1608Metric" (at 167.64 72.39 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 167.64 72.39 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "LCSC" "C72038" (at 167.64 72.39 90)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid eed4e8ac-3c8b-4c72-b982-c69148b2945f))
+    (pin "2" (uuid 37573e2d-93e6-4490-b7cc-f998ca8205c4))
+    (instances
+      (project "IMUnav_H00"
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
+          (reference "D3") (unit 1)
+        )
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/a9afb5b4-1f6f-482b-94ff-c518cd1be378"
+          (reference "D8") (unit 1)
+        )
+      )
+    )
+  )
+
   (symbol (lib_id "power:GND") (at 189.23 134.62 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 7466049e-0205-4975-8ea1-70588339d836)
-    (property "Reference" "#PWR0191" (at 189.23 140.97 0)
+    (property "Reference" "#PWR0237" (at 189.23 140.97 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 189.357 139.0142 0)
@@ -570,7 +933,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/a9afb5b4-1f6f-482b-94ff-c518cd1be378"
-          (reference "#PWR0191") (unit 1)
+          (reference "#PWR0237") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -615,7 +978,7 @@
   (symbol (lib_id "power:GND") (at 160.02 114.3 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 84627d9c-8a28-48a4-bf58-0ef737bad8ae)
-    (property "Reference" "#PWR0187" (at 160.02 120.65 0)
+    (property "Reference" "#PWR0233" (at 160.02 120.65 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 160.147 118.6942 0)
@@ -631,7 +994,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/a9afb5b4-1f6f-482b-94ff-c518cd1be378"
-          (reference "#PWR0187") (unit 1)
+          (reference "#PWR0233") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -664,7 +1027,7 @@
           (reference "#PWR0138") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/a9afb5b4-1f6f-482b-94ff-c518cd1be378"
-          (reference "#PWR0138") (unit 1)
+          (reference "#PWR0228") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -678,7 +1041,7 @@
   (symbol (lib_id "power:GND") (at 149.86 134.62 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 9a763929-2258-4012-94b6-a5e2c55e9531)
-    (property "Reference" "#PWR0188" (at 149.86 140.97 0)
+    (property "Reference" "#PWR0232" (at 149.86 140.97 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 149.987 139.0142 0)
@@ -694,7 +1057,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/a9afb5b4-1f6f-482b-94ff-c518cd1be378"
-          (reference "#PWR0188") (unit 1)
+          (reference "#PWR0232") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -727,7 +1090,7 @@
           (reference "#PWR0137") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/a9afb5b4-1f6f-482b-94ff-c518cd1be378"
-          (reference "#PWR0194") (unit 1)
+          (reference "#PWR0225") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -741,7 +1104,7 @@
   (symbol (lib_id "power:GND") (at 149.86 114.3 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 9e723ca5-abe5-4309-b6b4-df6da4a53953)
-    (property "Reference" "#PWR0186" (at 149.86 120.65 0)
+    (property "Reference" "#PWR0231" (at 149.86 120.65 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 149.987 118.6942 0)
@@ -757,7 +1120,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/a9afb5b4-1f6f-482b-94ff-c518cd1be378"
-          (reference "#PWR0186") (unit 1)
+          (reference "#PWR0231") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -768,10 +1131,79 @@
     )
   )
 
+  (symbol (lib_id "Device:LED") (at 149.86 72.39 90) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid b41c3472-b6bf-4c69-9192-391671f981af)
+    (property "Reference" "D3" (at 152.781 72.7654 90)
+      (effects (font (size 1.27 1.27)) (justify right))
+    )
+    (property "Value" "LED_YELLOW" (at 152.781 75.1896 90)
+      (effects (font (size 1.27 1.27)) (justify right))
+    )
+    (property "Footprint" "LED_SMD:LED_0603_1608Metric" (at 149.86 72.39 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 149.86 72.39 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "LCSC" "C72038" (at 149.86 72.39 90)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 4ac10a8e-cf84-4387-ab5b-54366f98d7b8))
+    (pin "2" (uuid a06fd4a9-7470-4129-8cd5-3bd32575ea5a))
+    (instances
+      (project "IMUnav_H00"
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
+          (reference "D3") (unit 1)
+        )
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/a9afb5b4-1f6f-482b-94ff-c518cd1be378"
+          (reference "D7") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "Device:R") (at 149.86 64.77 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid c93121de-c21d-4867-b895-8a68d72968ef)
+    (property "Reference" "R6" (at 151.638 63.6016 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "1K8" (at 151.638 65.913 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "Resistor_SMD:R_0603_1608Metric" (at 148.082 64.77 90)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 149.86 64.77 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "LCSC" "C4177" (at 149.86 64.77 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid e98df194-0685-4763-8bdb-06938516870e))
+    (pin "2" (uuid 8223a84d-03b2-424d-b629-0eee8835f198))
+    (instances
+      (project "IMUnav_H00"
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
+          (reference "R6") (unit 1)
+        )
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/a9afb5b4-1f6f-482b-94ff-c518cd1be378"
+          (reference "R84") (unit 1)
+        )
+      )
+      (project "TrackJet_H01"
+        (path "/be19061b-7390-4ec0-8428-59753cd99ec5/00000000-0000-0000-0000-0000600f65f0"
+          (reference "R21") (unit 1)
+        )
+      )
+    )
+  )
+
   (symbol (lib_id "power:GND") (at 160.02 134.62 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid d1d51c68-5691-479a-ad2f-23d5cb592b5c)
-    (property "Reference" "#PWR0189" (at 160.02 140.97 0)
+    (property "Reference" "#PWR0234" (at 160.02 140.97 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 160.147 139.0142 0)
@@ -787,7 +1219,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/a9afb5b4-1f6f-482b-94ff-c518cd1be378"
-          (reference "#PWR0189") (unit 1)
+          (reference "#PWR0234") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -824,7 +1256,7 @@
           (reference "C45") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/a9afb5b4-1f6f-482b-94ff-c518cd1be378"
-          (reference "C61") (unit 1)
+          (reference "C71") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -857,12 +1289,44 @@
           (reference "#PWR0138") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/a9afb5b4-1f6f-482b-94ff-c518cd1be378"
-          (reference "#PWR0195") (unit 1)
+          (reference "#PWR0226") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
         (path "/68867493-9f89-4388-916e-56f5ada0ac5c"
           (reference "#PWR?") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "Device:LED") (at 129.54 72.39 90) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid ec0d31fc-01d3-4c0c-aeb4-8482f9c787c4)
+    (property "Reference" "D3" (at 132.461 72.7654 90)
+      (effects (font (size 1.27 1.27)) (justify right))
+    )
+    (property "Value" "LED_YELLOW" (at 132.461 75.1896 90)
+      (effects (font (size 1.27 1.27)) (justify right))
+    )
+    (property "Footprint" "LED_SMD:LED_0603_1608Metric" (at 129.54 72.39 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 129.54 72.39 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "LCSC" "C72038" (at 129.54 72.39 90)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 3aa57d88-3620-4cf7-ae57-91f565816059))
+    (pin "2" (uuid 4e081983-d97f-44de-87b3-3738005bfb92))
+    (instances
+      (project "IMUnav_H00"
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
+          (reference "D3") (unit 1)
+        )
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/a9afb5b4-1f6f-482b-94ff-c518cd1be378"
+          (reference "D6") (unit 1)
         )
       )
     )
@@ -925,7 +1389,7 @@
           (reference "C45") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/a9afb5b4-1f6f-482b-94ff-c518cd1be378"
-          (reference "C45") (unit 1)
+          (reference "C68") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -993,7 +1457,7 @@
           (reference "C45") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/a9afb5b4-1f6f-482b-94ff-c518cd1be378"
-          (reference "C62") (unit 1)
+          (reference "C72") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1029,7 +1493,7 @@
           (reference "U11") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/a9afb5b4-1f6f-482b-94ff-c518cd1be378"
-          (reference "U11") (unit 1)
+          (reference "U18") (unit 1)
         )
       )
     )

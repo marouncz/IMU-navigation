@@ -744,7 +744,7 @@
           (reference "R30") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "R32") (unit 1)
+          (reference "R56") (unit 1)
         )
       )
     )
@@ -772,7 +772,7 @@
           (reference "#PWR06") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "#PWR0142") (unit 1)
+          (reference "#PWR0202") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -818,7 +818,7 @@
   (symbol (lib_id "Connector:Conn_Coaxial") (at 207.01 73.66 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 1c467480-42b1-463b-9323-fe2850980946)
-    (property "Reference" "J2" (at 209.5501 72.7411 0)
+    (property "Reference" "J8" (at 209.5501 72.7411 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "Conn_Coaxial" (at 209.5501 75.1653 0)
@@ -835,7 +835,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "J2") (unit 1)
+          (reference "J8") (unit 1)
         )
       )
     )
@@ -863,7 +863,7 @@
           (reference "#PWR04") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "#PWR0149") (unit 1)
+          (reference "#PWR0193") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -896,7 +896,7 @@
           (reference "#PWR04") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "#PWR0143") (unit 1)
+          (reference "#PWR0196") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -933,7 +933,7 @@
           (reference "C1") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "C53") (unit 1)
+          (reference "C61") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -966,7 +966,7 @@
           (reference "#PWR03") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "#PWR0150") (unit 1)
+          (reference "#PWR0191") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -999,7 +999,7 @@
           (reference "#PWR03") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "#PWR0148") (unit 1)
+          (reference "#PWR0195") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1036,7 +1036,7 @@
           (reference "C2") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "C52") (unit 1)
+          (reference "C62") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1073,7 +1073,7 @@
           (reference "R10") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "R37") (unit 1)
+          (reference "R55") (unit 1)
         )
       )
     )
@@ -1101,7 +1101,7 @@
           (reference "#PWR04") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "#PWR0157") (unit 1)
+          (reference "#PWR0192") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1115,7 +1115,7 @@
   (symbol (lib_id "Device:R") (at 182.88 50.8 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 703fc1fd-f288-42ad-af14-e2e3f564b3e1)
-    (property "Reference" "R38" (at 182.88 45.6397 90)
+    (property "Reference" "R58" (at 182.88 45.6397 90)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "10R" (at 182.88 48.0639 90)
@@ -1135,7 +1135,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "R38") (unit 1)
+          (reference "R58") (unit 1)
         )
       )
     )
@@ -1144,7 +1144,7 @@
   (symbol (lib_id "RF_GPS:NEO-M8N") (at 156.21 73.66 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 746a526d-c366-486a-b9ff-c6dcc6da924b)
-    (property "Reference" "U13" (at 158.4041 95.7001 0)
+    (property "Reference" "U16" (at 158.4041 95.7001 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "NEO-M8U" (at 158.4041 98.1243 0)
@@ -1183,7 +1183,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "U13") (unit 1)
+          (reference "U16") (unit 1)
         )
       )
     )
@@ -1215,7 +1215,7 @@
           (reference "R10") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "R36") (unit 1)
+          (reference "R54") (unit 1)
         )
       )
     )
@@ -1243,7 +1243,7 @@
           (reference "#PWR04") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "#PWR0144") (unit 1)
+          (reference "#PWR0190") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1276,7 +1276,7 @@
           (reference "#PWR04") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "#PWR0145") (unit 1)
+          (reference "#PWR0189") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1320,7 +1320,7 @@
   (symbol (lib_id "Device:C") (at 44.45 33.02 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 96ebbb04-b427-4cc2-b224-4d720a11d065)
-    (property "Reference" "C48" (at 47.371 31.8079 0)
+    (property "Reference" "C59" (at 47.371 31.8079 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1u" (at 47.371 34.2321 0)
@@ -1340,7 +1340,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "C48") (unit 1)
+          (reference "C59") (unit 1)
         )
       )
     )
@@ -1372,7 +1372,7 @@
           (reference "C2") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "C47") (unit 1)
+          (reference "C64") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1405,7 +1405,7 @@
           (reference "#PWR04") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "#PWR0146") (unit 1)
+          (reference "#PWR0188") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1442,7 +1442,7 @@
           (reference "C1") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "C46") (unit 1)
+          (reference "C63") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1475,7 +1475,7 @@
           (reference "#PWR04") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "#PWR0152") (unit 1)
+          (reference "#PWR0198") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1489,7 +1489,7 @@
   (symbol (lib_id "Device:C") (at 77.47 33.02 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid aea96e8d-9271-444f-908e-2077c285f4b0)
-    (property "Reference" "C49" (at 80.391 31.8079 0)
+    (property "Reference" "C60" (at 80.391 31.8079 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1u" (at 80.391 34.2321 0)
@@ -1509,7 +1509,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "C49") (unit 1)
+          (reference "C60") (unit 1)
         )
       )
     )
@@ -1537,7 +1537,7 @@
           (reference "#PWR03") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "#PWR0139") (unit 1)
+          (reference "#PWR0199") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1570,7 +1570,7 @@
           (reference "#PWR04") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "#PWR0156") (unit 1)
+          (reference "#PWR0197") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1603,7 +1603,7 @@
           (reference "#PWR028") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "#PWR0147") (unit 1)
+          (reference "#PWR0187") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1636,7 +1636,7 @@
           (reference "#PWR05") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "#PWR0141") (unit 1)
+          (reference "#PWR0201") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1669,7 +1669,7 @@
           (reference "#PWR04") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "#PWR0140") (unit 1)
+          (reference "#PWR0200") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1706,7 +1706,7 @@
           (reference "R30") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "R33") (unit 1)
+          (reference "R57") (unit 1)
         )
       )
     )
@@ -1734,7 +1734,7 @@
           (reference "#PWR03") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/61a7e487-220c-46a1-aef5-176736fd02e1"
-          (reference "#PWR0151") (unit 1)
+          (reference "#PWR0194") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
