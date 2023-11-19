@@ -539,6 +539,14 @@
     [
       "61a7e487-220c-46a1-aef5-176736fd02e1",
       "GPS"
+    ],
+    [
+      "86346d6f-e2e9-4b09-829f-5c51f1c26d9b",
+      "Memory"
+    ],
+    [
+      "a9afb5b4-1f6f-482b-94ff-c518cd1be378",
+      "User"
     ]
   ],
   "text_variables": {}
