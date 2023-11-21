@@ -1834,6 +1834,39 @@
     )
   )
 
+  (symbol (lib_id "power:GND") (at 185.42 69.85 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid bc32a8ee-9f06-4a10-9052-efd0436d7a11)
+    (property "Reference" "#PWR04" (at 185.42 76.2 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (at 185.547 74.2442 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 185.42 69.85 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 185.42 69.85 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid dcfa3909-75c9-4b36-96b0-566057840a39))
+    (instances
+      (project "IMUnav_H00"
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0"
+          (reference "#PWR04") (unit 1)
+        )
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/86346d6f-e2e9-4b09-829f-5c51f1c26d9b"
+          (reference "#PWR0241") (unit 1)
+        )
+      )
+      (project "PaLampa_MoBo_H01"
+        (path "/68867493-9f89-4388-916e-56f5ada0ac5c"
+          (reference "#PWR?") (unit 1)
+        )
+      )
+    )
+  )
+
   (symbol (lib_id "power:+3V3") (at 111.76 26.67 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid bdc7f50f-863a-4d70-8f44-bc8039aca09d)
