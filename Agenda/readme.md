@@ -18,9 +18,9 @@
    - [ ] Make data fusion in Matlab/Python or imu_x_fusion
  
 # [ ] Hardware
-   - [ ] Design decisions \
+   - [X] Design decisions \
          BLE / WiFi / MCU
-   - [ ] Schematic \
+   - [X] Schematic \
             IMU from Analog Devices \
             u-Blox M8U \
             cheaper variant of IMU (acc, gyro, mag) \
@@ -28,7 +28,9 @@
             MCU \
             Micro-SD card / flash IC \
             USB-C with charging capability \
-            BLE / WiFi
+            BLE / WiFi \
+            Place Titles into scheets for functional blocks
+   - [ ] PCB
 
 
 
