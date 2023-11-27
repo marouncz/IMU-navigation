@@ -821,7 +821,7 @@
     (property "Reference" "J8" (at 209.5501 72.7411 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "Conn_Coaxial" (at 209.5501 75.1653 0)
+    (property "Value" "SMA6252A2-3GT50G-50\n" (at 209.5501 75.1653 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Footprint" "Connector_Coaxial:SMA_Amphenol_901-143_Horizontal" (at 207.01 73.66 0)

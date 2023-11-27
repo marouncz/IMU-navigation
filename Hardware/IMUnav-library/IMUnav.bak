@@ -1,10 +1,10 @@
 (kicad_symbol_lib (version 20220914) (generator kicad_symbol_editor)
   (symbol "ADIS16505" (in_bom yes) (on_board yes)
-    (property "Reference" "U" (at 0 36.83 0)
-      (effects (font (size 1.27 1.27)))
+    (property "Reference" "U13" (at 2.1941 -16.8331 0)
+      (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "ADIS16505-2BMLZ" (at 0 31.75 0)
-      (effects (font (size 1.27 1.27)))
+    (property "Value" "ADIS16505-2BMLZ" (at 2.1941 -19.2573 0)
+      (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Footprint" "IMUnav:BGA-100_10x10_15.0x15.0mm" (at 0 8.89 0)
       (effects (font (size 1.27 1.27)) hide)
@@ -21,7 +21,7 @@
         (name "GND" (effects (font (size 1.27 1.27))))
         (number "A1" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 11.43 -11.43 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "A10" (effects (font (size 1.27 1.27))))
       )
@@ -53,19 +53,19 @@
         (name "GND" (effects (font (size 1.27 1.27))))
         (number "A8" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54)
+      (pin no_connect line (at 11.43 17.78 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "A9" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 11.43 -1.27 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "B1" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 11.43 0 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "B10" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 11.43 1.27 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "B2" (effects (font (size 1.27 1.27))))
       )
@@ -85,23 +85,23 @@
         (name "GND" (effects (font (size 1.27 1.27))))
         (number "B6" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 11.43 -8.89 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "B7" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 11.43 -12.7 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "B8" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 11.43 -10.16 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "B9" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 11.43 -13.97 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "C1" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 11.43 -2.54 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "C10" (effects (font (size 1.27 1.27))))
       )
@@ -109,15 +109,15 @@
         (name "GND" (effects (font (size 1.27 1.27))))
         (number "C2" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 6.35 180) (length 2.54)
+      (pin no_connect line (at 11.43 19.05 180) (length 2.54) hide
         (name "DNC" (effects (font (size 1.27 1.27))))
         (number "C3" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 11.43 -3.81 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "C4" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 11.43 -15.24 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "C5" (effects (font (size 1.27 1.27))))
       )
@@ -129,23 +129,23 @@
         (name "VDD" (effects (font (size 1.27 1.27))))
         (number "C7" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 11.43 -7.62 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "C8" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 11.43 -6.35 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "C9" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 11.43 -5.08 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "D1" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 11.43 16.51 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "D10" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 11.43 15.24 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "D2" (effects (font (size 1.27 1.27))))
       )
@@ -153,11 +153,11 @@
         (name "GND" (effects (font (size 1.27 1.27))))
         (number "D3" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 11.43 13.97 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "D4" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 11.43 12.7 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "D5" (effects (font (size 1.27 1.27))))
       )
@@ -165,23 +165,23 @@
         (name "VDD" (effects (font (size 1.27 1.27))))
         (number "D6" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 11.43 11.43 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "D7" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 11.43 2.54 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "D8" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 11.43 5.08 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "D9" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 11.43 6.35 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "E1" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 11.43 3.81 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "E10" (effects (font (size 1.27 1.27))))
       )
@@ -193,11 +193,11 @@
         (name "VDD" (effects (font (size 1.27 1.27))))
         (number "E3" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 11.43 7.62 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "E4" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 11.43 10.16 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "E5" (effects (font (size 1.27 1.27))))
       )
@@ -209,11 +209,11 @@
         (name "GND" (effects (font (size 1.27 1.27))))
         (number "E7" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 8.89 -15.24 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "E8" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 8.89 -13.97 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "E9" (effects (font (size 1.27 1.27))))
       )
@@ -221,19 +221,19 @@
         (name "GND" (effects (font (size 1.27 1.27))))
         (number "F1" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 8.89 -11.43 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "F10" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 8.89 -12.7 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "F2" (effects (font (size 1.27 1.27))))
       )
       (pin input line (at -13.97 11.43 0) (length 2.54)
-        (name "~{NRST}" (effects (font (size 1.27 1.27))))
+        (name "~{RST}" (effects (font (size 1.27 1.27))))
         (number "F3" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 8.89 -10.16 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "F4" (effects (font (size 1.27 1.27))))
       )
@@ -245,7 +245,7 @@
         (name "GND" (effects (font (size 1.27 1.27))))
         (number "F6" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 8.89 -7.62 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "F7" (effects (font (size 1.27 1.27))))
       )
@@ -253,7 +253,7 @@
         (name "GND" (effects (font (size 1.27 1.27))))
         (number "F8" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 8.89 -8.89 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "F9" (effects (font (size 1.27 1.27))))
       )
@@ -261,7 +261,7 @@
         (name "VDD" (effects (font (size 1.27 1.27))))
         (number "G1" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 8.89 -5.08 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "G10" (effects (font (size 1.27 1.27))))
       )
@@ -273,11 +273,11 @@
         (name "~{CS}" (effects (font (size 1.27 1.27))))
         (number "G3" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 8.89 -6.35 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "G4" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 8.89 -3.81 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "G5" (effects (font (size 1.27 1.27))))
       )
@@ -289,11 +289,11 @@
         (name "GND" (effects (font (size 1.27 1.27))))
         (number "G7" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 8.89 -2.54 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "G8" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 8.89 -1.27 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "G9" (effects (font (size 1.27 1.27))))
       )
@@ -301,11 +301,11 @@
         (name "VDD" (effects (font (size 1.27 1.27))))
         (number "H1" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 8.89 0 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "H10" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 8.89 1.27 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "H2" (effects (font (size 1.27 1.27))))
       )
@@ -313,11 +313,11 @@
         (name "DOUT" (effects (font (size 1.27 1.27))))
         (number "H3" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 8.89 2.54 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "H4" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 8.89 3.81 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "H5" (effects (font (size 1.27 1.27))))
       )
@@ -325,7 +325,7 @@
         (name "SCLK" (effects (font (size 1.27 1.27))))
         (number "H6" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 8.89 5.08 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "H7" (effects (font (size 1.27 1.27))))
       )
@@ -333,15 +333,15 @@
         (name "GND" (effects (font (size 1.27 1.27))))
         (number "H8" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 8.89 6.35 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "H9" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 8.89 7.62 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "J1" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 8.89 8.89 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "J10" (effects (font (size 1.27 1.27))))
       )
@@ -369,11 +369,11 @@
         (name "GND" (effects (font (size 1.27 1.27))))
         (number "J7" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 8.89 10.16 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "J8" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 8.89 11.43 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "J9" (effects (font (size 1.27 1.27))))
       )
@@ -381,11 +381,11 @@
         (name "GND" (effects (font (size 1.27 1.27))))
         (number "K1" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 8.89 12.7 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "K10" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 11.43 8.89 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "K2" (effects (font (size 1.27 1.27))))
       )
@@ -393,11 +393,11 @@
         (name "GND" (effects (font (size 1.27 1.27))))
         (number "K3" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 8.89 13.97 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "K4" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 8.89 15.24 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "K5" (effects (font (size 1.27 1.27))))
       )
@@ -405,7 +405,7 @@
         (name "VDD" (effects (font (size 1.27 1.27))))
         (number "K6" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 8.89 16.51 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "K7" (effects (font (size 1.27 1.27))))
       )
@@ -413,29 +413,93 @@
         (name "GND" (effects (font (size 1.27 1.27))))
         (number "K8" (effects (font (size 1.27 1.27))))
       )
-      (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+      (pin no_connect line (at 8.89 17.78 180) (length 2.54) hide
         (name "NC" (effects (font (size 1.27 1.27))))
         (number "K9" (effects (font (size 1.27 1.27))))
       )
     )
   )
   (symbol "ADIS16505-PCB" (in_bom yes) (on_board yes)
-    (property "Reference" "U" (at 5.08 8.89 0)
+    (property "Reference" "U" (at 5.08 -19.05 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Value" "" (at 0 0 0)
+    (property "Value" "ADIS16505-x/PCBZ" (at -6.35 10.16 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "" (at 0 0 0)
+    (property "Footprint" "IMUnav:ADIS16505-PCBZ" (at -6.35 10.16 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "" (at 0 0 0)
+    (property "Datasheet" "https://www.analog.com/media/en/technical-documentation/data-sheets/adis16505.pdf" (at -6.35 10.16 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (symbol "ADIS16505-PCB_1_1"
-      (rectangle (start -2.54 1.27) (end 11.43 -12.7)
+      (rectangle (start -8.89 16.51) (end 8.89 -17.78)
         (stroke (width 0) (type default))
         (fill (type background))
+      )
+      (pin input line (at -11.43 8.89 0) (length 2.54)
+        (name "~{RST}" (effects (font (size 1.27 1.27))))
+        (number "1" (effects (font (size 1.27 1.27))))
+      )
+      (pin input line (at -2.54 19.05 270) (length 2.54)
+        (name "VDD" (effects (font (size 1.27 1.27))))
+        (number "10" (effects (font (size 1.27 1.27))))
+      )
+      (pin input line (at 0 19.05 270) (length 2.54)
+        (name "VDD" (effects (font (size 1.27 1.27))))
+        (number "11" (effects (font (size 1.27 1.27))))
+      )
+      (pin input line (at 2.54 19.05 270) (length 2.54)
+        (name "VDD" (effects (font (size 1.27 1.27))))
+        (number "12" (effects (font (size 1.27 1.27))))
+      )
+      (pin input line (at -11.43 -11.43 0) (length 2.54)
+        (name "DR" (effects (font (size 1.27 1.27))))
+        (number "13" (effects (font (size 1.27 1.27))))
+      )
+      (pin input line (at -11.43 -8.89 0) (length 2.54)
+        (name "SYNC" (effects (font (size 1.27 1.27))))
+        (number "14" (effects (font (size 1.27 1.27))))
+      )
+      (pin input line (at 11.43 2.54 180) (length 2.54) hide
+        (name "NC" (effects (font (size 1.27 1.27))))
+        (number "15" (effects (font (size 1.27 1.27))))
+      )
+      (pin input line (at 11.43 2.54 180) (length 2.54) hide
+        (name "NC" (effects (font (size 1.27 1.27))))
+        (number "16" (effects (font (size 1.27 1.27))))
+      )
+      (pin input line (at -11.43 -3.81 0) (length 2.54)
+        (name "SCLK" (effects (font (size 1.27 1.27))))
+        (number "2" (effects (font (size 1.27 1.27))))
+      )
+      (pin input line (at -11.43 3.81 0) (length 2.54)
+        (name "~{CS}" (effects (font (size 1.27 1.27))))
+        (number "3" (effects (font (size 1.27 1.27))))
+      )
+      (pin input line (at -11.43 -1.27 0) (length 2.54)
+        (name "DOUT" (effects (font (size 1.27 1.27))))
+        (number "4" (effects (font (size 1.27 1.27))))
+      )
+      (pin input line (at 11.43 2.54 180) (length 2.54)
+        (name "NC" (effects (font (size 1.27 1.27))))
+        (number "5" (effects (font (size 1.27 1.27))))
+      )
+      (pin input line (at -11.43 1.27 0) (length 2.54)
+        (name "DIN" (effects (font (size 1.27 1.27))))
+        (number "6" (effects (font (size 1.27 1.27))))
+      )
+      (pin input line (at 0 -20.32 90) (length 2.54)
+        (name "GND" (effects (font (size 1.27 1.27))))
+        (number "7" (effects (font (size 1.27 1.27))))
+      )
+      (pin input line (at 0 -20.32 90) (length 2.54) hide
+        (name "GND" (effects (font (size 1.27 1.27))))
+        (number "8" (effects (font (size 1.27 1.27))))
+      )
+      (pin input line (at 0 -20.32 90) (length 2.54) hide
+        (name "GND" (effects (font (size 1.27 1.27))))
+        (number "9" (effects (font (size 1.27 1.27))))
       )
     )
   )

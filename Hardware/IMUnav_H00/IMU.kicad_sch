@@ -96,7 +96,7 @@
       )
     )
     (symbol "IMUnav:ADIS16505" (in_bom yes) (on_board yes)
-      (property "Reference" "U10" (at 2.1941 -16.8331 0)
+      (property "Reference" "U13" (at 2.1941 -16.8331 0)
         (effects (font (size 1.27 1.27)) (justify left))
       )
       (property "Value" "ADIS16505-2BMLZ" (at 2.1941 -19.2573 0)
@@ -117,7 +117,7 @@
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "A1" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 11.43 -11.43 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "A10" (effects (font (size 1.27 1.27))))
         )
@@ -149,19 +149,19 @@
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "A8" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54)
+        (pin no_connect line (at 11.43 17.78 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "A9" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 11.43 -1.27 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "B1" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 11.43 0 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "B10" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 11.43 1.27 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "B2" (effects (font (size 1.27 1.27))))
         )
@@ -181,23 +181,23 @@
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "B6" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 11.43 -8.89 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "B7" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 11.43 -12.7 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "B8" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 11.43 -10.16 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "B9" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 11.43 -13.97 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "C1" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 11.43 -2.54 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "C10" (effects (font (size 1.27 1.27))))
         )
@@ -205,15 +205,15 @@
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "C2" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 6.35 180) (length 2.54)
+        (pin no_connect line (at 11.43 19.05 180) (length 2.54) hide
           (name "DNC" (effects (font (size 1.27 1.27))))
           (number "C3" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 11.43 -3.81 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "C4" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 11.43 -15.24 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "C5" (effects (font (size 1.27 1.27))))
         )
@@ -225,23 +225,23 @@
           (name "VDD" (effects (font (size 1.27 1.27))))
           (number "C7" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 11.43 -7.62 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "C8" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 11.43 -6.35 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "C9" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 11.43 -5.08 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "D1" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 11.43 16.51 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "D10" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 11.43 15.24 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "D2" (effects (font (size 1.27 1.27))))
         )
@@ -249,11 +249,11 @@
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "D3" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 11.43 13.97 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "D4" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 11.43 12.7 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "D5" (effects (font (size 1.27 1.27))))
         )
@@ -261,23 +261,23 @@
           (name "VDD" (effects (font (size 1.27 1.27))))
           (number "D6" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 11.43 11.43 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "D7" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 11.43 2.54 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "D8" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 11.43 5.08 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "D9" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 11.43 6.35 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "E1" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 11.43 3.81 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "E10" (effects (font (size 1.27 1.27))))
         )
@@ -289,11 +289,11 @@
           (name "VDD" (effects (font (size 1.27 1.27))))
           (number "E3" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 11.43 7.62 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "E4" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 11.43 10.16 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "E5" (effects (font (size 1.27 1.27))))
         )
@@ -305,11 +305,11 @@
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "E7" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 -15.24 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "E8" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 -13.97 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "E9" (effects (font (size 1.27 1.27))))
         )
@@ -317,11 +317,11 @@
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "F1" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 -11.43 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "F10" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 -12.7 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "F2" (effects (font (size 1.27 1.27))))
         )
@@ -329,7 +329,7 @@
           (name "~{RST}" (effects (font (size 1.27 1.27))))
           (number "F3" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 -10.16 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "F4" (effects (font (size 1.27 1.27))))
         )
@@ -341,7 +341,7 @@
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "F6" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 -7.62 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "F7" (effects (font (size 1.27 1.27))))
         )
@@ -349,7 +349,7 @@
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "F8" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 -8.89 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "F9" (effects (font (size 1.27 1.27))))
         )
@@ -357,7 +357,7 @@
           (name "VDD" (effects (font (size 1.27 1.27))))
           (number "G1" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 -5.08 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "G10" (effects (font (size 1.27 1.27))))
         )
@@ -369,11 +369,11 @@
           (name "~{CS}" (effects (font (size 1.27 1.27))))
           (number "G3" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 -6.35 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "G4" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 -3.81 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "G5" (effects (font (size 1.27 1.27))))
         )
@@ -385,11 +385,11 @@
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "G7" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 -2.54 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "G8" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 -1.27 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "G9" (effects (font (size 1.27 1.27))))
         )
@@ -397,11 +397,11 @@
           (name "VDD" (effects (font (size 1.27 1.27))))
           (number "H1" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 0 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "H10" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 1.27 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "H2" (effects (font (size 1.27 1.27))))
         )
@@ -409,11 +409,11 @@
           (name "DOUT" (effects (font (size 1.27 1.27))))
           (number "H3" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 2.54 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "H4" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 3.81 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "H5" (effects (font (size 1.27 1.27))))
         )
@@ -421,7 +421,7 @@
           (name "SCLK" (effects (font (size 1.27 1.27))))
           (number "H6" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 5.08 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "H7" (effects (font (size 1.27 1.27))))
         )
@@ -429,15 +429,15 @@
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "H8" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 6.35 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "H9" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 7.62 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "J1" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 8.89 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "J10" (effects (font (size 1.27 1.27))))
         )
@@ -465,11 +465,11 @@
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "J7" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 10.16 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "J8" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 11.43 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "J9" (effects (font (size 1.27 1.27))))
         )
@@ -477,11 +477,11 @@
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "K1" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 12.7 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "K10" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 11.43 8.89 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "K2" (effects (font (size 1.27 1.27))))
         )
@@ -489,11 +489,11 @@
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "K3" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 13.97 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "K4" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 15.24 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "K5" (effects (font (size 1.27 1.27))))
         )
@@ -501,7 +501,7 @@
           (name "VDD" (effects (font (size 1.27 1.27))))
           (number "K6" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 16.51 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "K7" (effects (font (size 1.27 1.27))))
         )
@@ -509,17 +509,17 @@
           (name "GND" (effects (font (size 1.27 1.27))))
           (number "K8" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 13.97 -1.27 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 17.78 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "K9" (effects (font (size 1.27 1.27))))
         )
       )
     )
     (symbol "IMUnav:ADIS16505-PCB" (in_bom yes) (on_board yes)
-      (property "Reference" "U" (at 5.08 -19.05 0)
+      (property "Reference" "U14" (at 19.05 -16.51 0)
         (effects (font (size 1.27 1.27)))
       )
-      (property "Value" "ADIS16505-x/PCBZ" (at -6.35 10.16 0)
+      (property "Value" "ADIS16505-x/PCBZ" (at 19.05 -18.9342 0)
         (effects (font (size 1.27 1.27)))
       )
       (property "Footprint" "IMUnav:ADIS16505-PCBZ" (at -6.35 10.16 0)
@@ -557,11 +557,11 @@
           (name "SYNC" (effects (font (size 1.27 1.27))))
           (number "14" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 11.43 2.54 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 -6.35 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "15" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 11.43 2.54 180) (length 2.54) hide
+        (pin no_connect line (at 8.89 -3.81 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "16" (effects (font (size 1.27 1.27))))
         )
@@ -577,7 +577,7 @@
           (name "DOUT" (effects (font (size 1.27 1.27))))
           (number "4" (effects (font (size 1.27 1.27))))
         )
-        (pin input line (at 11.43 2.54 180) (length 2.54)
+        (pin no_connect line (at 8.89 -1.27 180) (length 2.54) hide
           (name "NC" (effects (font (size 1.27 1.27))))
           (number "5" (effects (font (size 1.27 1.27))))
         )
@@ -880,9 +880,7 @@
 
   (no_connect (at 104.14 48.26) (uuid 1a3d9416-cb15-45bf-bad8-fcfc0ad59a70))
   (no_connect (at 104.14 45.72) (uuid 6fb54cb0-77c6-4aac-b637-176cbca11ae9))
-  (no_connect (at 194.31 86.36) (uuid 7bac7a9d-57c7-4a30-9f93-aef5ec74b871))
   (no_connect (at 193.04 135.89) (uuid ad584e1b-3e6d-41e2-ae72-44334a4fd9ba))
-  (no_connect (at 194.31 78.74) (uuid aea31791-e20d-45d3-9a43-469e806c8db5))
 
   (wire (pts (xy 162.56 81.28) (xy 166.37 81.28))
     (stroke (width 0) (type default))
@@ -908,10 +906,6 @@
     (stroke (width 0) (type default))
     (uuid 0a8032da-6612-4cc7-9d59-aa0d202dae8e)
   )
-  (wire (pts (xy 222.25 82.55) (xy 222.25 90.17))
-    (stroke (width 0) (type default))
-    (uuid 121e7b08-6b7d-4241-aa33-7b3f1e5261f5)
-  )
   (wire (pts (xy 210.82 128.27) (xy 210.82 135.89))
     (stroke (width 0) (type default))
     (uuid 12cb9379-5f53-4d0a-a19e-3338da984ea8)
@@ -923,10 +917,6 @@
   (wire (pts (xy 210.82 97.79) (xy 210.82 104.14))
     (stroke (width 0) (type default))
     (uuid 154a4ead-52c5-48f9-8a81-9a81676396ec)
-  )
-  (wire (pts (xy 245.11 82.55) (xy 245.11 90.17))
-    (stroke (width 0) (type default))
-    (uuid 18d61d4c-7fc9-4d7c-9b94-847a268c55c6)
   )
   (wire (pts (xy 31.75 27.94) (xy 31.75 43.18))
     (stroke (width 0) (type default))
@@ -1068,10 +1058,6 @@
     (stroke (width 0) (type default))
     (uuid 7acb7ded-8413-460a-b1da-1c7ae212ef5b)
   )
-  (wire (pts (xy 222.25 97.79) (xy 222.25 104.14))
-    (stroke (width 0) (type default))
-    (uuid 7fa99697-ddab-40c9-a2f1-e08dc8eb44c9)
-  )
   (wire (pts (xy 41.91 119.38) (xy 41.91 130.81))
     (stroke (width 0) (type default))
     (uuid 860f6735-d5c0-4b7a-b886-320704a24307)
@@ -1111,10 +1097,6 @@
   (wire (pts (xy 140.97 81.28) (xy 142.24 81.28))
     (stroke (width 0) (type default))
     (uuid b072ff91-56bb-41d0-88b6-35b8c54da671)
-  )
-  (wire (pts (xy 233.68 97.79) (xy 233.68 104.14))
-    (stroke (width 0) (type default))
-    (uuid b1579208-e96f-4493-a3a6-525101552290)
   )
   (wire (pts (xy 163.83 78.74) (xy 166.37 78.74))
     (stroke (width 0) (type default))
@@ -1156,10 +1138,6 @@
     (stroke (width 0) (type default))
     (uuid df751e52-6d53-42d9-8ede-93f6d644a7f7)
   )
-  (wire (pts (xy 245.11 97.79) (xy 245.11 104.14))
-    (stroke (width 0) (type default))
-    (uuid e0bd389a-8e60-4246-bfaf-c09d1b0ec3c2)
-  )
   (wire (pts (xy 245.11 46.99) (xy 245.11 54.61))
     (stroke (width 0) (type default))
     (uuid e0c39645-7fb6-4f50-a962-69420a88222e)
@@ -1191,10 +1169,6 @@
   (wire (pts (xy 161.29 73.66) (xy 161.29 71.12))
     (stroke (width 0) (type default))
     (uuid f634ffa7-2703-4598-a87c-0b3ef7b58954)
-  )
-  (wire (pts (xy 233.68 82.55) (xy 233.68 90.17))
-    (stroke (width 0) (type default))
-    (uuid f70dd723-f2d3-40eb-bf7a-a63667d4172e)
   )
 
   (hierarchical_label "ADIS_~{CS}" (shape input) (at 140.97 78.74 180) (fields_autoplaced)
@@ -1990,36 +1964,6 @@
     )
   )
 
-  (symbol (lib_id "power:+3V3") (at 233.68 82.55 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid 4e21464a-a825-4740-983b-33fa2f66127b)
-    (property "Reference" "#PWR0181" (at 233.68 86.36 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Value" "+3V3" (at 234.061 78.1558 0)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Footprint" "" (at 233.68 82.55 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 233.68 82.55 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid e541c76c-0bce-4ee0-8e2c-6d9c4bad0c97))
-    (instances
-      (project "IMUnav_H00"
-        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0181") (unit 1)
-        )
-      )
-      (project "TrackJet_H01"
-        (path "/a1e2b59b-5a48-4957-8778-5820fb572952/00000000-0000-0000-0000-00006018f5fa"
-          (reference "#PWR0173") (unit 1)
-        )
-      )
-    )
-  )
-
   (symbol (lib_id "power:+3V3") (at 43.18 27.94 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 4fc51216-4f55-4cfc-bd65-1e31b33afbd3)
@@ -2199,36 +2143,6 @@
     )
   )
 
-  (symbol (lib_id "power:GND") (at 222.25 104.14 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid 5750b442-d03e-40cb-942b-0e20a8b27c91)
-    (property "Reference" "#PWR0178" (at 222.25 110.49 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Value" "GND" (at 222.377 108.5342 0)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Footprint" "" (at 222.25 104.14 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 222.25 104.14 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid c9351090-9d40-4129-a136-ca4d8547e2d4))
-    (instances
-      (project "IMUnav_H00"
-        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0178") (unit 1)
-        )
-      )
-      (project "TrackJet_H01"
-        (path "/a1e2b59b-5a48-4957-8778-5820fb572952/00000000-0000-0000-0000-00006018f5fa"
-          (reference "#PWR036") (unit 1)
-        )
-      )
-    )
-  )
-
   (symbol (lib_id "power:+3V3") (at 86.36 27.94 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 5ae53cc1-e67b-4d3a-8efe-f57c780bebab)
@@ -2381,36 +2295,6 @@
       (project "TrackJet_H01"
         (path "/a1e2b59b-5a48-4957-8778-5820fb572952/00000000-0000-0000-0000-00006018f5fa"
           (reference "#PWR0173") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "power:GND") (at 233.68 104.14 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid 6621b3a4-9ea7-412b-9b58-ea4261324516)
-    (property "Reference" "#PWR0182" (at 233.68 110.49 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Value" "GND" (at 233.807 108.5342 0)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Footprint" "" (at 233.68 104.14 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 233.68 104.14 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid 9cc51ee2-c1ed-4e5f-9ddb-de2500cf0f0a))
-    (instances
-      (project "IMUnav_H00"
-        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0182") (unit 1)
-        )
-      )
-      (project "TrackJet_H01"
-        (path "/a1e2b59b-5a48-4957-8778-5820fb572952/00000000-0000-0000-0000-00006018f5fa"
-          (reference "#PWR0158") (unit 1)
         )
       )
     )
@@ -2712,36 +2596,6 @@
     )
   )
 
-  (symbol (lib_id "power:+3V3") (at 245.11 82.55 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid 94423606-89b7-419c-8986-ead94f27a031)
-    (property "Reference" "#PWR0185" (at 245.11 86.36 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Value" "+3V3" (at 245.491 78.1558 0)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Footprint" "" (at 245.11 82.55 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 245.11 82.55 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid 5d56d43b-7fed-4d64-95be-d5b151eab304))
-    (instances
-      (project "IMUnav_H00"
-        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0185") (unit 1)
-        )
-      )
-      (project "TrackJet_H01"
-        (path "/a1e2b59b-5a48-4957-8778-5820fb572952/00000000-0000-0000-0000-00006018f5fa"
-          (reference "#PWR033") (unit 1)
-        )
-      )
-    )
-  )
-
   (symbol (lib_id "power:+3V3") (at 173.99 63.5 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 948ddbb2-2758-4428-b4d4-f9234c6032cd)
@@ -2767,36 +2621,6 @@
       (project "TrackJet_H01"
         (path "/a1e2b59b-5a48-4957-8778-5820fb572952/00000000-0000-0000-0000-00006018f5fa"
           (reference "#PWR0173") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "power:GND") (at 245.11 104.14 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid 99b8304c-1812-4666-a122-20fa839724a5)
-    (property "Reference" "#PWR0186" (at 245.11 110.49 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Value" "GND" (at 245.237 108.5342 0)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Footprint" "" (at 245.11 104.14 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 245.11 104.14 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid af44104c-845d-46ba-8b78-26c39d96018a))
-    (instances
-      (project "IMUnav_H00"
-        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0186") (unit 1)
-        )
-      )
-      (project "TrackJet_H01"
-        (path "/a1e2b59b-5a48-4957-8778-5820fb572952/00000000-0000-0000-0000-00006018f5fa"
-          (reference "#PWR036") (unit 1)
         )
       )
     )
@@ -2969,36 +2793,6 @@
     )
   )
 
-  (symbol (lib_id "power:+3V3") (at 222.25 82.55 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid a35e895c-6826-4662-a5de-97d1fcd7fab2)
-    (property "Reference" "#PWR0177" (at 222.25 86.36 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Value" "+3V3" (at 222.631 78.1558 0)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Footprint" "" (at 222.25 82.55 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 222.25 82.55 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid b6b44c42-d590-40f1-98c2-8d66390a67a7))
-    (instances
-      (project "IMUnav_H00"
-        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0177") (unit 1)
-        )
-      )
-      (project "TrackJet_H01"
-        (path "/a1e2b59b-5a48-4957-8778-5820fb572952/00000000-0000-0000-0000-00006018f5fa"
-          (reference "#PWR033") (unit 1)
-        )
-      )
-    )
-  )
-
   (symbol (lib_id "power:+3V3") (at 53.34 99.06 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid a650b7e5-2f55-4ce3-9df4-bb99a2ce1e44)
@@ -3084,43 +2878,6 @@
       (project "TrackJet_H01"
         (path "/a1e2b59b-5a48-4957-8778-5820fb572952/00000000-0000-0000-0000-00006018f5fa"
           (reference "#PWR0173") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Device:C") (at 222.25 93.98 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid b0dd2892-d9c6-43fb-b6cc-e90422e098f6)
-    (property "Reference" "C54" (at 225.171 92.8116 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "100n" (at 225.171 95.123 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 223.2152 97.79 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "~" (at 222.25 93.98 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "LCSC" "C14663" (at 222.25 93.98 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid 7883ce42-ca51-48a8-a40c-1064b904ed23))
-    (pin "2" (uuid 8ad8bf45-8e32-4a8a-abdc-74e2c69a4795))
-    (instances
-      (project "IMUnav_H00"
-        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "C54") (unit 1)
-        )
-      )
-      (project "TrackJet_H01"
-        (path "/a1e2b59b-5a48-4957-8778-5820fb572952/00000000-0000-0000-0000-00006018f5fa"
-          (reference "C7") (unit 1)
-        )
-        (path "/a1e2b59b-5a48-4957-8778-5820fb572952/00000000-0000-0000-0000-000060171ef5"
-          (reference "C?") (unit 1)
         )
       )
     )
@@ -3684,43 +3441,6 @@
     )
   )
 
-  (symbol (lib_id "Device:C") (at 233.68 93.98 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid f067cc93-ed58-4ec0-90f0-64c9e6dedc79)
-    (property "Reference" "C56" (at 236.601 92.8116 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "100n" (at 236.601 95.123 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 234.6452 97.79 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "~" (at 233.68 93.98 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "LCSC" "C14663" (at 233.68 93.98 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid 37dead1b-80df-44a9-8831-27351a37f18a))
-    (pin "2" (uuid c9e60c2f-98b8-4ec3-bca4-d74c1e7220df))
-    (instances
-      (project "IMUnav_H00"
-        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "C56") (unit 1)
-        )
-      )
-      (project "TrackJet_H01"
-        (path "/a1e2b59b-5a48-4957-8778-5820fb572952/00000000-0000-0000-0000-00006018f5fa"
-          (reference "C46") (unit 1)
-        )
-        (path "/a1e2b59b-5a48-4957-8778-5820fb572952/00000000-0000-0000-0000-000060171ef5"
-          (reference "C?") (unit 1)
-        )
-      )
-    )
-  )
-
   (symbol (lib_id "power:GND") (at 180.34 102.87 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid f338f6a9-da0a-486e-8b79-4f937677891c)
@@ -3839,43 +3559,6 @@
       (project "TrackJet_H01"
         (path "/a1e2b59b-5a48-4957-8778-5820fb572952/00000000-0000-0000-0000-00006018f5fa"
           (reference "C8") (unit 1)
-        )
-        (path "/a1e2b59b-5a48-4957-8778-5820fb572952/00000000-0000-0000-0000-000060171ef5"
-          (reference "C?") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Device:C") (at 245.11 93.98 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
-    (uuid f76c569b-f940-4f7c-a7a4-80eca3e725bd)
-    (property "Reference" "C58" (at 248.031 92.8116 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "100n" (at 248.031 95.123 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (at 246.0752 97.79 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "~" (at 245.11 93.98 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "LCSC" "C14663" (at 245.11 93.98 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid c42f58d2-e285-470c-a931-12a598f50b34))
-    (pin "2" (uuid d777054f-c154-4c49-bf82-639fa6529625))
-    (instances
-      (project "IMUnav_H00"
-        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "C58") (unit 1)
-        )
-      )
-      (project "TrackJet_H01"
-        (path "/a1e2b59b-5a48-4957-8778-5820fb572952/00000000-0000-0000-0000-00006018f5fa"
-          (reference "C7") (unit 1)
         )
         (path "/a1e2b59b-5a48-4957-8778-5820fb572952/00000000-0000-0000-0000-000060171ef5"
           (reference "C?") (unit 1)
