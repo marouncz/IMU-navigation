@@ -528,6 +528,14 @@
       {
         "netclass": "USB 90Ohm Diff",
         "pattern": "/USB+Power/D+"
+      },
+      {
+        "netclass": "USB 90Ohm Diff",
+        "pattern": "STM_D+"
+      },
+      {
+        "netclass": "USB 90Ohm Diff",
+        "pattern": "STM_D-"
       }
     ]
   },
