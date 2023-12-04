@@ -491,6 +491,10 @@
     (stroke (width 0) (type default))
     (uuid 53468d70-bc65-49a9-9292-7f1a4354bd5f)
   )
+  (wire (pts (xy 194.31 132.08) (xy 194.31 139.7))
+    (stroke (width 0) (type default))
+    (uuid 57179146-4295-49b7-99a4-56b9cd26cd56)
+  )
   (wire (pts (xy 93.98 49.53) (xy 127 49.53))
     (stroke (width 0) (type default))
     (uuid 57c4fec4-d22f-43e6-8a55-7cc5c8a8f37f)
@@ -550,6 +554,10 @@
   (wire (pts (xy 132.08 119.38) (xy 137.16 119.38))
     (stroke (width 0) (type default))
     (uuid 88b3eab6-b03b-4b2e-ae31-a1003a3459fa)
+  )
+  (wire (pts (xy 194.31 114.3) (xy 194.31 124.46))
+    (stroke (width 0) (type default))
+    (uuid 88c7455a-df02-4152-9602-8e5bbe29fbb3)
   )
   (wire (pts (xy 121.92 34.29) (xy 121.92 52.07))
     (stroke (width 0) (type default))
@@ -820,6 +828,39 @@
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/86346d6f-e2e9-4b09-829f-5c51f1c26d9b"
           (reference "R66") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "power:+3V3") (at 194.31 114.3 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid 0735d09d-dce7-4e4f-8bfc-fa015347caa8)
+    (property "Reference" "#PWR03" (at 194.31 118.11 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "+3V3" (at 194.691 109.9058 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 194.31 114.3 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 194.31 114.3 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 6712330c-badf-44e8-88b3-44b9e0ad9b2a))
+    (instances
+      (project "IMUnav_H00"
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0"
+          (reference "#PWR03") (unit 1)
+        )
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/86346d6f-e2e9-4b09-829f-5c51f1c26d9b"
+          (reference "#PWR0181") (unit 1)
+        )
+      )
+      (project "PaLampa_MoBo_H01"
+        (path "/68867493-9f89-4388-916e-56f5ada0ac5c"
+          (reference "#PWR?") (unit 1)
         )
       )
     )
@@ -1202,6 +1243,39 @@
     )
   )
 
+  (symbol (lib_id "power:GND") (at 194.31 139.7 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid 3dd54e31-e4d4-4e25-9969-f67c0d832e66)
+    (property "Reference" "#PWR04" (at 194.31 146.05 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (at 194.437 144.0942 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 194.31 139.7 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 194.31 139.7 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid a83291fb-74ca-4ba0-b1a5-21442c03230d))
+    (instances
+      (project "IMUnav_H00"
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0"
+          (reference "#PWR04") (unit 1)
+        )
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/86346d6f-e2e9-4b09-829f-5c51f1c26d9b"
+          (reference "#PWR027") (unit 1)
+        )
+      )
+      (project "PaLampa_MoBo_H01"
+        (path "/68867493-9f89-4388-916e-56f5ada0ac5c"
+          (reference "#PWR?") (unit 1)
+        )
+      )
+    )
+  )
+
   (symbol (lib_id "Device:R") (at 106.68 30.48 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 41678202-347a-4e93-9665-adf1943f3766)
@@ -1411,6 +1485,46 @@
       (project "TrackJet_H01"
         (path "/be19061b-7390-4ec0-8428-59753cd99ec5/00000000-0000-0000-0000-0000600f65f0"
           (reference "R22") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "Device:C") (at 194.31 128.27 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid 87e38386-c31e-4170-989d-88d133984315)
+    (property "Reference" "C?" (at 197.231 127.1016 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "10u" (at 197.231 129.413 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "Capacitor_SMD:C_0805_2012Metric" (at 195.2752 132.08 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 194.31 128.27 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "LCSC" "C15850" (at 194.31 128.27 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid a1323c11-969f-4748-9d46-d18c6c6707af))
+    (pin "2" (uuid 4b9532ee-2454-4cf7-8770-5d8c2571fd7e))
+    (instances
+      (project "IMUnav_H00"
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
+          (reference "C?") (unit 1)
+        )
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/bf35eb2a-37f7-4f5f-b34e-af3028cdd96b"
+          (reference "C37") (unit 1)
+        )
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/86346d6f-e2e9-4b09-829f-5c51f1c26d9b"
+          (reference "C54") (unit 1)
+        )
+      )
+      (project "PaLampa_MoBo_H01"
+        (path "/68867493-9f89-4388-916e-56f5ada0ac5c/4ec8e228-d742-4cd8-8c0d-36879b06f45c"
+          (reference "C?") (unit 1)
         )
       )
     )
@@ -2181,7 +2295,7 @@
   )
 
   (symbol (lib_id "Device:R") (at 116.84 30.48 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
+    (in_bom yes) (on_board yes) (dnp yes)
     (uuid d98b8bc3-2365-4afe-9b4c-ac6b18e33057)
     (property "Reference" "R41" (at 119.38 29.21 90)
       (effects (font (size 1.27 1.27)) (justify left))
