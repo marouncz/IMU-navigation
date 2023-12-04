@@ -60,7 +60,11 @@
           "width": 0.3302
         }
       ],
-      "drc_exclusions": [],
+      "drc_exclusions": [
+        "unconnected_items|3141000|89660000|815414a3-f188-466a-8017-6ad5f9168d3f|cd576ff2-8723-4162-b63a-e882191aefc5",
+        "unconnected_items|3141000|98300000|cd576ff2-8723-4162-b63a-e882191aefc5|bfa162ac-91f8-48b1-8b05-a6ae9e806fd4",
+        "unconnected_items|7321000|89660000|e411bb3d-da20-46b0-aaa9-1491f1482a9b|815414a3-f188-466a-8017-6ad5f9168d3f"
+      ],
       "meta": {
         "version": 2
       },
@@ -133,7 +137,7 @@
         "min_via_diameter": 0.5,
         "solder_mask_clearance": 0.0,
         "solder_mask_min_width": 0.0,
-        "solder_mask_to_copper_clearance": 0.0,
+        "solder_mask_to_copper_clearance": 0.005,
         "use_height_for_length_calcs": true
       },
       "teardrop_options": [

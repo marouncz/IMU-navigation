@@ -1275,7 +1275,7 @@
   (symbol (lib_id "power:GND") (at 86.36 66.04 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 03570101-3e82-4eb3-b7cc-71b5ef990f3d)
-    (property "Reference" "#PWR0148" (at 86.36 72.39 0)
+    (property "Reference" "#PWR0150" (at 86.36 72.39 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 86.487 70.4342 0)
@@ -1291,7 +1291,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0148") (unit 1)
+          (reference "#PWR0150") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -1334,7 +1334,7 @@
   (symbol (lib_id "power:+3V3") (at 68.58 115.57 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 08e0b2c1-f0f6-407b-8635-ed77c01c8829)
-    (property "Reference" "#PWR0146" (at 68.58 119.38 0)
+    (property "Reference" "#PWR0148" (at 68.58 119.38 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 68.961 111.1758 0)
@@ -1350,7 +1350,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0146") (unit 1)
+          (reference "#PWR0148") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -1383,7 +1383,7 @@
           (reference "#PWR06") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0136") (unit 1)
+          (reference "#PWR0138") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1397,7 +1397,7 @@
   (symbol (lib_id "power:+3V3") (at 186.69 63.5 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 10297b85-14ce-4cd1-8e5f-92f5884719fc)
-    (property "Reference" "#PWR0167" (at 186.69 67.31 0)
+    (property "Reference" "#PWR0169" (at 186.69 67.31 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 186.69 58.42 90)
@@ -1413,7 +1413,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0167") (unit 1)
+          (reference "#PWR0169") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -1427,7 +1427,7 @@
   (symbol (lib_id "power:+3V3") (at 184.15 119.38 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 1b97e9a7-1bf2-4b4a-bb79-6a56d33b3891)
-    (property "Reference" "#PWR0166" (at 184.15 123.19 0)
+    (property "Reference" "#PWR0168" (at 184.15 123.19 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 184.15 114.3 90)
@@ -1443,7 +1443,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0166") (unit 1)
+          (reference "#PWR0168") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -1457,7 +1457,7 @@
   (symbol (lib_id "power:+3V3") (at 210.82 46.99 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 23902b28-aa15-449f-a18b-41bb3eec37bb)
-    (property "Reference" "#PWR0169" (at 210.82 50.8 0)
+    (property "Reference" "#PWR0171" (at 210.82 50.8 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 211.201 42.5958 0)
@@ -1473,7 +1473,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0169") (unit 1)
+          (reference "#PWR0171") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -1524,7 +1524,7 @@
   (symbol (lib_id "power:+3V3") (at 222.25 46.99 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 2c7851d4-9236-4eda-b8ad-e37b58c826e0)
-    (property "Reference" "#PWR0175" (at 222.25 50.8 0)
+    (property "Reference" "#PWR0177" (at 222.25 50.8 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 222.631 42.5958 0)
@@ -1540,7 +1540,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0175") (unit 1)
+          (reference "#PWR0177") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -1554,7 +1554,7 @@
   (symbol (lib_id "power:GND") (at 41.91 130.81 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 2c91fc3d-59d0-4819-8ac1-a5a33ad20cd2)
-    (property "Reference" "#PWR0140" (at 41.91 137.16 0)
+    (property "Reference" "#PWR0142" (at 41.91 137.16 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 42.037 135.2042 0)
@@ -1570,7 +1570,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0140") (unit 1)
+          (reference "#PWR0142") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -1584,7 +1584,7 @@
   (symbol (lib_id "power:GND") (at 119.38 130.81 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 321f9f77-c78b-4dc8-b379-59cb93d6a7c9)
-    (property "Reference" "#PWR0154" (at 119.38 137.16 0)
+    (property "Reference" "#PWR0156" (at 119.38 137.16 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 119.507 135.2042 0)
@@ -1600,7 +1600,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0154") (unit 1)
+          (reference "#PWR0156") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -1680,7 +1680,7 @@
   (symbol (lib_id "power:+3V3") (at 176.53 63.5 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 3dfee7e2-01be-4116-8a89-16eea8455607)
-    (property "Reference" "#PWR0158" (at 176.53 67.31 0)
+    (property "Reference" "#PWR0160" (at 176.53 67.31 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 176.53 58.42 90)
@@ -1696,7 +1696,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0158") (unit 1)
+          (reference "#PWR0160") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -1769,7 +1769,7 @@
           (reference "#PWR05") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0173") (unit 1)
+          (reference "#PWR0175") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -1783,7 +1783,7 @@
   (symbol (lib_id "power:+3V3") (at 171.45 63.5 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 47b255de-24de-47d0-95ff-d38f56224beb)
-    (property "Reference" "#PWR0156" (at 171.45 67.31 0)
+    (property "Reference" "#PWR0158" (at 171.45 67.31 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 171.45 58.42 90)
@@ -1799,7 +1799,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0156") (unit 1)
+          (reference "#PWR0158") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -1813,7 +1813,7 @@
   (symbol (lib_id "power:+3V3") (at 41.91 99.06 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 4bb78656-0857-4c8e-bf25-0fdba559d997)
-    (property "Reference" "#PWR0139" (at 41.91 102.87 0)
+    (property "Reference" "#PWR0141" (at 41.91 102.87 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 42.291 94.6658 0)
@@ -1829,7 +1829,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0139") (unit 1)
+          (reference "#PWR0141") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -1967,7 +1967,7 @@
   (symbol (lib_id "power:+3V3") (at 43.18 27.94 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 4fc51216-4f55-4cfc-bd65-1e31b33afbd3)
-    (property "Reference" "#PWR0141" (at 43.18 31.75 0)
+    (property "Reference" "#PWR0143" (at 43.18 31.75 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 43.561 23.5458 0)
@@ -1983,7 +1983,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0141") (unit 1)
+          (reference "#PWR0143") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -1997,7 +1997,7 @@
   (symbol (lib_id "power:GND") (at 210.82 104.14 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 522cafe0-a0e5-4bfe-aa5c-a3772d16f146)
-    (property "Reference" "#PWR0172" (at 210.82 110.49 0)
+    (property "Reference" "#PWR0174" (at 210.82 110.49 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 210.947 108.5342 0)
@@ -2013,7 +2013,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0172") (unit 1)
+          (reference "#PWR0174") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -2056,7 +2056,7 @@
   (symbol (lib_id "power:GND") (at 181.61 158.75 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 535bea05-90cb-462f-b032-151c737bdb98)
-    (property "Reference" "#PWR0164" (at 181.61 165.1 0)
+    (property "Reference" "#PWR0166" (at 181.61 165.1 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 181.737 163.1442 0)
@@ -2072,7 +2072,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0164") (unit 1)
+          (reference "#PWR0166") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -2086,7 +2086,7 @@
   (symbol (lib_id "power:GND") (at 210.82 68.58 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 5367935f-d86e-4642-835c-53817028a264)
-    (property "Reference" "#PWR0170" (at 210.82 74.93 0)
+    (property "Reference" "#PWR0172" (at 210.82 74.93 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 210.947 72.9742 0)
@@ -2102,7 +2102,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0170") (unit 1)
+          (reference "#PWR0172") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -2116,7 +2116,7 @@
   (symbol (lib_id "power:+3V3") (at 233.68 46.99 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 5697d958-8d2f-4a7a-92dc-35e56a2ba425)
-    (property "Reference" "#PWR0179" (at 233.68 50.8 0)
+    (property "Reference" "#PWR0181" (at 233.68 50.8 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 234.061 42.5958 0)
@@ -2132,7 +2132,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0179") (unit 1)
+          (reference "#PWR0181") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -2146,7 +2146,7 @@
   (symbol (lib_id "power:+3V3") (at 86.36 27.94 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 5ae53cc1-e67b-4d3a-8efe-f57c780bebab)
-    (property "Reference" "#PWR0147" (at 86.36 31.75 0)
+    (property "Reference" "#PWR0149" (at 86.36 31.75 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 86.741 23.5458 0)
@@ -2162,7 +2162,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0147") (unit 1)
+          (reference "#PWR0149") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -2176,7 +2176,7 @@
   (symbol (lib_id "power:GND") (at 53.34 130.81 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 5b6bbe96-d654-4202-a2db-2e61964d4a1a)
-    (property "Reference" "#PWR0145" (at 53.34 137.16 0)
+    (property "Reference" "#PWR0147" (at 53.34 137.16 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 53.467 135.2042 0)
@@ -2192,7 +2192,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0145") (unit 1)
+          (reference "#PWR0147") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -2243,7 +2243,7 @@
   (symbol (lib_id "power:+3V3") (at 210.82 82.55 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 5b9e19b6-f2b2-43e2-b551-dec3a054b0b9)
-    (property "Reference" "#PWR0171" (at 210.82 86.36 0)
+    (property "Reference" "#PWR0173" (at 210.82 86.36 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 211.201 78.1558 0)
@@ -2259,7 +2259,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0171") (unit 1)
+          (reference "#PWR0173") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -2273,7 +2273,7 @@
   (symbol (lib_id "power:+3V3") (at 181.61 63.5 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 60f44bb1-84b5-41c7-8bfa-5ec5dda64706)
-    (property "Reference" "#PWR0162" (at 181.61 67.31 0)
+    (property "Reference" "#PWR0164" (at 181.61 67.31 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 181.61 58.42 90)
@@ -2289,7 +2289,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0162") (unit 1)
+          (reference "#PWR0164") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -2303,7 +2303,7 @@
   (symbol (lib_id "power:GND") (at 104.14 66.04 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 664dc749-f15a-4b42-bb7a-3c3a3840a1f2)
-    (property "Reference" "#PWR0152" (at 104.14 72.39 0)
+    (property "Reference" "#PWR0154" (at 104.14 72.39 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 104.267 70.4342 0)
@@ -2319,7 +2319,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0152") (unit 1)
+          (reference "#PWR0154") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -2352,7 +2352,7 @@
           (reference "#PWR06") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0174") (unit 1)
+          (reference "#PWR0176") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -2403,7 +2403,7 @@
   (symbol (lib_id "power:GND") (at 43.18 66.04 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 736d9cd6-c2d6-44a7-b323-9c3ea043c14d)
-    (property "Reference" "#PWR0142" (at 43.18 72.39 0)
+    (property "Reference" "#PWR0144" (at 43.18 72.39 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 43.307 70.4342 0)
@@ -2419,7 +2419,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0142") (unit 1)
+          (reference "#PWR0144") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -2433,7 +2433,7 @@
   (symbol (lib_id "power:+3V3") (at 102.87 100.33 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 7e8d5e3e-b424-4014-a506-443c2e219e89)
-    (property "Reference" "#PWR0151" (at 102.87 104.14 0)
+    (property "Reference" "#PWR0153" (at 102.87 104.14 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 103.251 95.9358 0)
@@ -2449,7 +2449,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0151") (unit 1)
+          (reference "#PWR0153") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -2463,7 +2463,7 @@
   (symbol (lib_id "power:+3V3") (at 222.25 82.55 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 80c6f3a6-7d90-42c2-a96c-a8c8381f64b2)
-    (property "Reference" "#PWR0183" (at 222.25 86.36 0)
+    (property "Reference" "#PWR0179" (at 222.25 86.36 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 222.631 78.1558 0)
@@ -2479,7 +2479,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0183") (unit 1)
+          (reference "#PWR0179") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -2530,7 +2530,7 @@
   (symbol (lib_id "power:GND") (at 222.25 68.58 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 825687f3-58df-4cc5-be53-6a374a7130f7)
-    (property "Reference" "#PWR0176" (at 222.25 74.93 0)
+    (property "Reference" "#PWR0178" (at 222.25 74.93 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 222.377 72.9742 0)
@@ -2546,7 +2546,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0176") (unit 1)
+          (reference "#PWR0178") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -2599,7 +2599,7 @@
   (symbol (lib_id "power:+3V3") (at 173.99 63.5 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 948ddbb2-2758-4428-b4d4-f9234c6032cd)
-    (property "Reference" "#PWR0157" (at 173.99 67.31 0)
+    (property "Reference" "#PWR0159" (at 173.99 67.31 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 173.99 58.42 90)
@@ -2615,7 +2615,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0157") (unit 1)
+          (reference "#PWR0159") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -2648,7 +2648,7 @@
           (reference "#PWR05") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0135") (unit 1)
+          (reference "#PWR0137") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -2662,7 +2662,7 @@
   (symbol (lib_id "power:GND") (at 113.03 66.04 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 9b307b7c-d69f-479f-9410-db3470b49e3b)
-    (property "Reference" "#PWR0153" (at 113.03 72.39 0)
+    (property "Reference" "#PWR0155" (at 113.03 72.39 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 113.157 70.4342 0)
@@ -2678,7 +2678,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0153") (unit 1)
+          (reference "#PWR0155") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -2721,7 +2721,7 @@
   (symbol (lib_id "power:GND") (at 233.68 68.58 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 9d695746-9a95-4a2c-99f7-4b7abbbf11a8)
-    (property "Reference" "#PWR0180" (at 233.68 74.93 0)
+    (property "Reference" "#PWR0182" (at 233.68 74.93 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 233.807 72.9742 0)
@@ -2737,7 +2737,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0180") (unit 1)
+          (reference "#PWR0182") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -2796,7 +2796,7 @@
   (symbol (lib_id "power:+3V3") (at 53.34 99.06 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid a650b7e5-2f55-4ce3-9df4-bb99a2ce1e44)
-    (property "Reference" "#PWR0144" (at 53.34 102.87 0)
+    (property "Reference" "#PWR0146" (at 53.34 102.87 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 53.721 94.6658 0)
@@ -2812,7 +2812,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0144") (unit 1)
+          (reference "#PWR0146") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -2826,7 +2826,7 @@
   (symbol (lib_id "power:+3V3") (at 31.75 27.94 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid a7d4371b-2669-4455-8aab-dfc9d1b6c01b)
-    (property "Reference" "#PWR0137" (at 31.75 31.75 0)
+    (property "Reference" "#PWR0139" (at 31.75 31.75 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 32.131 23.5458 0)
@@ -2842,7 +2842,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0137") (unit 1)
+          (reference "#PWR0139") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -2856,7 +2856,7 @@
   (symbol (lib_id "power:+3V3") (at 184.15 63.5 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid ab744733-97a3-463b-84e3-2549630a327e)
-    (property "Reference" "#PWR0165" (at 184.15 67.31 0)
+    (property "Reference" "#PWR0167" (at 184.15 67.31 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 184.15 58.42 90)
@@ -2872,7 +2872,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0165") (unit 1)
+          (reference "#PWR0167") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -2923,7 +2923,7 @@
   (symbol (lib_id "power:+3V3") (at 179.07 119.38 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid b1fcf8d4-47e0-4c8e-a1ec-cb49f777ad65)
-    (property "Reference" "#PWR0160" (at 179.07 123.19 0)
+    (property "Reference" "#PWR0162" (at 179.07 123.19 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 179.07 114.3 90)
@@ -2939,7 +2939,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0160") (unit 1)
+          (reference "#PWR0162") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -3056,7 +3056,7 @@
   (symbol (lib_id "power:GND") (at 31.75 66.04 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid cd0c4be0-97e1-4f0a-a3bd-d4a98489439f)
-    (property "Reference" "#PWR0138" (at 31.75 72.39 0)
+    (property "Reference" "#PWR0140" (at 31.75 72.39 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 31.877 70.4342 0)
@@ -3072,7 +3072,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0138") (unit 1)
+          (reference "#PWR0140") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -3123,7 +3123,7 @@
   (symbol (lib_id "power:+3V3") (at 100.33 100.33 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid ce87e7ba-9766-4310-85b8-903f613f3a32)
-    (property "Reference" "#PWR0149" (at 100.33 104.14 0)
+    (property "Reference" "#PWR0151" (at 100.33 104.14 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 100.711 95.9358 0)
@@ -3139,7 +3139,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0149") (unit 1)
+          (reference "#PWR0151") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -3153,7 +3153,7 @@
   (symbol (lib_id "power:GND") (at 100.33 130.81 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid d0a2e0f6-e881-4d2f-a486-878583127522)
-    (property "Reference" "#PWR0150" (at 100.33 137.16 0)
+    (property "Reference" "#PWR0152" (at 100.33 137.16 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 100.457 135.2042 0)
@@ -3169,7 +3169,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0150") (unit 1)
+          (reference "#PWR0152") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -3220,7 +3220,7 @@
   (symbol (lib_id "power:+3V3") (at 161.29 63.5 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid de5aaa09-fe18-4761-b83d-3024edbcde84)
-    (property "Reference" "#PWR0155" (at 161.29 67.31 0)
+    (property "Reference" "#PWR0157" (at 161.29 67.31 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 161.671 59.1058 0)
@@ -3236,7 +3236,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0155") (unit 1)
+          (reference "#PWR0157") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -3250,7 +3250,7 @@
   (symbol (lib_id "power:GND") (at 222.25 104.14 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid dfee4bd5-6dff-4be0-aff4-5ca166b1a9e6)
-    (property "Reference" "#PWR0184" (at 222.25 110.49 0)
+    (property "Reference" "#PWR0180" (at 222.25 110.49 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 222.377 108.5342 0)
@@ -3266,7 +3266,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0184") (unit 1)
+          (reference "#PWR0180") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -3317,7 +3317,7 @@
   (symbol (lib_id "power:GND") (at 52.07 66.04 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid e9aa30a7-6ac5-468b-8e17-e240b65d135f)
-    (property "Reference" "#PWR0143" (at 52.07 72.39 0)
+    (property "Reference" "#PWR0145" (at 52.07 72.39 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 52.197 70.4342 0)
@@ -3333,7 +3333,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0143") (unit 1)
+          (reference "#PWR0145") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -3347,7 +3347,7 @@
   (symbol (lib_id "power:+3V3") (at 179.07 63.5 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid ec735690-ed11-46ce-8f06-2ec9f54cd482)
-    (property "Reference" "#PWR0159" (at 179.07 67.31 0)
+    (property "Reference" "#PWR0161" (at 179.07 67.31 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 179.07 58.42 90)
@@ -3363,7 +3363,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0159") (unit 1)
+          (reference "#PWR0161") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -3377,7 +3377,7 @@
   (symbol (lib_id "power:+3V3") (at 181.61 119.38 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid ed70aa0f-e341-4e70-a100-10eb07e88806)
-    (property "Reference" "#PWR0163" (at 181.61 123.19 0)
+    (property "Reference" "#PWR0165" (at 181.61 123.19 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 181.61 114.3 90)
@@ -3393,7 +3393,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0163") (unit 1)
+          (reference "#PWR0165") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -3407,7 +3407,7 @@
   (symbol (lib_id "Device:C") (at 222.25 93.98 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp yes)
     (uuid ef3d6eae-cc08-4e08-8548-d1a06bc783a3)
-    (property "Reference" "C57" (at 225.171 92.8116 0)
+    (property "Reference" "C54" (at 225.171 92.8116 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "100n" (at 225.171 95.123 0)
@@ -3427,7 +3427,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "C57") (unit 1)
+          (reference "C54") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -3444,7 +3444,7 @@
   (symbol (lib_id "power:GND") (at 180.34 102.87 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid f338f6a9-da0a-486e-8b79-4f937677891c)
-    (property "Reference" "#PWR0161" (at 180.34 109.22 0)
+    (property "Reference" "#PWR0163" (at 180.34 109.22 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 180.467 107.2642 0)
@@ -3460,7 +3460,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0161") (unit 1)
+          (reference "#PWR0163") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -3474,7 +3474,7 @@
   (symbol (lib_id "power:+3V3") (at 189.23 63.5 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid f4b49948-bff9-4425-8854-a7f64a292447)
-    (property "Reference" "#PWR0168" (at 189.23 67.31 0)
+    (property "Reference" "#PWR0170" (at 189.23 67.31 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 189.23 58.42 90)
@@ -3490,7 +3490,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/368409dd-4d9a-4752-893d-5939a8c78734"
-          (reference "#PWR0168") (unit 1)
+          (reference "#PWR0170") (unit 1)
         )
       )
       (project "TrackJet_H01"

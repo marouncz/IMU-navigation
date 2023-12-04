@@ -17,17 +17,17 @@
       "zones": 0.3499999940395355
     },
     "selection_filter": {
-      "dimensions": true,
-      "footprints": true,
-      "graphics": true,
-      "keepouts": true,
+      "dimensions": false,
+      "footprints": false,
+      "graphics": false,
+      "keepouts": false,
       "lockedItems": false,
-      "otherItems": true,
-      "pads": true,
+      "otherItems": false,
+      "pads": false,
       "text": true,
-      "tracks": true,
-      "vias": true,
-      "zones": true
+      "tracks": false,
+      "vias": false,
+      "zones": false
     },
     "visible_items": [
       0,
@@ -66,7 +66,7 @@
       39,
       40
     ],
-    "visible_layers": "00090a0_00000000",
+    "visible_layers": "00010a0_00000000",
     "zone_display_mode": 0
   },
   "meta": {
