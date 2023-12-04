@@ -4887,6 +4887,9 @@
     (property "Datasheet" "~" (at 204.47 134.62 0)
       (effects (font (size 1.27 1.27)) hide)
     )
+    (property "LCSC" "C280580" (at 204.47 134.62 90)
+      (effects (font (size 1.27 1.27)) hide)
+    )
     (pin "1" (uuid ecf9cc4a-023a-4d9e-b7f2-c0a6080a5051))
     (pin "2" (uuid 7df7d442-25ee-4821-8cae-1d01d17eff81))
     (instances

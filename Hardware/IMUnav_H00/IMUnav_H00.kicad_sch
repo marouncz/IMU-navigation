@@ -7086,13 +7086,18 @@
     (uuid fe4ebd21-95e3-4c23-bee4-26f2f51f1202)
   )
 
+  (text "Při exportu:\nodstranit JTAG konektor, odstranit pin headry"
+    (at 15.24 229.87 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid bec9ec18-e261-4cbd-96ee-db9daa0047ee)
+  )
   (text "HW notes:\nDone - consider different module / chip package for ESP32\nUsed different approach - Consider high-side switches for peripherals (at leaset those that have high power consumption on reset/shutdown)\nDone - Add battery and switch\nDone - Add 5V and BAT voltage sensing\nUsed different approach - Add diodes/mosfets for powering DC/DC converter from USB/Battery automatically\nDone - 100kHz SMBUS - check max i2c speed of usb hub, so it does not collide with other devices on the same i2c interface\nDone - Decide which antenna connector to use - u.FL/SMA\nDone - USB voltage connect to STM wake up pin\nDone - Add LEDs and measure points\nDone - Check recommended design fro USBLC6\nNot possible, boot1 must be assigned to its alternate function. Connect BOOT0 and BOOT1\nDone - Check pinout of LSM303 version that is in stock on JLC\nAdd Titles for functional blocks\n\n\n"
-    (at 142.24 247.65 0)
+    (at 142.24 254 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid c45891b9-d852-4322-884e-22a3b8ff7034)
   )
-  (text "Koupit na TME:\nSMA konektor SMA6252A2-3GT50G-50\nplochý kabel 1mm: DS1052-01-16NA2015\nKonektor 2x8 1mm na desku THT: 57102-F08-08ULF\nKonektor 2x8 1mm krimpovací na kabel: T826116A101CEU\nTlačítka?\n"
-    (at 74.93 242.57 0)
+  (text "Koupit na TME:\nSMA konektor SMA6252A2-3GT50G-50\nplochý kabel 1mm: DS1052-01-16NA2015\nKonektor 2x8 1mm na desku THT: 57102-F08-08ULF\nKonektor 2x8 1mm krimpovací na kabel: T826116A101CEU\nTlačítka?\n\nNekoupit nakonec i ten ublox?\n\n"
+    (at 73.66 248.92 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid cb2a01e0-158b-4b46-8202-bdb21b26e117)
   )
@@ -8267,7 +8272,7 @@
   )
 
   (symbol (lib_id "Connector:Conn_ARM_JTAG_SWD_10") (at 74.93 176.53 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no)
+    (in_bom no) (on_board yes) (dnp no)
     (uuid 177814b7-39c0-4cfb-93c8-170eeda59815)
     (property "Reference" "J1" (at 92.71 182.88 0)
       (effects (font (size 1.27 1.27)) (justify right))
@@ -8530,7 +8535,7 @@
   )
 
   (symbol (lib_id "Connector:Conn_01x03_Pin") (at 193.04 106.68 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (in_bom no) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 2db433c9-5323-4501-9018-ffc73f4a5e81)
     (property "Reference" "J6" (at 193.675 99.9195 0)
       (effects (font (size 1.27 1.27)))
@@ -9463,7 +9468,7 @@
   )
 
   (symbol (lib_id "Connector:Conn_01x03_Pin") (at 177.8 124.46 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (in_bom no) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 7d33859a-ef57-4235-9fef-6992a06bfbbc)
     (property "Reference" "J2" (at 178.435 117.6995 0)
       (effects (font (size 1.27 1.27)))
@@ -9874,7 +9879,7 @@
   )
 
   (symbol (lib_id "Connector:Conn_01x03_Pin") (at 193.04 27.94 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (in_bom no) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 98b50530-d984-4949-93a6-4c1cc5511907)
     (property "Reference" "J3" (at 193.675 21.1795 0)
       (effects (font (size 1.27 1.27)))
@@ -9961,7 +9966,7 @@
   )
 
   (symbol (lib_id "Connector:Conn_01x03_Pin") (at 193.04 81.28 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (in_bom no) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid a4a72b6f-f9b7-417f-a4f9-4f6bffd64304)
     (property "Reference" "J5" (at 193.675 74.5195 0)
       (effects (font (size 1.27 1.27)))
@@ -9988,7 +9993,7 @@
   )
 
   (symbol (lib_id "Connector:Conn_01x03_Pin") (at 193.04 57.15 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (in_bom no) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid a687ba0d-da96-4a31-b1c0-0dcf7aef1767)
     (property "Reference" "J4" (at 193.675 50.3895 0)
       (effects (font (size 1.27 1.27)))

@@ -1659,7 +1659,7 @@
     (property "Reference" "U?" (at 128.27 55.88 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Value" "CH340G" (at 129.54 58.42 0)
+    (property "Value" "CH340C" (at 129.54 58.42 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Footprint" "Package_SO:SOIC-16_3.9x9.9mm_P1.27mm" (at 125.73 55.88 0)
