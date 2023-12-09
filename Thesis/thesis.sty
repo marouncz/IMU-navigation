@@ -9,7 +9,7 @@
 %%        a další                                                          %%
 %%                                                                         %%
 %% FEKT, VUT v Brne                                                        %%
-%% latex@feec.vutbr.cz                                                     %%
+%% fekt-latex@vut.cz, https://latex.fekt.vutbr.cz/                         %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -20,9 +20,9 @@
 %% Autor: Jakub Hrabec                                                     %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\def\fileversion{4.07}  % oproti 4.03 upravy hlavne dle dalsich pokynu z fakulty
-\def\filedate{2021/09/22}  %year/month/day
-\def\filename{thesis.sty}
+\def\version@thesis{4.09}  % oproti 4.07 upraveny jen drobnosti + citace prepracovany dle nove normy 690:2022
+\def\date@thesis{2023/10/06}  %year/month/day
+\def\file@thesis{thesis.sty}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Vstupni nastaveni balicku %%
@@ -32,9 +32,9 @@
 
 
 \ProvidesClass{thesis}%
-  [\filedate  v\fileversion  LaTeX document class]
+  [\date@thesis  v\version@thesis  LaTeX document class]
 \typeout{}
-\typeout{Styl '\filename' pro psani kvalifikacnich praci v(\fileversion) na VUT v Brne}
+\typeout{Styl '\file@thesis' pro psani kvalifikacnich praci v(\version@thesis) na VUT v Brne}
 \typeout{}
 
 %% Zpracovani volby typu prace
@@ -1002,8 +1002,8 @@ a~som si plne vedom%
     \addto\captionsczech{\renewcommand\oznacenipodpisu{\ifnum\@pohlavi=1 podpis autorky\else podpis autora\fi}}
     \addto\captionsczech{\renewcommand\oznacenipodekovani{Pod\v{e}kov\'{a}n\'{\i}}}
     \addto\captionsczech{\renewcommand\thesisadvertisment{%
-			    Vys\'{a}zeno pomoc\'{\i} bal\'{\i}\v{c}ku \texttt{thesis} verze \fileversion ;
-    \url{http://latex.feec.vutbr.cz}%
+			    Vys\'{a}zeno pomoc\'{\i} bal\'{\i}\v{c}ku \texttt{thesis} verze \version@thesis ;
+			    \url{https://latex.fekt.vut.cz/}%
 		}}
   \fi
 
@@ -1032,7 +1032,7 @@ a~som si plne vedom%
     \addto\captionsenglish{\renewcommand\proofname{Proof}}
     \addto\captionsenglish{\renewcommand\refname{Bibliography}}
     \addto\captionsenglish{\renewcommand\seename{see}}
-    \addto\captionsenglish{\renewcommand\tablename{Tab.}}
+    \addto\captionsenglish{\renewcommand\tablename{Table}}
     \addto\captionsenglish{\renewcommand\citace@stran{p}}
     \addto\captionsenglish{\renewcommand\oborstudiatext{Specialization of Study}}
     \addto\captionsenglish{\renewcommand\oznaceniprohlaseni{Author's Declaration}}
@@ -1045,9 +1045,9 @@ a~som si plne vedom%
     \addto\captionsenglish{\renewcommand\oznacenipodpisu{author's signature}}
     \addto\captionsenglish{\renewcommand\oznacenipodekovani{Acknowledgement}}
     \addto\captionsenglish{\renewcommand\thesisadvertisment{%
-			    Typeset by the \texttt{thesis} package, version \fileversion ;
-    \url{http://latex.feec.vutbr.cz}%
-		}}
+		Typeset by the \texttt{thesis} package, version \version@thesis ;
+		\url{https://latex.fekt.vut.cz/}%
+	}}
   \fi
 
   \ifx\captionsslovak\undefine\relax\else
@@ -1089,8 +1089,8 @@ a~som si plne vedom%
     \addto\captionsslovak{\renewcommand\oznacenipodpisu{\ifnum\@pohlavi=1 podpis autorky\else podpis autora\fi}}
     \addto\captionsslovak{\renewcommand\oznacenipodekovani{Po\v{d}akovanie}}
     \addto\captionsslovak{\renewcommand\thesisadvertisment{%
-		    Vysaden\'{e} pomocou bal\'{\i}\v{c}ku \texttt{thesis} verzie \fileversion ;
-    \url{http://latex.feec.vutbr.cz}%
+		    Vysaden\'{e} pomocou bal\'{\i}\v{c}ku \texttt{thesis} verzie \version@thesis ;
+    \url{https://latex.fekt.vut.cz/}%
 		}}
   \fi
 
@@ -1766,12 +1766,13 @@ a~som si plne vedom%
 	\parbox{\linewidth}{%%%
 		\sffamily \MakeUppercase{\author@prijmeni},~\author@jmeno{}.
 		{\slshape \title@orig@lang}.
+		{\csname oznaceniprace@\orig@lang\endcsname}. % od verze 4.09 ihned za názvem práce (690)
 		\@city:
 		\university@orig@lang,
 		\faculty@orig@lang,
 		\department@orig@lang,
-		\@grade, \pocet@stran~\citace@stran.
-		{\csname oznaceniprace@\orig@lang\endcsname}.
+		\@grade. 
+		%\pocet@stran~\citace@stran. %podle nové ISO ČSN 690:2022 se již počty stran neuvádějí
 		\csname citace@vedouci@\orig@lang\endcsname
 	}%%%
 }%%

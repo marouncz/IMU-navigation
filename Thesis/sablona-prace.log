@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.6.28)  11 OCT 2023 08:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.5) (preloaded format=pdflatex 2023.6.28)  9 DEC 2023 14:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -370,10 +370,10 @@ File: lstlang1.sty 2023/02/27 1.9 listings language file
 File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
 )
 (nastaveni.tex (thesis.sty
-Package: thesis 2021/09/22v4.07LaTeX document class
+Package: thesis 2023/10/06v4.09LaTeX document class
 
 
-Styl 'thesis.sty' pro psani kvalifikacnich praci v(4.07) na VUT v Brne
+Styl 'thesis.sty' pro psani kvalifikacnich praci v(4.09) na VUT v Brne
 
 \type@semestral=\count298
 \type@bachelor=\count299
@@ -897,7 +897,7 @@ LaTeX Font Info:    ... okay on input line 135.
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * bindingoffset: 28.45274pt
-* modes: twoside 
+* modes: 
 * h-part:(L,W,R)=(71.13188pt, 426.79137pt, 71.13188pt)
 * v-part:(T,H,B)=(71.13188pt, 677.1756pt, 96.73936pt)
 * \paperwidth=597.50787pt
@@ -919,8 +919,8 @@ LaTeX Font Info:    ... okay on input line 135.
 * \voffset=0.0pt
 * \mag=1000
 * \@twocolumnfalse
-* \@twosidetrue
-* \@mparswitchtrue
+* \@twosidefalse
+* \@mparswitchfalse
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
@@ -982,11 +982,11 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 
 pdfTeX warning: pdflatex (file ./pdf/student-titulka.pdf): PDF inclusion: found
  PDF version <1.7>, but at most version <1.5> allowed
-<pdf/student-titulka.pdf, id=76, 597.55246pt x 845.07724pt>
+<pdf/student-titulka.pdf, id=76, 597.51233pt x 845.0471pt>
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf>
 Package pdftex.def Info: pdf/student-titulka.pdf  used on input line 150.
-(pdftex.def)             Requested size: 597.551pt x 845.07518pt.
+(pdftex.def)             Requested size: 597.51086pt x 845.04504pt.
 
 
 pdfTeX warning: pdflatex (file ./pdf/student-titulka.pdf): PDF inclusion: found
@@ -994,7 +994,7 @@ pdfTeX warning: pdflatex (file ./pdf/student-titulka.pdf): PDF inclusion: found
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf>
 Package pdftex.def Info: pdf/student-titulka.pdf  used on input line 150.
-(pdftex.def)             Requested size: 597.551pt x 845.07518pt.
+(pdftex.def)             Requested size: 597.51086pt x 845.04504pt.
 
 
 pdfTeX warning: pdflatex (file ./pdf/student-titulka.pdf): PDF inclusion: found
@@ -1003,75 +1003,86 @@ pdfTeX warning: pdflatex (file ./pdf/student-titulka.pdf): PDF inclusion: found
 
 pdfTeX warning: pdflatex (file ./pdf/student-titulka.pdf): PDF inclusion: found
  PDF version <1.7>, but at most version <1.5> allowed
-<pdf/student-titulka.pdf, id=79, page=1, 597.55246pt x 845.07724pt>
+<pdf/student-titulka.pdf, id=79, page=1, 597.51233pt x 845.0471pt>
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf, page 1>
 Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 150
 .
-(pdftex.def)             Requested size: 597.551pt x 845.07518pt.
+(pdftex.def)             Requested size: 597.51086pt x 845.04504pt.
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf, page 1>
 Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 150
 .
-(pdftex.def)             Requested size: 597.57834pt x 845.11386pt.
+(pdftex.def)             Requested size: 597.53821pt x 845.08372pt.
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf, page 1>
 Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 150
 .
-(pdftex.def)             Requested size: 597.57834pt x 845.11386pt.
+(pdftex.def)             Requested size: 597.53821pt x 845.08372pt.
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf, page 1>
 Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 150
 .
-(pdftex.def)             Requested size: 597.57834pt x 845.11386pt.
+(pdftex.def)             Requested size: 597.53821pt x 845.08372pt.
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf, page 1>
 Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 150
 .
-(pdftex.def)             Requested size: 597.57834pt x 845.11386pt.
+(pdftex.def)             Requested size: 597.53821pt x 845.08372pt.
 [1
 
- <./pdf/student-titulka.pdf>] [2
+ <./pdf/student-titulka.pdf>]
 
-]
-<pdf/student-zadani.pdf, id=106, 597.45204pt x 845.1575pt>
+pdfTeX warning: pdflatex (file ./pdf/student-zadani.pdf): PDF inclusion: found 
+PDF version <1.7>, but at most version <1.5> allowed
+<pdf/student-zadani.pdf, id=94, 597.51233pt x 845.0471pt>
 File: pdf/student-zadani.pdf Graphic file (type pdf)
 <use pdf/student-zadani.pdf>
 Package pdftex.def Info: pdf/student-zadani.pdf  used on input line 158.
-(pdftex.def)             Requested size: 597.45058pt x 845.15544pt.
+(pdftex.def)             Requested size: 597.51086pt x 845.04504pt.
+
+
+pdfTeX warning: pdflatex (file ./pdf/student-zadani.pdf): PDF inclusion: found 
+PDF version <1.7>, but at most version <1.5> allowed
 File: pdf/student-zadani.pdf Graphic file (type pdf)
 <use pdf/student-zadani.pdf>
 Package pdftex.def Info: pdf/student-zadani.pdf  used on input line 158.
-(pdftex.def)             Requested size: 597.45058pt x 845.15544pt.
-<pdf/student-zadani.pdf, id=109, page=1, 597.45204pt x 845.1575pt>
+(pdftex.def)             Requested size: 597.51086pt x 845.04504pt.
+
+
+pdfTeX warning: pdflatex (file ./pdf/student-zadani.pdf): PDF inclusion: found 
+PDF version <1.7>, but at most version <1.5> allowed
+
+
+pdfTeX warning: pdflatex (file ./pdf/student-zadani.pdf): PDF inclusion: found 
+PDF version <1.7>, but at most version <1.5> allowed
+<pdf/student-zadani.pdf, id=97, page=1, 597.51233pt x 845.0471pt>
 File: pdf/student-zadani.pdf Graphic file (type pdf)
 <use pdf/student-zadani.pdf, page 1>
 Package pdftex.def Info: pdf/student-zadani.pdf , page1 used on input line 158.
 
-(pdftex.def)             Requested size: 597.45058pt x 845.15544pt.
+(pdftex.def)             Requested size: 597.51086pt x 845.04504pt.
 File: pdf/student-zadani.pdf Graphic file (type pdf)
 <use pdf/student-zadani.pdf, page 1>
 Package pdftex.def Info: pdf/student-zadani.pdf , page1 used on input line 158.
 
-(pdftex.def)             Requested size: 597.47792pt x 845.19412pt.
+(pdftex.def)             Requested size: 597.53821pt x 845.08372pt.
 File: pdf/student-zadani.pdf Graphic file (type pdf)
 <use pdf/student-zadani.pdf, page 1>
 Package pdftex.def Info: pdf/student-zadani.pdf , page1 used on input line 158.
 
-(pdftex.def)             Requested size: 597.47792pt x 845.19412pt.
+(pdftex.def)             Requested size: 597.53821pt x 845.08372pt.
 File: pdf/student-zadani.pdf Graphic file (type pdf)
 <use pdf/student-zadani.pdf, page 1>
 Package pdftex.def Info: pdf/student-zadani.pdf , page1 used on input line 158.
 
-(pdftex.def)             Requested size: 597.47792pt x 845.19412pt.
+(pdftex.def)             Requested size: 597.53821pt x 845.08372pt.
 File: pdf/student-zadani.pdf Graphic file (type pdf)
 <use pdf/student-zadani.pdf, page 1>
 Package pdftex.def Info: pdf/student-zadani.pdf , page1 used on input line 158.
 
-(pdftex.def)             Requested size: 597.47792pt x 845.19412pt.
- [3 <./pdf/student-zadani.pdf>] [4
-
-]
+(pdftex.def)             Requested size: 597.53821pt x 845.08372pt.
+[2 <./pdf/student-zadani.pdf>]
 LaTeX Font Info:    Trying to load font information for T1+lmss on input line 1
 67.
 
@@ -1118,14 +1129,12 @@ LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 1
 
 (C:\Users\marou\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [5
+) [3
 
 {C:/Users/marou/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}]
-(text/rozsireny_abstrakt.tex [6
+(text/rozsireny_abstrakt.tex) [4
 
-]) [7] [8
-
-] [9] [10
+] [5
 
 ]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
@@ -1133,42 +1142,40 @@ LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
 
 (C:\Users\marou\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [11{C:/Users/marou/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy
-.enc}{C:/Users/marou/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.en
-c}]
-[12
+) [6
 
-] [13] [14
+{C:/Users/marou/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}
+{C:/Users/marou/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}] [
+7
 
-] (sablona-prace.toc
+]
+(sablona-prace.toc
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 18.
 )
 \tf@toc=\write4
 \openout4 = `sablona-prace.toc'.
 
- [15
-
-] [16
+ [8
 
 ] (sablona-prace.lof)
 \tf@lof=\write5
 \openout5 = `sablona-prace.lof'.
 
- [17] [18
+ [9
 
-]
-(sablona-prace.lot)
+] (sablona-prace.lot)
 \tf@lot=\write6
 \openout6 = `sablona-prace.lot'.
 
- [19] [20
+ [10
 
-] (sablona-prace.lol)
+]
+(sablona-prace.lol)
 \tf@lol=\write7
 \openout7 = `sablona-prace.lol'.
 
- [21] [22
+ [11
 
 ]
 \openout2 = `text/uvod.aux'.
@@ -1177,75 +1184,85 @@ LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
 Package acronym Info: Label `acro:symfvz' newly defined as it shall be overridd
 en
 although it is yet undefined on input line 14.
-)
-[23
+) [12
+
 
 
 {C:/Users/marou/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.enc}
 ]
 \openout2 = `text/cile.aux'.
 
- (text/cile.tex [24
-
-
-
-
-]) [25]
-\openout2 = `text/reseni.aux'.
-
- (text/reseni.tex [26
-
-
-
-
-]) [27]
-\openout2 = `text/vysledky.aux'.
-
- (text/vysledky.tex
-[28
-
-
-
-
-] [29]
-Overfull \hbox (1.02756pt too wide) in paragraph at lines 21--24
-[]\T1/lmr/m/n/12 Aliquam erat vo-lut-pat. Quisque porta. In-te-ger im-per-diet 
-lectus quis justo. Nullam
- []
-
-[30]) [31]
-\openout2 = `text/zaver.aux'.
-
- (text/zaver.tex [32
-
-
-
-
-]) [33]
-\openout2 = `text/literatura.aux'.
-
- (text/literatura.tex [34
+ (text/cile.tex) [13
 
 
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 9--15
-\T1/lmr/m/n/12 <[]$\T1/lmtt/m/n/12 https : / / www . vutbr . cz / uredni-[]desk
-a / vnitrni-[]predpisy-[]a-[]dokumenty /
+\openout2 = `text/reseni.aux'.
+
+
+(text/reseni.tex) [14
+
+
+
+
+]
+\openout2 = `text/vysledky.aux'.
+
+ (text/vysledky.tex [15
+
+
+
+
+]
+Overfull \hbox (1.02756pt too wide) in paragraph at lines 21--24
+[]\T1/lmr/m/n/12 Aliquam erat vo-lut-pat. Quisque porta. In-te-ger im-per-diet 
+lectus quis justo. Nullam
  []
 
-) [35]
+[16]) [17]
+\openout2 = `text/zaver.aux'.
+
+ (text/zaver.tex) [18
+
+
+
+
+]
+\openout2 = `text/literatura.aux'.
+
+ (text/literatura.tex
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10.95> on input line 15.
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--17
+[]$\T1/lmtt/m/n/10.95 https : / / www . vut . cz / uredni-[]deska / vnitrni-[]p
+redpisy-[]a-[]dokumenty /
+ []
+
+
+Overfull \hbox (53.80438pt too wide) in paragraph at lines 9--17
+\T1/lmtt/m/n/10.95 smernice-[]c-[]72-[]2017-[]uprava-[]odevzdavani-[]a-[]zverej
+novani-[]zaverecnych-[]praci-[]d161410$[]\T1/lmr/m/n/10.95 .
+ []
+
+
+Underfull \hbox (badness 1184) in paragraph at lines 48--52
+[]\T1/lmr/m/n/12 WALTER, G.G. a SHEN, X. \T1/lmr/m/it/12 Wa-ve-lets and Other O
+rtho-go-nal Sys-tems\T1/lmr/m/n/12 .
+ []
+
+) [19
+
+
+
+
+]
 \openout2 = `text/zkratky.aux'.
 
- (text/zkratky.tex [36
+ (text/zkratky.tex) [20
 
 
-
-
-]) [37
-
-] [38
 
 
 
@@ -1253,32 +1270,30 @@ a / vnitrni-[]predpisy-[]a-[]dokumenty /
 \tf@toa=\write8
 \openout8 = `sablona-prace.toa'.
 
- [39]
+ [21
+
+
+
+]
 \openout2 = `text/prilohy.aux'.
 
-
-(text/prilohy.tex [40
-
-
-]
+ (text/prilohy.tex
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <20.74> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 9.
- [41{C:/Users/marou/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}
-] [42
 
-]
-<obrazky/ZlepseneWilsonovoZrcadloNPN.png, id=398, 556.0775pt x 434.62375pt>
+[22
+
+
+{C:/Users/marou/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}]
+<obrazky/ZlepseneWilsonovoZrcadloNPN.png, id=314, 556.0775pt x 434.62375pt>
 File: obrazky/ZlepseneWilsonovoZrcadloNPN.png Graphic file (type png)
 <use obrazky/ZlepseneWilsonovoZrcadloNPN.png>
 Package pdftex.def Info: obrazky/ZlepseneWilsonovoZrcadloNPN.png  used on input
  line 61.
 (pdftex.def)             Requested size: 278.03807pt x 217.31134pt.
- [43 <./obrazky/ZlepseneWilsonovoZrcadloNPN.png>]
-[44
+[23
 
-]
+ <./obrazky/ZlepseneWilsonovoZrcadloNPN.png>]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <17.28> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 75.
 
@@ -1315,27 +1330,26 @@ File: lstmisc.sty 2023/02/27 1.9 (Carsten Heinz)
 (text/zkratky.tex)
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
 nput line 104.
- (text/zkratky.tex) (text/zkratky.tex) [45]
+ (text/zkratky.tex) (text/zkratky.tex) [24
+
+]
 (C:\Users\marou\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstlang1.sty
 File: lstlang1.sty 2023/02/27 1.9 listings language file
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10.95> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 174.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+[25
 
- [46
-
-]
-[47] [48
-
-]
+] [26]
 Overfull \hbox (3.72125pt too wide) in paragraph at lines 209--211
 \T1/lmr/m/n/12 Vkládá se do in-for-ma£-ního sys-tému VUT v Brn¥ ve vhod-ném for
 -mátu (ZIP, PDF...). 
  []
 
-) [49]
+) [27
+
+]
 \c@page@count=\count317
  (sablona-prace.aux (text/uvod.aux) (text/cile.aux) (text/reseni.aux)
 (text/vysledky.aux) (text/zaver.aux) (text/literatura.aux) (text/zkratky.aux)
@@ -1348,10 +1362,10 @@ Package rerunfilecheck Info: File `sablona-prace.out' has not changed.
 (rerunfilecheck)             Checksum: 8EAA9A91B6F934D35BC34B48DC6E7058;2894.
  ) 
 Here is how much of TeX's memory you used:
- 19084 strings out of 476037
- 300469 string characters out of 5779845
+ 19064 strings out of 476037
+ 300335 string characters out of 5779845
  1914763 words of memory out of 5000000
- 39156 multiletter control sequences out of 15000+600000
+ 39158 multiletter control sequences out of 15000+600000
  689622 words of font info for 118 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,17n,79p,977b,2353s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1376,9 +1390,9 @@ pfb><C:/Users/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx1
 10.pfb><C:/Users/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt
 12.pfb><C:/Users/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt
 i10.pfb>
-Output written on sablona-prace.pdf (49 pages, 716410 bytes).
+Output written on sablona-prace.pdf (27 pages, 1908593 bytes).
 PDF statistics:
- 617 PDF objects out of 1000 (max. 8388607)
- 165 named destinations out of 1000 (max. 500000)
+ 517 PDF objects out of 1000 (max. 8388607)
+ 143 named destinations out of 1000 (max. 500000)
  214 words of extra memory for PDF output out of 10000 (max. 10000000)
 
