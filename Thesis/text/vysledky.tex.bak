@@ -18,5 +18,6 @@ Jednotka obsahuje dvě 6~DoF IMU (gyroskop s akcelerometrem)rozdílných paramet
 
 \input{text/tabulky/gyroAccParams}
 
+
 \subsection{Magnetometr}
 

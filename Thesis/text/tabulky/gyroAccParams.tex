@@ -1,0 +1,32 @@
+\begin{table}[ht]
+\centering
+\begin{tabular}{c||c c c}
+\hline 
+Model IMU & MPU6050 & ADIS16505-2 & jednotka \\ 
+\hline
+\hline 
+\multicolumn{4}{c}{Parametry gyroskopů} \\
+\hline
+\hline
+Dynamický rozsah  & \makecell{programovatelný, \\ $\pm 250$, $\pm 500$, $\pm 1000$, $\pm 2000$} & $\pm 500$ & $\SI[per-mode = symbol]{}{\degree\per\second}$ \\ 
+\hline 
+Citlivost  \tablefootnote{Pro porovnání citlivosti byl vybrán dynamický rozsah $\SI[per-mode = symbol]{500}{\degree\per\second}$ senzoru MPU6050 pro možnost porovnání hodnoty s druhým senzorem} & $65,5$ & $2621440$ & $\SI[per-mode = symbol]{}{\LSB\per(\degree\per\second)}$ \\ 
+\hline 
+Drift v ose x a z & $\pm 20$ & $\pm 0,14$ & $\SI[per-mode = symbol]{}{\degree\per\second}$ \\ 
+\hline 
+Drift v ose y & $\pm 20$ & $\pm 1,4$ & $\SI[per-mode = symbol]{}{\degree\per\second}$ \\ 
+\hline 
+\makecell{Efektivní hodnota hustoty \\šumu při 10Hz pro osy x a y} & 0,005 & 0,0043 & $\SI{}{\degree\per\second\per\sqrt{\Hz}}$ \\ 
+\hline 
+\makecell{Efektivní hodnota hustoty \\šumu při 10Hz pro osu z} & 0,005 & 0,0034 & $\SI{}{\degree\per\second\per\sqrt{\Hz}}$ \\ 
+\hline 
+\hline 
+\multicolumn{4}{c}{Parametry akcelerometrů} \\
+\hline
+\hline
+Dynamický rozsah  & \makecell{programovatelný, \\ $\pm 19,6$, $\pm 39,2$, $\pm 78,4$, $\pm 156,8$} & $\pm 78,4$ & $\SI[per-mode = symbol]{}{\metre\per\second\squared}$ \\ 
+\hline 
+
+\end{tabular} 
+\caption{Porovnání základních parametrů gyroskopů \cite{TDKInvenSense2013} \cite{AnalogDevices2020}} 
+\end{table} 
