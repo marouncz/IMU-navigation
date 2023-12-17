@@ -9,8 +9,8 @@
 \contentsline {chapter}{\numberline {2}Výsledky studentské práce}{15}{chapter.13}%
 \contentsline {section}{\numberline {2.1}Hardware inerciální jednotky}{15}{section.14}%
 \contentsline {subsection}{\numberline {2.1.1}Akcelerometr a gyroskop}{16}{subsection.16}%
-\contentsline {subsection}{\numberline {2.1.2}Magnetometr}{16}{subsection.21}%
-\contentsline {chapter}{Závěr}{17}{section*.23}%
-\contentsline {chapter}{Literatura}{18}{section*.25}%
-\contentsline {chapter}{Seznam symbol\r {u} a zkratek}{19}{section*.27}%
-\contentsline {chapter}{Seznam p\v {r}\'{\i }loh}{20}{section*.29}%
+\contentsline {subsection}{\numberline {2.1.2}Magnetometr}{18}{subsection.23}%
+\contentsline {chapter}{Závěr}{19}{section*.25}%
+\contentsline {chapter}{Literatura}{20}{section*.27}%
+\contentsline {chapter}{Seznam symbol\r {u} a zkratek}{21}{section*.29}%
+\contentsline {chapter}{Seznam p\v {r}\'{\i }loh}{22}{section*.31}%

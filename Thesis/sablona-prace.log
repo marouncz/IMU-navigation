@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.12.13)  14 DEC 2023 10:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.12.13)  17 DEC 2023 16:52
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -930,7 +930,7 @@ File: l3backend-pdftex.def 2023-11-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count325
 \l__pdf_internal_box=\box66
 ) (sablona-prace.aux (text/uvod.aux) (text/cile.aux) (text/reseni.aux)
-(text/vysledky.aux) (text/zaver.aux) (text/literatura.aux) (text/zkratky.aux)
+(text/vysledky.aux) (text/zaver.aux) (text/bibliografie.aux) (text/zkratky.aux)
 (text/prilohy.aux))
 \openout1 = `sablona-prace.aux'.
 
@@ -1298,30 +1298,54 @@ Package pdftex.def Info: obrazky/IMUnav_H00_block.pdf  used on input line 6.
 
 
  <./obrazky/IMUnav_H00_block.pdf>] (text/tabulky/gyroAccParams.tex
-Overfull \hbox (47.16864pt too wide) in paragraph at lines 3--31
- [][] 
- []
 
-)) [16{C:/Users/marou/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.en
-c}{C:/Users/marou/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.en
-c}]
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+)
+
+LaTeX Warning: Command \r invalid in math mode on input line 27.
+
+[16{C:/Users/marou/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.e
+nc}{C:/Users/marou/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc}]
+
+LaTeX Warning: Command \r invalid in math mode on input line 33.
+
+[17]) [18]
 \openout2 = `text/zaver.aux'.
 
- (text/zaver.tex) [17
+ (text/zaver.tex) [19
 
 
 
 
 ]
-\openout2 = `text/literatura.aux'.
+\openout2 = `text/bibliografie.aux'.
 
- (text/literatura.tex
-Underfull \hbox (badness 3088) in paragraph at lines 12--13
-[]\T1/lmr/m/n/12 TDK IN-VEN-SENSE. \T1/lmr/m/it/12 MPU6050: Pro-duct spe-ci-fi-
-cation\T1/lmr/m/n/12 . Ka-ta-lo-gový list.
+ (text/bibliografie.tex
+Underfull \hbox (badness 2277) in paragraph at lines 6--7
+[]\T1/lmr/m/n/12 WEI, Y. a LI, Y. IM-PACT OF SEN-SOR DATA SAM-PLING RATE
  []
 
-) [18
+
+Underfull \hbox (badness 1953) in paragraph at lines 6--7
+\T1/lmr/m/it/12 mote Sensing and Spa-tial In-for-mation Sciences\T1/lmr/m/n/12 
+. 2022, ro£. XLVI-3/W1-
+ []
+
+
+Underfull \hbox (badness 1997) in paragraph at lines 12--13
+[]\T1/lmr/m/n/12 ST MICRO-ELECTRO-NICS. \T1/lmr/m/it/12 LSM303AGR: Ul-tra-com-p
+act high-performance
+ []
+
+
+Underfull \hbox (badness 2057) in paragraph at lines 14--15
+[]\T1/lmr/m/n/12 ST MICRO-ELECTRO-NICS. \T1/lmr/m/it/12 STM32F446xC/E: Arm\TS1/
+lmr/m/it/12 ® \T1/lmr/m/it/12 Cortex\TS1/lmr/m/it/12 ®\T1/lmr/m/it/12 -M4 32-bi
+t
+ []
+
+) [20
 
 
 
@@ -1329,7 +1353,7 @@ cation\T1/lmr/m/n/12 . Ka-ta-lo-gový list.
 ]
 \openout2 = `text/zkratky.aux'.
 
- (text/zkratky.tex) [19
+ (text/zkratky.tex) [21
 
 
 
@@ -1339,7 +1363,7 @@ cation\T1/lmr/m/n/12 . Ka-ta-lo-gový list.
 \tf@toa=\write8
 \openout8 = `sablona-prace.toa'.
 
- [20
+ [22
 
 
 
@@ -1350,23 +1374,27 @@ cation\T1/lmr/m/n/12 . Ka-ta-lo-gový list.
 \c@page@count=\count333
 
 (sablona-prace.aux (text/uvod.aux) (text/cile.aux) (text/reseni.aux)
-(text/vysledky.aux) (text/zaver.aux) (text/literatura.aux) (text/zkratky.aux)
+(text/vysledky.aux) (text/zaver.aux) (text/bibliografie.aux) (text/zkratky.aux)
 (text/prilohy.aux))
  ***********
 LaTeX2e <2023-11-01>
 L3 programming layer <2023-11-09>
  ***********
 Package rerunfilecheck Info: File `sablona-prace.out' has not changed.
-(rerunfilecheck)             Checksum: 0967014C055770D021D273FC357E64D0;1772.
+(rerunfilecheck)             Checksum: E7C0CF393340A468CE71E1C9AB383B6D;1772.
  ) 
 Here is how much of TeX's memory you used:
- 20587 strings out of 474587
- 394154 string characters out of 5745701
- 1935558 words of memory out of 5000000
- 42257 multiletter control sequences out of 15000+600000
- 644994 words of font info for 86 fonts, out of 8000000 for 9000
+ 20611 strings out of 474587
+ 394500 string characters out of 5745701
+ 1939558 words of memory out of 5000000
+ 42269 multiletter control sequences out of 15000+600000
+ 649141 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,17n,96p,624b,1163s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,17n,103p,817b,1163s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+pdfTeX warning (dest): name{Hfootnote.18} has been referenced but does not exis
+t, replaced by a fixed one
+
 
 pdfTeX warning (dest): name{Hfootnote.17} has been referenced but does not exis
 t, replaced by a fixed one
@@ -1374,22 +1402,23 @@ t, replaced by a fixed one
 <C:/Users/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb>
 <C:/Users/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi10.pfb>
 <C:/Users/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi12.pfb>
-<C:/Users/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><
-C:/Users/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C
-:/Users/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/
-Users/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Us
-ers/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Us
-ers/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss12.pfb><C:/Us
-ers/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><C:/
-Users/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsso12.pfb><C:
-/Users/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:
-/Users/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/
-Users/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/U
-sers/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/U
-sers/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb>
-Output written on sablona-prace.pdf (20 pages, 1846950 bytes).
+<C:/Users/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi8.pfb><
+C:/Users/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C
+:/Users/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:
+/Users/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr7.pfb><C:/U
+sers/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:/Use
+rs/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Use
+rs/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmss12.pfb><C:/Use
+rs/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmssbx10.pfb><C:/U
+sers/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsso12.pfb><C:/
+Users/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/
+Users/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/U
+sers/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Us
+ers/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Us
+ers/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb>
+Output written on sablona-prace.pdf (22 pages, 1871117 bytes).
 PDF statistics:
- 343 PDF objects out of 1000 (max. 8388607)
- 53 named destinations out of 1000 (max. 500000)
+ 385 PDF objects out of 1000 (max. 8388607)
+ 60 named destinations out of 1000 (max. 500000)
  166 words of extra memory for PDF output out of 10000 (max. 10000000)
 

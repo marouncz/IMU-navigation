@@ -1,4 +1,4 @@
-\begin{table}[ht]
+\begin{table}[h!]
 \centering
 \begin{tabular}{c||c c c}
 \hline 
@@ -8,7 +8,7 @@ Model IMU & MPU6050 & ADIS16505-2 & jednotka \\
 \multicolumn{4}{c}{Parametry gyroskopů} \\
 \hline
 \hline
-Dynamický rozsah  & \makecell{programovatelný, \\ $\pm 250$, $\pm 500$, $\pm 1000$, $\pm 2000$} & $\pm 500$ & $\SI[per-mode = symbol]{}{\degree\per\second}$ \\ 
+Dynamický rozsah  & \makecell{programovatelný, \\ $\pm 250$, $\pm 500$, \\$\pm 1000$, $\pm 2000$} & $\pm 500$ & $\SI[per-mode = symbol]{}{\degree\per\second}$ \\ 
 \hline 
 Citlivost  \tablefootnote{Pro porovnání citlivosti byl vybrán dynamický rozsah $\SI[per-mode = symbol]{500}{\degree\per\second}$ senzoru MPU6050 pro možnost porovnání hodnoty s druhým senzorem} & $65,5$ & $2621440$ & $\SI[per-mode = symbol]{}{\LSB\per(\degree\per\second)}$ \\ 
 \hline 
@@ -24,9 +24,20 @@ Drift v ose y & $\pm 20$ & $\pm 1,4$ & $\SI[per-mode = symbol]{}{\degree\per\sec
 \multicolumn{4}{c}{Parametry akcelerometrů} \\
 \hline
 \hline
-Dynamický rozsah  & \makecell{programovatelný, \\ $\pm 19,6$, $\pm 39,2$, $\pm 78,4$, $\pm 156,8$} & $\pm 78,4$ & $\SI[per-mode = symbol]{}{\metre\per\second\squared}$ \\ 
+Dynamický rozsah  & \makecell{programovatelný, \\ $\pm 19,6$, $\pm 39,2$, \\$\pm 78,4$, $\pm 156,8$} & $\pm 78,4$ & $\SI[per-mode = symbol]{}{\metre\per\second\squared}$ \\ 
+\hline 
+Citlivost  \tablefootnote{Pro porovnání citlivosti byl vybrán dynamický rozsah $\SI[per-mode = symbol]{78,4}{\metre\per\second\squared}$ senzoru MPU6050 pro možnost porovnání hodnoty s druhým senzorem} & $418$ & $26756268$ & $\SI[per-mode = symbol]{}{\LSB\per(\metre\per\second\squared)}$ \\ 
+\hline 
+Drift v ose x a y & $\pm 0,491$ & $\pm 0,0196$ & $\SI[per-mode = symbol]{}{\metre\per\second\squared}$ \\ 
+\hline 
+Drift v ose z & $\pm 0,785$ & $\pm 0,0196$ & $\SI[per-mode = symbol]{}{\metre\per\second\squared}$ \\ 
+\hline 
+\makecell{Efektivní hodnota hustoty \\šumu při 10Hz pro osy x a y} & 3924 & 167 & $\SI{}{\micro\metre\per\second\squared\per\sqrt{\Hz}}$ \\ 
+\hline 
+\makecell{Efektivní hodnota hustoty \\šumu při 10Hz pro osu z} & 3924 & 243 & $\SI{}{\micro\metre\per\second\squared\per\sqrt{\Hz}}$ \\ 
 \hline 
 
 \end{tabular} 
-\caption{Porovnání základních parametrů gyroskopů \cite{TDKInvenSense2013} \cite{AnalogDevices2020}} 
+\caption{Porovnání základních parametrů gyroskopů \cite{euxR3Yh5ol4JWNAi} \cite{UZFqHmQU7ZzI3OLB}} 
+\label{table:fyzikalniPorovnaniIMU}
 \end{table} 
