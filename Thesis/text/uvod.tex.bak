@@ -11,7 +11,6 @@ Typicky se zde uvádí:
 Úvod zpravidla nepřesahuje jednu stranu.
 Poslední odstavec Úvodu standardně představuje základní strukturu celého dokumentu.
 
-Tato práce se věnuje oblasti \acs{DSP} (\acl{DSP}), zejména jevům, které nastanou při nedodržení Nyquistovy podmínky pro \ac{symfvz}.%
 \footnote{Tato věta je pouze ukázkou použití příkazů pro sazbu zkratek.}
 
 Šablona je nastavena na \emph{dvoustranný tisk}.

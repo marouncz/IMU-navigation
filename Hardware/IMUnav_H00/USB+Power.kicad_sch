@@ -2015,9 +2015,6 @@
   (junction (at 22.86 165.1) (diameter 0) (color 0 0 0 0)
     (uuid 18a69cac-b7e2-4545-8577-fc6ee70f6703)
   )
-  (junction (at 66.04 162.56) (diameter 0) (color 0 0 0 0)
-    (uuid 193aad47-c36b-4fe3-91ba-50772de05000)
-  )
   (junction (at 99.06 62.23) (diameter 0) (color 0 0 0 0)
     (uuid 1e387483-fb95-4bd8-a4b6-7d17fcef70fc)
   )
@@ -2026,6 +2023,9 @@
   )
   (junction (at 168.91 81.28) (diameter 0) (color 0 0 0 0)
     (uuid 2be88a02-b28c-4b5e-9c6c-eb31cf0e64b5)
+  )
+  (junction (at 99.06 152.4) (diameter 0) (color 0 0 0 0)
+    (uuid 2eb5060d-6f67-467a-aca4-d7790dd041d9)
   )
   (junction (at 167.64 20.32) (diameter 0) (color 0 0 0 0)
     (uuid 36bd37bc-6428-44da-94bc-1663479d1b58)
@@ -2105,9 +2105,6 @@
   (junction (at 264.16 20.32) (diameter 0) (color 0 0 0 0)
     (uuid e443970c-2768-4939-90c5-2a1b6818c23a)
   )
-  (junction (at 99.06 152.4) (diameter 0) (color 0 0 0 0)
-    (uuid e4def9e6-962b-455b-bda4-f0303087dc3c)
-  )
   (junction (at 63.5 162.56) (diameter 0) (color 0 0 0 0)
     (uuid eadac973-3296-4636-8b39-b31ff30e31de)
   )
@@ -2128,7 +2125,7 @@
   )
 
   (no_connect (at 259.08 76.2) (uuid 0af433ab-3df4-492f-a487-c41f14f13401))
-  (no_connect (at 101.6 135.89) (uuid 4cae1ef9-802e-4c9d-9bad-23f515f8e8fc))
+  (no_connect (at 93.98 148.59) (uuid 4cae1ef9-802e-4c9d-9bad-23f515f8e8fc))
   (no_connect (at 99.06 72.39) (uuid 57de79af-cfa6-45bc-965d-33ced572ada5))
   (no_connect (at 99.06 69.85) (uuid 60701126-8f0c-48a6-a227-e909eab15d9d))
   (no_connect (at 76.2 80.01) (uuid 61008900-00b2-4319-ae3a-c678a7f8124f))
@@ -2186,7 +2183,7 @@
     (stroke (width 0) (type default))
     (uuid 0d61ce8d-a036-4a27-9c05-906ac9561e97)
   )
-  (wire (pts (xy 63.5 162.56) (xy 66.04 162.56))
+  (wire (pts (xy 63.5 162.56) (xy 69.85 162.56))
     (stroke (width 0) (type default))
     (uuid 0ebb371e-b736-4021-bb4d-b0ea07cb3bb3)
   )
@@ -2294,6 +2291,10 @@
     (stroke (width 0) (type default))
     (uuid 31e9067e-752a-4958-bee6-07f99ced8b2d)
   )
+  (wire (pts (xy 99.06 148.59) (xy 99.06 152.4))
+    (stroke (width 0) (type default))
+    (uuid 326a74e1-bc06-4efe-ba60-c574e244f851)
+  )
   (wire (pts (xy 68.58 180.34) (xy 68.58 182.88))
     (stroke (width 0) (type default))
     (uuid 32f44aad-4bf6-43f5-85a9-960dd1453d17)
@@ -2357,6 +2358,10 @@
   (wire (pts (xy 95.25 190.5) (xy 105.41 190.5))
     (stroke (width 0) (type default))
     (uuid 49fb4e96-c2bc-4b82-82ef-602a69f918eb)
+  )
+  (wire (pts (xy 96.52 134.62) (xy 96.52 138.43))
+    (stroke (width 0) (type default))
+    (uuid 4ab34919-9928-4463-9470-232ac6e4ffbe)
   )
   (wire (pts (xy 250.19 124.46) (xy 250.19 134.62))
     (stroke (width 0) (type default))
@@ -2512,10 +2517,6 @@
   (wire (pts (xy 99.06 59.69) (xy 99.06 62.23))
     (stroke (width 0) (type default))
     (uuid 832686fe-22b5-496c-8be5-46eedaee73a2)
-  )
-  (wire (pts (xy 99.06 146.05) (xy 99.06 152.4))
-    (stroke (width 0) (type default))
-    (uuid 857d1711-c954-414a-b0d6-35fca915ff92)
   )
   (wire (pts (xy 222.25 134.62) (xy 229.87 134.62))
     (stroke (width 0) (type default))
@@ -2777,10 +2778,6 @@
     (stroke (width 0) (type default))
     (uuid dbfbca57-4d2f-47d8-a7bd-85577a7daeac)
   )
-  (wire (pts (xy 66.04 162.56) (xy 69.85 162.56))
-    (stroke (width 0) (type default))
-    (uuid de971114-c557-4b9b-8ca7-1e0964dc8c9d)
-  )
   (wire (pts (xy 36.83 184.15) (xy 36.83 187.96))
     (stroke (width 0) (type default))
     (uuid df3b64d7-875e-4698-b6ec-e2d4e34d0ec9)
@@ -2910,10 +2907,6 @@
     (stroke (width 0) (type default))
     (uuid fd2eacdd-9ffb-4e62-a2dd-11cc6f7e9aad)
   )
-  (wire (pts (xy 66.04 158.75) (xy 66.04 162.56))
-    (stroke (width 0) (type default))
-    (uuid fe51099f-690d-4cf7-8600-74c8fee51124)
-  )
 
   (text "HUB mode controlled by I2C SMBUS master:\nCFG_SEL0 - strap HIGH - strapped by I2C pullup resistor\nCFG_SEL1 - strap LOW"
     (at 71.12 22.86 0)
@@ -2947,6 +2940,10 @@
     (uuid faa4bbc0-b43d-4533-b74b-77ccb6141685)
   )
 
+  (label "+3V3USB" (at 209.55 20.32 0) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid 4eb34322-5e75-4692-bcfe-de748c5e69b5)
+  )
   (label "D+" (at 140.97 62.23 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27) bold) (justify left bottom))
     (uuid ba244b58-a3e3-460d-8243-96086cd99097)
@@ -3146,7 +3143,7 @@
   (symbol (lib_id "power:GND") (at 185.42 152.4 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 06a66fbe-0fc6-4b42-be6a-0366c27b847a)
-    (property "Reference" "#PWR0104" (at 185.42 158.75 0)
+    (property "Reference" "#PWR0106" (at 185.42 158.75 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 185.547 156.7942 0)
@@ -3162,7 +3159,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR0104") (unit 1)
+          (reference "#PWR0106") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -3176,7 +3173,7 @@
   (symbol (lib_id "power:+3V3") (at 270.51 134.62 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 09ff08ed-d6bb-46cc-a37f-2a3371fd5570)
-    (property "Reference" "#PWR0117" (at 270.51 138.43 0)
+    (property "Reference" "#PWR0119" (at 270.51 138.43 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 270.891 130.2258 0)
@@ -3192,7 +3189,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR0117") (unit 1)
+          (reference "#PWR0119") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -3206,7 +3203,7 @@
   (symbol (lib_id "power:GND") (at 95.25 120.65 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 0a885d3d-64cf-4e44-a80f-cfe31b9334d6)
-    (property "Reference" "#PWR072" (at 95.25 127 0)
+    (property "Reference" "#PWR073" (at 95.25 127 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 95.377 125.0442 0)
@@ -3222,7 +3219,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR072") (unit 1)
+          (reference "#PWR073") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -3316,7 +3313,7 @@
           (reference "#PWR0153") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR086") (unit 1)
+          (reference "#PWR088") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -3364,7 +3361,7 @@
   (symbol (lib_id "power:+3V3") (at 146.05 87.63 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 131b0a5b-21ff-4677-a164-0e31f0c0022d)
-    (property "Reference" "#PWR091" (at 146.05 91.44 0)
+    (property "Reference" "#PWR093" (at 146.05 91.44 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 146.431 83.2358 0)
@@ -3380,7 +3377,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR091") (unit 1)
+          (reference "#PWR093") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -3465,10 +3462,35 @@
     )
   )
 
+  (symbol (lib_id "Connector:TestPoint") (at 139.7 120.65 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid 150ccb0a-3e2a-4300-82b7-728ac109f36e)
+    (property "Reference" "TP5" (at 141.097 116.1359 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "TestPoint" (at 141.097 118.5601 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "TestPoint:TestPoint_THTPad_D1.5mm_Drill0.7mm" (at 144.78 120.65 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 144.78 120.65 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 1aa7bb30-6cef-454b-b153-bdba6157c5f0))
+    (instances
+      (project "IMUnav_H00"
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
+          (reference "TP5") (unit 1)
+        )
+      )
+    )
+  )
+
   (symbol (lib_id "power:+3V3") (at 168.91 81.28 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 1517c516-4d9a-469a-94b7-fbea45135594)
-    (property "Reference" "#PWR0100" (at 168.91 85.09 0)
+    (property "Reference" "#PWR0102" (at 168.91 85.09 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 169.291 76.8858 0)
@@ -3484,7 +3506,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR0100") (unit 1)
+          (reference "#PWR0102") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -3498,13 +3520,13 @@
   (symbol (lib_id "Connector:TestPoint") (at 102.87 152.4 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 160efa27-edf3-4d6e-9345-e0ca0ca7691a)
-    (property "Reference" "TP4" (at 104.267 147.8859 0)
+    (property "Reference" "TP1" (at 104.267 147.8859 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "TestPoint" (at 104.267 150.3101 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "TestPoint:TestPoint_Keystone_5005-5009_Compact" (at 107.95 152.4 0)
+    (property "Footprint" "TestPoint:TestPoint_THTPad_D1.5mm_Drill0.7mm" (at 107.95 152.4 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 107.95 152.4 0)
@@ -3514,7 +3536,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "TP4") (unit 1)
+          (reference "TP1") (unit 1)
         )
       )
     )
@@ -3523,7 +3545,7 @@
   (symbol (lib_id "power:GND") (at 157.48 27.94 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 164439cf-ef9e-421e-84f5-eb55f6ad2ad1)
-    (property "Reference" "#PWR094" (at 157.48 34.29 0)
+    (property "Reference" "#PWR096" (at 157.48 34.29 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 157.607 32.3342 0)
@@ -3539,7 +3561,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR094") (unit 1)
+          (reference "#PWR096") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -3582,26 +3604,26 @@
     )
   )
 
-  (symbol (lib_id "power:GND") (at 125.73 120.65 0) (unit 1)
+  (symbol (lib_id "power:GND") (at 118.11 120.65 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 1b56ea32-b15f-409d-a088-8925a4d987e6)
-    (property "Reference" "#PWR0240" (at 125.73 127 0)
+    (property "Reference" "#PWR083" (at 118.11 127 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Value" "GND" (at 125.857 125.0442 0)
+    (property "Value" "GND" (at 118.237 125.0442 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "" (at 125.73 120.65 0)
+    (property "Footprint" "" (at 118.11 120.65 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "" (at 125.73 120.65 0)
+    (property "Datasheet" "" (at 118.11 120.65 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid f159f46c-3ba3-4dca-959d-de0f2ae7cef3))
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR0240") (unit 1)
+          (reference "#PWR083") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -3615,7 +3637,7 @@
   (symbol (lib_id "power:GND") (at 97.79 182.88 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 1e19914d-8b47-45cc-b027-c7ef03c85816)
-    (property "Reference" "#PWR074" (at 97.79 189.23 0)
+    (property "Reference" "#PWR075" (at 97.79 189.23 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 97.917 187.2742 0)
@@ -3631,7 +3653,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR074") (unit 1)
+          (reference "#PWR075") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -3712,7 +3734,7 @@
   (symbol (lib_id "power:GND") (at 36.83 187.96 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 209f0cbc-668d-4973-a249-c922388e21ff)
-    (property "Reference" "#PWR056" (at 36.83 194.31 0)
+    (property "Reference" "#PWR057" (at 36.83 194.31 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 36.957 192.3542 0)
@@ -3728,7 +3750,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR056") (unit 1)
+          (reference "#PWR057") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -3742,7 +3764,7 @@
   (symbol (lib_id "power:GND") (at 199.39 109.22 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 22782f4d-ea2b-4be1-ba26-d0bf7ce4b8a6)
-    (property "Reference" "#PWR0110" (at 199.39 115.57 0)
+    (property "Reference" "#PWR0112" (at 199.39 115.57 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 199.517 113.6142 0)
@@ -3758,7 +3780,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR0110") (unit 1)
+          (reference "#PWR0112") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -3944,7 +3966,7 @@
   (symbol (lib_id "power:GND") (at 22.86 187.96 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 260c5188-ce8d-4e8e-8e05-7a6842e4d742)
-    (property "Reference" "#PWR053" (at 22.86 194.31 0)
+    (property "Reference" "#PWR054" (at 22.86 194.31 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 22.987 192.3542 0)
@@ -3960,7 +3982,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR053") (unit 1)
+          (reference "#PWR054") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -4003,7 +4025,7 @@
   (symbol (lib_id "power:GND") (at 39.37 80.01 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 26d14595-7adb-4427-8388-822930fcc792)
-    (property "Reference" "#PWR058" (at 39.37 86.36 0)
+    (property "Reference" "#PWR059" (at 39.37 86.36 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 39.497 84.4042 0)
@@ -4019,7 +4041,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR058") (unit 1)
+          (reference "#PWR059") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -4093,26 +4115,26 @@
     )
   )
 
-  (symbol (lib_id "power:+BATT") (at 96.52 135.89 0) (unit 1)
+  (symbol (lib_id "power:+BATT") (at 96.52 134.62 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 2a68affb-7190-407b-8d2a-c8cb58b7f1cd)
-    (property "Reference" "#PWR073" (at 96.52 139.7 0)
+    (property "Reference" "#PWR074" (at 96.52 138.43 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Value" "+BATT" (at 96.901 131.4958 0)
+    (property "Value" "+BATT" (at 96.901 130.2258 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "" (at 96.52 135.89 0)
+    (property "Footprint" "" (at 96.52 134.62 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "" (at 96.52 135.89 0)
+    (property "Datasheet" "" (at 96.52 134.62 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid c0113373-149d-472f-9abb-7f724cacaf12))
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR073") (unit 1)
+          (reference "#PWR074") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -4155,7 +4177,7 @@
   (symbol (lib_id "power:GND") (at 280.67 152.4 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 2ae23b24-6aaa-403e-b282-a91020366708)
-    (property "Reference" "#PWR0121" (at 280.67 158.75 0)
+    (property "Reference" "#PWR0123" (at 280.67 158.75 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 280.797 156.7942 0)
@@ -4171,7 +4193,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR0121") (unit 1)
+          (reference "#PWR0123") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -4185,7 +4207,7 @@
   (symbol (lib_id "power:GND") (at 167.64 27.94 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 2d4f7313-974f-44ce-b6f9-3137b18274fe)
-    (property "Reference" "#PWR099" (at 167.64 34.29 0)
+    (property "Reference" "#PWR0101" (at 167.64 34.29 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 167.767 32.3342 0)
@@ -4201,7 +4223,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR099") (unit 1)
+          (reference "#PWR0101") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -4215,7 +4237,7 @@
   (symbol (lib_id "power:+5V") (at 39.37 44.45 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 33da6ea9-6954-4707-a9f3-d11eff5f29c0)
-    (property "Reference" "#PWR057" (at 39.37 48.26 0)
+    (property "Reference" "#PWR058" (at 39.37 48.26 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+5V" (at 39.751 40.0558 0)
@@ -4231,7 +4253,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR057") (unit 1)
+          (reference "#PWR058") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -4289,7 +4311,7 @@
   (symbol (lib_id "power:+3V3") (at 275.59 20.32 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 3549126d-e617-44aa-8f55-5c7d0bd5ab6c)
-    (property "Reference" "#PWR0119" (at 275.59 24.13 0)
+    (property "Reference" "#PWR0121" (at 275.59 24.13 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 275.971 15.9258 0)
@@ -4305,7 +4327,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR0119") (unit 1)
+          (reference "#PWR0121") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -4341,7 +4363,7 @@
           (reference "#PWR0154") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR087") (unit 1)
+          (reference "#PWR089") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -4446,7 +4468,7 @@
   (symbol (lib_id "power:GND") (at 165.1 71.12 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 3ead6bff-4cdf-49fa-bb48-0f8d570be9ff)
-    (property "Reference" "#PWR098" (at 165.1 77.47 0)
+    (property "Reference" "#PWR0100" (at 165.1 77.47 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 165.227 75.5142 0)
@@ -4462,7 +4484,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR098") (unit 1)
+          (reference "#PWR0100") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -4507,7 +4529,7 @@
   (symbol (lib_id "power:GND") (at 58.42 80.01 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 40d1ff95-c230-4b07-9206-13efde3e876a)
-    (property "Reference" "#PWR062" (at 58.42 86.36 0)
+    (property "Reference" "#PWR063" (at 58.42 86.36 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 58.547 84.4042 0)
@@ -4523,7 +4545,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR062") (unit 1)
+          (reference "#PWR063") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -4537,7 +4559,7 @@
   (symbol (lib_id "power:GND") (at 82.55 187.96 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 413bb601-5083-45cd-a6ce-968b0cee366b)
-    (property "Reference" "#PWR068" (at 82.55 194.31 0)
+    (property "Reference" "#PWR069" (at 82.55 194.31 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 82.677 192.3542 0)
@@ -4553,7 +4575,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR068") (unit 1)
+          (reference "#PWR069") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -4598,19 +4620,19 @@
     )
   )
 
-  (symbol (lib_id "Switch:SW_SPDT") (at 99.06 140.97 90) (unit 1)
+  (symbol (lib_id "Switch:SW_SPDT") (at 96.52 143.51 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 44fc11dc-458f-4fa0-9aaf-140e2e7f80e0)
-    (property "Reference" "SW1" (at 103.8352 139.8016 90)
+    (property "Reference" "SW1" (at 91.7448 144.6784 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
-    (property "Value" "MT-102" (at 103.8352 142.113 90)
+    (property "Value" "MT-102" (at 91.7448 142.367 90)
       (effects (font (size 1.27 1.27)) (justify right))
     )
-    (property "Footprint" "IMUnav:TE_A101SYCQ04" (at 99.06 140.97 0)
+    (property "Footprint" "IMUnav:TE_A101SYCQ04" (at 96.52 143.51 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "~" (at 99.06 140.97 0)
+    (property "Datasheet" "~" (at 96.52 143.51 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid 959f93ee-9b77-4708-97d1-6e9e149299c4))
@@ -4633,7 +4655,7 @@
   (symbol (lib_id "power:GND") (at 113.03 187.96 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 48886c2e-b9e5-4fb2-b9de-48758fbfeb17)
-    (property "Reference" "#PWR078" (at 113.03 194.31 0)
+    (property "Reference" "#PWR079" (at 113.03 194.31 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 113.157 192.3542 0)
@@ -4649,7 +4671,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR078") (unit 1)
+          (reference "#PWR079") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -4729,7 +4751,7 @@
   (symbol (lib_id "power:GND") (at 146.05 95.25 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 51995167-ece3-4b2a-9d73-1a6cc562853b)
-    (property "Reference" "#PWR092" (at 146.05 101.6 0)
+    (property "Reference" "#PWR094" (at 146.05 101.6 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 146.177 99.6442 0)
@@ -4745,7 +4767,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR092") (unit 1)
+          (reference "#PWR094") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -4759,7 +4781,7 @@
   (symbol (lib_id "power:+3V3") (at 154.94 57.15 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 546213d2-b17b-4dba-9267-5b349cb206f8)
-    (property "Reference" "#PWR093" (at 154.94 60.96 0)
+    (property "Reference" "#PWR095" (at 154.94 60.96 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 155.321 52.7558 0)
@@ -4775,7 +4797,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR093") (unit 1)
+          (reference "#PWR095") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -4823,7 +4845,7 @@
   (symbol (lib_id "power:GND") (at 144.78 27.94 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 58c74ec5-ccbd-4437-a9f9-bb3f1ed6215f)
-    (property "Reference" "#PWR089" (at 144.78 34.29 0)
+    (property "Reference" "#PWR091" (at 144.78 34.29 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 144.907 32.3342 0)
@@ -4839,7 +4861,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR089") (unit 1)
+          (reference "#PWR091") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -4863,6 +4885,9 @@
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 204.47 134.62 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "LCSC" "C280580" (at 204.47 134.62 90)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid ecf9cc4a-023a-4d9e-b7f2-c0a6080a5051))
@@ -4953,7 +4978,7 @@
     (property "Value" "TestPoint" (at 275.717 132.5301 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "TestPoint:TestPoint_Keystone_5005-5009_Compact" (at 279.4 134.62 0)
+    (property "Footprint" "TestPoint:TestPoint_THTPad_D1.5mm_Drill0.7mm" (at 279.4 134.62 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 279.4 134.62 0)
@@ -5001,7 +5026,7 @@
   (symbol (lib_id "power:+5V") (at 58.42 44.45 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 5edf9b40-a4e1-425a-88d8-68e1d4bb63b0)
-    (property "Reference" "#PWR061" (at 58.42 48.26 0)
+    (property "Reference" "#PWR062" (at 58.42 48.26 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+5V" (at 58.801 40.0558 0)
@@ -5017,7 +5042,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR061") (unit 1)
+          (reference "#PWR062") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -5082,7 +5107,7 @@
           (reference "#PWR0154") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR082") (unit 1)
+          (reference "#PWR084") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -5096,7 +5121,7 @@
   (symbol (lib_id "power:+BATT") (at 162.56 134.62 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 63e377be-3b4d-4717-9794-ee13b7399f68)
-    (property "Reference" "#PWR096" (at 162.56 138.43 0)
+    (property "Reference" "#PWR098" (at 162.56 138.43 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+BATT" (at 162.941 130.2258 0)
@@ -5112,7 +5137,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR096") (unit 1)
+          (reference "#PWR098") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -5184,7 +5209,7 @@
   (symbol (lib_id "power:+5V") (at 101.6 41.91 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 657958da-d835-4557-abfd-0b1151f95d18)
-    (property "Reference" "#PWR075" (at 101.6 45.72 0)
+    (property "Reference" "#PWR076" (at 101.6 45.72 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+5V" (at 101.981 37.5158 0)
@@ -5200,37 +5225,12 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR075") (unit 1)
+          (reference "#PWR076") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
         (path "/68867493-9f89-4388-916e-56f5ada0ac5c/4ec8e228-d742-4cd8-8c0d-36879b06f45c"
           (reference "#PWR?") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Connector:TestPoint") (at 66.04 158.75 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid 67196aca-f6bf-469b-8ccd-6feef17b0fee)
-    (property "Reference" "TP1" (at 67.437 154.2359 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "TestPoint" (at 67.437 156.6601 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "TestPoint:TestPoint_Keystone_5005-5009_Compact" (at 71.12 158.75 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "~" (at 71.12 158.75 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid 77baceff-4dc9-40cf-a4d0-44f10cd35eca))
-    (instances
-      (project "IMUnav_H00"
-        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "TP1") (unit 1)
         )
       )
     )
@@ -5274,7 +5274,7 @@
   (symbol (lib_id "power:GND") (at 187.96 27.94 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 68d8e5e7-f4db-4903-9967-f5f2ad08046a)
-    (property "Reference" "#PWR0106" (at 187.96 34.29 0)
+    (property "Reference" "#PWR0108" (at 187.96 34.29 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 188.087 32.3342 0)
@@ -5290,7 +5290,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR0106") (unit 1)
+          (reference "#PWR0108") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -5304,7 +5304,7 @@
   (symbol (lib_id "power:+5V") (at 134.62 25.4 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 6d62fb7b-b7b9-41d6-985a-3feb71be62e1)
-    (property "Reference" "#PWR084" (at 134.62 29.21 0)
+    (property "Reference" "#PWR086" (at 134.62 29.21 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+5V" (at 135.001 21.0058 0)
@@ -5320,7 +5320,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR084") (unit 1)
+          (reference "#PWR086") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -5334,7 +5334,7 @@
   (symbol (lib_id "power:GND") (at 54.61 187.96 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 70ba1836-e7e8-4ee2-97f0-01bcd296ec70)
-    (property "Reference" "#PWR060" (at 54.61 194.31 0)
+    (property "Reference" "#PWR061" (at 54.61 194.31 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 54.737 192.3542 0)
@@ -5350,7 +5350,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR060") (unit 1)
+          (reference "#PWR061") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -5395,19 +5395,19 @@
     )
   )
 
-  (symbol (lib_id "Connector:TestPoint") (at 125.73 120.65 0) (unit 1)
+  (symbol (lib_id "Connector:TestPoint") (at 118.11 120.65 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 7226fdb9-f970-40f5-a05f-af5ca6c7081b)
-    (property "Reference" "TP2" (at 127.127 116.1359 0)
+    (property "Reference" "TP2" (at 119.507 116.1359 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "TestPoint" (at 127.127 118.5601 0)
+    (property "Value" "TestPoint" (at 119.507 118.5601 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "TestPoint:TestPoint_Keystone_5005-5009_Compact" (at 130.81 120.65 0)
+    (property "Footprint" "TestPoint:TestPoint_THTPad_D1.5mm_Drill0.7mm" (at 123.19 120.65 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "~" (at 130.81 120.65 0)
+    (property "Datasheet" "~" (at 123.19 120.65 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid 085d7910-415c-4695-aadb-082566a62cc3))
@@ -5452,7 +5452,7 @@
   (symbol (lib_id "power:+5V") (at 82.55 157.48 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 7911d1c4-4f04-49cc-9432-c6061e6318ba)
-    (property "Reference" "#PWR067" (at 82.55 161.29 0)
+    (property "Reference" "#PWR068" (at 82.55 161.29 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+5V" (at 82.931 153.0858 0)
@@ -5468,7 +5468,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR067") (unit 1)
+          (reference "#PWR068") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -5514,7 +5514,7 @@
   (symbol (lib_id "power:GND") (at 190.5 152.4 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 7e224699-d6df-4d4f-bc42-b20d3089abe0)
-    (property "Reference" "#PWR0108" (at 190.5 158.75 0)
+    (property "Reference" "#PWR0110" (at 190.5 158.75 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 190.627 156.7942 0)
@@ -5530,7 +5530,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR0108") (unit 1)
+          (reference "#PWR0110") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -5544,7 +5544,7 @@
   (symbol (lib_id "power:+5V") (at 59.69 102.87 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 7f6fa709-a9f3-4725-9496-f090559bba52)
-    (property "Reference" "#PWR063" (at 59.69 106.68 0)
+    (property "Reference" "#PWR064" (at 59.69 106.68 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+5V" (at 60.071 98.4758 0)
@@ -5560,7 +5560,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR063") (unit 1)
+          (reference "#PWR064") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -5574,7 +5574,7 @@
   (symbol (lib_id "power:GND") (at 68.58 120.65 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 8119f3a1-b940-43cb-bc3b-2ed7ffa1c5db)
-    (property "Reference" "#PWR066" (at 68.58 127 0)
+    (property "Reference" "#PWR067" (at 68.58 127 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 68.707 125.0442 0)
@@ -5590,7 +5590,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR066") (unit 1)
+          (reference "#PWR067") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -5604,7 +5604,7 @@
   (symbol (lib_id "power:GND") (at 177.8 27.94 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 83a8383b-6303-4894-9f4c-7445bedf28b5)
-    (property "Reference" "#PWR0102" (at 177.8 34.29 0)
+    (property "Reference" "#PWR0104" (at 177.8 34.29 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 177.927 32.3342 0)
@@ -5620,7 +5620,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR0102") (unit 1)
+          (reference "#PWR0104") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -5634,7 +5634,7 @@
   (symbol (lib_id "power:GND") (at 270.51 152.4 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 84dfb967-188d-44a2-8fdd-170dbbe5b472)
-    (property "Reference" "#PWR0118" (at 270.51 158.75 0)
+    (property "Reference" "#PWR0120" (at 270.51 158.75 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 270.637 156.7942 0)
@@ -5650,7 +5650,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR0118") (unit 1)
+          (reference "#PWR0120") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -5664,7 +5664,7 @@
   (symbol (lib_id "power:+BATT") (at 86.36 102.87 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 87811369-e456-43be-8718-15210c5345cc)
-    (property "Reference" "#PWR070" (at 86.36 106.68 0)
+    (property "Reference" "#PWR071" (at 86.36 106.68 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+BATT" (at 86.741 98.4758 0)
@@ -5680,7 +5680,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR070") (unit 1)
+          (reference "#PWR071") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -5694,7 +5694,7 @@
   (symbol (lib_id "power:GND") (at 59.69 120.65 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 8870567a-1e19-429d-bd31-4653bd33b90e)
-    (property "Reference" "#PWR064" (at 59.69 127 0)
+    (property "Reference" "#PWR065" (at 59.69 127 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 59.817 125.0442 0)
@@ -5710,7 +5710,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR064") (unit 1)
+          (reference "#PWR065") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -5758,7 +5758,7 @@
   (symbol (lib_id "power:+3V3") (at 142.24 20.32 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 894ea3b6-a1ce-49e1-8657-590e41c36f08)
-    (property "Reference" "#PWR088" (at 142.24 24.13 0)
+    (property "Reference" "#PWR090" (at 142.24 24.13 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (at 142.621 15.9258 0)
@@ -5774,7 +5774,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR088") (unit 1)
+          (reference "#PWR090") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -5788,7 +5788,7 @@
   (symbol (lib_id "power:GND") (at 168.91 96.52 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 8a39dbb4-7a5d-4adf-bf41-ba606548a864)
-    (property "Reference" "#PWR0101" (at 168.91 102.87 0)
+    (property "Reference" "#PWR0103" (at 168.91 102.87 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 169.037 100.9142 0)
@@ -5804,7 +5804,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR0101") (unit 1)
+          (reference "#PWR0103") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -5818,7 +5818,7 @@
   (symbol (lib_id "power:GND") (at 116.84 46.99 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 8d0a5227-8d18-4f12-ba2b-9bc77d260c17)
-    (property "Reference" "#PWR079" (at 116.84 53.34 0)
+    (property "Reference" "#PWR080" (at 116.84 53.34 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 116.967 51.3842 0)
@@ -5834,7 +5834,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR079") (unit 1)
+          (reference "#PWR080") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -5848,7 +5848,7 @@
   (symbol (lib_id "power:GND") (at 264.16 27.94 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 915d62c4-ec82-479f-9070-897ecb9f4232)
-    (property "Reference" "#PWR0116" (at 264.16 34.29 0)
+    (property "Reference" "#PWR0118" (at 264.16 34.29 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 264.287 32.3342 0)
@@ -5864,7 +5864,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR0116") (unit 1)
+          (reference "#PWR0118") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -5878,7 +5878,7 @@
   (symbol (lib_id "power:GND") (at 120.65 187.96 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 915f9a88-252c-4b8e-aeda-118c8ccf998d)
-    (property "Reference" "#PWR080" (at 120.65 194.31 0)
+    (property "Reference" "#PWR081" (at 120.65 194.31 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 120.777 192.3542 0)
@@ -5894,7 +5894,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR080") (unit 1)
+          (reference "#PWR081") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -5971,7 +5971,7 @@
   (symbol (lib_id "power:GND") (at 275.59 27.94 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 99658747-ec4c-43a3-a149-f852709f66bc)
-    (property "Reference" "#PWR0120" (at 275.59 34.29 0)
+    (property "Reference" "#PWR0122" (at 275.59 34.29 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 275.717 32.3342 0)
@@ -5987,7 +5987,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR0120") (unit 1)
+          (reference "#PWR0122") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -6030,7 +6030,7 @@
   (symbol (lib_id "power:GND") (at 189.23 86.36 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 9cd0a147-4c9b-4b5f-b9ca-20c39cd9aaa1)
-    (property "Reference" "#PWR0107" (at 189.23 92.71 0)
+    (property "Reference" "#PWR0109" (at 189.23 92.71 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 189.357 90.7542 0)
@@ -6046,7 +6046,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR0107") (unit 1)
+          (reference "#PWR0109") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -6060,7 +6060,7 @@
   (symbol (lib_id "power:+5V") (at 44.45 179.07 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 9e4048e3-145a-4061-bb17-e4c991bfbfb5)
-    (property "Reference" "#PWR059" (at 44.45 182.88 0)
+    (property "Reference" "#PWR060" (at 44.45 182.88 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+5V" (at 44.831 174.6758 0)
@@ -6076,7 +6076,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR059") (unit 1)
+          (reference "#PWR060") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -6090,7 +6090,7 @@
   (symbol (lib_id "power:+5V") (at 15.24 162.56 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid a151a223-ccd5-494c-98b6-9a0bd991b66e)
-    (property "Reference" "#PWR051" (at 15.24 166.37 0)
+    (property "Reference" "#PWR052" (at 15.24 166.37 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+5V" (at 15.621 158.1658 0)
@@ -6106,7 +6106,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR051") (unit 1)
+          (reference "#PWR052") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -6120,7 +6120,7 @@
   (symbol (lib_id "power:GND") (at 222.25 152.4 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid a1b49417-2448-4655-9d8e-21446b5e2c02)
-    (property "Reference" "#PWR0111" (at 222.25 158.75 0)
+    (property "Reference" "#PWR0113" (at 222.25 158.75 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 222.377 156.7942 0)
@@ -6136,7 +6136,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR0111") (unit 1)
+          (reference "#PWR0113") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -6150,7 +6150,7 @@
   (symbol (lib_id "power:GND") (at 231.14 104.14 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid a2b6cff2-e34b-49de-86dc-f50cb3f4d14d)
-    (property "Reference" "#PWR0113" (at 231.14 110.49 0)
+    (property "Reference" "#PWR0115" (at 231.14 110.49 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 231.267 108.5342 0)
@@ -6166,7 +6166,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR0113") (unit 1)
+          (reference "#PWR0115") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -6244,7 +6244,7 @@
   (symbol (lib_id "power:GND") (at 180.34 86.36 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid a7b40a29-2a74-4404-bde7-99e12143d73b)
-    (property "Reference" "#PWR0103" (at 180.34 92.71 0)
+    (property "Reference" "#PWR0105" (at 180.34 92.71 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 180.467 90.7542 0)
@@ -6260,7 +6260,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR0103") (unit 1)
+          (reference "#PWR0105") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -6274,7 +6274,7 @@
   (symbol (lib_id "power:GND") (at 240.03 152.4 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid a7df9fb8-b101-4dde-961e-c765f7195f72)
-    (property "Reference" "#PWR0114" (at 240.03 158.75 0)
+    (property "Reference" "#PWR0116" (at 240.03 158.75 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 240.157 156.7942 0)
@@ -6290,7 +6290,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR0114") (unit 1)
+          (reference "#PWR0116") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -6423,7 +6423,7 @@
           (reference "#PWR0155") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR095") (unit 1)
+          (reference "#PWR097") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -6466,7 +6466,7 @@
   (symbol (lib_id "power:GND") (at 186.69 109.22 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid b74da3d4-807e-4fbe-8dcb-ae4271c5778b)
-    (property "Reference" "#PWR0105" (at 186.69 115.57 0)
+    (property "Reference" "#PWR0107" (at 186.69 115.57 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 186.817 113.6142 0)
@@ -6482,7 +6482,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR0105") (unit 1)
+          (reference "#PWR0107") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -6530,7 +6530,7 @@
   (symbol (lib_id "power:GND") (at 229.87 152.4 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid b8f2049e-e53d-4480-bb54-4f66177aa28e)
-    (property "Reference" "#PWR0112" (at 229.87 158.75 0)
+    (property "Reference" "#PWR0114" (at 229.87 158.75 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 229.997 156.7942 0)
@@ -6546,7 +6546,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR0112") (unit 1)
+          (reference "#PWR0114") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -6560,7 +6560,7 @@
   (symbol (lib_id "power:GND") (at 27.94 147.32 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid bafdeed6-6649-4ffe-b427-396dcd33b26b)
-    (property "Reference" "#PWR054" (at 27.94 153.67 0)
+    (property "Reference" "#PWR055" (at 27.94 153.67 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 28.067 151.7142 0)
@@ -6576,7 +6576,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR054") (unit 1)
+          (reference "#PWR055") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -6625,7 +6625,7 @@
   (symbol (lib_id "power:GND") (at 102.87 163.83 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid c487f115-e183-43c4-916b-717febbd4191)
-    (property "Reference" "#PWR076" (at 102.87 170.18 0)
+    (property "Reference" "#PWR077" (at 102.87 170.18 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 102.997 168.2242 0)
@@ -6641,7 +6641,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR076") (unit 1)
+          (reference "#PWR077") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -6692,7 +6692,7 @@
   (symbol (lib_id "power:GND") (at 162.56 152.4 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid c9f11e81-b0c6-41d7-ac83-68fe8f956090)
-    (property "Reference" "#PWR097" (at 162.56 158.75 0)
+    (property "Reference" "#PWR099" (at 162.56 158.75 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 162.687 156.7942 0)
@@ -6708,7 +6708,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR097") (unit 1)
+          (reference "#PWR099") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -6722,7 +6722,7 @@
   (symbol (lib_id "power:GND") (at 198.12 27.94 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid cbb6f176-0800-4b9c-9f62-211b6dafaa4b)
-    (property "Reference" "#PWR0109" (at 198.12 34.29 0)
+    (property "Reference" "#PWR0111" (at 198.12 34.29 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 198.247 32.3342 0)
@@ -6738,7 +6738,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR0109") (unit 1)
+          (reference "#PWR0111") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -6879,6 +6879,36 @@
     )
   )
 
+  (symbol (lib_id "power:GND") (at 139.7 120.65 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no)
+    (uuid d791e7fb-b10e-4e8e-9dde-5aa454c2711a)
+    (property "Reference" "#PWR0240" (at 139.7 127 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (at 139.827 125.0442 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 139.7 120.65 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 139.7 120.65 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 827e23b7-eb15-40b6-a4e8-d198a7052e64))
+    (instances
+      (project "IMUnav_H00"
+        (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
+          (reference "#PWR0240") (unit 1)
+        )
+      )
+      (project "TrackJet_H01"
+        (path "/be19061b-7390-4ec0-8428-59753cd99ec5/00000000-0000-0000-0000-0000600f65f0"
+          (reference "#PWR0203") (unit 1)
+        )
+      )
+    )
+  )
+
   (symbol (lib_id "Device:R") (at 44.45 182.88 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid d7f7afb9-c318-43c3-a03d-45461ddfa6f6)
@@ -6950,7 +6980,7 @@
   (symbol (lib_id "power:GND") (at 15.24 187.96 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid dd28726a-6051-4293-9146-720548d30b05)
-    (property "Reference" "#PWR052" (at 15.24 194.31 0)
+    (property "Reference" "#PWR053" (at 15.24 194.31 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 15.367 192.3542 0)
@@ -6966,7 +6996,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR052") (unit 1)
+          (reference "#PWR053") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -6980,7 +7010,7 @@
   (symbol (lib_id "power:GND") (at 62.23 187.96 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid dedba8ac-ba9b-4bd5-8e35-310b5dce005a)
-    (property "Reference" "#PWR065" (at 62.23 194.31 0)
+    (property "Reference" "#PWR066" (at 62.23 194.31 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 62.357 192.3542 0)
@@ -6996,7 +7026,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR065") (unit 1)
+          (reference "#PWR066") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -7079,7 +7109,7 @@
   (symbol (lib_id "power:GND") (at 27.94 187.96 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid e65250da-526f-485d-bd47-d05236256f80)
-    (property "Reference" "#PWR055" (at 27.94 194.31 0)
+    (property "Reference" "#PWR056" (at 27.94 194.31 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 28.067 192.3542 0)
@@ -7095,7 +7125,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR055") (unit 1)
+          (reference "#PWR056") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -7109,7 +7139,7 @@
   (symbol (lib_id "power:GND") (at 106.68 64.77 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid e73a6cab-936a-432c-8781-3741552f7f50)
-    (property "Reference" "#PWR077" (at 106.68 71.12 0)
+    (property "Reference" "#PWR078" (at 106.68 71.12 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 106.807 69.1642 0)
@@ -7125,7 +7155,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR077") (unit 1)
+          (reference "#PWR078") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -7207,7 +7237,7 @@
   (symbol (lib_id "power:GND") (at 83.82 80.01 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid e94f4afb-123b-4b26-9d50-b6111664d38f)
-    (property "Reference" "#PWR069" (at 83.82 86.36 0)
+    (property "Reference" "#PWR070" (at 83.82 86.36 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 83.947 84.4042 0)
@@ -7223,7 +7253,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR069") (unit 1)
+          (reference "#PWR070") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -7237,7 +7267,7 @@
   (symbol (lib_id "power:GND") (at 134.62 43.18 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid ea76f72b-91e3-4b59-aa47-748dfe52e4bf)
-    (property "Reference" "#PWR085" (at 134.62 49.53 0)
+    (property "Reference" "#PWR087" (at 134.62 49.53 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 134.747 47.5742 0)
@@ -7253,7 +7283,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR085") (unit 1)
+          (reference "#PWR087") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -7367,7 +7397,7 @@
   (symbol (lib_id "power:GND") (at 248.92 152.4 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid f1753360-2603-4dd1-b98a-bdcb5f7637a6)
-    (property "Reference" "#PWR0115" (at 248.92 158.75 0)
+    (property "Reference" "#PWR0117" (at 248.92 158.75 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 249.047 156.7942 0)
@@ -7383,7 +7413,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR0115") (unit 1)
+          (reference "#PWR0117") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -7426,7 +7456,7 @@
   (symbol (lib_id "power:GND") (at 86.36 120.65 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid f90d93e2-d036-427b-a64c-86ab7ddc17f9)
-    (property "Reference" "#PWR071" (at 86.36 127 0)
+    (property "Reference" "#PWR072" (at 86.36 127 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 86.487 125.0442 0)
@@ -7442,7 +7472,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR071") (unit 1)
+          (reference "#PWR072") (unit 1)
         )
       )
       (project "TrackJet_H01"
@@ -7478,7 +7508,7 @@
           (reference "#PWR0154") (unit 1)
         )
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR090") (unit 1)
+          (reference "#PWR092") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -7555,7 +7585,7 @@
   (symbol (lib_id "power:GND") (at 124.46 46.99 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid fb886587-6891-471c-8648-25366cd50f09)
-    (property "Reference" "#PWR081" (at 124.46 53.34 0)
+    (property "Reference" "#PWR082" (at 124.46 53.34 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 124.587 51.3842 0)
@@ -7571,7 +7601,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR081") (unit 1)
+          (reference "#PWR082") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"
@@ -7585,7 +7615,7 @@
   (symbol (lib_id "power:+5V") (at 128.27 62.23 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid fca7bbc4-7622-4db8-acf8-da87065c7145)
-    (property "Reference" "#PWR083" (at 128.27 66.04 0)
+    (property "Reference" "#PWR085" (at 128.27 66.04 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+5V" (at 128.651 57.8358 0)
@@ -7601,7 +7631,7 @@
     (instances
       (project "IMUnav_H00"
         (path "/4c2dd95e-3649-4040-ab57-00df6d22e0b0/6fbc37c5-87b4-45e0-ab4e-6fb233c6fd9b"
-          (reference "#PWR083") (unit 1)
+          (reference "#PWR085") (unit 1)
         )
       )
       (project "PaLampa_MoBo_H01"

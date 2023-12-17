@@ -4,8 +4,8 @@
 %  draft,    				  % Testovací překlad
   12pt,       				% Velikost základního písma je 12 bodů
   a4paper,    				% Formát papíru je A4
-  %oneside,      			% Jednostranný tisk
-	twoside,      			% Dvoustranný tisk (kapitoly a další důležité části tedy začínají na lichých stranách)
+  oneside,      			% Jednostranný tisk
+	%twoside,      			% Dvoustranný tisk (kapitoly a další důležité části tedy začínají na lichých stranách)
 	unicode,						% Záložky a metainformace ve výsledném  PDF budou v kódování unicode
 ]{report}				    	% Dokument třídy 'zpráva', vhodná pro sazbu závěrečných prací s kapitolami
 
@@ -14,7 +14,7 @@
 
 \usepackage[				% Nastavení geometrie stránky
 	bindingoffset=10mm,		% Hřbet pro vazbu
-	hmargin={25mm,25mm},	% Vnitřní a vnější okraj
+	hmargin={25mm,25mm},	% Vnitřní a vnější okraj  (jsou nehezky shodné; jakási úroveň estetiky je dosažena pomocí hřbetu)
 	vmargin={25mm,34mm},	% Horní a dolní okraj
 	footskip=17mm,			  % Velikost zápatí
 	nohead,					      % Bez záhlaví
@@ -104,6 +104,12 @@
     {Ý}{{\'Y}}1
     {Ž}{{\v{Z}}}1
 }
+
+%%%%%vlastni balicky
+\usepackage{makecell}
+\usepackage{siunitx}
+\DeclareSIUnit\LSB{LSB}
+\usepackage{tablefootnote}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%      Definice informací o dokumentu             %%%%%%%%%%
@@ -216,7 +222,7 @@
 \include{text/zaver}
 
 %%% Vložení souboru 'text/literatura' se seznamem zdrojů
-\include{text/literatura}
+\include{text/bibliografie}
 
 %%% Vložení souboru 'text/zkratky' se seznam použitých symbolů, veličin a zkratek
 \include{text/zkratky}
