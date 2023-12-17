@@ -44,5 +44,36 @@ K tomuto účelu byl vybrán běžně dostupný obvod LSM303AGR, který kromě m
 
 Magnetometr komunikuje s hlavním MCU přes sběrnici I2C s maximální vzorkovací frekvencí 150 Hz, dynamickým rozsahem $ \pm \SI{4.915}{\milli\tesla} $ a 16bitovým rozlišením. \cite{RD5DwZcremhT6bgp}
 
+\subsection{GNSS}
+Zajímavou a uživatelsky přívětivou kombinaci GNSS a inerciální navigace poskytuje například firma u-blox s řadou modulů podporující funkci "dead reckoning". Jedná se o navigační moduly s vestavěným IMU, určené zejména do oblasti automotive. Jejich typický příklad použití, dle výrobce, je např. navigace aut, kdy při běžném provozu je zafixovaný signál z GNSS a při výpadku signálu (vjezd do garáže, tunelu apod.) je navigace modulem stále poskytována na základě dat z IMU. \cite{DLQg9bT6V1GWKhxh}
+
+Navigační modul u-blox NEO-M8U byl vybrán a implementován do obvodového zapojení inerciální navigační jednotky
+Výrobce udává, že modul zvládne odhadovat polohu po ztrátě signálu GNSS po dobu 60 s s typickou odchylkou 10 \% trajektorie. Dále také modul při zapnutí odpovídající funkce umí využít interní IMU k zvýšení maximální rychlosti aktualizace polohy až na 30 Hz. Jeho využití v rámci této práce může být různé, například pro navigaci v místech s alespoň částečným pokrytím signálu GNSS. \cite{DLQg9bT6V1GWKhxh}
+
+NEO-M8U umí využívat všechny světové navigační systémy (uvedeny v tabulce~\ref{table:gnssBands})
+\input{text/tabulky/gnssBands}
+Tento modul komunikuje s hlavním MCU přes sběrnici UART, pomocí standardizovaných NMEA příkazů v textové podobě, nebo pomocí binárního protokolu UBX, který je specifikován výrobcem. Použití protokolu NMEA je omezené pouze na standardní funkce GNSS modulů, pokud chceme využít speciálních funkcí, například inerciální navigace, je nutné použít proprietární protokol UBX. \cite{DLQg9bT6V1GWKhxh} NEO-M8U také disponuje USB portem, skrz který je možné modul ovládat a konfigurovat pomocí PC aplikace výrobce. Tento port je připojen na integrovaný USB rozbočovač a lze jej využít například pro vývojové účely.
+
+\subsection{Paměť}
+\input{text/tabulky/memoryBW}
+V případě, že bychom chtěli zaznamenávat data ze všech senzorů při jejich maximálních vzorkovacích frekvencích, nebude množství změřených dat zanedbatelné. V tabulce \ref{table:memoryBW} je hrubý odhad potřebné rychlosti záznamu dat pro tento krajní případ. Pokud bude měření trvat např. 2 minuty, vygenerujeme dohromady 12 MB dat, což převyšuje velikost paměti většiny dostupných MCU.
+
+Z tohoto důvodu je v obvodovém zapojení inerciální jednotky implementována 32MB NOR Flash paměť, propojená s hlavním MCU přes sběrnici QUADSPI s maximální možnou hodinovou frekvencí 120 Mhz, měla by tedy být pro potřeby této aplikace dostačující. \cite{CgaRYSTpwKhEZZr7}
+
+Kromě výše popsané Flash paměti jednotka obsahuje i slot na microSD kartu, která by z uživatelského hlediska mohla být jednodušší k použití, ovšem při zápisu může latence SD karty být (krátkodobě) až stovky ms \cite{Kraewinkel2020}. To by mohlo znemožnit její použití v případě, že by hlavní MCU měl nedostatek volné paměti RAM pro krátkodobé uchování dat, proto bude o jejím využití rozhodnuto až později.
+
+\subsection{Uživatelské rozhraní}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.3\textwidth]{obrazky/OLED}
+    \caption{Fotografie grafického OLED displeje}
+\end{figure}
+Pro ovládání uživatelem disponuje jednotka grafickým OLED displejem s úhlopříčkou 0,96 palce a rozlišením $ 128 \times 64 $ pixelů, který je připojený přes sběrnici I2C. Společně s 4 tlačítky by měl poskytnout dostatečně univerzální a pohodlné uživatelské rozhraní.
+
+\subsection{Napájení}
+\subsection{hlavní procesor}
+\subsection{ESP32}
+
+
 
 
