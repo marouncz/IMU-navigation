@@ -14,9 +14,9 @@
 \contentsline {subsection}{\numberline {2.1.4}Paměť}{19}{subsection.26}%
 \contentsline {subsection}{\numberline {2.1.5}Uživatelské rozhraní}{20}{subsection.28}%
 \contentsline {subsection}{\numberline {2.1.6}Napájení}{20}{subsection.30}%
-\contentsline {subsection}{\numberline {2.1.7}hlavní procesor}{20}{subsection.31}%
-\contentsline {subsection}{\numberline {2.1.8}ESP32}{20}{subsection.32}%
-\contentsline {chapter}{Závěr}{21}{section*.34}%
-\contentsline {chapter}{Literatura}{22}{section*.36}%
-\contentsline {chapter}{Seznam symbol\r {u} a zkratek}{24}{section*.38}%
-\contentsline {chapter}{Seznam p\v {r}\'{\i }loh}{25}{section*.40}%
+\contentsline {subsection}{\numberline {2.1.7}Hlavní procesor}{20}{subsection.31}%
+\contentsline {subsection}{\numberline {2.1.8}ESP32}{21}{subsection.33}%
+\contentsline {chapter}{Závěr}{22}{section*.35}%
+\contentsline {chapter}{Literatura}{23}{section*.37}%
+\contentsline {chapter}{Seznam symbol\r {u} a zkratek}{25}{section*.39}%
+\contentsline {chapter}{Seznam p\v {r}\'{\i }loh}{26}{section*.41}%

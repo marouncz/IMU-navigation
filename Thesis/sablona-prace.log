@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.12.13)  17 DEC 2023 22:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.12.13)  18 DEC 2023 23:16
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1287,7 +1287,7 @@ File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 
 pdfTeX warning: pdflatex (file ./obrazky/IMUnav_H00_block.pdf): PDF inclusion: 
 found PDF version <1.7>, but at most version <1.5> allowed
-<obrazky/IMUnav_H00_block.pdf, id=238, 441.56969pt x 378.45387pt>
+<obrazky/IMUnav_H00_block.pdf, id=240, 441.56969pt x 378.45387pt>
 File: obrazky/IMUnav_H00_block.pdf Graphic file (type pdf)
 <use obrazky/IMUnav_H00_block.pdf>
 Package pdftex.def Info: obrazky/IMUnav_H00_block.pdf  used on input line 6.
@@ -1317,16 +1317,27 @@ Overfull \hbox (10.6524pt too wide) in paragraph at lines 53--56
  []
 
 (text/tabulky/memoryBW.tex) [19]
-<obrazky/OLED.png, id=315, 752.8125pt x 620.3175pt>
+<obrazky/OLED.png, id=317, 752.8125pt x 620.3175pt>
 File: obrazky/OLED.png Graphic file (type png)
 <use obrazky/OLED.png>
 Package pdftex.def Info: obrazky/OLED.png  used on input line 68.
 (pdftex.def)             Requested size: 128.03871pt x 105.49991pt.
-) [20 <./obrazky/OLED.png>]
+ (text/tabulky/MCUperiferie.tex)
+Overfull \hbox (30.74237pt too wide) in paragraph at lines 81--82
+[]\T1/lmr/m/n/12 Na zá-klad¥ t¥chto po-ºa-davk· byl jako hlavní mi-k-ro-kon-t-r
+o-lér vy-brán \T1/lmr/m/it/12 STM32F446VET6\T1/lmr/m/n/12 .
+ []
+
+
+Overfull \hbox (27.60431pt too wide) in paragraph at lines 81--82
+\T1/lmr/m/n/12 Jedná se 32bi-tový Arm Cortex-M4 pro-ce-sor z port-fo-lia "high 
+per-for-mance"mikrokontrolér·
+ []
+
+[20 <./obrazky/OLED.png>]) [21]
 \openout2 = `text/zaver.aux'.
 
- (text/zaver.tex)
-[21
+ (text/zaver.tex) [22
 
 
 
@@ -1351,15 +1362,15 @@ Underfull \hbox (badness 1210) in paragraph at lines 12--13
 . 2022, ro£. XLVI-3/W1-
  []
 
-[22
+[23
 
 
 
 
-]) [23]
+]) [24]
 \openout2 = `text/zkratky.aux'.
 
- (text/zkratky.tex) [24
+ (text/zkratky.tex) [25
 
 
 
@@ -1369,7 +1380,7 @@ Underfull \hbox (badness 1210) in paragraph at lines 12--13
 \tf@toa=\write8
 \openout8 = `sablona-prace.toa'.
 
- [25
+ [26
 
 
 
@@ -1377,7 +1388,7 @@ Underfull \hbox (badness 1210) in paragraph at lines 12--13
 \openout2 = `text/prilohy.aux'.
 
  (text/prilohy.tex)
-[26
+[27
 
 ]
 \c@page@count=\count333
@@ -1389,13 +1400,13 @@ LaTeX2e <2023-11-01>
 L3 programming layer <2023-11-09>
  ***********
 Package rerunfilecheck Info: File `sablona-prace.out' has not changed.
-(rerunfilecheck)             Checksum: 2499D5CBE9A69553AFEBFFFBF9600847;2435.
+(rerunfilecheck)             Checksum: 6B025B4E6B47541CDBA6D4E9285787B0;2435.
  ) 
 Here is how much of TeX's memory you used:
- 20678 strings out of 474587
- 395808 string characters out of 5745701
- 1939558 words of memory out of 5000000
- 42314 multiletter control sequences out of 15000+600000
+ 20691 strings out of 474587
+ 396185 string characters out of 5745701
+ 1940558 words of memory out of 5000000
+ 42322 multiletter control sequences out of 15000+600000
  649141 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,17n,103p,817b,1163s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1424,9 +1435,9 @@ Users/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy7.pfb><C:/U
 sers/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/Us
 ers/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/Us
 ers/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb>
-Output written on sablona-prace.pdf (26 pages, 2354607 bytes).
+Output written on sablona-prace.pdf (27 pages, 2358537 bytes).
 PDF statistics:
- 464 PDF objects out of 1000 (max. 8388607)
- 76 named destinations out of 1000 (max. 500000)
+ 473 PDF objects out of 1000 (max. 8388607)
+ 78 named destinations out of 1000 (max. 500000)
  219 words of extra memory for PDF output out of 10000 (max. 10000000)
 
