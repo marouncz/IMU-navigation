@@ -76,10 +76,8 @@ Požadavky na výběr hlavního procesoru byly z velké části dané počtem a 
 Dále byly z podskupiny procesorů disponujících všemi periferiemi z tabulky \ref{table:MCUperiferie} vybrány takové, které mají velikost vnitřní FLASH paměti alespoň 512 kB, abychom nebyli při vývoji Firmwaru jednotky omezeni velikostí programu. Pouzdra procesorů byla vybrána taková, aby se s nimi dalo jednoduše pracovat, z toho důvodu byla vyloučena pouzdra typu BGA. 
 V neposlední řadě byla zvážena i dostupnost vybíraných procesorů u nejobvyklejších distributorů elektronických součástek, aby bylo možné v případě potřeby výrobu jednotky opakovat.
 
-Na základě těchto požadavků byl jako hlavní mikrokontrolér vybrán \emph{STM32F446VET6}. Jedná se 32bitový Arm Cortex-M4 procesor z portfolia "high performance" mikrokontrolérů výrobce STMicroelectronics. Splňuje všechny výše zmíněné minimální požadavky, v obvodovém zapojení byla zapojena i USB periferie procesoru, která může různá využití. Procesor obsahuje 512 kB paměti Flash a 128 kB paměti RAM, maximální hodinová frekvence je 180 MHz a disponuje matematickým koprocesorem pro operace s plovoucí desetinou čárkou. Vzhledem k počtu GPIO v zapojení inerciální jednotky byla vybrána  \cite{csdGtKJDMSdbwJ9r}
 \input{text/tabulky/MCUperiferie}
+
+Na základě těchto požadavků byl jako hlavní mikrokontrolér vybrán \emph{STM32F446VET6}. Jedná se 32bitový Arm Cortex-M4 procesor z portfolia "high performance" mikrokontrolérů výrobce STMicroelectronics. Splňuje všechny výše zmíněné minimální požadavky, v obvodovém zapojení byla zapojena i USB periferie procesoru, která může různá využití. Procesor obsahuje 512 kB paměti Flash a 128 kB paměti RAM, maximální hodinová frekvence je 180 MHz a disponuje matematickým koprocesorem pro operace s plovoucí desetinou čárkou. Vzhledem k počtu GPIO v zapojení inerciální jednotky byla vybrána varianta procesoru v pouzdře LQFP100. \cite{csdGtKJDMSdbwJ9r}
+
 \subsection{ESP32}
-
-
-
-
