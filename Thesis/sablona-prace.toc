@@ -14,15 +14,15 @@
 \contentsline {subsection}{\numberline {2.1.4}Paměť}{19}{subsection.26}%
 \contentsline {subsection}{\numberline {2.1.5}Uživatelské rozhraní}{20}{subsection.28}%
 \contentsline {subsection}{\numberline {2.1.6}Napájení}{20}{subsection.30}%
-\contentsline {subsection}{\numberline {2.1.7}Hlavní procesor}{20}{subsection.31}%
-\contentsline {subsection}{\numberline {2.1.8}ESP32}{21}{subsection.33}%
-\contentsline {chapter}{Závěr}{22}{section*.35}%
-\contentsline {chapter}{Literatura}{23}{section*.37}%
-\contentsline {chapter}{Seznam symbol\r {u} a zkratek}{25}{section*.39}%
-\contentsline {chapter}{Seznam p\v {r}\'{\i }loh}{26}{section*.41}%
-\contentsline {chapter}{\numberline {A}Schéma zapojení inerciální jednotky }{27}{chapter.42}%
-\contentsline {chapter}{\numberline {B}Pohled osazení součástek }{34}{chapter.43}%
-\contentsline {chapter}{\numberline {C}Vrchní vrstva mědi DPS }{35}{chapter.44}%
-\contentsline {chapter}{\numberline {D}Vnitřní vrstva mědi DPS In1 }{36}{chapter.45}%
-\contentsline {chapter}{\numberline {E}Vnitřní vrstva mědi DPS In2 }{37}{chapter.46}%
-\contentsline {chapter}{\numberline {F}Spodní vrstva mědi DPS }{38}{chapter.47}%
+\contentsline {subsection}{\numberline {2.1.7}Hlavní procesor}{21}{subsection.31}%
+\contentsline {subsection}{\numberline {2.1.8}ESP32}{22}{subsection.33}%
+\contentsline {chapter}{Závěr}{23}{section*.35}%
+\contentsline {chapter}{Literatura}{24}{section*.37}%
+\contentsline {chapter}{Seznam symbol\r {u} a zkratek}{26}{section*.39}%
+\contentsline {chapter}{Seznam p\v {r}\'{\i }loh}{27}{section*.41}%
+\contentsline {chapter}{\numberline {A}Schéma zapojení inerciální jednotky }{28}{chapter.42}%
+\contentsline {chapter}{\numberline {B}Pohled osazení součástek }{35}{chapter.43}%
+\contentsline {chapter}{\numberline {C}Vrchní vrstva mědi DPS }{36}{chapter.44}%
+\contentsline {chapter}{\numberline {D}Vnitřní vrstva mědi DPS In1 }{37}{chapter.45}%
+\contentsline {chapter}{\numberline {E}Vnitřní vrstva mědi DPS In2 }{38}{chapter.46}%
+\contentsline {chapter}{\numberline {F}Spodní vrstva mědi DPS }{39}{chapter.47}%

@@ -14,16 +14,16 @@
 \chapter{Pohled osazení součástek}
 \includegraphics[width=\textwidth]{KiCad/boardTopParts}
 
-\chapter{Vrstvy mědi DPS}
+\chapter{Vrchní vrstva mědi DPS}
+\includegraphics[width=\textwidth]{KiCad/boardF}
+
+\chapter{Vnitřní vrstva mědi DPS In1}
+\includegraphics[width=\textwidth]{KiCad/boardIn1}
+
+\chapter{Vnitřní vrstva mědi DPS In2}
+\includegraphics[width=\textwidth]{KiCad/boardIn2}
+
+\chapter{Spodní vrstva mědi DPS}
+\includegraphics[width=\textwidth]{KiCad/boardB}
 
 
-
-
-\begin{figure}
-\hfill
-\subfigure[Title A]{\includegraphics[width=5cm]{KiCad/boardF}}
-\hfill
-\subfigure[Title B]{\includegraphics[width=5cm]{KiCad/boardB}}
-\hfill
-\caption{Title for both}
-\end{figure}

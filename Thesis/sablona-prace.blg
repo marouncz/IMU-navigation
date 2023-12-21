@@ -11,17 +11,17 @@ Reallocating 'name_of_file' (item size: 1) to 18 items.
 A level-1 auxiliary file: text/vysledky.aux
 Reallocating 'name_of_file' (item size: 1) to 15 items.
 A level-1 auxiliary file: text/zaver.aux
-Reallocating 'name_of_file' (item size: 1) to 20 items.
-A level-1 auxiliary file: text/literatura.aux
+Reallocating 'name_of_file' (item size: 1) to 22 items.
+A level-1 auxiliary file: text/bibliografie.aux
 Reallocating 'name_of_file' (item size: 1) to 17 items.
 A level-1 auxiliary file: text/zkratky.aux
 Reallocating 'name_of_file' (item size: 1) to 17 items.
 A level-1 auxiliary file: text/prilohy.aux
 I found no \bibdata command---while reading file sablona-prace.aux
 I found no \bibstyle command---while reading file sablona-prace.aux
-You've used 2 entries,
+You've used 11 entries,
             0 wiz_defined-function locations,
-            95 strings with 691 characters,
+            113 strings with 949 characters,
 and the built_in function-call counts, 0 in all, are:
 = -- 0
 > -- 0
