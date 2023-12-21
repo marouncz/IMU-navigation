@@ -77,7 +77,9 @@ Všechny součásti inerciální jednotky (až na RTC a zálohovací registry hl
 
 Nabíjecí obvod také umožňuje kompletní odpojení napájení jednotky přes jeden z vývodů. Toho je využito pro ochranu akumulátoru proti podvybití pomocí zapojení S/R klopného obvodu na napájení USB a jednoho z výstupů procesoru. Napětí akumulátoru je měřeno pomocí ADC mikrokontroléru. Jestliže klesne pod definovanou úroveň, pomocí pulzu bude celý obvod odpojen od napájení až do té doby, dokud uživatel znova nepřipojí jednotku do USB portu.
 
-Vzhledem k většímu počtu součástek není odebíraný proud z 3,3V napájecí větve malý (zhruba 500 mA). Budeme-li uvažovat rozsah výstupního napětí nabíjecího obvodu 3,5 V (vybitý akumulátor) až 5 V (zařízení připojené do USB) zjistíme, že pro napájení 3,3V větve není vhodný lineární regulátor, zejména kvůli vysokému ztrátovému výkonu. Ten je v krajním případě:
+\input{text/tabulky/powerConsumption}
+
+Vzhledem k většímu počtu součástek není odebíraný proud z 3,3V napájecí větve malý (zhruba 0,5 A, viz. tabulka \ref{table:currentConsumption}). Budeme-li uvažovat rozsah výstupního napětí nabíjecího obvodu 3,5 V (vybitý akumulátor) až 5 V (zařízení připojené do USB) zjistíme, že pro napájení 3,3V větve není vhodný lineární regulátor, zejména kvůli vysokému ztrátovému výkonu. Ten je v krajním případě:
 $$ P_{\mathrm{ztrátový}} = (U_{\mathrm{USB}}-U_{\mathrm{IO}})\times I_{\mathrm{IO}}=(5-3,3)\times 0,5= \SI{0,85}{\watt}$$ 
 
 Proto byl na napájení hlavní 3,3V větve vybrán spínaný regulátor TPS62823. Jedná se o buck (snižující) měnič s integrovaným výkonovým tranzistorem pracujícím na frekvenci 2,2 MHz. Díky vyšší spínací frekvenci je možné využít menší komponenty, zejména cívku a filtrační kondenzátory na výstup, ovšem je potřeba dodržet doporučovaná pravidla při návrhu desky pro omezení rušení a velkých proudových smyček. Rozsah napájecího napětí čipu je 2,4 až 5 V, maximální výstupní proud 3 A. \cite{mGnys3WmOkWuaQHN}
@@ -89,11 +91,6 @@ Minimální napětí, na které můžeme nechat akumulátor vybít je dáno odpo
   =3,3 + 0,5 \times (0,05 + 0,026 + 0,014) = \SI{3,345}{\volt}
 \end{matrix}
  \end{equation*}
-
-
-
-
-
 
 \subsection{Hlavní procesor}
 Požadavky na výběr hlavního procesoru byly z velké části dané počtem a druhem potřebných periferií, které jsou popsané v tabulce \ref{table:MCUperiferie}.
@@ -107,10 +104,24 @@ Na základě těchto požadavků byl jako hlavní mikrokontrolér vybrán \emph{
 \subsection{ESP32}
 Pro splnění požadavků zadání práce je potřeba, aby mohla inerciální jednotka komunikovat bezdrátově s PC zpracovávajícím data. Pro tento úkol byl vybrán bezdrátový modul ESP32-C3-Mini. Jedná se o jeden z novějších produktů portfolia bezdrátových modulů firmy Espressif. Podporuje standard WiFi 802.11 b/g/n a Bluetooth~LE~5. \cite{zJ7x5ye8Y5eJn1E2}
 
-Tento modul je v obvodovém zapojení použit čistě jako bezdrátové rozhraní, neobsluhuje žádné další GPIO kromě 2 UART sběrnic. První sběrnice UART je připojena pomocí USB-serial převodníku CH340 na USB rozbočovač v inerciální jednotce. Toto rozhraní slouží pro nahrávání, popřípadě aktualizaci vestavěného AT firmwaru výrobce. V případě, že by poskytovaný firmware výrobce nedostačoval, nebo nebyl vhodný pro potřeby této aplikace, bude možné pomocí tohoto rozhraní nahrát vlastní obslužný firmware pro ESP32.
+Tento modul je v obvodovém zapojení použit čistě jako bezdrátové rozhraní, neobsluhuje žádné další GPIO kromě 2 UART sběrnic. První sběrnice UART je připojena pomocí USB-serial převodníku CH340 na USB rozbočovač v inerciální jednotce. Toto rozhraní slouží pro nahrávání, popřípadě aktualizaci vestavěného AT firmwaru výrobce. V případě, že by poskytovaný firmware výrobce nedostačoval, nebo nebyl vhodný pro potřeby naší aplikace, bude možné pomocí tohoto rozhraní nahrát vlastní obslužný firmware pro ESP32.
 
 Druhá sběrnice UART je připojena k hlavnímu MCU inerciální jednotky. Kromě standardních pinů Rx a Tx jsou propojeny i piny pro řízení toku, které by bylo možné použít na zjednodušení časování komunikace.
 
+\section{Realizace hardwaru}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{KiCad/3Dboard}
+    \caption{3D model navržené DPS}
+\end{figure}
 
+Schéma i DPS byla navržena v programu KiCad. V příloze \ref{schemaApp} je schéma inerciální jednotky rozdělené do několika logických bloků. Příloha \ref{placementApp} obsahuje pohled na osazení součástek vrchní vrstvy a přílohy \ref{TopApp} až \ref{BottomApp} obsahují nákres jednotlivých vrstev mědi.
+
+Inerciální jednotka je realizována jako 4vrstvá deska plošných spojů o velikosti $ 100 \times 100 $ mm s uspořádáním vrstev popsaném v tabulce \ref{table:signalStackup}.
+\input{text/tabulky/signalStackup}
+
+Typ a tloušťky substrátu DPS byly vybrány v konfiguraci JLC04161H-7628. Pomocí kalkulačky výrobce byly vypočteny potřebné hodnoty požadovaných šířek a mezer spojů mikropáskového vedení pro impedanci \SI{50}{\ohm} a \SI{90}{\ohm}. Hodnoty pro vedení o impedanci \SI{50}{\ohm} byly použity při návrhu cest mezi GPS modulem a SMA anténou. Šírka a vzdálenost diferenciálního páru o impedanci \SI{90}{\ohm} byla použita při návrhu USB části zapojení.
+
+Pouzdra rezistorů a kondenzátorů byla vybrána velikosti 0603.
 
 

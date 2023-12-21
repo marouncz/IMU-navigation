@@ -92,11 +92,6 @@ Minimální napětí, na které můžeme nechat akumulátor vybít je dáno odpo
 \end{matrix}
  \end{equation*}
 
-
-
-
-
-
 \subsection{Hlavní procesor}
 Požadavky na výběr hlavního procesoru byly z velké části dané počtem a druhem potřebných periferií, které jsou popsané v tabulce \ref{table:MCUperiferie}.
 Dále byly z podskupiny procesorů disponujících všemi periferiemi z tabulky \ref{table:MCUperiferie} vybrány takové, které mají velikost vnitřní FLASH paměti alespoň 512 kB, abychom nebyli při vývoji Firmwaru jednotky omezeni velikostí programu. Pouzdra procesorů byla vybrána taková, aby se s nimi dalo jednoduše pracovat, z toho důvodu byla vyloučena pouzdra typu BGA. 
@@ -113,6 +108,20 @@ Tento modul je v obvodovém zapojení použit čistě jako bezdrátové rozhran�
 
 Druhá sběrnice UART je připojena k hlavnímu MCU inerciální jednotky. Kromě standardních pinů Rx a Tx jsou propojeny i piny pro řízení toku, které by bylo možné použít na zjednodušení časování komunikace.
 
+\section{Realizace hardwaru}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{KiCad/3Dboard}
+    \caption{3D model navržené DPS}
+\end{figure}
 
+Schéma i DPS byla navržena v programu KiCad. V příloze \ref{schemaApp} je schéma inerciální jednotky rozdělené do několika logických bloků. Příloha \ref{placementApp} obsahuje pohled na osazení součástek vrchní vrstvy a přílohy \ref{TopApp} až \ref{BottomApp} obsahují nákres jednotlivých vrstev mědi.
+
+Inerciální jednotka je realizována jako 4vrstvá deska plošných spojů o velikosti $ 100 \times 100 $ mm s uspořádáním vrstev popsaném v tabulce \ref{table:signalStackup}.
+\input{text/tabulky/signalStackup}
+
+Typ a tloušťky substrátu DPS byly vybrány v konfiguraci JLC04161H-7628. Pomocí kalkulačky výrobce byly vypočteny potřebné hodnoty požadovaných šířek a mezer spojů mikropáskového vedení pro impedanci \SI{50}{\ohm} a \SI{90}{\ohm}. Hodnoty pro vedení o impedanci \SI{50}{\ohm} byly použity při návrhu cest mezi GPS modulem a SMA anténou. Šírka a vzdálenost diferenciálního páru o impedanci \SI{90}{\ohm} byla použita při návrhu USB části zapojení.
+
+Pouzdra rezistorů a kondenzátorů byla vybrána velikosti 0603.
 
 

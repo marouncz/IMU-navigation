@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.12.13)  21 DEC 2023 22:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 23.10.12) (preloaded format=pdflatex 2023.12.13)  21 DEC 2023 23:15
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1145,7 +1145,7 @@ or `english'. on input line 146.
 
 pdfTeX warning: pdflatex (file ./pdf/student-titulka.pdf): PDF inclusion: found
  PDF version <1.7>, but at most version <1.5> allowed
-<pdf/student-titulka.pdf, id=100, 597.51233pt x 845.0471pt>
+<pdf/student-titulka.pdf, id=104, 597.51233pt x 845.0471pt>
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf>
 Package pdftex.def Info: pdf/student-titulka.pdf  used on input line 161.
@@ -1166,7 +1166,7 @@ pdfTeX warning: pdflatex (file ./pdf/student-titulka.pdf): PDF inclusion: found
 
 pdfTeX warning: pdflatex (file ./pdf/student-titulka.pdf): PDF inclusion: found
  PDF version <1.7>, but at most version <1.5> allowed
-<pdf/student-titulka.pdf, id=103, page=1, 597.51233pt x 845.0471pt>
+<pdf/student-titulka.pdf, id=107, page=1, 597.51233pt x 845.0471pt>
 File: pdf/student-titulka.pdf Graphic file (type pdf)
 <use pdf/student-titulka.pdf, page 1>
 Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 161
@@ -1198,7 +1198,7 @@ Package pdftex.def Info: pdf/student-titulka.pdf , page1 used on input line 161
 
 pdfTeX warning: pdflatex (file ./pdf/student-zadani.pdf): PDF inclusion: found 
 PDF version <1.7>, but at most version <1.5> allowed
-<pdf/student-zadani.pdf, id=118, 597.51233pt x 845.0471pt>
+<pdf/student-zadani.pdf, id=122, 597.51233pt x 845.0471pt>
 File: pdf/student-zadani.pdf Graphic file (type pdf)
 <use pdf/student-zadani.pdf>
 Package pdftex.def Info: pdf/student-zadani.pdf  used on input line 169.
@@ -1219,7 +1219,7 @@ PDF version <1.7>, but at most version <1.5> allowed
 
 pdfTeX warning: pdflatex (file ./pdf/student-zadani.pdf): PDF inclusion: found 
 PDF version <1.7>, but at most version <1.5> allowed
-<pdf/student-zadani.pdf, id=121, page=1, 597.51233pt x 845.0471pt>
+<pdf/student-zadani.pdf, id=125, page=1, 597.51233pt x 845.0471pt>
 File: pdf/student-zadani.pdf Graphic file (type pdf)
 <use pdf/student-zadani.pdf, page 1>
 Package pdftex.def Info: pdf/student-zadani.pdf , page1 used on input line 169.
@@ -1368,7 +1368,7 @@ File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 
 pdfTeX warning: pdflatex (file ./obrazky/IMUnav_H00_block.pdf): PDF inclusion: 
 found PDF version <1.7>, but at most version <1.5> allowed
-<obrazky/IMUnav_H00_block.pdf, id=272, 441.56969pt x 378.45387pt>
+<obrazky/IMUnav_H00_block.pdf, id=281, 441.56969pt x 378.45387pt>
 File: obrazky/IMUnav_H00_block.pdf Graphic file (type pdf)
 <use obrazky/IMUnav_H00_block.pdf>
 Package pdftex.def Info: obrazky/IMUnav_H00_block.pdf  used on input line 6.
@@ -1398,7 +1398,7 @@ Overfull \hbox (10.6524pt too wide) in paragraph at lines 53--56
  []
 
 (text/tabulky/memoryBW.tex) [19]
-<obrazky/OLED.png, id=348, 752.8125pt x 620.3175pt>
+<obrazky/OLED.png, id=357, 752.8125pt x 620.3175pt>
 File: obrazky/OLED.png Graphic file (type png)
 <use obrazky/OLED.png>
 Package pdftex.def Info: obrazky/OLED.png  used on input line 68.
@@ -1412,15 +1412,22 @@ LaTeX Warning: Command \' invalid in math mode on input line 83.
 LaTeX Warning: Command \' invalid in math mode on input line 83.
 
 [21] (text/tabulky/MCUperiferie.tex)
-Overfull \hbox (30.74237pt too wide) in paragraph at lines 107--108
+Overfull \hbox (30.74237pt too wide) in paragraph at lines 102--103
 []\T1/lmr/m/n/12 Na zá-klad¥ t¥chto po-ºa-davk· byl jako hlavní mi-k-ro-kon-t-r
 o-lér vy-brán \T1/lmr/m/it/12 STM32F446VET6\T1/lmr/m/n/12 .
  []
 
-[22]) [23]
+[22]
+<KiCad/3Dboard.png, id=387, 1337.99875pt x 1225.57875pt>
+File: KiCad/3Dboard.png Graphic file (type png)
+<use KiCad/3Dboard.png>
+Package pdftex.def Info: KiCad/3Dboard.png  used on input line 114.
+(pdftex.def)             Requested size: 426.79137pt x 390.92157pt.
+ [23 <./KiCad/3Dboard.png (PNG copy)>] (text/tabulky/signalStackup.tex))
+[24]
 \openout2 = `text/zaver.aux'.
 
- (text/zaver.tex) [24
+ (text/zaver.tex) [25
 
 
 
@@ -1451,15 +1458,15 @@ Underfull \hbox (badness 1210) in paragraph at lines 18--19
 . 2022, ro£. XLVI-3/W1-
  []
 
-[25
+[26
 
 
 
 
-]) [26]
+]) [27]
 \openout2 = `text/zkratky.aux'.
 
- (text/zkratky.tex) [27
+ (text/zkratky.tex) [28
 
 
 
@@ -1469,7 +1476,7 @@ Underfull \hbox (badness 1210) in paragraph at lines 18--19
 \tf@toa=\write8
 \openout8 = `sablona-prace.toa'.
 
- [28
+ [29
 
 
 
@@ -1477,37 +1484,37 @@ Underfull \hbox (badness 1210) in paragraph at lines 18--19
 \openout2 = `text/prilohy.aux'.
 
  (text/prilohy.tex
-<KiCad/schematic.pdf, id=439, page=1, 845.0531pt x 597.52838pt>
+<KiCad/schematic.pdf, id=458, page=1, 845.0531pt x 597.52838pt>
 File: KiCad/schematic.pdf Graphic file (type pdf)
 <use KiCad/schematic.pdf, page 1>
 Package pdftex.def Info: KiCad/schematic.pdf , page1 used on input line 4.
 (pdftex.def)             Requested size: 845.05103pt x 597.52692pt.
-<KiCad/schematic.pdf, id=440, page=2, 845.0531pt x 597.52838pt>
+<KiCad/schematic.pdf, id=459, page=2, 845.0531pt x 597.52838pt>
 File: KiCad/schematic.pdf Graphic file (type pdf)
 <use KiCad/schematic.pdf, page 2>
 Package pdftex.def Info: KiCad/schematic.pdf , page2 used on input line 7.
 (pdftex.def)             Requested size: 845.05103pt x 597.52692pt.
-<KiCad/schematic.pdf, id=441, page=3, 845.0531pt x 597.52838pt>
+<KiCad/schematic.pdf, id=460, page=3, 845.0531pt x 597.52838pt>
 File: KiCad/schematic.pdf Graphic file (type pdf)
 <use KiCad/schematic.pdf, page 3>
 Package pdftex.def Info: KiCad/schematic.pdf , page3 used on input line 8.
 (pdftex.def)             Requested size: 845.05103pt x 597.52692pt.
-<KiCad/schematic.pdf, id=442, page=4, 845.0531pt x 597.52838pt>
+<KiCad/schematic.pdf, id=461, page=4, 845.0531pt x 597.52838pt>
 File: KiCad/schematic.pdf Graphic file (type pdf)
 <use KiCad/schematic.pdf, page 4>
 Package pdftex.def Info: KiCad/schematic.pdf , page4 used on input line 9.
 (pdftex.def)             Requested size: 845.05103pt x 597.52692pt.
-<KiCad/schematic.pdf, id=443, page=5, 845.0531pt x 597.52838pt>
+<KiCad/schematic.pdf, id=462, page=5, 845.0531pt x 597.52838pt>
 File: KiCad/schematic.pdf Graphic file (type pdf)
 <use KiCad/schematic.pdf, page 5>
 Package pdftex.def Info: KiCad/schematic.pdf , page5 used on input line 10.
 (pdftex.def)             Requested size: 845.05103pt x 597.52692pt.
-<KiCad/schematic.pdf, id=444, page=6, 845.0531pt x 597.52838pt>
+<KiCad/schematic.pdf, id=463, page=6, 845.0531pt x 597.52838pt>
 File: KiCad/schematic.pdf Graphic file (type pdf)
 <use KiCad/schematic.pdf, page 6>
 Package pdftex.def Info: KiCad/schematic.pdf , page6 used on input line 11.
 (pdftex.def)             Requested size: 845.05103pt x 597.52692pt.
-<KiCad/schematic.pdf, id=445, page=7, 845.0531pt x 597.52838pt>
+<KiCad/schematic.pdf, id=464, page=7, 845.0531pt x 597.52838pt>
 File: KiCad/schematic.pdf Graphic file (type pdf)
 <use KiCad/schematic.pdf, page 7>
 Package pdftex.def Info: KiCad/schematic.pdf , page7 used on input line 12.
@@ -1517,65 +1524,65 @@ Overfull \hbox (17.6436pt too wide) in paragraph at lines 7--13
 [][]
  []
 
-[29
+[30
 
 
- <./KiCad/schematic.pdf>] [30 <./KiCad/schematic.pdf>] [31 <./KiCad/schematic.p
-df>] [32 <./KiCad/schematic.pdf>] [33 <./KiCad/schematic.pdf>] [34 <./KiCad/sch
-ematic.pdf>] [35 <./KiCad/schematic.pdf>]
+ <./KiCad/schematic.pdf>] [31 <./KiCad/schematic.pdf>] [32 <./KiCad/schematic.p
+df>] [33 <./KiCad/schematic.pdf>] [34 <./KiCad/schematic.pdf>] [35 <./KiCad/sch
+ematic.pdf>] [36 <./KiCad/schematic.pdf>]
 
 pdfTeX warning: pdflatex (file ./KiCad/boardTopParts.pdf): PDF inclusion: found
  PDF version <1.7>, but at most version <1.5> allowed
-<KiCad/boardTopParts.pdf, id=480, 614.295pt x 794.97pt>
+<KiCad/boardTopParts.pdf, id=499, 614.295pt x 794.97pt>
 File: KiCad/boardTopParts.pdf Graphic file (type pdf)
 <use KiCad/boardTopParts.pdf>
 Package pdftex.def Info: KiCad/boardTopParts.pdf  used on input line 15.
 (pdftex.def)             Requested size: 426.79137pt x 552.32666pt.
-[36
+[37
 
  <./KiCad/boardTopParts.pdf>]
 
 pdfTeX warning: pdflatex (file ./KiCad/boardF.pdf): PDF inclusion: found PDF ve
 rsion <1.7>, but at most version <1.5> allowed
-<KiCad/boardF.pdf, id=486, 614.295pt x 794.97pt>
+<KiCad/boardF.pdf, id=506, 614.295pt x 794.97pt>
 File: KiCad/boardF.pdf Graphic file (type pdf)
 <use KiCad/boardF.pdf>
 Package pdftex.def Info: KiCad/boardF.pdf  used on input line 18.
 (pdftex.def)             Requested size: 426.79137pt x 552.32666pt.
-[37
+[38
 
  <./KiCad/boardF.pdf>]
 
 pdfTeX warning: pdflatex (file ./KiCad/boardIn1.pdf): PDF inclusion: found PDF 
 version <1.7>, but at most version <1.5> allowed
-<KiCad/boardIn1.pdf, id=493, 614.295pt x 794.97pt>
+<KiCad/boardIn1.pdf, id=512, 614.295pt x 794.97pt>
 File: KiCad/boardIn1.pdf Graphic file (type pdf)
 <use KiCad/boardIn1.pdf>
 Package pdftex.def Info: KiCad/boardIn1.pdf  used on input line 21.
 (pdftex.def)             Requested size: 426.79137pt x 552.32666pt.
-[38
+[39
 
  <./KiCad/boardIn1.pdf>]
 
 pdfTeX warning: pdflatex (file ./KiCad/boardIn2.pdf): PDF inclusion: found PDF 
 version <1.7>, but at most version <1.5> allowed
-<KiCad/boardIn2.pdf, id=499, 614.295pt x 794.97pt>
+<KiCad/boardIn2.pdf, id=518, 614.295pt x 794.97pt>
 File: KiCad/boardIn2.pdf Graphic file (type pdf)
 <use KiCad/boardIn2.pdf>
 Package pdftex.def Info: KiCad/boardIn2.pdf  used on input line 24.
 (pdftex.def)             Requested size: 426.79137pt x 552.32666pt.
-[39
+[40
 
  <./KiCad/boardIn2.pdf>]
 
 pdfTeX warning: pdflatex (file ./KiCad/boardB.pdf): PDF inclusion: found PDF ve
 rsion <1.7>, but at most version <1.5> allowed
-<KiCad/boardB.pdf, id=505, 614.295pt x 794.97pt>
+<KiCad/boardB.pdf, id=524, 614.295pt x 794.97pt>
 File: KiCad/boardB.pdf Graphic file (type pdf)
 <use KiCad/boardB.pdf>
 Package pdftex.def Info: KiCad/boardB.pdf  used on input line 27.
 (pdftex.def)             Requested size: 426.79137pt x 552.32666pt.
-) [40
+) [41
 
  <./KiCad/boardB.pdf>]
 \c@page@count=\count349
@@ -1587,13 +1594,13 @@ LaTeX2e <2023-11-01>
 L3 programming layer <2023-11-09>
  ***********
 Package rerunfilecheck Info: File `sablona-prace.out' has not changed.
-(rerunfilecheck)             Checksum: DE6DD9EED66564D4193B9F9C697BF017;3646.
+(rerunfilecheck)             Checksum: 80EFA91ADC8AE4F605E0268AD30208A6;3794.
  ) 
 Here is how much of TeX's memory you used:
- 21588 strings out of 474587
- 409359 string characters out of 5745701
+ 21617 strings out of 474587
+ 410045 string characters out of 5745701
  1940558 words of memory out of 5000000
- 43178 multiletter control sequences out of 15000+600000
+ 43200 multiletter control sequences out of 15000+600000
  649141 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,17n,103p,817b,1167s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1621,9 +1628,9 @@ Users/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsso12.pfb><C:
 Users/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy8.pfb><C:/U
 sers/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt10.pfb><C:/U
 sers/marou/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb>
-Output written on sablona-prace.pdf (40 pages, 3790944 bytes).
+Output written on sablona-prace.pdf (41 pages, 4685664 bytes).
 PDF statistics:
- 603 PDF objects out of 1000 (max. 8388607)
- 101 named destinations out of 1000 (max. 500000)
- 327 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 623 PDF objects out of 1000 (max. 8388607)
+ 105 named destinations out of 1000 (max. 500000)
+ 340 words of extra memory for PDF output out of 10000 (max. 10000000)
 
