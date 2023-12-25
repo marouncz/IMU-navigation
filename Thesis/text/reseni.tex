@@ -1,3 +1,43 @@
 \chapter{Teoretická část studentské práce}
-\section{Porovnání navigačních systémů}
+\section{Využití inerciální navigace}
+Možnost navigace a znalost polohy je pro lidstvo již dlouhou dobu důležitá jak v průmyslu, tak i v každodenním životě. Pravděpodobně nejrozšířenějším druhem navigace jsou tzv. globální navigační systémy, například GPS. Ovšem pro některé aplikace nemusí být použití GNSS, ať už z politických, či technických důvodů ideální. Pro navigaci v oblasti letectví a námořnictví se začala inerciální navigace využívat kolem roku 1960 a je stále využívána dodnes. \cite{Tittertonc2004}
+
+Díky stále přesnějším a levnějším inerciálním senzorům se rozšiřují možnosti využití inerciální navigace i do běžných průmyslových aplikacích, například v oblastech robotiky, automobilové techniky, nebo i pro údržbu podzemních infrastruktur, mapování kanalizací a další. \cite{Tittertonc2004} Tato práce se zabývá využitím inerciální navigace pro účely určení polohy uvnitř budov, kde je pokrytí signálem globálních navigačních systémů velmi slabé, nebo žádné.
+
+\section{Princip fungování inerciální navigace}
+Inerciální navigační systémy pracují na principu nepřímého měření z dat, které poskytuje akcelerometr a gyroskop.   
+Akcelerometry poskytují informaci o lineárním zrychlení v prostoru pomocí měření síly $ F $ na definovanou jednotku hmotnosti $ m $ a pomocí 2. Newtonova zákona určí zrychlení $ a $ \cite{Tittertonc2004}
+$$ a=\frac{F}{m} $$
+Síla $ F $ představuje síly působící na senzor vůči jeho tělu ve volném pádu, skládá se tedy ze statické (tíhové) a dynamické síly způsobené zrychlením vůči Zemi. \cite{Tittertonc2004}
+Z tohoto důvodu, pokud je akcelerometr v klidu na povrchu Země, změří zrychlení o velikosti zhruba \SI{9,81}{\meter\per\second\squared}.
+
+Akcelerometry zpravidla měří hodnoty lineárního zrychlení ve třech navzájem pravoúhlých osách. Znalostí počáteční rychlosti $ v(t_{0}) $ a dráhy $ x(t_{0}) $ v čase $ t_{0} $ můžeme pomocí zrychlení $ a $ v časech $ s>t_{0} $ určit rychlost $ v(t) $ a následně dráhu $ x(t) $ pomocí dvou integrací \cite{Grewal2013}
+$$ v(t)=v(t_{0}) + \int_{t_{0}}^{t} a(s) \,ds\ $$
+$$ x(t)=x(t_{0}) + \int_{t_{0}}^{t} v(s) \,ds\ $$
+
+Aby bylo možné s inerciální jednotkou volně pohybovat v prostoru, je potřeba kromě znalosti dráhy měřit, nebo kompenzovat její natočení. 
+Jednou z možností jak kompenzovat rotaci jednotky je připevnění akcelerometrů na gimbal, který bude udržovat jejich natočení vůči zemi konstantní. Tohoto principu se často využívá v letectví, zejména kvůli jejich vysoké přesnosti, ovšem velkou nevýhodou bývá mechanická složitost a velikost. \cite{Grewal2013} \cite{Polak2018}
+
+Druhou možností, jak kompenzovat natočení je měřit jeho úhel a následně zrychlení z akcelerometru rotovat vůči referenčnímu systému.\cite{Grewal2013} \cite{Polak2018}
+K tomuto účelu slouží gyroskopy, které měří úhlovou rychlost $ \omega $ otáčení jednotky kolem osy. Podobně jako se zrychlením u akcelerometru, znalostí počátečního úhlu $ \varphi (t_{0}) $ v čase $ t_{0} $ můžeme pomocí úhlové rychlosti $ \omega $ v časech $ s>t_{0} $ určit úhel natočení $ \varphi (t) $, ovšem tentokrát pouze jednou integrací.
+$$ \varphi (t)=\varphi (t_{0}) + \int_{t_{0}}^{t} \omega (s) \,ds\ $$
+
+Díky tomu můžou být gyroskopy a akcelerometry nepohyblivě připevněny na mechanickou konstrukci. Jde o tzv. „Strapdown“ typ inerciální navigace.
+
+\subsection{Zavedení vztažných soustav}
+Pro účely přehlednosti a exaktnosti bývá v oblastech inerciální navigace zavedeno několik kartézských vztažných soustav. Každá soustava je ortogonální a pravotočivá. \cite{Pekarek2020} \cite{Tittertonc2004} 
+
+\begin{itemize}
+\item Inertial frame (i-frame) má počátek ve středu Země. Její osy jsou pevné vůči nepohybujícím se hvězdám.
+\item Earth frame (e-frame) má také počátek ve středu Země, její osy jsou pevně vztažené vůči Zemi, tedy rotují kolem i-frame.
+\item Navigation frame (n-frame) má počátek ve výchozím bodě navigace. Osy jsou natočené ve směrech sever, východ a vertikálně dolů (North, East, Down).
+\item Body frame (b-frame) má počátek v inerciální jednotce a její osy jsou natočené ve směrech náklonu, stáčení a vychýlení jednotky.č
+\end{itemize}
+
+S následnými měřenými a vypočtenými daty je často manipulováno jako s vektorem označeným indexem odpovídajícím soustavě, ke které jsou vztaženy (i,~e,~n,~b).
+
+\section{Prv}
+
+
+
 
