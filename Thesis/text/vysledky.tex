@@ -24,13 +24,17 @@ Integrovaný obvod MPU6050 je standardní 6 osé MEMS IMU, vhodné mimo jiné pr
 
 MPU6050 disponuje rozhraním I2C s maximální frekvencí hodinového signálu 400 kHz. \cite{euxR3Yh5ol4JWNAi}
 Pokud bychom chtěli vyčítat ze senzoru data při maximální možné vzorkovací frekvenci, byla by potřeba minimální přenosová rychlost sběrnice:
-$$ f_{\mathrm{clk}}=3~\mathrm{osy} \times(f_{\mathrm{gyro}} + f_{\mathrm{acc}})\times (\mathrm{16bitů} + 2 \times \mathrm{ACK})=3\times(8000+1000)\times(16+2)=\SI{486}{\kilo\hertz}$$
+\begin{equation}
+f_{\mathrm{clk}}=3~\mathrm{osy} \times(f_{\mathrm{gyro}} + f_{\mathrm{acc}})\times (\mathrm{16bitů} + 2 \times \mathrm{ACK})=3\times(8000+1000)\times(16+2)=\SI{486}{\kilo\hertz}
+\end{equation}
 Při vyčítání dat o maximální vzorkovací frekvenci jsme omezeni samotným I2C rozhraním senzoru (využití maximální vzorkovací frekvence je teoreticky možné krátkodobě, pomocí interního 1kB FIFO zásobníku).\cite{euxR3Yh5ol4JWNAi}
 
 Jelikož pro účely inerciální navigace stačí vzorkovací frekvence dat v  řádu stovek~Hz \cite{Wei2022}, tak není tato limitace omezující. Senzor je propojen s hlavním MCU přes I2C sběrnici s frekvencí hodinového signálu 400 kHz a není sdílena s žádným jiným zařízením, aby bylo možné, v případě potřeby, využít maximální dostupný potenciál senzoru (i přestože je reálná potřeba vzorkovací frekvence nižší).
 
 Integrovaný obvod ADIS16505-2 je precizní 6 osé MEMS IMU, vhodné pro použití v průmyslových a navigačních aplikacích s poměrně nízkým driftem a vysokou přesností. Na rozdíl od MPU6050 nemá přepínatelný dynamický rozsah, je fixně daný variantou součástky. Vzorkovací frekvence gyroskopu i akcelerometru je 2 kHz, oba senzory mají 32bitové rozlišení. S hlavním MCU komunikuje přes sběrnici SPI s maximální frekvencí hodinového signálu 2,1 Mhz. \cite{UZFqHmQU7ZzI3OLB} Pokud budeme chtít vyčítat data ze senzoru při maximální možné vzorkovací frekvenci, bude potřeba minimální přenosová rychlost sběrnice: 
-$$ f_{\mathrm{clk}}=3~\mathrm{osy} \times(f_{\mathrm{gyro}} + f_{\mathrm{acc}})\times \mathrm{32bitů}=3\times(2000+2000)\times 32=\SI{384}{\kilo\hertz}$$
+\begin{equation}
+f_{\mathrm{clk}}=3~\mathrm{osy} \times(f_{\mathrm{gyro}} + f_{\mathrm{acc}})\times \mathrm{32bitů}=3\times(2000+2000)\times 32=\SI{384}{\kilo\hertz}
+\end{equation}
 Nejsme tedy omezeni maximální frekvencí hodinového signálu a můžeme teoreticky využívat senzor i při nejvyšší možné rychlosti.
 
 Výrobce prodává tento obvod ve variantě 100 pinového BGA čipu, ale i jako vývojovou desku osazenou senzorem a kolíkovou lištou pro jednodušší práci s osazením DPS. \cite{UZFqHmQU7ZzI3OLB} Hardware jednotky byl navržen tak, aby bylo možné využít jak samotný BGA čip, tak i hotový modul s konektorem.
@@ -80,17 +84,20 @@ Nabíjecí obvod také umožňuje kompletní odpojení napájení jednotky přes
 \input{text/tabulky/powerConsumption}
 
 Vzhledem k většímu počtu součástek není odebíraný proud z 3,3V napájecí větve malý (zhruba 0,5 A, viz. tabulka \ref{table:currentConsumption}). Budeme-li uvažovat rozsah výstupního napětí nabíjecího obvodu 3,5 V (vybitý akumulátor) až 5 V (zařízení připojené do USB) zjistíme, že pro napájení 3,3V větve není vhodný lineární regulátor, zejména kvůli vysokému ztrátovému výkonu. Ten je v krajním případě:
-$$ P_{\mathrm{ztrátový}} = (U_{\mathrm{USB}}-U_{\mathrm{IO}})\times I_{\mathrm{IO}}=(5-3,3)\times 0,5= \SI{0,85}{\watt}$$ 
+
+\begin{equation}
+P_{\mathrm{ztrátový}} = (U_{\mathrm{USB}}-U_{\mathrm{IO}})\times I_{\mathrm{IO}}=(5-3,3)\times 0,5= \SI{0,85}{\watt}
+\end{equation}
 
 Proto byl na napájení hlavní 3,3V větve vybrán spínaný regulátor TPS62823. Jedná se o buck (snižující) měnič s integrovaným výkonovým tranzistorem pracujícím na frekvenci 2,2 MHz. Díky vyšší spínací frekvenci je možné využít menší komponenty, zejména cívku a filtrační kondenzátory na výstup, ovšem je potřeba dodržet doporučovaná pravidla při návrhu desky pro omezení rušení a velkých proudových smyček. Rozsah napájecího napětí čipu je 2,4 až 5 V, maximální výstupní proud 3 A. \cite{mGnys3WmOkWuaQHN}
 
 Minimální napětí, na které můžeme nechat akumulátor vybít je dáno odpory přechodů D-S vnitřních tranzistorů nabíjecího obvodu, DC/DC měniče a stejnosměrným odporem cívky. V tomto případě bude regulátor pracovat v módu s minimální střídou. \cite{mGnys3WmOkWuaQHN} Toto napětí je:
-\begin{equation*}
+\begin{equation}
 \begin{matrix}
  U_{\mathrm{batMin}} = U_{\mathrm{out}} + I_{\mathrm{out}} \times (R_{\mathrm{DS(charge)}} + R_{\mathrm{DS(conv)}} + R_{\mathrm{DC(L)}})= \\
   =3,3 + 0,5 \times (0,05 + 0,026 + 0,014) = \SI{3,345}{\volt}
 \end{matrix}
- \end{equation*}
+ \end{equation}
 
 \subsection{Hlavní procesor}
 Požadavky na výběr hlavního procesoru byly z velké části dané počtem a druhem potřebných periferií, které jsou popsané v tabulce \ref{table:MCUperiferie}.
