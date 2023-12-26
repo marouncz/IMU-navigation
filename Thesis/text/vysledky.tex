@@ -14,8 +14,8 @@ Naměřená data je možné uložit do externí NOR Flash paměti připojené k 
 Pro jednoduchou volnost pohybu je jednotka napájena jedním Li-Ion akumulátorem velikosti 18650, při záznamu dat tedy nebude potřeba externího zdroje energie. Grafický OLED displej a 4 tlačítka slouží jako uživatelské rozhraní při používání jednotky.
 
 \subsection{Akcelerometr a gyroskop} \label{AccGyroText}
-Jednotka obsahuje dvě 6~DoF IMU (gyroskop s akcelerometrem) rozdílných parametrů a řádově rozdílné ceny. Takto odlišné součástky byly vybrány proto, aby bylo možné porovnat vliv přesnosti, šumu a driftu senzorů na následně zpracovaná data.
-V Tabulce \ref{table:fyzikalniPorovnaniIMU} jsou porovnány důležité parametry senzorů MPU6050 a ADIS16505-2. Pro účely inerciální navigace je důležitý zejména nízký drift senzorů, aby při integraci dat k vyhodnocení polohy nebyla integrována i driftová chyba, což má za výsledek velmi nepřesné zpracování hodnot.
+Jednotka obsahuje dvě 6~DoF IMU (gyroskop s akcelerometrem) rozdílných parametrů a řádově rozdílné ceny. Takto odlišné součástky byly vybrány proto, aby bylo možné porovnat vliv přesnosti, šumu, biasu a driftu senzorů na následně zpracovaná data.
+V Tabulce \ref{table:fyzikalniPorovnaniIMU} jsou porovnány důležité parametry senzorů MPU6050 a ADIS16505-2. Pro účely inerciální navigace je důležitý zejména nízký bias a drift senzorů, aby při integraci dat k vyhodnocení polohy nebyla integrována i driftová chyba, což má za výsledek velmi nepřesné zpracování hodnot.
 
 \input{text/tabulky/gyroAccParams}
 
