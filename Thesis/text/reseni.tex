@@ -112,10 +112,11 @@ EGM jsou modely popisující geoid Země, s velmi širokou škálou použití v 
 
 Vytvořená mapa s výškou geoidu modelu EGM2008 publikovaného NGA je znázorněná na obrázku \ref{fig:EGM2008}
 
-\begin{figure}[h] \label{fig:EGM2008}
+\begin{figure}[h] 
     \centering
     \includegraphics[width=0.8\textwidth]{obrazky/EGM2008}
     \caption{Výškový reliéf geoidu. \cite{Bezdek2013}}
+    \label{fig:EGM2008}
 \end{figure}
 
 Takovýto model je poté možné použít například pomocí funkcí z Matlab Aerospace Toolbox, který vypočítá vektor gravitačního zrychlení $ a_{g} $ se správným směrem i velikostí na základě dodaný souřadnic systému WGS84. Poté pomocí rovnice \ref{eq:coriolis} můžeme vypočítat tíhové zrychlení.
@@ -178,11 +179,12 @@ Kombinací s rovnicí \ref{eq:aiDiffFG} získáme rovnici popisující pohyb:
 \begin{equation}
 \vec{a}_{i} = \left. \diff[2]{\vec{r}}{t} \right|_{i} = \vec{f^{i}} + \vec{g^{i}} = \mathbf{C}_{b}^{i}\vec{f^{b}} + \vec{g^{i}}
 \end{equation}
-\section{Diagram fungování inerciální navigace}
-Všechny výše popsané výpočty a děje lze pro přehlednost zakreslit do blokového diagramu.
+\section{Diagram algoritmu inerciální navigace}
+Pro přehlednější znázornění algoritmu základní formy inerciální navigace pro 6 DoF IMU byl vytvořen blokový diagram (obrázek \ref{StrapdownBlock}).
 
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{obrazky/StrapdownBlock}
     \caption{Blokové schéma algoritmu strapdown inerciální navigace, převzato z \cite{Tittertonc2004} \cite{Grewal2013} }
+    \label{StrapdownBlock}
 \end{figure}
