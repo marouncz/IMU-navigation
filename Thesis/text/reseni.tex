@@ -110,10 +110,12 @@ Vzhledem k tomu, že tato práce se zabývá zpracováním dat z inerciální na
 \subsection{Gravitační modely Země}
 EGM jsou modely popisující geoid Země, s velmi širokou škálou použití v oblastech fyziky, geodézie, oceánografie, navigace a dalších. Spravuje je americká geoprostorová agentura (NGA) a jsou volně dostupné. Nejnovější věřejně dostupný EGM je z roku 2008 (EGM2008), který byl vytvořen na základě několika pozemních a výškových měření. \cite{Pavlis2012}
 
-\begin{figure}[h]
+Vytvořená mapa s výškou geoidu modelu EGM2008 publikovaného NGA je znázorněná na obrázku \ref{fig:EGM2008}
+
+\begin{figure}[h] \label{fig:EGM2008}
     \centering
     \includegraphics[width=0.8\textwidth]{obrazky/EGM2008}
-    \caption{Výškový reliéf geoidu. Zdroj: \cite{Bezdek2013}}
+    \caption{Výškový reliéf geoidu. \cite{Bezdek2013}}
 \end{figure}
 
 Takovýto model je poté možné použít například pomocí funkcí z Matlab Aerospace Toolbox, který vypočítá vektor gravitačního zrychlení $ a_{g} $ se správným směrem i velikostí na základě dodaný souřadnic systému WGS84. Poté pomocí rovnice \ref{eq:coriolis} můžeme vypočítat tíhové zrychlení.
