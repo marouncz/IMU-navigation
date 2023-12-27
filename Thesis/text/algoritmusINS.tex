@@ -1,6 +1,6 @@
 \chapter{Algoritmus inerciální navigace}
 \section{Využití inerciální navigace}
-Možnost navigace a znalost polohy je pro lidstvo již dlouhou dobu důležitá jak v průmyslu, tak i v každodenním životě. Pravděpodobně nejrozšířenějším druhem navigace jsou tzv. globální navigační systémy, například GPS. Ovšem pro některé aplikace nemusí být použití GNSS, ať už z politických, či technických důvodů ideální. Pro navigaci v oblasti letectví a námořnictví se začala inerciální navigace využívat kolem roku 1960 a je stále využívána dodnes. \cite{Tittertonc2004}
+Možnost navigace a znalost polohy je pro lidstvo již dlouhou dobu důležitá jak v průmyslu, tak i v každodenním životě. Pravděpodobně nejrozšířenějším druhem navigace jsou tzv. globální navigační systémy, například \ac{GPS}. Ovšem pro některé aplikace nemusí být použití \ac{GNSS}, ať už z politických, či technických důvodů ideální. Pro navigaci v oblasti letectví a námořnictví se začala inerciální navigace využívat kolem roku 1960 a je stále využívána dodnes. \cite{Tittertonc2004}
 
 Díky stále přesnějším a levnějším inerciálním senzorům se rozšiřují možnosti využití inerciální navigace i do běžných průmyslových aplikacích, například v oblastech robotiky, automobilové techniky, nebo i pro údržbu podzemních infrastruktur, mapování kanalizací a další. \cite{Tittertonc2004} Tato práce se zabývá využitím inerciální navigace pro účely určení polohy uvnitř budov, kde je pokrytí signálem globálních navigačních systémů velmi slabé, nebo žádné.
 
@@ -8,7 +8,7 @@ Díky stále přesnějším a levnějším inerciálním senzorům se rozšiřuj
 Inerciální navigační systémy pracují na principu nepřímého měření z dat, které poskytuje akcelerometr a gyroskop.   
 Akcelerometry poskytují informaci o lineárním zrychlení v prostoru pomocí měření síly $ F $ na definovanou jednotku hmotnosti $ m $ a pomocí 2. Newtonova zákona určí zrychlení $ a $ \cite{Tittertonc2004}
 
-\begin{equation}
+\begin{equation} \label{eq:2NZ}
 a=\frac{F}{m}
 \end{equation}
 
@@ -42,7 +42,7 @@ Pro účely přehlednosti a exaktnosti bývá v oblastech inerciální navigace 
 \begin{itemize}
 \item Inertial frame (i-frame) má počátek ve středu Země. Její osy jsou pevné vůči nepohybujícím se hvězdám. Osa $ z_{i} $ prochází zemskou osou.
 \item Earth frame (e-frame) má také počátek ve středu Země, její osy jsou pevně vztažené vůči Zemi, tedy rotují kolem i-frame. Osa $ z_{e} $ prochází zemskou osou.
-\item Navigation frame (n-frame) má počátek ve výchozím bodě navigace. Osy jsou natočené ve směrech sever, východ a vertikálně dolů (North, East, Down).
+\item Navigation frame (n-frame) má počátek ve výchozím bodě navigace. Osy jsou natočené ve směrech \ac{NED}.
 \item Body frame (b-frame) má počátek v inerciální jednotce a její osy jsou natočené ve směrech náklonu, stáčení a vychýlení jednotky.č
 \end{itemize}
 
@@ -105,12 +105,12 @@ Pro kompenzaci rotace Země bychom mohli vyjádřit tíhové zrychlení $ \vec{g
 
 Díky tomu, že Země není koule, ale přibližně elipsoid jsou body na pólech blíž středu Země než body na rovníku, to nám tedy ovlivňuje velikost gravitačního zrychlení. Tento vliv by šel analyticky vypočítat, pokud bychom předpokládali, že Země je elipsoid a zanedbali vliv reliéfu povrchu Země. \cite{Halliday2000}
 
-Vzhledem k tomu, že tato práce se zabývá zpracováním dat z inerciální navigace až tzv. offline, tedy ne v reálném čase, můžeme pro řešení problémů s nekonzistentním tíhovým polem Země použít některý z dostupných gravitačních modelů EGM.
+Vzhledem k tomu, že tato práce se zabývá zpracováním dat z inerciální navigace až tzv. offline, tedy ne v reálném čase, můžeme pro řešení problémů s nekonzistentním tíhovým polem Země použít některý z dostupných gravitačních modelů \ac{EGM}.
 
 \subsection{Gravitační modely Země}
-EGM jsou modely popisující geoid Země, s velmi širokou škálou použití v oblastech fyziky, geodézie, oceánografie, navigace a dalších. Spravuje je americká geoprostorová agentura (NGA) a jsou volně dostupné. Nejnovější věřejně dostupný EGM je z roku 2008 (EGM2008), který byl vytvořen na základě několika pozemních a výškových měření. \cite{Pavlis2012}
+\ac{EGM} jsou modely popisující geoid Země, s velmi širokou škálou použití v oblastech fyziky, geodézie, oceánografie, navigace a dalších. Spravuje je \ac{NGA} a jsou volně dostupné. Nejnovější věřejně dostupný \ac{EGM} je z roku 2008 (EGM2008), který byl vytvořen na základě několika pozemních a výškových měření. \cite{Pavlis2012}
 
-Vytvořená mapa s výškou geoidu modelu EGM2008 publikovaného NGA je znázorněná na obrázku \ref{fig:EGM2008}
+Vytvořená mapa s výškou geoidu modelu EGM2008 publikovaného \ac{NGA} je znázorněná na obrázku \ref{fig:EGM2008}
 
 \begin{figure}[h] 
     \centering
@@ -180,7 +180,7 @@ Kombinací s rovnicí \ref{eq:aiDiffFG} získáme rovnici popisující pohyb:
 \vec{a}_{i} = \left. \diff[2]{\vec{r}}{t} \right|_{i} = \vec{f^{i}} + \vec{g^{i}} = \mathbf{C}_{b}^{i}\vec{f^{b}} + \vec{g^{i}}
 \end{equation}
 \section{Diagram algoritmu inerciální navigace}
-Pro přehlednější znázornění algoritmu základní formy inerciální navigace pro 6 DoF IMU byl vytvořen blokový diagram (obrázek \ref{StrapdownBlock}).
+Pro přehlednější znázornění algoritmu základní formy inerciální navigace pro 6 \ac{DoF} \ac{IMU} byl vytvořen blokový diagram (obrázek \ref{StrapdownBlock}).
 
 \begin{figure}[h]
     \centering
