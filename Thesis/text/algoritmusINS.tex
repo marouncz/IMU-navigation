@@ -1,6 +1,6 @@
 \chapter{Algoritmus inerciální navigace}
 \section{Využití inerciální navigace}
-Možnost navigace a znalost polohy je pro lidstvo již dlouhou dobu důležitá jak v průmyslu, tak i v každodenním životě. Pravděpodobně nejrozšířenějším druhem navigace jsou tzv. globální navigační systémy, například \ac{GPS}. Ovšem pro některé aplikace nemusí být použití \ac{GNSS}, ať už z politických, či technických důvodů ideální. Pro navigaci v oblasti letectví a námořnictví se začala inerciální navigace využívat kolem roku 1960 a je stále využívána dodnes. \cite{Tittertonc2004}
+Možnost navigace a znalost polohy je pro lidstvo již dlouhou dobu důležitá jak v průmyslu, tak i v každodenním životě. Pravděpodobně nejrozšířenějším druhem navigace jsou tzv. globální navigační systémy, například \ac{GPS}. Ovšem pro některé aplikace nemusí být použití \ac{GNSS}, ať už z politických, či technických důvodů ideální. Pro navigaci v oblasti letectví a námořnictví se začala inerciální navigace využívat kolem roku 1960 a je využívána dodnes. \cite{Tittertonc2004}
 
 Díky stále přesnějším a levnějším inerciálním senzorům se rozšiřují možnosti využití inerciální navigace i do běžných průmyslových aplikacích, například v oblastech robotiky, automobilové techniky, nebo i pro údržbu podzemních infrastruktur, mapování kanalizací a další. \cite{Tittertonc2004} Tato práce se zabývá využitím inerciální navigace pro účely určení polohy uvnitř budov, kde je pokrytí signálem globálních navigačních systémů velmi slabé, nebo žádné.
 
@@ -25,7 +25,7 @@ x(t)=x(t_{0}) + \int_{t_{0}}^{t} v(s) \,ds\
 \end{equation}
 
 Aby bylo možné s inerciální jednotkou volně pohybovat v prostoru, je potřeba kromě znalosti polohy měřit, nebo kompenzovat její natočení. 
-Jednou z možností jak kompenzovat rotaci jednotky je připevnění akcelerometrů na gimbal, který bude udržovat jejich natočení vůči zemi konstantní. Tohoto principu se často využívá v letectví, zejména kvůli jejich vysoké přesnosti, ovšem velkou nevýhodou bývá mechanická složitost a velikost. \cite{Grewal2013} \cite{Polak2018}
+Jednou z možností jak kompenzovat rotaci jednotky je připevnění akcelerometrů na gimbal, který bude udržovat jejich natočení vůči Zemi konstantní. Tohoto principu se často využívá v letectví, zejména kvůli jejich vysoké přesnosti, ovšem velkou nevýhodou bývá mechanická složitost a velikost. \cite{Grewal2013} \cite{Polak2018}
 
 Druhou možností, jak kompenzovat natočení je měřit jeho úhel a následně zrychlení z akcelerometru rotovat vůči referenčnímu systému.\cite{Grewal2013} \cite{Polak2018}
 K tomuto účelu slouží gyroskopy, které měří úhlovou rychlost $ \omega $ otáčení jednotky kolem osy. Podobně jako se zrychlením u akcelerometru, znalostí počátečního úhlu $ \varphi (t_{0}) $ v čase $ t_{0} $ můžeme pomocí úhlové rychlosti $ \omega $ v časech $ s>t_{0} $ určit úhel natočení $ \varphi (t) $, ovšem tentokrát pouze jednou integrací.
@@ -43,10 +43,10 @@ Pro účely přehlednosti a exaktnosti bývá v oblastech inerciální navigace 
 \item Inertial frame (i-frame) má počátek ve středu Země. Její osy jsou pevné vůči nepohybujícím se hvězdám. Osa $ z_{i} $ prochází zemskou osou.
 \item Earth frame (e-frame) má také počátek ve středu Země, její osy jsou pevně vztažené vůči Zemi, tedy rotují kolem i-frame. Osa $ z_{e} $ prochází zemskou osou.
 \item Navigation frame (n-frame) má počátek ve výchozím bodě navigace. Osy jsou natočené ve směrech \ac{NED}.
-\item Body frame (b-frame) má počátek v inerciální jednotce a její osy jsou natočené ve směrech náklonu, stáčení a vychýlení jednotky.č
+\item Body frame (b-frame) má počátek v inerciální jednotce a její osy jsou natočené ve směrech náklonu, stáčení a vychýlení jednotky.
 \end{itemize}
 
-S následnými měřenými a vypočtenými daty je často manipulováno jako s vektorem označeným indexem odpovídajícím soustavě, ke které jsou vztaženy (i,~e,~n,~b).
+S následnými měřenými a vypočtenými daty je často manipulováno jako s vektory označenými indexy odpovídajícím soustavě, ke které jsou vztaženy (i,~e,~n,~b).
 
 \section{Vztažné soustavy a rotace Země}
 Pokud budeme chtít provozovat navigaci vztaženou k pevnému počátečnímu bodu v prostoru (i-frame), bude možné používat klasické pohybové rovnice, tedy pro zrychlení $ \vec{a}_{i} $, polohu $ \vec{r} $ a čas $ t $ platí: \cite{Tittertonc2004} 
@@ -61,7 +61,7 @@ a obdobně pro rychlost $ \vec{v}_{i} $ platí:
 \vec{v}_{i} = \left. \diff{\vec{r}}{t} \right|_{i}
 \end{equation}
 
-Ovšem v mnoha případech použití inerciální navigace potřebujeme jako počátek zvolit nějaký bod na Zemi, která se neustále otáčí kolem své osy, v tomto případě tedy budeme využívat e-frame. Akcelerometr ale může poskytnout pouze data ze vztažné soustavy i-frame, je tedy potřeba započíst úhlovou rychlost Země $ \vec{\omega_{ie}} $ \cite{Tittertonc2004} 
+Ovšem v mnoha případech použití inerciální navigace potřebujeme jako počátek zvolit nějaký bod na Zemi, která se neustále otáčí kolem své osy, v tomto případě tedy budeme využívat e-frame. Pokud máme data pouze ze vztažné soustavy i-frame, bude potřeba započíst úhlovou rychlost Země $ \vec{\omega_{ie}} $ \cite{Tittertonc2004} 
 
 \begin{equation}
 \vec{\omega_{ie}} = \begin{pmatrix} 0 \\ 0 \\ \Omega \end{pmatrix}
@@ -76,7 +76,7 @@ Kde $ \Omega = \SI{7,292E-5}{\radian\per\second}$ je rychlost rotace Země kolem
 S přepočty mezi i a e frame je potřeba nakládat zejména při navigaci letadel a raket, kdy je potřeba započíst i rotaci Země, vzhledem k dlouhým úsekům času i vzdálenosti. V této práci se ovšem zabýváme navigací uvnitř budov, kdy doba měření může být řádově v jednotkách minut a vzdálenost ve stovkách metrů. Vliv rotace Země tedy bude velmi malý.
 
 \section{Tíhové pole Země}
-Jak již bylo popsáno v kapitole \ref{INSPrinciple}, zrychlení měřené inerciální jednotkou v i-frame je složené ze statické tíhové síly a dynamické síly způsobené zrychlením na jednotku hmotnosti. Působení této dynamické síly je často označováno jako tzv. „Specific force“ $ \vec{f} $ představující sílu na jednotku hmotnosti, tedy zrychlení. Pomocí ní můžeme rovnici \ref{eq:aiDiff} rozepsat na: \cite{Tittertonc2004} \cite{Grewal2013}
+Jak již bylo popsáno v kapitole \ref{INSPrinciple}, zrychlení měřené inerciální jednotkou v i-frame je složené ze statické tíhové síly a dynamické síly způsobené zrychlením na jednotku hmotnosti. Působení této dynamické síly je často označováno jako tzv. „specifická síla“ $ \vec{f} $ představující sílu na jednotku hmotnosti, tedy zrychlení. Pomocí ní můžeme rovnici \ref{eq:aiDiff} rozepsat na: \cite{Tittertonc2004} \cite{Grewal2013}
 
 \begin{equation} \label{eq:aiDiffFG}
 \vec{a}_{i} = \left. \diff[2]{\vec{r}}{t} \right|_{i} = \vec{f} + \vec{g}
@@ -97,7 +97,7 @@ není možné považovat velikost tíhového zrychlení za konstantní a jeho sm
 Rotace Země kolem své osy vyvolává dostředivé zrychlení.\footnote{Všude na Zemi, vyjma samotných zeměpisných pólů}
 Toto zrychlení má vždy kolmý směr k ose otáčení Země. Vektorovým součtem s gravitačním zrychlením $ \vec{a_{g}} $, které má vždy směr do středu Země dostaneme tíhové zrychlení $ \vec{g} $, proto se v závislosti na zeměpisné šířce tíhové zrychlení odchyluje od středu Země. \cite{Halliday2000}
 
-Pro kompenzaci rotace Země bychom mohli vyjádřit tíhové zrychlení $ \vec{g} $ v závislosti na gravitačním zrychlení $ \vec{a_{g}} $ následovně využít v rovnici \ref{eq:aiDiffFG} \cite{Tittertonc2004}
+Pro kompenzaci rotace Země bychom mohli vyjádřit tíhové zrychlení $ \vec{g} $ v závislosti na gravitačním zrychlení $ \vec{a_{g}} $ a následně využít v rovnici \ref{eq:aiDiffFG} \cite{Tittertonc2004}
 
 \begin{equation} \label{eq:coriolis}
 \vec{g}=\vec{a_{g}} - \vec{\omega_{ie}} \times (\vec{\omega_{ie}} \times \vec{r})
@@ -110,7 +110,7 @@ Vzhledem k tomu, že tato práce se zabývá zpracováním dat z inerciální na
 \subsection{Gravitační modely Země}
 \ac{EGM} jsou modely popisující geoid Země, s velmi širokou škálou použití v oblastech fyziky, geodézie, oceánografie, navigace a dalších. Spravuje je \ac{NGA} a jsou volně dostupné. Nejnovější věřejně dostupný \ac{EGM} je z roku 2008 (EGM2008), který byl vytvořen na základě několika pozemních a výškových měření. \cite{Pavlis2012}
 
-Vytvořená mapa s výškou geoidu modelu EGM2008 publikovaného \ac{NGA} je znázorněná na obrázku \ref{fig:EGM2008}
+Vytvořená mapa s výškou geoidu modelu EGM2008 publikovaného \ac{NGA} je znázorněna na obrázku \ref{fig:EGM2008}
 
 \begin{figure}[h] 
     \centering
@@ -122,7 +122,7 @@ Vytvořená mapa s výškou geoidu modelu EGM2008 publikovaného \ac{NGA} je zn�
 Takovýto model je poté možné použít například pomocí funkcí z Matlab Aerospace Toolbox, který vypočítá vektor gravitačního zrychlení $ a_{g} $ se správným směrem i velikostí na základě dodaný souřadnic systému WGS84. Poté pomocí rovnice \ref{eq:coriolis} můžeme vypočítat tíhové zrychlení.
 
 \section{Rotace měření akcelerometru}
-Vzhledem k tomu, že se tato práce zabývá Strapdown systémem inerciální navigace, jsou data akcelerometru vztažena k soustavě inerciální jednotky (tedy b-frame). Pro převedení dat do vztažné soustavy i-frame je potřeba rotovat vektor specific force $ \vec{f} $ maticí směrových kosínů $ \mathbf{C}_{b}^{i} $. Tato rotace by se dala popsat jako 3 po sobě jdoucí natočení o tzv. Eulerovy úhly vůči referenčním osám (např. pro tento případ i-frame). Tyto úhly označíme $ \phi $, $ \theta $ a $ \psi $ \cite{Tittertonc2004}
+Vzhledem k tomu, že se tato práce zabývá strapdown systémem inerciální navigace, jsou data akcelerometru vztažena k soustavě inerciální jednotky (tedy b-frame). Pro převedení dat do vztažné soustavy i-frame je potřeba rotovat vektor specifické síly $ \vec{f} $ maticí směrových kosínů $ \mathbf{C}_{b}^{i} $. Tato rotace by se dala popsat jako 3 po sobě jdoucí natočení o tzv. Eulerovy úhly vůči referenčním osám (např. pro tento případ i-frame). Tyto úhly označíme $ \phi $, $ \theta $ a $ \psi $ \cite{Tittertonc2004}
 
 \begin{itemize}
 \item Rotaci o úhel $ \phi $ kolem osy x přiřadíme rotační matici $ \mathbf{C}_{x} $: \cite{Tittertonc2004}
@@ -168,7 +168,7 @@ Součinem těchto tří matic získáme matici směrových kosinů $ \mathbf{C_{
 \end{array}\right]
 \end{equation}
 
-Toto poté můžeme použít k rotaci samotného vektoru specific force $ \vec{f} $ z b-frame na i-frame
+Toto poté můžeme použít k rotaci samotného vektoru specifické síly $ \vec{f} $ z b-frame na i-frame
 
 \begin{equation}
 \vec{f^{i}} = \mathbf{C}_{b}^{i}\vec{f^{b}}

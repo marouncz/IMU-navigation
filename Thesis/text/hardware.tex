@@ -46,7 +46,7 @@ Výrobce prodává tento obvod ve variantě 100 pinového \ac{BGA} čipu, ale i 
 \end{figure}
 
 \section{Magnetometr}
-Vzhledem k tomu, že výběr komerčně dostupných 9 \ac{DoF} (akcelerometr, gyroskop a magnetometr) je značně omezený, popřípadě součástky prodávané jako 9osé IMU jsou ve skutečnosti moduly více součástek na jedné desce, tak je ve výsledném obvodovém zapojení použit senzor magnetické indukce jakožto samostatná součástka. 
+Vzhledem k tomu, že výběr komerčně dostupných 9 \ac{DoF} (akcelerometr, gyroskop a magnetometr) je značně omezený, popřípadě součástky prodávané jako devítiosé IMU jsou ve skutečnosti moduly více součástek na jedné desce, tak je ve výsledném obvodovém zapojení použit senzor magnetické indukce jakožto samostatná součástka. 
 
 Přestože fúze dat z magnetometru může mít pozitivní dopady na zmenšení chyby trajektorie \cite{Tkhorenko2018}, jeho použití uvnitř budov je značně omezené vzhledem k jednoduché ovlivnitelnosti měření blízkými feromagnetickými látkami, silovými rozvody elektřiny a pod. Proto nebyly na výběr magnetometru kladeny vysoké požadavky a slouží spíše pro porovnání vlivu přítomnosti / absence naměřených dat z tohoto senzoru.
 
@@ -55,7 +55,7 @@ K tomuto účelu byl vybrán běžně dostupný obvod LSM303AGR, který kromě m
 Magnetometr komunikuje s hlavním \ac{MCU} přes sběrnici \ac{I2C} s maximální vzorkovací frekvencí 150 Hz, dynamickým rozsahem $ \pm \SI{4.915}{\milli\tesla} $ a 16bitovým rozlišením. \cite{RD5DwZcremhT6bgp}
 
 \section{GNSS}
-Zajímavou a uživatelsky přívětivou kombinaci \ac{GNSS} a inerciální navigace poskytuje například firma u-blox s řadou modulů podporující funkci „dead reckoning“. Jedná se o navigační moduly s vestavěným \ac{IMU}, určené zejména do oblasti automotive. Jejich typický příklad použití, dle výrobce, je navigace aut, kdy při běžném provozu je zafixovaný signál z \ac{GNSS} a při výpadku signálu (vjezd do garáže, tunelu apod.) je navigace modulem stále poskytována na základě dat z \ac{IMU}. \cite{DLQg9bT6V1GWKhxh}
+Zajímavou a uživatelsky přívětivou kombinaci \ac{GNSS} a inerciální navigace poskytuje například firma u-blox s řadou modulů podporující funkci „dead reckoning“. Jedná se o navigační moduly s vestavěným \ac{IMU}, určené zejména do oblasti automobilového průmyslu. Jejich typický příklad použití, dle výrobce, je navigace aut, kdy při běžném provozu je zafixovaný signál z \ac{GNSS} a při výpadku signálu (vjezd do garáže, tunelu apod.) je navigace modulem stále poskytována na základě dat z \ac{IMU}. \cite{DLQg9bT6V1GWKhxh}
 
 Navigační modul u-blox NEO-M8U byl vybrán a implementován do obvodového zapojení inerciální navigační jednotky.
 Výrobce udává, že modul zvládne odhadovat polohu po ztrátě signálu \ac{GNSS} po dobu 60 s s typickou odchylkou 10 \% trajektorie. Dále také modul při zapnutí odpovídající funkce umí využít interní \ac{IMU} ke zvýšení maximální rychlosti aktualizace polohy až na 30 Hz. Jeho využití v rámci této práce může být různé, například pro navigaci v místech s alespoň částečným pokrytím signálu \ac{GNSS}. \cite{DLQg9bT6V1GWKhxh}
@@ -97,7 +97,7 @@ P_{\mathrm{ztrátový}} = (U_{\mathrm{USB}}-U_{\mathrm{IO}})\times I_{\mathrm{IO
 
 Proto byl na napájení hlavní 3,3V větve vybrán spínaný regulátor TPS62823. Jedná se o buck (snižující) měnič s integrovaným výkonovým tranzistorem pracujícím na frekvenci 2,2 MHz. Díky vyšší spínací frekvenci je možné využít menší komponenty, zejména cívku a filtrační kondenzátory na výstup, ovšem je potřeba dodržet doporučovaná pravidla při návrhu desky pro omezení rušení a velkých proudových smyček. Rozsah napájecího napětí čipu je 2,4 až 5 V, maximální výstupní proud 3 A. \cite{mGnys3WmOkWuaQHN}
 
-Minimální napětí, na které můžeme nechat akumulátor vybít je dáno odpory přechodů D-S vnitřních tranzistorů nabíjecího obvodu, DC/DC měniče a stejnosměrným odporem cívky. V tomto případě bude regulátor pracovat v módu s minimální střídou. \cite{mGnys3WmOkWuaQHN} Toto napětí je:
+Minimální napětí, na které můžeme nechat akumulátor vybít je dáno odpory přechodů Drain-Source vnitřních tranzistorů nabíjecího obvodu, DC/DC měniče a stejnosměrným odporem cívky. V tomto případě bude regulátor pracovat v módu s minimální střídou. \cite{mGnys3WmOkWuaQHN} Toto napětí je:
 \begin{equation}
 \begin{matrix}
  U_{\mathrm{batMin}} = U_{\mathrm{out}} + I_{\mathrm{out}} \times (R_{\mathrm{DS(charge)}} + R_{\mathrm{DS(conv)}} + R_{\mathrm{DC(L)}})= \\
@@ -127,7 +127,7 @@ Pro účely vyzkoušení fúze dat z \ac{GNSS} modulu a inerciálních senzorů 
 Vzhledem k asynchronnosti \ac{USB} komunikace bylo složité udržet definované vzorkovací kmitočty, popřípadě vzorkovat data z \ac{GNSS} a \ac{IMU} zároveň. Z tohoto důvodu byly desky použity na základní otestování a rozsáhlejší zpracování dat bude provedeno až s vlastní deskou hardwaru popsaném v kapitole \ref{hardware}.
 \begin{figure}[h] 
     \centering
-    \includegraphics[width=0.8\textwidth]{obrazky/devBoards}
+    \includegraphics[width=0.9\textwidth]{obrazky/devBoards}
     \caption{Testovací přípravek s vývojovými deskami}
     \label{fig:devBoards}
 \end{figure}
@@ -142,13 +142,13 @@ Vzhledem k asynchronnosti \ac{USB} komunikace bylo složité udržet definované
 
 Schéma i \ac{DPS} byla navržena v programu KiCad. V příloze \ref{schemaApp} je schéma inerciální jednotky rozdělené do několika logických bloků. Příloha \ref{placementApp} obsahuje pohled na osazení součástek vrchní vrstvy a přílohy \ref{TopApp} až \ref{BottomApp} obsahují nákres jednotlivých vrstev mědi. Na obrázku \ref{fig:3Dboard} je vygenerovaný 3D model \ac{DPS}.
 
-Inerciální jednotka je realizována jako 4vrstvá deska plošných spojů o velikosti $ 100 \times 100 $ mm s uspořádáním vrstev popsaném v tabulce \ref{table:signalStackup}.
+Inerciální jednotka je realizována jako čtyřvrstvá deska plošných spojů o velikosti $ 100 \times 100 $ mm s uspořádáním vrstev popsaném v tabulce \ref{table:signalStackup}.
 \input{text/tabulky/signalStackup}
 
 Typ a tloušťky substrátu \ac{DPS} byly vybrány v konfiguraci JLC04161H-7628, jejich mechanické uspořádání a dielektrické vlastnosti jsou popsané v tabulce \ref{table:materialStackup}. Pomocí kalkulačky výrobce byly vypočteny potřebné hodnoty požadovaných šířek a mezer spojů mikropáskového vedení pro impedanci \SI{50}{\ohm} a \SI{90}{\ohm}. Hodnoty pro vedení o impedanci \SI{50}{\ohm} byly použity při návrhu cest mezi \ac{GPS} modulem a \ac{SMA} anténou. Šírka a vzdálenost diferenciálního páru o impedanci \SI{90}{\ohm} byla použita při návrhu \ac{USB} části zapojení.
 \input{text/tabulky/materialStackup}
 
-Většina pouzder pasivních součástek byla vybrána o velikosti 0603, což by mělo poskytovat dostatečný kompromis mezi velikostí výsledné desky a možností ruční výměny součástky pro případné opravy na prvním prototypu. Prototypová deska je také opatřena měřícími body na napájecích větvích a konektorovými hřebínky na digitálních komunikacích pro možnost připojení osciloskopu, nebo logického analyzátoru na odposlouchávání komunikace mezi \ac{MCU} a jednotlivými senzory. 
+Většina pouzder pasivních součástek byla vybrána o velikosti 0603, což by mělo poskytnout dostatečný kompromis mezi velikostí výsledné desky a možností ruční výměny součástky pro případné opravy na prvním prototypu. Prototypová deska je také opatřena měřícími body na napájecích větvích a konektorovými hřebínky na digitálních komunikacích pro možnost připojení osciloskopu, nebo logického analyzátoru na odposlouchávání komunikace mezi \ac{MCU} a jednotlivými senzory. 
 
 
 
