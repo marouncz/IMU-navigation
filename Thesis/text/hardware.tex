@@ -36,7 +36,14 @@ f_{\mathrm{clk}}=3~\mathrm{osy} \times(f_{\mathrm{gyro}} + f_{\mathrm{acc}})\tim
 \end{equation}
 Nejsme tedy omezeni maximální frekvencí hodinového signálu a můžeme teoreticky využívat senzor i při nejvyšší možné rychlosti.
 
-Výrobce prodává tento obvod ve variantě 100 pinového \ac{BGA} čipu, ale i jako vývojovou desku osazenou senzorem a kolíkovou lištou pro jednodušší práci s osazením \ac{DPS}. \cite{UZFqHmQU7ZzI3OLB} Hardware jednotky byl navržen tak, aby bylo možné využít jak samotný \ac{BGA} čip, tak i hotový modul s konektorem.
+Výrobce prodává tento obvod ve variantě 100 pinového \ac{BGA} čipu, ale i jako vývojovou desku osazenou senzorem a kolíkovou lištou (obrázek \ref{fig:ADIS16505PCB}) pro jednodušší práci s osazením \ac{DPS}. \cite{UZFqHmQU7ZzI3OLB} Hardware jednotky byl navržen tak, aby bylo možné využít jak samotný \ac{BGA} čip, tak i hotový modul s konektorem.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{obrazky/ADIS16505PCB}
+    \caption{IMU verze ADIS16505-2/PCBZ}
+    \label{fig:ADIS16505PCB}
+\end{figure}
 
 \section{Magnetometr}
 Vzhledem k tomu, že výběr komerčně dostupných 9 \ac{DoF} (akcelerometr, gyroskop a magnetometr) je značně omezený, popřípadě součástky prodávané jako 9osé IMU jsou ve skutečnosti moduly více součástek na jedné desce, tak je ve výsledném obvodovém zapojení použit senzor magnetické indukce jakožto samostatná součástka. 
@@ -120,7 +127,7 @@ Pro účely vyzkoušení fúze dat z \ac{GNSS} modulu a inerciálních senzorů 
 Vzhledem k asynchronnosti \ac{USB} komunikace bylo složité udržet definované vzorkovací kmitočty, popřípadě vzorkovat data z \ac{GNSS} a \ac{IMU} zároveň. Z tohoto důvodu byly desky použity na základní otestování a rozsáhlejší zpracování dat bude provedeno až s vlastní deskou hardwaru popsaném v kapitole \ref{hardware}.
 \begin{figure}[h] 
     \centering
-    \includegraphics[width=0.4\textwidth]{obrazky/devBoards}
+    \includegraphics[width=0.8\textwidth]{obrazky/devBoards}
     \caption{Testovací přípravek s vývojovými deskami}
     \label{fig:devBoards}
 \end{figure}
