@@ -90,21 +90,89 @@
 	\frametitle{Cíle práce}
 	\begin{itemize}
 			\item Nastudovat
-			\item Popsat
-				\begin{itemize}
-					\item nastudované
+			\begin{itemize}
+					\item dostupné inerciální jednotky
 				\end{itemize}
-			\item Implementovat
+			\item Hardware
 				\begin{itemize}
-					\item nastudované
-					\item nové
+					\item vybrat vhodné senzory a komponenty bezdrátové jednotky
+					\item analyzovat potřeby záznamu dat a jejich ukládání
+					\item návrh DPS a realizace
 				\end{itemize}
-			\item Porovnat a vyhodnotit
-				\begin{itemize}
-						\item výsledky
-				\end{itemize}
+
 	\end{itemize}
 \end{frame}
+
+%%%%%%%%%%%%%
+\begin{frame} 
+	\frametitle{Princip fungování inerciální navigace}
+	
+			\begin{figure}%	
+				\centering
+				
+				\includegraphics[width=0.8\columnwidth]{obrazky/StrapdownBlock}
+				%lze vložit popisek, ale povetšinou je to v prezentaci zbytečné
+				\caption{Blokové schéma algoritmu strapdown inerciální navigace, převzato z [1] [2]}%
+				%\label{obr:ukazka}
+			\end{figure}
+	
+\end{frame} 
+
+
+%%%%%%%%%%%%%
+\begin{frame} 
+	\frametitle{Fúze dat z jiných senzorů}
+		\begin{alertblock}{Nepřesnost}
+		S časem díky integraci roste chyba měření.
+		\end{alertblock}
+		\vspace{4ex}
+		\begin{block}{Možnosti snížení chyby}
+		\begin{itemize}
+		\item GNSS - při částečně dostupném signálu
+		\item Magnetometr - omezení gyro driftu v horizontální rovině
+		\end{itemize}
+		\end{block}
+
+	
+\end{frame} 
+
+%%%%%%%%%%%%%
+\begin{frame} 
+	\frametitle{Testování vývojových kitů}
+	
+	\begin{columns}[T] 								% prostředí sloupce s umístěním nahoře
+		\begin{column}{0.3\textwidth}		% první sloupec
+			3D tištěný držák pro zarovnání geometrických os:
+			%
+			\begin{itemize}
+				\item IMU - ADIS16505
+				\item GNSS - NEO-M8U
+			\end{itemize}
+			\
+			Zpracování dat:\\[2ex]
+			%
+			\begin{itemize}
+				\item IMU - ADIS16505
+				\item GNSS - NEO-M8U
+			\end{itemize}
+		\end{column}
+		%
+		\begin{column}{0.7\textwidth}		% druhý sloupec
+			\begin{figure}%	
+				\centering
+				\includegraphics[width=1\columnwidth]{obrazky/devBoards}
+				%lze vložit popisek, ale povetšinou je to v prezentaci zbytečné
+				\caption{Testovací přípravek s vývojovými deskami}%
+				%\label{obr:ukazka}
+			\end{figure}
+		\end{column}
+	\end{columns}						
+	
+	
+			
+
+	
+\end{frame} 
 
 
 %%%%%%%%%%%%%
@@ -148,7 +216,7 @@
 			\begin{figure}%	
 				\centering
 				\vspace{1cm}	              % horizontální mezera
-				\includegraphics[width=0.8\columnwidth]{obrazky/soucastky}
+				\includegraphics[width=0.8\columnwidth]{obrazky/ADIS16505PCB}
 				%lze vložit popisek, ale povetšinou je to v prezentaci zbytečné
 				%\caption{Popisek obrázku}%
 				%\label{obr:ukazka}
@@ -196,12 +264,13 @@
 	\end{center}
 \end{frame}
 
-% otázky oponenta
-\frame{
-\frametitle{Otázky oponenta}
-	\emph{Jaká je souvislost Vašeho vzorce (1.2) s~Maxwellovými rovnicemi v~integrálním tvaru?}\\[2ex]
-	%
-	Již staří Římané\,\dots
-}
+% podekovani
+\begin{frame}[c] 
+\frametitle{Zdroje}
+[1] TITTERTON, D. H. a WESTON, J. L. \textit{Strapdown inertial navigation technology}. Second edition. Progress in astronautics and aeronautics, 207. Reston, VA: American Institute of Aeronautics and Astronautics, c2004. ISBN 1-56347-693-2.
+
+[2] GREWAL, Mohinder S.; ANDREWS, Angus P. a BARTONE, Chris. \textit{Global navigation satellite systems, inertial navigation, and integration}. Third edition. Hoboken, New Jersey: John Wiley, 2013. ISBN 978-1-118-44700-0.
+\end{frame}
+
 
 \end{document}
