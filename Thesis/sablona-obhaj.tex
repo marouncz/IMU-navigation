@@ -124,11 +124,12 @@
 			\begin{figure}%	
 				\centering
 				
-				\includegraphics[width=0.8\columnwidth]{obrazky/StrapdownBlock}
+				\includegraphics[width=0.85\columnwidth]{obrazky/StrapdownBlock}
 				%lze vložit popisek, ale povetšinou je to v prezentaci zbytečné
-				\caption{Blokové schéma algoritmu strapdown inerciální navigace, převzato z [1] [2]}%
+				%\caption{Blokové schéma algoritmu strapdown inerciální navigace, převzato z [1] [2]}%
 				%\label{obr:ukazka}
 			\end{figure}
+			\tiny [1] TITTERTON, D. H. a WESTON, J. L. \textit{Strapdown inertial navigation technology}. Second edition. Progress in astronautics and aeronautics, 207. Reston, VA: American Institute of Aeronautics and Astronautics, c2004. ISBN 1-56347-693-2.
 	
 \end{frame} 
 
@@ -174,9 +175,9 @@
 		\begin{column}{0.7\textwidth}		% druhý sloupec
 			\begin{figure}%	
 				\centering
-				\includegraphics[width=0.9\columnwidth]{obrazky/devBoards}
+				\includegraphics[width=1\columnwidth]{obrazky/devBoards}
 				%lze vložit popisek, ale povetšinou je to v prezentaci zbytečné
-				\caption{Testovací přípravek s vývojovými deskami}%
+				%\caption{Testovací přípravek s vývojovými deskami}%
 				%\label{obr:ukazka}
 			\end{figure}
 		\end{column}
@@ -193,9 +194,9 @@
 			\begin{figure}%	
 				\centering
 				
-				\includegraphics[width=0.55\columnwidth]{obrazky/IMUnav_H00_block}
+				\includegraphics[width=0.62\columnwidth]{obrazky/IMUnav_H00_block}
 				%lze vložit popisek, ale povetšinou je to v prezentaci zbytečné
-				\caption{Blokové schéma inerciální jednotky}%
+				%\caption{Blokové schéma inerciální jednotky}%
 				%\label{obr:ukazka}
 			\end{figure}
 	
@@ -204,7 +205,31 @@
 %%%%%%%%%%%%%
 \begin{frame} 
 	\frametitle{Požadavky na sběrnice}
-	\input{text/tabulky/MCUperiferie}
+	\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline 
+Druh periferie & Minimální požadovaný počet & Použití periferie \\ 
+\hline 
+\hline 
+I2C & 3 & \makecell{OLED displej, LSM303AGR, \\MPU6050, USB2514B}  \\ 
+\hline 
+SPI & 1 & ADIS16505 \\ 
+\hline 
+UART & 2 & NEO-M8U, ESP32 \\ 
+\hline 
+QUADSPI & 1 & NOR FLASH paměť \\ 
+\hline 
+SDIO & 1 & microSD karta \\ 
+\hline 
+ADC & 1 & měření napětí akumulátoru \\ 
+\hline 
+\end{tabular} 
+
+%\caption{Minimální požadavky na periferie mikroprocesoru} 
+\label{table:MCUperiferie}
+\end{table} 
+
 	
 
 	
@@ -214,7 +239,28 @@
 %%%%%%%%%%%%%
 \begin{frame} 
 	\frametitle{Požadavky na paměť}
-	\input{text/tabulky/memoryBW}
+	\begin{table}[h!]
+\centering
+\begin{tabular}{c|c}
+
+Senzor & Odhadovaný bitrate \\ 
+\hline 
+\hline 
+ADIS16505-2 & 375 kbit/s \\ 
+
+MPU-6050 & 422 kbit/s \\ 
+
+LSM303AGR & 7 kbit/s \\ 
+
+NEO-M8U & 1 kbit/s \\ 
+\hline
+
+Celkem & 805 kbit/s (0,1MB/s) \\ 
+
+\end{tabular} 
+%\caption{Odhad celkového bitratu pro záznam dat} 
+\label{table:memoryBW}
+\end{table} 
 	
 	12 MB dat při dvouminutovém záznamu.
 	
@@ -231,23 +277,22 @@
 	\frametitle{Plošný spoj}
 	
 	\begin{columns}[T] 								% prostředí sloupce s umístěním nahoře
-		\begin{column}{0.3\textwidth}		% první sloupec
-			Obrázek znázorňuje model:\\[2ex]
-			%
+		\begin{column}{0.4\textwidth}		% první sloupec
+			
 			\begin{itemize}
-				\item Deska
-				\item Součástky
-				\item Signály
-				\item Napájení
+				\item KiCad
+				\item Čtyřvrstvá deska $ 100 \times 100$ mm
+				\item Impedance vedení pro GNSS a USB
+				\item hřebínky na odposlech komunikací
 			\end{itemize}
 		\end{column}
 		%
-		\begin{column}{0.7\textwidth}		% druhý sloupec
+		\begin{column}{0.6\textwidth}		% druhý sloupec
 			\begin{figure}%	
 				\centering
-			    \includegraphics[width=0.6\columnwidth, trim={0 3.2cm 0 1.5cm},clip]{KiCad/boardTopParts}
+			    \includegraphics[width=0.78\columnwidth, trim={0 3.2cm 0 1.5cm},clip]{KiCad/boardTopParts}
 				%lze vložit popisek, ale povetšinou je to v prezentaci zbytečné
-				\caption{Pohled osazení součástek}%
+				%\caption{Pohled osazení součástek}%
 				%\label{obr:ukazka}
 			\end{figure}
 		\end{column}
@@ -263,9 +308,9 @@
 	\begin{figure}%	
 				\centering
 				
-				\includegraphics[width=0.5\columnwidth]{KiCad/3Dboard}
+				\includegraphics[width=0.6\columnwidth]{KiCad/3Dboard}
 				%lze vložit popisek, ale povetšinou je to v prezentaci zbytečné
-				\caption{3D model navržené DPS}%
+				%\caption{3D model navržené DPS}%
 				%\label{obr:ukazka}
 			\end{figure}
 \end{frame}
@@ -280,7 +325,7 @@
 	\item Navrhnout komunikaci mezi PC a jednotkou + obslužný SW
 	\item Software na zpracování dat (Matlab / Python)
 	\item Možnosti fúze s GNSS, magnetometrem
-	\item Využití v rámci MPC-RAR
+	\item Využití v MPC-RAR
 	\end{itemize}
 \end{frame}
 
@@ -292,14 +337,6 @@
 	\begin{center}
 		{\Huge Děkuji za pozornost!}
 	\end{center}
-\end{frame}
-
-% zdroje
-\begin{frame}[c] 
-\frametitle{Zdroje}
-[1] TITTERTON, D. H. a WESTON, J. L. \textit{Strapdown inertial navigation technology}. Second edition. Progress in astronautics and aeronautics, 207. Reston, VA: American Institute of Aeronautics and Astronautics, c2004. ISBN 1-56347-693-2.
-
-[2] GREWAL, Mohinder S.; ANDREWS, Angus P. a BARTONE, Chris. \textit{Global navigation satellite systems, inertial navigation, and integration}. Third edition. Hoboken, New Jersey: John Wiley, 2013. ISBN 978-1-118-44700-0.
 \end{frame}
 
 
