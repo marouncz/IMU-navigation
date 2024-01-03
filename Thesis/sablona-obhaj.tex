@@ -42,6 +42,20 @@
 \usepackage{booktabs} % Balíček, který umožňuje v tabulce používat
                       % příkazy \toprule, \midrule, \bottomrule
 
+%%%%%vlastni balicky
+\usepackage{makecell}
+\usepackage{siunitx}
+\sisetup{output-decimal-marker = {,}}
+\DeclareSIUnit\LSB{LSB}
+\sisetup{
+  inter-unit-product=\ensuremath{{\cdot}},
+%  tight-spacing=true,
+}
+\usepackage{subfigure}
+\usepackage{tablefootnote}
+\usepackage{amsmath}
+\usepackage[thinc]{esdiff}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%      Definice informací o dokumentu             %%%%%%%%%%
@@ -148,28 +162,50 @@
 				\item IMU - ADIS16505
 				\item GNSS - NEO-M8U
 			\end{itemize}
-			\
-			Zpracování dat:\\[2ex]
+			\vspace{0.5cm}
+			Zpracování dat:
 			%
 			\begin{itemize}
-				\item IMU - ADIS16505
-				\item GNSS - NEO-M8U
+				\item Matlab navigation toolbox - převážně pouze pro natočení, ne polohu
+				\item Asynchronost USB komunikace
 			\end{itemize}
 		\end{column}
 		%
 		\begin{column}{0.7\textwidth}		% druhý sloupec
 			\begin{figure}%	
 				\centering
-				\includegraphics[width=1\columnwidth]{obrazky/devBoards}
+				\includegraphics[width=0.9\columnwidth]{obrazky/devBoards}
 				%lze vložit popisek, ale povetšinou je to v prezentaci zbytečné
 				\caption{Testovací přípravek s vývojovými deskami}%
 				%\label{obr:ukazka}
 			\end{figure}
 		\end{column}
 	\end{columns}						
-	
-	
 			
+
+	
+\end{frame} 
+
+%%%%%%%%%%%%%
+\begin{frame} 
+	\frametitle{Hardware inerciální jednotky}
+	
+			\begin{figure}%	
+				\centering
+				
+				\includegraphics[width=0.55\columnwidth]{obrazky/IMUnav_H00_block}
+				%lze vložit popisek, ale povetšinou je to v prezentaci zbytečné
+				\caption{Blokové schéma inerciální jednotky}%
+				%\label{obr:ukazka}
+			\end{figure}
+	
+\end{frame} 
+
+%%%%%%%%%%%%%
+\begin{frame} 
+	\frametitle{Požadavky na sběrnice}
+	\input{text/tabulky/MCUperiferie}
+	
 
 	
 \end{frame} 
@@ -177,22 +213,16 @@
 
 %%%%%%%%%%%%%
 \begin{frame} 
-	\frametitle{Klíčové nástroje}
-
-	% prostředí 'alertblock', které slouží pro zdůraznění informace
-	\begin{alertblock}{Pro práci je klíčový Eulerův vzorec}
-		$$\eul^{\jmag x}=\cos x + \jmag\sin x$$
-	\end{alertblock}
-
-	\vspace{4ex}
-	Eulerova identita je speciálním případem tohoto vzorce, jestliže dosadíme $x=\uppi$\,:
-
-	% prostředí 'block', které slouží jako informativní
-	\begin{block}{Eulerova identita}
-		$$\eul^{\jmag \uppi}=\cos \uppi + \jmag\sin \uppi,$$\\
-		odkud vyplývá
-		$$\eul^{\jmag \uppi}+1=0.$$
-	\end{block}
+	\frametitle{Požadavky na paměť}
+	\input{text/tabulky/memoryBW}
+	
+	12 MB dat při dvouminutovém záznamu.
+	
+	\begin{itemize}
+	\item SD karta
+	\item 32 MB NOR Flash
+	\end{itemize}
+	
 \end{frame} 
 
 
@@ -201,7 +231,7 @@
 	\frametitle{Plošný spoj}
 	
 	\begin{columns}[T] 								% prostředí sloupce s umístěním nahoře
-		\begin{column}{0.4\textwidth}		% první sloupec
+		\begin{column}{0.3\textwidth}		% první sloupec
 			Obrázek znázorňuje model:\\[2ex]
 			%
 			\begin{itemize}
@@ -212,13 +242,12 @@
 			\end{itemize}
 		\end{column}
 		%
-		\begin{column}{0.6\textwidth}		% druhý sloupec
+		\begin{column}{0.7\textwidth}		% druhý sloupec
 			\begin{figure}%	
 				\centering
-				\vspace{1cm}	              % horizontální mezera
-				\includegraphics[width=0.8\columnwidth]{obrazky/ADIS16505PCB}
+			    \includegraphics[width=0.6\columnwidth, trim={0 3.2cm 0 1.5cm},clip]{KiCad/boardTopParts}
 				%lze vložit popisek, ale povetšinou je to v prezentaci zbytečné
-				%\caption{Popisek obrázku}%
+				\caption{Pohled osazení součástek}%
 				%\label{obr:ukazka}
 			\end{figure}
 		\end{column}
@@ -226,25 +255,19 @@
 \end{frame}
 
 
-%%%%%%%%%%%%%
+
+
+
 \begin{frame} 
-	\frametitle{Výsledky}
-	\vspace{1cm}
-	\begin{table}[]
-		\centering
-		\caption{Výsledky měření mobilních sítí}
-		\label{tab:tabulka}
-			\begin{tabular}{lcc}
-				\toprule
-					Technologie  & Rychlost stahování [kB/s] & Rychlost nahrávání [kB/s] \\
-				\midrule
-					GPRS (2,5G)	& 7,2 	& 3,6\\
-					UMTS 3G     & 48 		& 48\\
-					HSPA (3,5G)	&	1\,706	&	720\\
-					LTE (4G) 		& 40\,750 & 10\,750\\
-				\bottomrule                                       
-			\end{tabular}
-	\end{table}
+	\frametitle{3D model desky}
+	\begin{figure}%	
+				\centering
+				
+				\includegraphics[width=0.5\columnwidth]{KiCad/3Dboard}
+				%lze vložit popisek, ale povetšinou je to v prezentaci zbytečné
+				\caption{3D model navržené DPS}%
+				%\label{obr:ukazka}
+			\end{figure}
 \end{frame}
 
 
@@ -264,7 +287,7 @@
 	\end{center}
 \end{frame}
 
-% podekovani
+% zdroje
 \begin{frame}[c] 
 \frametitle{Zdroje}
 [1] TITTERTON, D. H. a WESTON, J. L. \textit{Strapdown inertial navigation technology}. Second edition. Progress in astronautics and aeronautics, 207. Reston, VA: American Institute of Aeronautics and Astronautics, c2004. ISBN 1-56347-693-2.
