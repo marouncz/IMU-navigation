@@ -57,6 +57,7 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define hubSMBUS hsmbus2
 #define LED1_Pin GPIO_PIN_4
 #define LED1_GPIO_Port GPIOE
 #define LED2_Pin GPIO_PIN_5
@@ -67,6 +68,12 @@ void Error_Handler(void);
 #define USB_VOLTAGE_ADC_GPIO_Port GPIOA
 #define BATT_VOLTAGE_Pin GPIO_PIN_1
 #define BATT_VOLTAGE_GPIO_Port GPIOA
+#define HUB_SCL_Pin GPIO_PIN_10
+#define HUB_SCL_GPIO_Port GPIOB
+#define HUB_RESET_Pin GPIO_PIN_12
+#define HUB_RESET_GPIO_Port GPIOB
+#define HUB_SDA_Pin GPIO_PIN_12
+#define HUB_SDA_GPIO_Port GPIOC
 
 /* USER CODE BEGIN Private defines */
 
