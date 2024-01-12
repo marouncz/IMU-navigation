@@ -68,6 +68,13 @@ const osThreadAttr_t hubTask_attributes = {
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityLow1,
 };
+/* Definitions for gpsTask */
+osThreadId_t gpsTaskHandle;
+const osThreadAttr_t gpsTask_attributes = {
+  .name = "gpsTask",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityBelowNormal,
+};
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -77,6 +84,7 @@ const osThreadAttr_t hubTask_attributes = {
 void StartDefaultTask(void *argument);
 void StartKeepaliveTask(void *argument);
 void StartHubTask(void *argument);
+void StartGpsTask(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -115,6 +123,9 @@ void MX_FREERTOS_Init(void) {
 
   /* creation of hubTask */
   hubTaskHandle = osThreadNew(StartHubTask, NULL, &hubTask_attributes);
+
+  /* creation of gpsTask */
+  gpsTaskHandle = osThreadNew(StartGpsTask, NULL, &gpsTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -172,18 +183,23 @@ void StartKeepaliveTask(void *argument)
 */
 
 #define HUB_ADDRESS 0b0101100<<1
+#define FFH_CMD 0b1
 /* USER CODE END Header_StartHubTask */
 void StartHubTask(void *argument)
 {
   /* USER CODE BEGIN StartHubTask */
 	HAL_GPIO_WritePin(HUB_RESET_GPIO_Port, HUB_RESET_Pin, 1);
-	osDelay(100);
-	static uint8_t hubRxBuffer[1] = {0};
-	static uint8_t hubTxBuffer[1] = {0};
-	HAL_SMBUS_Init(&hubSMBUS);
-	HAL_SMBUS_Master_Transmit_IT(&hubSMBUS, HUB_ADDRESS, &hubTxBuffer[0], sizeof(hubTxBuffer), SMBUS_FIRST_AND_LAST_FRAME_NO_PEC);
-	HAL_SMBUS_Master_Transmit_IT(&hubSMBUS, HUB_ADDRESS, &hubTxBuffer[0], sizeof(hubTxBuffer), SMBUS_FIRST_AND_LAST_FRAME_NO_PEC);
-	HAL_SMBUS_Master_Receive_IT(&hubSMBUS, HUB_ADDRESS, hubRxBuffer[0], sizeof(hubTxBuffer), SMBUS_FIRST_AND_LAST_FRAME_WITH_PEC);
+	osDelay(10);
+	static uint8_t hubTxBuffer[17] = {16, 0x24, 0x04, 0x14, 0x25, 0xB3, 0x0B, 0x00, 0x00, 0x00, 0b11100, 0b10, 0b10, 0x01, 0x32, 0x32,};
+	HAL_I2C_Init(&hubI2C);
+
+
+	HAL_I2C_Mem_Write(&hubI2C, HUB_ADDRESS, 0x00, 1, hubTxBuffer, 17, 10);
+
+	hubTxBuffer[0] = 1;
+	hubTxBuffer[1] = FFH_CMD;
+	HAL_I2C_Mem_Write(&hubI2C, HUB_ADDRESS, 0xff, 1, hubTxBuffer, 2, 10);
+
 
   /* Infinite loop */
   for(;;)
@@ -191,6 +207,26 @@ void StartHubTask(void *argument)
     osDelay(1);
   }
   /* USER CODE END StartHubTask */
+}
+
+/* USER CODE BEGIN Header_StartGpsTask */
+/**
+* @brief Function implementing the gpsTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartGpsTask */
+void StartGpsTask(void *argument)
+{
+  /* USER CODE BEGIN StartGpsTask */
+	HAL_GPIO_WritePin(GPS_RST_GPIO_Port, GPS_RST_Pin, 1);
+	osDelay(10);
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END StartGpsTask */
 }
 
 /* Private application code --------------------------------------------------*/

@@ -57,7 +57,8 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define hubSMBUS hsmbus2
+#define hubI2C hi2c2
+#define gpsUART huart2
 #define LED1_Pin GPIO_PIN_4
 #define LED1_GPIO_Port GPIOE
 #define LED2_Pin GPIO_PIN_5
@@ -68,6 +69,12 @@ void Error_Handler(void);
 #define USB_VOLTAGE_ADC_GPIO_Port GPIOA
 #define BATT_VOLTAGE_Pin GPIO_PIN_1
 #define BATT_VOLTAGE_GPIO_Port GPIOA
+#define GPS_RX_Pin GPIO_PIN_2
+#define GPS_RX_GPIO_Port GPIOA
+#define GPS_TX_Pin GPIO_PIN_3
+#define GPS_TX_GPIO_Port GPIOA
+#define GPS_RST_Pin GPIO_PIN_4
+#define GPS_RST_GPIO_Port GPIOA
 #define HUB_SCL_Pin GPIO_PIN_10
 #define HUB_SCL_GPIO_Port GPIOB
 #define HUB_RESET_Pin GPIO_PIN_12

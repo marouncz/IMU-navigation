@@ -55,7 +55,7 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-extern SMBUS_HandleTypeDef hsmbus2;
+extern I2C_HandleTypeDef hi2c2;
 extern TIM_HandleTypeDef htim14;
 
 /* USER CODE BEGIN EV */
@@ -168,7 +168,7 @@ void I2C2_EV_IRQHandler(void)
   /* USER CODE BEGIN I2C2_EV_IRQn 0 */
 
   /* USER CODE END I2C2_EV_IRQn 0 */
-  HAL_SMBUS_EV_IRQHandler(&hsmbus2);
+  HAL_I2C_EV_IRQHandler(&hi2c2);
   /* USER CODE BEGIN I2C2_EV_IRQn 1 */
 
   /* USER CODE END I2C2_EV_IRQn 1 */
