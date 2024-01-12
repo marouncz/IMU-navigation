@@ -26,6 +26,9 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "i2c.h"
+#include "ssd1306.h"
+#include "ssd1306_tests.h"
+#include "w25q_mem.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -75,6 +78,13 @@ const osThreadAttr_t gpsTask_attributes = {
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityBelowNormal,
 };
+/* Definitions for oledTask */
+osThreadId_t oledTaskHandle;
+const osThreadAttr_t oledTask_attributes = {
+  .name = "oledTask",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
+};
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -85,6 +95,7 @@ void StartDefaultTask(void *argument);
 void StartKeepaliveTask(void *argument);
 void StartHubTask(void *argument);
 void StartGpsTask(void *argument);
+void StartOledTask(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -127,6 +138,9 @@ void MX_FREERTOS_Init(void) {
   /* creation of gpsTask */
   gpsTaskHandle = osThreadNew(StartGpsTask, NULL, &gpsTask_attributes);
 
+  /* creation of oledTask */
+  oledTaskHandle = osThreadNew(StartOledTask, NULL, &oledTask_attributes);
+
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
@@ -165,6 +179,47 @@ void StartDefaultTask(void *argument)
 void StartKeepaliveTask(void *argument)
 {
   /* USER CODE BEGIN StartKeepaliveTask */
+	W25Q_Init();		 // init the chip
+		//W25Q_EraseSector(0); // erase 4K sector - required before recording
+
+		// make test data
+		u8_t byte = 0x65;
+		u8_t byte_read = 0;
+		u8_t in_page_shift = 0;
+		u8_t page_number = 0;
+		// write data
+		//W25Q_ProgramByte(byte, in_page_shift, page_number);
+		// read data
+		W25Q_ReadByte(&byte_read, in_page_shift, page_number);
+
+		// make example structure
+		struct STR {
+			u8_t abc;
+			u32_t bca;
+			char str[4];
+			fl_t gg;
+		} _str, _str2;
+
+
+		// fill instance
+		_str.abc = 0x20;
+		_str.bca = 0x3F3F4A;
+		_str.str[0] = 'a';
+		_str.str[1] = 'b';
+		_str.str[2] = 'c';
+		_str.str[3] = '\0';
+		_str.gg = 0.658;
+
+
+		u16_t len = sizeof(_str);	// length of structure in bytes
+
+		// program structure
+		//W25Q_ProgramData((u8_t*) &_str, len, 1+in_page_shift, page_number);
+		// read structure to another instance
+		W25Q_ReadData((u8_t*) &_str2, len, 1+in_page_shift, page_number);
+
+		W25Q_Sleep();	// go to sleep
+
 	
   /* Infinite loop */
   for(;;)
@@ -227,6 +282,25 @@ void StartGpsTask(void *argument)
     osDelay(1);
   }
   /* USER CODE END StartGpsTask */
+}
+
+/* USER CODE BEGIN Header_StartOledTask */
+/**
+* @brief Function implementing the oledTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartOledTask */
+void StartOledTask(void *argument)
+{
+  /* USER CODE BEGIN StartOledTask */
+	ssd1306_Init();
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1000);
+  }
+  /* USER CODE END StartOledTask */
 }
 
 /* Private application code --------------------------------------------------*/

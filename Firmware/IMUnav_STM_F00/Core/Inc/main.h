@@ -59,6 +59,7 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define hubI2C hi2c2
 #define gpsUART huart2
+#define oledI2C hfmpi2c1
 #define LED1_Pin GPIO_PIN_4
 #define LED1_GPIO_Port GPIOE
 #define LED2_Pin GPIO_PIN_5
@@ -75,10 +76,16 @@ void Error_Handler(void);
 #define GPS_TX_GPIO_Port GPIOA
 #define GPS_RST_Pin GPIO_PIN_4
 #define GPS_RST_GPIO_Port GPIOA
+#define PWR_OFF_Pin GPIO_PIN_15
+#define PWR_OFF_GPIO_Port GPIOE
 #define HUB_SCL_Pin GPIO_PIN_10
 #define HUB_SCL_GPIO_Port GPIOB
 #define HUB_RESET_Pin GPIO_PIN_12
 #define HUB_RESET_GPIO_Port GPIOB
+#define OLED_SCL_Pin GPIO_PIN_14
+#define OLED_SCL_GPIO_Port GPIOD
+#define OLED_SDA_Pin GPIO_PIN_15
+#define OLED_SDA_GPIO_Port GPIOD
 #define HUB_SDA_Pin GPIO_PIN_12
 #define HUB_SDA_GPIO_Port GPIOC
 

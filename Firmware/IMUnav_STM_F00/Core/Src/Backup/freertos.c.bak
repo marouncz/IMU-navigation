@@ -26,6 +26,9 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "i2c.h"
+#include "ssd1306.h"
+#include "ssd1306_tests.h"
+#include "w25q_mem.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -68,6 +71,20 @@ const osThreadAttr_t hubTask_attributes = {
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityLow1,
 };
+/* Definitions for gpsTask */
+osThreadId_t gpsTaskHandle;
+const osThreadAttr_t gpsTask_attributes = {
+  .name = "gpsTask",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityBelowNormal,
+};
+/* Definitions for oledTask */
+osThreadId_t oledTaskHandle;
+const osThreadAttr_t oledTask_attributes = {
+  .name = "oledTask",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityNormal,
+};
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -77,6 +94,8 @@ const osThreadAttr_t hubTask_attributes = {
 void StartDefaultTask(void *argument);
 void StartKeepaliveTask(void *argument);
 void StartHubTask(void *argument);
+void StartGpsTask(void *argument);
+void StartOledTask(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -116,6 +135,12 @@ void MX_FREERTOS_Init(void) {
   /* creation of hubTask */
   hubTaskHandle = osThreadNew(StartHubTask, NULL, &hubTask_attributes);
 
+  /* creation of gpsTask */
+  gpsTaskHandle = osThreadNew(StartGpsTask, NULL, &gpsTask_attributes);
+
+  /* creation of oledTask */
+  oledTaskHandle = osThreadNew(StartOledTask, NULL, &oledTask_attributes);
+
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
@@ -154,6 +179,47 @@ void StartDefaultTask(void *argument)
 void StartKeepaliveTask(void *argument)
 {
   /* USER CODE BEGIN StartKeepaliveTask */
+	W25Q_Init();		 // init the chip
+		//W25Q_EraseSector(0); // erase 4K sector - required before recording
+
+		// make test data
+		u8_t byte = 0x65;
+		u8_t byte_read = 0;
+		u8_t in_page_shift = 0;
+		u8_t page_number = 0;
+		// write data
+		//W25Q_ProgramByte(byte, in_page_shift, page_number);
+		// read data
+		W25Q_ReadByte(&byte_read, in_page_shift, page_number);
+
+		// make example structure
+		struct STR {
+			u8_t abc;
+			u32_t bca;
+			char str[4];
+			fl_t gg;
+		} _str, _str2;
+
+
+		// fill instance
+		_str.abc = 0x20;
+		_str.bca = 0x3F3F4A;
+		_str.str[0] = 'a';
+		_str.str[1] = 'b';
+		_str.str[2] = 'c';
+		_str.str[3] = '\0';
+		_str.gg = 0.658;
+
+
+		u16_t len = sizeof(_str);	// length of structure in bytes
+
+		// program structure
+		//W25Q_ProgramData((u8_t*) &_str, len, 1+in_page_shift, page_number);
+		// read structure to another instance
+		W25Q_ReadData((u8_t*) &_str2, len, 1+in_page_shift, page_number);
+
+		W25Q_Sleep();	// go to sleep
+
 	
   /* Infinite loop */
   for(;;)
@@ -179,9 +245,11 @@ void StartHubTask(void *argument)
   /* USER CODE BEGIN StartHubTask */
 	HAL_GPIO_WritePin(HUB_RESET_GPIO_Port, HUB_RESET_Pin, 1);
 	osDelay(10);
-	//static uint8_t hubRxBuffer[32] = {};
-	static uint8_t hubTxBuffer[10] = {0};
+	static uint8_t hubTxBuffer[17] = {16, 0x24, 0x04, 0x14, 0x25, 0xB3, 0x0B, 0x00, 0x00, 0x00, 0b11100, 0b10, 0b10, 0x01, 0x32, 0x32,};
 	HAL_I2C_Init(&hubI2C);
+
+
+	HAL_I2C_Mem_Write(&hubI2C, HUB_ADDRESS, 0x00, 1, hubTxBuffer, 17, 10);
 
 	hubTxBuffer[0] = 1;
 	hubTxBuffer[1] = FFH_CMD;
@@ -194,6 +262,45 @@ void StartHubTask(void *argument)
     osDelay(1);
   }
   /* USER CODE END StartHubTask */
+}
+
+/* USER CODE BEGIN Header_StartGpsTask */
+/**
+* @brief Function implementing the gpsTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartGpsTask */
+void StartGpsTask(void *argument)
+{
+  /* USER CODE BEGIN StartGpsTask */
+	HAL_GPIO_WritePin(GPS_RST_GPIO_Port, GPS_RST_Pin, 1);
+	osDelay(10);
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END StartGpsTask */
+}
+
+/* USER CODE BEGIN Header_StartOledTask */
+/**
+* @brief Function implementing the oledTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartOledTask */
+void StartOledTask(void *argument)
+{
+  /* USER CODE BEGIN StartOledTask */
+	ssd1306_Init();
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1000);
+  }
+  /* USER CODE END StartOledTask */
 }
 
 /* Private application code --------------------------------------------------*/
