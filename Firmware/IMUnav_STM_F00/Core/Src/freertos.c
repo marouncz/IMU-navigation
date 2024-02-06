@@ -29,6 +29,8 @@
 #include "ssd1306.h"
 #include "ssd1306_tests.h"
 #include "w25q_mem.h"
+#include "spi.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -85,6 +87,25 @@ const osThreadAttr_t oledTask_attributes = {
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
+/* Definitions for powerTask */
+osThreadId_t powerTaskHandle;
+const osThreadAttr_t powerTask_attributes = {
+  .name = "powerTask",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityLow2,
+};
+/* Definitions for adisTask */
+osThreadId_t adisTaskHandle;
+const osThreadAttr_t adisTask_attributes = {
+  .name = "adisTask",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityNormal1,
+};
+/* Definitions for adisTransmitCplt */
+osSemaphoreId_t adisTransmitCpltHandle;
+const osSemaphoreAttr_t adisTransmitCplt_attributes = {
+  .name = "adisTransmitCplt"
+};
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -96,8 +117,27 @@ void StartKeepaliveTask(void *argument);
 void StartHubTask(void *argument);
 void StartGpsTask(void *argument);
 void StartOledTask(void *argument);
+void StartPowerTask(void *argument);
+void StartAdisTask(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
+
+/* Hook prototypes */
+void configureTimerForRunTimeStats(void);
+unsigned long getRunTimeCounterValue(void);
+
+/* USER CODE BEGIN 1 */
+/* Functions needed when configGENERATE_RUN_TIME_STATS is on */
+__weak void configureTimerForRunTimeStats(void)
+{
+
+}
+
+__weak unsigned long getRunTimeCounterValue(void)
+{
+return 0;
+}
+/* USER CODE END 1 */
 
 /**
   * @brief  FreeRTOS initialization
@@ -112,6 +152,10 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */
   /* USER CODE END RTOS_MUTEX */
+
+  /* Create the semaphores(s) */
+  /* creation of adisTransmitCplt */
+  adisTransmitCpltHandle = osSemaphoreNew(1, 1, &adisTransmitCplt_attributes);
 
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
@@ -140,6 +184,12 @@ void MX_FREERTOS_Init(void) {
 
   /* creation of oledTask */
   oledTaskHandle = osThreadNew(StartOledTask, NULL, &oledTask_attributes);
+
+  /* creation of powerTask */
+  powerTaskHandle = osThreadNew(StartPowerTask, NULL, &powerTask_attributes);
+
+  /* creation of adisTask */
+  adisTaskHandle = osThreadNew(StartAdisTask, NULL, &adisTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -298,9 +348,161 @@ void StartOledTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1000);
+    osDelay(10000);
+
   }
   /* USER CODE END StartOledTask */
+}
+
+/* USER CODE BEGIN Header_StartPowerTask */
+volatile uint16_t adcDataDMA[4];
+#define USB_CHANNEL 0
+#define BAT_CHANNEL 1
+#define TMP_CHANNEL 2
+#define REF_CHANNEL 3
+#define ADCIIRCOEFF 0.3
+
+
+
+/**
+* @brief Function implementing the powerTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartPowerTask */
+void StartPowerTask(void *argument)
+{
+  /* USER CODE BEGIN StartPowerTask */
+	HAL_ADC_Init(&analogADC);
+
+	float supplyVoltage = 3.3;
+	float mcuTemp = 25;
+	float battVoltage = 3.7;
+	float battVoltageOld = 3.7;
+	float usbVoltage = 5;
+	float battVoltageFilt = 3.7;
+
+
+
+
+
+	//minimum temperature sensor sampling time 10us, slope 2.5mv/degC, 0.76V at 25degC
+
+
+  /* Infinite loop */
+  for(;;)
+  {
+	  HAL_ADC_Start_DMA(&analogADC, (uint32_t*) adcDataDMA, 4);
+	  osDelay(100);
+
+	  supplyVoltage = *VREFINT_CAL_ADDR * VREFINT_CAL_VREF / adcDataDMA[REF_CHANNEL]/1000.0;
+	  mcuTemp = -279.0 + 400.0*(supplyVoltage*adcDataDMA[TMP_CHANNEL]/4095.0);
+	  usbVoltage = (supplyVoltage*adcDataDMA[USB_CHANNEL]/4095.0)*(33.0+27.0)/33.0;
+	  battVoltage = (supplyVoltage*adcDataDMA[BAT_CHANNEL]/4095.0)*(33.0+27.0)/33.0;
+
+	  battVoltageFilt = ADCIIRCOEFF * battVoltage + (1.0-ADCIIRCOEFF)*battVoltageFilt;
+	  battVoltageOld = battVoltage;
+
+
+	  if(battVoltageFilt < 3.5) // batttery low voltage
+	  {
+		  HAL_GPIO_WritePin(PWR_OFF_GPIO_Port, PWR_OFF_Pin, 1);
+		  while(1)
+		  {
+			  //
+		  }
+	  }
+
+
+
+
+	  osDelay(1000);
+
+  }
+  /* USER CODE END StartPowerTask */
+}
+
+/* USER CODE BEGIN Header_StartAdisTask */
+volatile uint16_t spiRxData[17];
+volatile uint16_t spiTxData[17] = {};
+void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
+{
+	HAL_GPIO_WritePin(ADIS_CS_GPIO_Port, ADIS_CS_Pin, 1);
+}
+
+/**
+* @brief Function implementing the adisTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartAdisTask */
+void StartAdisTask(void *argument)
+{
+  /* USER CODE BEGIN StartAdisTask */
+	HAL_GPIO_WritePin(ADIS_CS_GPIO_Port, ADIS_CS_Pin, 1);
+
+	HAL_GPIO_WritePin(ADIS_RESET_GPIO_Port, ADIS_RESET_Pin, 0);
+	osDelay(100);
+	HAL_GPIO_WritePin(ADIS_RESET_GPIO_Port, ADIS_RESET_Pin, 1);
+	osDelay(1000);
+
+	HAL_SPI_Init(&adisSPI);
+	//uint16_t spiTxData = 0x0000;
+
+	HAL_SPI_Transmit(&adisSPI, (uint8_t*)&spiTxData, 1, 100);
+	osDelay(1);
+
+	//select decimation filter for output DR 400Hz
+	spiTxData[0] = 1<<15 | 0x64 << 8 | 0x04;
+	HAL_GPIO_WritePin(ADIS_CS_GPIO_Port, ADIS_CS_Pin, 0);
+	HAL_SPI_Transmit(&adisSPI, (uint8_t*) &spiTxData, 1, 100);
+	HAL_GPIO_WritePin(ADIS_CS_GPIO_Port, ADIS_CS_Pin, 1);
+	osDelay(1);
+	spiTxData[0] = 1<<15 | 0x65 << 8 | 0x00;
+	HAL_GPIO_WritePin(ADIS_CS_GPIO_Port, ADIS_CS_Pin, 0);
+	HAL_SPI_Transmit(&adisSPI, (uint8_t*) &spiTxData, 1, 100);
+	HAL_GPIO_WritePin(ADIS_CS_GPIO_Port, ADIS_CS_Pin, 1);
+	osDelay(1);
+
+	//select MSC_CTRL to 32bit burst
+	spiTxData[0] = 1<<15 | 0x60 << 8 | 0x0;
+	HAL_GPIO_WritePin(ADIS_CS_GPIO_Port, ADIS_CS_Pin, 0);
+	HAL_SPI_Transmit(&adisSPI, (uint8_t*) &spiTxData, 1, 100);
+	HAL_GPIO_WritePin(ADIS_CS_GPIO_Port, ADIS_CS_Pin, 1);
+	osDelay(1);
+	spiTxData[0] = 1<<15 | 0x61 << 8 | 0b10;
+	HAL_GPIO_WritePin(ADIS_CS_GPIO_Port, ADIS_CS_Pin, 0);
+	HAL_SPI_Transmit(&adisSPI, (uint8_t*) &spiTxData, 1, 100);
+	HAL_GPIO_WritePin(ADIS_CS_GPIO_Port, ADIS_CS_Pin, 1);
+
+
+
+
+
+	/* Infinite loop */
+  for(;;)
+  {
+		//spiTxData = 1<<15 | 0x64 << 8 | 0x04;
+		spiTxData[0] = 0x6800;
+		HAL_GPIO_WritePin(ADIS_CS_GPIO_Port, ADIS_CS_Pin, 0);
+		//HAL_SPI_Transmit(&adisSPI, (uint8_t*) &spiTxData, 1, 100);
+		//HAL_GPIO_WritePin(ADIS_CS_GPIO_Port, ADIS_CS_Pin, 1);
+		//osDelay(1);
+		//spiTxData = 0x0000;
+		//HAL_SPI_Receive_DMA(&adisSPI, (uint8_t*) &spiRxData, 16);
+		HAL_SPI_TransmitReceive_DMA(&adisSPI, (uint8_t*) &spiTxData, (uint8_t*) &spiRxData, 17);
+/*		for (int i = 0; i < 17; i++)
+		{
+			HAL_SPI_Transmit(&adisSPI, (uint8_t*) &spiTxData, 1, 100);
+
+		}*/
+		//osSemaphoreWait(adisTransmitCpltHandle, 10);
+
+
+
+    osDelay(100);
+  }
+  /* USER CODE END StartAdisTask */
 }
 
 /* Private application code --------------------------------------------------*/

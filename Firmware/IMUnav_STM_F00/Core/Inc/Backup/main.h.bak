@@ -31,7 +31,8 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "adc.h"
+#include "spi.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -57,9 +58,11 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define hubI2C hi2c2
-#define gpsUART huart2
 #define oledI2C hfmpi2c1
+#define hubI2C hi2c2
+#define analogADC hadc1
+#define gpsUART huart2
+#define adisSPI hspi4
 #define LED1_Pin GPIO_PIN_4
 #define LED1_GPIO_Port GPIOE
 #define LED2_Pin GPIO_PIN_5
@@ -76,6 +79,14 @@ void Error_Handler(void);
 #define GPS_TX_GPIO_Port GPIOA
 #define GPS_RST_Pin GPIO_PIN_4
 #define GPS_RST_GPIO_Port GPIOA
+#define ADIS_CS_Pin GPIO_PIN_8
+#define ADIS_CS_GPIO_Port GPIOE
+#define ADIS_SYNC_Pin GPIO_PIN_9
+#define ADIS_SYNC_GPIO_Port GPIOE
+#define ADIS_RESET_Pin GPIO_PIN_10
+#define ADIS_RESET_GPIO_Port GPIOE
+#define ADIS_DR_Pin GPIO_PIN_11
+#define ADIS_DR_GPIO_Port GPIOE
 #define PWR_OFF_Pin GPIO_PIN_15
 #define PWR_OFF_GPIO_Port GPIOE
 #define HUB_SCL_Pin GPIO_PIN_10
