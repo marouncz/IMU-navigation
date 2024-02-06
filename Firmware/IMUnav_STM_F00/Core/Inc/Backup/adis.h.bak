@@ -1,0 +1,19 @@
+/*
+ * adis.h
+ *
+ *  Created on: Feb 6, 2024
+ *      Author: marou
+ */
+
+#ifndef INC_ADIS_H_
+#define INC_ADIS_H_
+
+void adisReset(void);
+
+void adisInit(void);
+
+void adisRead(void);
+
+void adisTriggerDMA(void);
+
+#endif /* INC_ADIS_H_ */

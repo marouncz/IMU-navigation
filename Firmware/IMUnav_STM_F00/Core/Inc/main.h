@@ -58,11 +58,12 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define adisSPI hspi4
 #define oledI2C hfmpi2c1
 #define hubI2C hi2c2
 #define analogADC hadc1
 #define gpsUART huart2
-#define adisSPI hspi4
+#define lsmI2C hi2c3
 #define LED1_Pin GPIO_PIN_4
 #define LED1_GPIO_Port GPIOE
 #define LED2_Pin GPIO_PIN_5
@@ -87,6 +88,7 @@ void Error_Handler(void);
 #define ADIS_RESET_GPIO_Port GPIOE
 #define ADIS_DR_Pin GPIO_PIN_11
 #define ADIS_DR_GPIO_Port GPIOE
+#define ADIS_DR_EXTI_IRQn EXTI15_10_IRQn
 #define PWR_OFF_Pin GPIO_PIN_15
 #define PWR_OFF_GPIO_Port GPIOE
 #define HUB_SCL_Pin GPIO_PIN_10
@@ -101,7 +103,16 @@ void Error_Handler(void);
 #define HUB_SDA_GPIO_Port GPIOC
 
 /* USER CODE BEGIN Private defines */
+typedef struct
+{
+	double accelX;
+	double accelY;
+	double accelZ;
 
+	double gyroX;
+	double gyroY;
+	double gyroZ;
+}adisDataStruc;
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

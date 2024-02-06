@@ -1,0 +1,78 @@
+/*
+ * adis.c
+ *
+ *  Created on: Feb 6, 2024
+ *      Author: marou
+ */
+
+#include "adis.h"
+#include "main.h"
+#include "cmsis_os.h"
+#include "spi.h"
+
+volatile uint16_t spiRxData[17];
+volatile uint16_t spiTxData[17] =
+{ };
+GPIO_InitTypeDef GPIO_InitStruct = {0};
+adisDataStruc adisData;
+
+void adisReset(void)
+{
+	HAL_GPIO_WritePin(ADIS_CS_GPIO_Port, ADIS_CS_Pin, 1);
+	HAL_GPIO_WritePin(ADIS_RESET_GPIO_Port, ADIS_RESET_Pin, 0);
+	osDelay(100);
+	HAL_GPIO_WritePin(ADIS_RESET_GPIO_Port, ADIS_RESET_Pin, 1);
+	osDelay(1000);
+
+}
+
+void adisInit(void)
+{
+	HAL_SPI_Init(&adisSPI);
+
+	HAL_SPI_Transmit(&adisSPI, (uint8_t*) &spiTxData, 1, 100);
+	osDelay(1);
+
+	//select decimation filter for output DR 400Hz
+	spiTxData[0] = 1 << 15 | 0x64 << 8 | 0x04;
+	HAL_GPIO_WritePin(ADIS_CS_GPIO_Port, ADIS_CS_Pin, 0);
+	HAL_SPI_Transmit(&adisSPI, (uint8_t*) &spiTxData, 1, 100);
+	HAL_GPIO_WritePin(ADIS_CS_GPIO_Port, ADIS_CS_Pin, 1);
+	osDelay(1);
+	spiTxData[0] = 1 << 15 | 0x65 << 8 | 0x00;
+	HAL_GPIO_WritePin(ADIS_CS_GPIO_Port, ADIS_CS_Pin, 0);
+	HAL_SPI_Transmit(&adisSPI, (uint8_t*) &spiTxData, 1, 100);
+	HAL_GPIO_WritePin(ADIS_CS_GPIO_Port, ADIS_CS_Pin, 1);
+	osDelay(1);
+
+	//select MSC_CTRL to 32bit burst
+	spiTxData[0] = 1 << 15 | 0x60 << 8 | 0x01;
+	HAL_GPIO_WritePin(ADIS_CS_GPIO_Port, ADIS_CS_Pin, 0);
+	HAL_SPI_Transmit(&adisSPI, (uint8_t*) &spiTxData, 1, 100);
+	HAL_GPIO_WritePin(ADIS_CS_GPIO_Port, ADIS_CS_Pin, 1);
+	osDelay(1);
+	spiTxData[0] = 1 << 15 | 0x61 << 8 | 0b10;
+	HAL_GPIO_WritePin(ADIS_CS_GPIO_Port, ADIS_CS_Pin, 0);
+	HAL_SPI_Transmit(&adisSPI, (uint8_t*) &spiTxData, 1, 100);
+	HAL_GPIO_WritePin(ADIS_CS_GPIO_Port, ADIS_CS_Pin, 1);
+
+}
+
+void adisRead(void)
+{
+
+}
+
+void adisTriggerDMA(void)
+{
+	spiTxData[0] = 0x6800;
+	HAL_GPIO_WritePin(ADIS_CS_GPIO_Port, ADIS_CS_Pin, 0);
+	HAL_SPI_TransmitReceive_DMA(&adisSPI, (uint8_t*) &spiTxData,
+			(uint8_t*) &spiRxData, 17);
+}
+void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
+{
+	HAL_GPIO_WritePin(ADIS_CS_GPIO_Port, ADIS_CS_Pin, 1);
+}
+
+
