@@ -105,6 +105,7 @@ void Error_Handler(void);
 /* USER CODE BEGIN Private defines */
 typedef struct
 {
+	//struct size 54bytes/27words
 	double accelX;
 	double accelY;
 	double accelZ;
@@ -112,6 +113,8 @@ typedef struct
 	double gyroX;
 	double gyroY;
 	double gyroZ;
+	float temp;
+	uint16_t dataCNT;
 }adisDataStruc;
 /* USER CODE END Private defines */
 

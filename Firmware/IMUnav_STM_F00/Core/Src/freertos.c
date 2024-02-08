@@ -99,7 +99,7 @@ const osThreadAttr_t powerTask_attributes = {
 osThreadId_t adisTaskHandle;
 const osThreadAttr_t adisTask_attributes = {
   .name = "adisTask",
-  .stack_size = 128 * 4,
+  .stack_size = 1280 * 4,
   .priority = (osPriority_t) osPriorityRealtime3,
 };
 /* Definitions for lsmTask */
@@ -108,11 +108,6 @@ const osThreadAttr_t lsmTask_attributes = {
   .name = "lsmTask",
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityRealtime2,
-};
-/* Definitions for adisTransmitCplt */
-osSemaphoreId_t adisTransmitCpltHandle;
-const osSemaphoreAttr_t adisTransmitCplt_attributes = {
-  .name = "adisTransmitCplt"
 };
 
 /* Private function prototypes -----------------------------------------------*/
@@ -161,10 +156,6 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */
   /* USER CODE END RTOS_MUTEX */
-
-  /* Create the semaphores(s) */
-  /* creation of adisTransmitCplt */
-  adisTransmitCpltHandle = osSemaphoreNew(1, 1, &adisTransmitCplt_attributes);
 
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
@@ -448,12 +439,15 @@ void StartAdisTask(void *argument)
 	adisReset();
 	adisInit();
 
+	adisDataStruc adisLog[10];
+
+
 	/* Infinite loop */
   for(;;)
   {
-	  adisRead();
-	//osSemaphoreWait(adisTransmitCpltHandle, 10);
-    osDelay(3);
+	  adisLog[0] = adisRead();
+
+
   }
   /* USER CODE END StartAdisTask */
 }

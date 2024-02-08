@@ -9,11 +9,12 @@
 #define INC_ADIS_H_
 
 #include <stdint.h>
+#include "main.h"
 void adisReset(void);
 
 void adisInit(void);
 
-void adisRead(void);
+adisDataStruc adisRead(void);
 
 void adisTriggerDMA(void);
 

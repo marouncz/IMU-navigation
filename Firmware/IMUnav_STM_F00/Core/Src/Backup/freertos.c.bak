@@ -109,11 +109,6 @@ const osThreadAttr_t lsmTask_attributes = {
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityRealtime2,
 };
-/* Definitions for adisTransmitCplt */
-osSemaphoreId_t adisTransmitCpltHandle;
-const osSemaphoreAttr_t adisTransmitCplt_attributes = {
-  .name = "adisTransmitCplt"
-};
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -161,10 +156,6 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */
   /* USER CODE END RTOS_MUTEX */
-
-  /* Create the semaphores(s) */
-  /* creation of adisTransmitCplt */
-  adisTransmitCpltHandle = osSemaphoreNew(1, 1, &adisTransmitCplt_attributes);
 
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
@@ -448,12 +439,15 @@ void StartAdisTask(void *argument)
 	adisReset();
 	adisInit();
 
+	adisDataStruc adisLog[1];
+
+
 	/* Infinite loop */
   for(;;)
   {
-	  adisRead();
-	//osSemaphoreWait(adisTransmitCpltHandle, 10);
-    osDelay(100);
+	  adisLog[0] = adisRead();
+
+
   }
   /* USER CODE END StartAdisTask */
 }
@@ -481,7 +475,11 @@ void StartLsmTask(void *argument)
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
   if(GPIO_Pin == ADIS_DR_Pin) {
-	  adisTriggerDMA();
+	  if(adisReady())
+	  {
+		  adisTriggerDMA();
+	  }
+
 
   }
 }

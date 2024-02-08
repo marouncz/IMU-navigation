@@ -9,15 +9,23 @@
 #include "main.h"
 #include "cmsis_os.h"
 #include "spi.h"
+#include "FreeRTOS.h"
+#include "task.h"
+#include "cmsis_os2.h"
 
 volatile uint16_t spiRxData[17];
 volatile uint16_t spiTxData[17] =
 { };
-GPIO_InitTypeDef GPIO_InitStruct = {0};
+GPIO_InitTypeDef GPIO_InitStruct =
+{ 0 };
 adisDataStruc adisData;
 
 uint8_t adisInitCplt = 0;
 
+/* Definitions for adisTransmitCplt */
+osSemaphoreId_t adisTransmitCpltHandle;
+const osSemaphoreAttr_t adisTransmitCplt_attributes =
+{ .name = "adisTransmitCplt" };
 
 void adisReset(void)
 {
@@ -35,6 +43,7 @@ void adisInit(void)
 
 	HAL_SPI_Transmit(&adisSPI, (uint8_t*) &spiTxData, 1, 100);
 	osDelay(1);
+	adisTransmitCpltHandle = osSemaphoreNew(1, 1, &adisTransmitCplt_attributes);
 
 	//select decimation filter for output DR 400Hz
 	spiTxData[0] = 1 << 15 | 0x64 << 8 | 0x04;
@@ -63,20 +72,36 @@ void adisInit(void)
 
 }
 
-void adisRead(void)
+adisDataStruc adisRead(void)
 {
+	osSemaphoreAcquire(adisTransmitCpltHandle, osWaitForever);
+	adisData.gyroX = ((int32_t) (spiRxData[3] << 16) + (int32_t) (spiRxData[2]))
+			* (0.025 / 65536);
+	adisData.gyroY = ((int32_t) (spiRxData[5] << 16) + (int32_t) (spiRxData[4]))
+			* (0.025 / 65536);
+	adisData.gyroZ = ((int32_t) (spiRxData[7] << 16) + (int32_t) (spiRxData[6]))
+			* (0.025 / 65536);
 
- adisData.gyroX =  ((int16_t) (spiRxData[3] << 16) + (int16_t) (spiRxData[2]))*(0.025/65536);
- adisData.gyroY =  ((int16_t) (spiRxData[5] << 16) + (int16_t) (spiRxData[4]))*(0.025/65536);
- adisData.gyroZ =  ((int16_t) (spiRxData[7] << 16) + (int16_t) (spiRxData[6]))*(0.025/65536);
+	adisData.accelX =
+			((int32_t) (spiRxData[9] << 16) + (int32_t) (spiRxData[8]))
+					* (0.00245 / 65536);
+	adisData.accelY = ((int32_t) (spiRxData[11] << 16)
+			+ (int32_t) (spiRxData[10])) * (0.00245 / 65536);
+	adisData.accelZ = ((int32_t) (spiRxData[13] << 16)
+			+ (int32_t) (spiRxData[12])) * (0.00245 / 65536);
 
- adisData.accelX =  ((int32_t) (spiRxData[9] << 16) + (int32_t) (spiRxData[8]))*(0.00245/65536);
- adisData.accelY =  ((int32_t) (spiRxData[11] << 16) + (int32_t) (spiRxData[10]))*(0.00245/65536);
- adisData.accelZ =  ((int32_t) (spiRxData[13] << 16) + (int32_t) (spiRxData[12]))*(0.00245/65536);
+	adisData.temp = ((int16_t) (spiRxData[14]))*0.1;
+
+	adisData.dataCNT = ((int16_t) (spiRxData[15]));
+
+
+	return adisData;
+
 }
 
 void adisTriggerDMA(void)
 {
+
 	spiTxData[0] = 0x6800;
 	HAL_GPIO_WritePin(ADIS_CS_GPIO_Port, ADIS_CS_Pin, 0);
 	HAL_SPI_TransmitReceive_DMA(&adisSPI, (uint8_t*) &spiTxData,
@@ -92,6 +117,6 @@ uint8_t adisReady(void)
 void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi)
 {
 	HAL_GPIO_WritePin(ADIS_CS_GPIO_Port, ADIS_CS_Pin, 1);
+	osSemaphoreRelease(adisTransmitCpltHandle);
 }
-
 
