@@ -32,6 +32,7 @@
 #include "spi.h"
 #include "adis.h"
 #include "ssd1306_fonts.h"
+#include "lsm.h"
 
 /* USER CODE END Includes */
 
@@ -465,10 +466,15 @@ void StartAdisTask(void *argument)
 void StartLsmTask(void *argument)
 {
   /* USER CODE BEGIN StartLsmTask */
+	osDelay(1000);
+	lsmInit();
+	osDelay(100);
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+	  lsmDataStruc lsmLog[10];
+	  lsmLog[0] = lsmRead();
+
   }
   /* USER CODE END StartLsmTask */
 }
@@ -477,14 +483,19 @@ void StartLsmTask(void *argument)
 /* USER CODE BEGIN Application */
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-  if(GPIO_Pin == ADIS_DR_Pin) {
-	  if(adisReady())
-	  {
-		  adisTriggerDMA();
-	  }
+	if (GPIO_Pin == ADIS_DR_Pin)
+	{
+		if (adisReady())
+		{
+			adisTriggerDMA();
+		}
+	}
 
+	if (GPIO_Pin == LSM_INTMAG_Pin)
+	{
+		lsmTriggerDMA();
 
-  }
+	}
 }
 /* USER CODE END Application */
 

@@ -1514,6 +1514,7 @@ W25Q_STATE W25Q_GetExtendedAddr(u8_t *outAddr) {
  * @param[in] pageShift Byte to shift inside page
  * @return byte-address
  */
+
 u32_t page_to_addr(u32_t pageNum, u8_t pageShift) {
 	return pageNum * MEM_PAGE_SIZE + pageShift;
 }

@@ -32,6 +32,7 @@
 #include "spi.h"
 #include "adis.h"
 #include "ssd1306_fonts.h"
+#include "lsm.h"
 
 /* USER CODE END Includes */
 
@@ -465,10 +466,14 @@ void StartAdisTask(void *argument)
 void StartLsmTask(void *argument)
 {
   /* USER CODE BEGIN StartLsmTask */
+	osDelay(1000);
+	lsmInit();
+	osDelay(100);
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+	  lsmRead();
+    osDelay(100);
   }
   /* USER CODE END StartLsmTask */
 }

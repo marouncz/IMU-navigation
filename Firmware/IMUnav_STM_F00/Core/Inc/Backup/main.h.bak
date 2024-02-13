@@ -99,8 +99,14 @@ void Error_Handler(void);
 #define OLED_SCL_GPIO_Port GPIOD
 #define OLED_SDA_Pin GPIO_PIN_15
 #define OLED_SDA_GPIO_Port GPIOD
+#define LSM_INTMAG_Pin GPIO_PIN_6
+#define LSM_INTMAG_GPIO_Port GPIOC
+#define LSM_INT1ACCL_Pin GPIO_PIN_7
+#define LSM_INT1ACCL_GPIO_Port GPIOC
 #define HUB_SDA_Pin GPIO_PIN_12
 #define HUB_SDA_GPIO_Port GPIOC
+#define LSM_INT2ACCL_Pin GPIO_PIN_5
+#define LSM_INT2ACCL_GPIO_Port GPIOB
 
 /* USER CODE BEGIN Private defines */
 typedef struct
