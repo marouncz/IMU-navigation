@@ -31,6 +31,7 @@
 #include "w25q_mem.h"
 #include "spi.h"
 #include "adis.h"
+#include "ssd1306_fonts.h"
 
 /* USER CODE END Includes */
 
@@ -348,6 +349,8 @@ void StartOledTask(void *argument)
 {
   /* USER CODE BEGIN StartOledTask */
 	ssd1306_Init();
+	ssd1306_WriteString("IMUnav_STM_F00", Font_7x10 , White);
+	ssd1306_UpdateScreen();
   /* Infinite loop */
   for(;;)
   {

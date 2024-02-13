@@ -31,6 +31,7 @@
 #include "w25q_mem.h"
 #include "spi.h"
 #include "adis.h"
+#include "ssd1306_fonts.h"
 
 /* USER CODE END Includes */
 
@@ -99,7 +100,7 @@ const osThreadAttr_t powerTask_attributes = {
 osThreadId_t adisTaskHandle;
 const osThreadAttr_t adisTask_attributes = {
   .name = "adisTask",
-  .stack_size = 128 * 4,
+  .stack_size = 1280 * 4,
   .priority = (osPriority_t) osPriorityRealtime3,
 };
 /* Definitions for lsmTask */
@@ -348,6 +349,8 @@ void StartOledTask(void *argument)
 {
   /* USER CODE BEGIN StartOledTask */
 	ssd1306_Init();
+	ssd1306_WriteString("IMUnav_STM_F00", Font_7x10 , White);
+	ssd1306_UpdateScreen();
   /* Infinite loop */
   for(;;)
   {
@@ -439,7 +442,7 @@ void StartAdisTask(void *argument)
 	adisReset();
 	adisInit();
 
-	adisDataStruc adisLog[1];
+	adisDataStruc adisLog[10];
 
 
 	/* Infinite loop */
