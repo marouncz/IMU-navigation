@@ -75,25 +75,23 @@ void adisInit(void)
 adisDataStruc adisRead(void)
 {
 	osSemaphoreAcquire(adisTransmitCpltHandle, osWaitForever);
-	adisData.gyroX = ((int32_t) (spiRxData[3] << 16) + (int32_t) (spiRxData[2]))
+	adisData.gyroX = ((int32_t) ((spiRxData[3] << 16) | spiRxData[2]))
 			* (0.025 / 65536);
-	adisData.gyroY = ((int32_t) (spiRxData[5] << 16) + (int32_t) (spiRxData[4]))
+	adisData.gyroY = ((int32_t) ((spiRxData[5] << 16) | spiRxData[4]))
 			* (0.025 / 65536);
-	adisData.gyroZ = ((int32_t) (spiRxData[7] << 16) + (int32_t) (spiRxData[6]))
+	adisData.gyroZ = ((int32_t) ((spiRxData[7] << 16) | spiRxData[6]))
 			* (0.025 / 65536);
 
-	adisData.accelX =
-			((int32_t) (spiRxData[9] << 16) + (int32_t) (spiRxData[8]))
-					* (0.00245 / 65536);
-	adisData.accelY = ((int32_t) (spiRxData[11] << 16)
-			+ (int32_t) (spiRxData[10])) * (0.00245 / 65536);
-	adisData.accelZ = ((int32_t) (spiRxData[13] << 16)
-			+ (int32_t) (spiRxData[12])) * (0.00245 / 65536);
+	adisData.accelX = ((int32_t) ((spiRxData[9] << 16) | spiRxData[8]))
+			* (0.00245 / 65536);
+	adisData.accelY = ((int32_t) ((spiRxData[11] << 16) | spiRxData[10]))
+			* (0.00245 / 65536);
+	adisData.accelZ = ((int32_t) ((spiRxData[13] << 16) | spiRxData[12]))
+			* (0.00245 / 65536);
 
-	adisData.temp = ((int16_t) (spiRxData[14]))*0.1;
+	adisData.temp = ((int16_t) (spiRxData[14])) * 0.1;
 
 	adisData.dataCNT = ((int16_t) (spiRxData[15]));
-
 
 	return adisData;
 
