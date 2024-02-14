@@ -1446,7 +1446,7 @@
     (pad "2" thru_hole circle (at 6.5 4.5 180) (size 2 2) (drill 1.1) (layers "*.Cu" "*.Mask")
       (net 28 "BUTTON4") (pinfunction "B") (pintype "passive") (tstamp 6d3ca114-d96a-4e53-bd9e-909f6b3208f8))
     (model "${KICAD6_3DMODEL_DIR}/Button_Switch_THT.3dshapes/SW_PUSH_6mm_H13mm.wrl"
-      (offset (xyz 0 0 0))
+      (offset (xyz 0 0 4))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
     )
@@ -1583,7 +1583,7 @@
     (pad "2" thru_hole circle (at 6.5 4.5 180) (size 2 2) (drill 1.1) (layers "*.Cu" "*.Mask")
       (net 25 "BUTTON1") (pinfunction "B") (pintype "passive") (tstamp 3bc32531-3469-491a-bd2e-13aedb3bc44c))
     (model "${KICAD6_3DMODEL_DIR}/Button_Switch_THT.3dshapes/SW_PUSH_6mm_H13mm.wrl"
-      (offset (xyz 0 0 0))
+      (offset (xyz 0 0 4))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
     )
@@ -11199,7 +11199,7 @@
     (pad "2" thru_hole circle (at 6.5 4.5 180) (size 2 2) (drill 1.1) (layers "*.Cu" "*.Mask")
       (net 26 "BUTTON2") (pinfunction "B") (pintype "passive") (tstamp 039301a4-15ca-4817-a05b-686ceef6f69b))
     (model "${KICAD6_3DMODEL_DIR}/Button_Switch_THT.3dshapes/SW_PUSH_6mm_H13mm.wrl"
-      (offset (xyz 0 0 0))
+      (offset (xyz 0 0 4))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
     )
@@ -12677,7 +12677,7 @@
     (pad "2" thru_hole circle (at 6.5 4.5 180) (size 2 2) (drill 1.1) (layers "*.Cu" "*.Mask")
       (net 27 "BUTTON3") (pinfunction "B") (pintype "passive") (tstamp 0b76c1fa-2b68-4aef-b237-d7ada332f362))
     (model "${KICAD6_3DMODEL_DIR}/Button_Switch_THT.3dshapes/SW_PUSH_6mm_H13mm.wrl"
-      (offset (xyz 0 0 0))
+      (offset (xyz 0 0 4))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
     )
@@ -13555,7 +13555,7 @@
     (pad "4" thru_hole oval (at 3.81 0 90) (size 1.7 1.7) (drill 1) (layers "*.Cu" "*.Mask")
       (net 38 "OLED_SDA") (pinfunction "SDA") (pintype "input") (tstamp bcf77845-e8d1-488a-9437-a94b065fa939))
     (model "${KIPRJMOD}/../IMUnav-library/OLED-128x64-0.96.step"
-      (offset (xyz 34.32 -7.2 6.5))
+      (offset (xyz 34.32 -7.2 18))
       (scale (xyz 1 1 1))
       (rotate (xyz 0 0 0))
     )
