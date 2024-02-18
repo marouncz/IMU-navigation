@@ -29,7 +29,7 @@ void lsmInit(void)
 	uint8_t configData[4] = {0b10001100, 0b00000000, 0b00000001, 0b00000000};
 	HAL_I2C_Init(&lsmI2C);
 	HAL_I2C_Mem_Write(&lsmI2C, LSM_MAG_ADDRESS, 0xE0, 1, configData, 4, 100);
-	HAL_I2C_Mem_Read(&lsmI2C, LSM_MAG_ADDRESS, 0xE7, 1, lsmRxData, 7, 100);
+	HAL_I2C_Mem_Read(&lsmI2C, LSM_MAG_ADDRESS, 0xE7, 1, &lsmRxData, 7, 100);
 }
 
 lsmDataStruc lsmRead(void)
@@ -49,7 +49,7 @@ lsmDataStruc lsmRead(void)
 void lsmTriggerDMA(void)
 {
 	HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, 0);
-	HAL_I2C_Mem_Read_DMA(&lsmI2C, LSM_MAG_ADDRESS, 0xE7, 1, lsmRxData, 7);
+	HAL_I2C_Mem_Read_DMA(&lsmI2C, LSM_MAG_ADDRESS, 0xE7, 1, &lsmRxData, 7);
 
 
 }

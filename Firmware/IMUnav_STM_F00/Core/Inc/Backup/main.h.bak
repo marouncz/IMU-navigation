@@ -101,6 +101,7 @@ void Error_Handler(void);
 #define OLED_SDA_GPIO_Port GPIOD
 #define LSM_INTMAG_Pin GPIO_PIN_6
 #define LSM_INTMAG_GPIO_Port GPIOC
+#define LSM_INTMAG_EXTI_IRQn EXTI9_5_IRQn
 #define LSM_INT1ACCL_Pin GPIO_PIN_7
 #define LSM_INT1ACCL_GPIO_Port GPIOC
 #define HUB_SDA_Pin GPIO_PIN_12
@@ -122,6 +123,17 @@ typedef struct
 	float temp;
 	uint16_t dataCNT;
 }adisDataStruc;
+
+typedef struct
+{
+	//struct size 12bytes/6words
+	float magX;
+	float magY;
+	float magZ;
+
+}lsmDataStruc;
+
+
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

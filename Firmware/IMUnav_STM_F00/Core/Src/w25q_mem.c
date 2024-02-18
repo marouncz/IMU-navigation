@@ -770,6 +770,7 @@ W25Q_STATE W25Q_ProgramRaw(u8_t *buf, u16_t data_len, u32_t rawAddr) {
 		w25q_delay(1);
 
 	return W25Q_OK;
+
 }
 
 /**

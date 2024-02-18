@@ -59,7 +59,7 @@
 osThreadId_t defaultTaskHandle;
 const osThreadAttr_t defaultTask_attributes = {
   .name = "defaultTask",
-  .stack_size = 128 * 4,
+  .stack_size = 1024 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for keepaliveTask */
@@ -111,6 +111,18 @@ const osThreadAttr_t lsmTask_attributes = {
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityRealtime2,
 };
+/* Definitions for loggerTask */
+osThreadId_t loggerTaskHandle;
+const osThreadAttr_t loggerTask_attributes = {
+  .name = "loggerTask",
+  .stack_size = 256 * 4,
+  .priority = (osPriority_t) osPriorityNormal2,
+};
+/* Definitions for adisQ */
+osMessageQueueId_t adisQHandle;
+const osMessageQueueAttr_t adisQ_attributes = {
+  .name = "adisQ"
+};
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -125,6 +137,7 @@ void StartOledTask(void *argument);
 void StartPowerTask(void *argument);
 void StartAdisTask(void *argument);
 void StartLsmTask(void *argument);
+void StartLoggerTask(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -167,8 +180,13 @@ void MX_FREERTOS_Init(void) {
   /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
 
+  /* Create the queue(s) */
+  /* creation of adisQ */
+  adisQHandle = osMessageQueueNew (16, sizeof(adisDataStruc), &adisQ_attributes);
+
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
+
   /* USER CODE END RTOS_QUEUES */
 
   /* Create the thread(s) */
@@ -195,6 +213,9 @@ void MX_FREERTOS_Init(void) {
 
   /* creation of lsmTask */
   lsmTaskHandle = osThreadNew(StartLsmTask, NULL, &lsmTask_attributes);
+
+  /* creation of loggerTask */
+  loggerTaskHandle = osThreadNew(StartLoggerTask, NULL, &loggerTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -243,7 +264,7 @@ void StartKeepaliveTask(void *argument)
 		u8_t in_page_shift = 0;
 		u8_t page_number = 0;
 		// write data
-		//W25Q_ProgramByte(byte, in_page_shift, page_number);
+		W25Q_ProgramByte(byte, in_page_shift, page_number);
 		// read data
 		W25Q_ReadByte(&byte_read, in_page_shift, page_number);
 
@@ -269,9 +290,14 @@ void StartKeepaliveTask(void *argument)
 		u16_t len = sizeof(_str);	// length of structure in bytes
 
 		// program structure
-		//W25Q_ProgramData((u8_t*) &_str, len, 1+in_page_shift, page_number);
+		W25Q_ProgramData((u8_t*) &_str, len, 1+in_page_shift, page_number);
 		// read structure to another instance
 		W25Q_ReadData((u8_t*) &_str2, len, 1+in_page_shift, page_number);
+
+		//W25Q_EraseChip();
+		uint8_t testBuff[256] = {};
+
+
 
 		W25Q_Sleep();	// go to sleep
 
@@ -443,13 +469,15 @@ void StartAdisTask(void *argument)
 	adisReset();
 	adisInit();
 
-	adisDataStruc adisLog[10];
+	adisDataStruc adisLog;
 
 
 	/* Infinite loop */
   for(;;)
   {
-	  adisLog[0] = adisRead();
+	  adisLog = adisRead();
+	  osMessageQueuePut(adisQHandle,  &adisLog, 1, osWaitForever);
+
 
 
   }
@@ -472,24 +500,58 @@ void StartLsmTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-	  lsmRead();
-    osDelay(100);
+	  lsmDataStruc lsmLog;
+	  lsmLog = lsmRead();
+
+
   }
   /* USER CODE END StartLsmTask */
+}
+
+/* USER CODE BEGIN Header_StartLoggerTask */
+/**
+* @brief Function implementing the loggerTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartLoggerTask */
+void StartLoggerTask(void *argument)
+{
+  /* USER CODE BEGIN StartLoggerTask */
+	adisDataStruc adisStore[10];
+	uint8_t i = 0;
+  /* Infinite loop */
+  for(;;)
+  {
+
+    osDelay(10);
+    osMessageQueueGet(adisQHandle, &adisStore[i], 1, osWaitForever);
+    i++;
+    if(i==10)
+    {
+    	i=0;
+    }
+  }
+  /* USER CODE END StartLoggerTask */
 }
 
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-  if(GPIO_Pin == ADIS_DR_Pin) {
-	  if(adisReady())
-	  {
-		  adisTriggerDMA();
-	  }
+	if (GPIO_Pin == ADIS_DR_Pin)
+	{
+		if (adisReady())
+		{
+			adisTriggerDMA();
+		}
+	}
 
+	if (GPIO_Pin == LSM_INTMAG_Pin)
+	{
+		lsmTriggerDMA();
 
-  }
+	}
 }
 /* USER CODE END Application */
 
