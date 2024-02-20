@@ -509,7 +509,7 @@ void StartLsmTask(void *argument)
 }
 
 /* USER CODE BEGIN Header_StartLoggerTask */
-volatile adisDataStruc adisStore[10];
+adisDataStruc adisStore[10];
 /**
 * @brief Function implementing the loggerTask thread.
 * @param argument: Not used
@@ -526,7 +526,7 @@ void StartLoggerTask(void *argument)
   {
 
     osDelay(10);
-    osMessageQueueGet(adisQHandle, &adisStore[i], 1, osWaitForever);
+    osMessageQueueGet(adisQHandle, &adisStore[i], NULL, osWaitForever);
     i++;
     if(i==10)
     {
