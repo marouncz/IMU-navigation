@@ -115,7 +115,7 @@ const osThreadAttr_t lsmTask_attributes = {
 osThreadId_t loggerTaskHandle;
 const osThreadAttr_t loggerTask_attributes = {
   .name = "loggerTask",
-  .stack_size = 256 * 4,
+  .stack_size = 2560 * 4,
   .priority = (osPriority_t) osPriorityNormal2,
 };
 /* Definitions for adisQ */
@@ -139,6 +139,7 @@ void StartAdisTask(void *argument);
 void StartLsmTask(void *argument);
 void StartLoggerTask(void *argument);
 
+extern void MX_USB_DEVICE_Init(void);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
 /* Hook prototypes */
@@ -236,6 +237,8 @@ void MX_FREERTOS_Init(void) {
 /* USER CODE END Header_StartDefaultTask */
 void StartDefaultTask(void *argument)
 {
+  /* init code for USB_DEVICE */
+  MX_USB_DEVICE_Init();
   /* USER CODE BEGIN StartDefaultTask */
   /* Infinite loop */
   for(;;)
@@ -509,6 +512,7 @@ void StartLsmTask(void *argument)
 }
 
 /* USER CODE BEGIN Header_StartLoggerTask */
+adisDataStruc adisStore[10];
 /**
 * @brief Function implementing the loggerTask thread.
 * @param argument: Not used
@@ -518,14 +522,14 @@ void StartLsmTask(void *argument)
 void StartLoggerTask(void *argument)
 {
   /* USER CODE BEGIN StartLoggerTask */
-	adisDataStruc adisStore[10];
+
 	uint8_t i = 0;
   /* Infinite loop */
   for(;;)
   {
 
     osDelay(10);
-    osMessageQueueGet(adisQHandle, &adisStore[i], 1, osWaitForever);
+    osMessageQueueGet(adisQHandle, &adisStore[i], NULL, osWaitForever);
     i++;
     if(i==10)
     {
