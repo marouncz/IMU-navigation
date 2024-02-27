@@ -80,6 +80,8 @@ void Error_Handler(void);
 #define GPS_TX_GPIO_Port GPIOA
 #define GPS_RST_Pin GPIO_PIN_4
 #define GPS_RST_GPIO_Port GPIOA
+#define SD_CARDSW_Pin GPIO_PIN_1
+#define SD_CARDSW_GPIO_Port GPIOB
 #define ADIS_CS_Pin GPIO_PIN_8
 #define ADIS_CS_GPIO_Port GPIOE
 #define ADIS_SYNC_Pin GPIO_PIN_9
