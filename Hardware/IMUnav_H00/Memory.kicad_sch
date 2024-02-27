@@ -4,6 +4,13 @@
 
   (paper "A4")
 
+  (title_block
+    (title "IMUnav")
+    (date "2023-12-21")
+    (rev "H00")
+    (comment 1 "Inertial navigation unit")
+  )
+
   (lib_symbols
     (symbol "Connector:Micro_SD_Card_Det_Hirose_DM3AT" (in_bom yes) (on_board yes)
       (property "Reference" "J" (at -16.51 17.78 0)
@@ -634,6 +641,15 @@
   (wire (pts (xy 106.68 105.41) (xy 106.68 132.08))
     (stroke (width 0) (type default))
     (uuid f8bd66f1-6a59-4ff3-b2d0-7374b2853a0f)
+  )
+
+  (text "External FLASH" (at 139.7 105.41 0)
+    (effects (font (size 2.54 2.54) (thickness 0.508) bold) (justify left bottom))
+    (uuid e9f67b5b-6e68-4469-8cec-4df4528da60b)
+  )
+  (text "microSD card" (at 152.4 27.94 0)
+    (effects (font (size 2.54 2.54) (thickness 0.508) bold) (justify left bottom))
+    (uuid fc0537bb-5fbb-46ef-87a7-05283efd3c34)
   )
 
   (hierarchical_label "QSPI_IO2" (shape input) (at 81.28 129.54 180) (fields_autoplaced)

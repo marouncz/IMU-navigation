@@ -2,19 +2,8 @@
 \phantomsection
 \addcontentsline{toc}{chapter}{Úvod}
 
+Tato práce se zabývá poměrně komplexní problematikou inerciální navigace pro použití uvnitř budov a jejím sestrojením, tedy určováním polohy pomocí „black boxu“ který své údaje o pohybu určí primárně z údajů o lineárním zrychlení z akcelerometru a úhlové rychlosti z gyroskopu pro omezení potřeby neustálé dostupnosti signálu z globálních navigačních systémů.
 
-Úvod studentské práce, např\,\dots
+Jsou popsány algoritmy pro zpracování dat z šestiosé inerciální jednotky s nehybně umístěnými \ac{MEMS} gyroskopy a akcelerometry, což umožňuje značnou miniaturizaci a snížení ceny, v porovnání s osvědčenými systémy využívající velké a složité mechanické konstrukce gimbalů a gyroskopů. Přestože se přesnost senzorů stále zlepšuje, i díky malé odchylce měřených dat může rychle narůstat chyba odhadované polohy díky integraci úhlové rychlosti a dvojité integraci lineárního zrychlení. Z tohoto důvodu je jednotka opatřena i magnetometrem a \ac{GNSS} modulem pro možnost fúze dalších dat pro co největší zmenšení chyby, tomuto se ovšem bude věnovat až navazující bakalářská práce.
 
-Nečíslovaná kapitola Úvod obsahuje \uv{seznámení} čtenáře s~problematikou práce.
-Typicky se zde uvádí:
-(a) do jaké tematické oblasti práce spadá, (b) co jsou hlavní cíle celé práce a (c) jakým způsobem jich bylo dosaženo.
-Úvod zpravidla nepřesahuje jednu stranu.
-Poslední odstavec Úvodu standardně představuje základní strukturu celého dokumentu.
-
-\footnote{Tato věta je pouze ukázkou použití příkazů pro sazbu zkratek.}
-
-Šablona je nastavena na \emph{dvoustranný tisk}.
-Nebuďte překvapeni, že ve vzniklém PDF jsou volné stránky.
-Je to proto, aby důležité stránky jako např.\ začátky kapitol začínaly po vytisknutí a svázání vždy na pravé straně.
-%
-Pokud máte nějaký závažný důvod sázet (a~zejména tisknout) jednostranně, nezapomeňte si přepnout volbu \texttt{twoside} na \texttt{oneside}!
+Jsou také věnovány kapitoly samotnému návrhu inerciální jednotky, minimálním požadavkům na komunikace a jejich počtům a rychlostem, způsobu zaznamenávání dat a celkovému blokovému konceptu. V poslední kapitole je také popsán návrh desky plošných spojů inerciální jednotky. 

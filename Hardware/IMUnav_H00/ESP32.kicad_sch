@@ -4,6 +4,13 @@
 
   (paper "A4")
 
+  (title_block
+    (title "IMUnav")
+    (date "2023-12-21")
+    (rev "H00")
+    (comment 1 "Inertial navigation unit")
+  )
+
   (lib_symbols
     (symbol "Device:C" (pin_numbers hide) (pin_names (offset 0.254)) (in_bom yes) (on_board yes)
       (property "Reference" "C" (at 0.635 2.54 0)
@@ -878,6 +885,11 @@
   (wire (pts (xy 166.37 34.29) (xy 182.88 34.29))
     (stroke (width 0) (type default))
     (uuid fe10daa7-8df0-49ae-b076-4ae80c0ac5a7)
+  )
+
+  (text "ESP32\nWiFi/BT interface" (at 83.82 71.12 0)
+    (effects (font (size 2.54 2.54) (thickness 0.508) bold) (justify left bottom))
+    (uuid e3a524c8-7e38-4748-ac2e-7a6b8897f09e)
   )
 
   (hierarchical_label "ESP_TX1" (shape input) (at 199.39 137.16 0) (fields_autoplaced)

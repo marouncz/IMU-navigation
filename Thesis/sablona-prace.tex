@@ -108,8 +108,18 @@
 %%%%%vlastni balicky
 \usepackage{makecell}
 \usepackage{siunitx}
+\sisetup{output-decimal-marker = {,}}
 \DeclareSIUnit\LSB{LSB}
+\sisetup{
+  inter-unit-product=\ensuremath{{\cdot}},
+%  tight-spacing=true,
+}
+\usepackage{subfigure}
 \usepackage{tablefootnote}
+\usepackage{amsmath}
+\usepackage[thinc]{esdiff}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%      Definice informací o dokumentu             %%%%%%%%%%
@@ -175,7 +185,7 @@
 % Vysázení stránky s rozšířeným abstraktem
 % (pokud píšete práci v češtině či slovenštině, vložení rozšířeného abstraktu zrušte;
 %  pro semestrální projekt také není potřeba rozšířený abstrakt uvádět)
-\input{text/rozsireny_abstrakt}
+%\input{text/rozsireny_abstrakt}
 
 %%% Vysázení citace práce
 \makecitation
@@ -199,7 +209,7 @@
 
 %%% Vysázení seznamu výpisů kódu
 % (vynechejte, pokud máte dva nebo méně výpisů)
-\lstlistoflistings
+%\lstlistoflistings
 
 \cleardoublepage\pagestyle{plain}   % zapnutí číslování stránek
 
@@ -208,24 +218,22 @@
 \include{text/uvod}
 
 %%% Vložení souboru 'text/cile.tex' s úvodem
-\include{text/cile}
+%\include{text/cile}
 
-%%% Vložení souboru 'text/reseni' s popisem řešení práce
-% (rozdělte na více souborů či kapitol, pokud je vhodné)
-\include{text/reseni}
+\include{text/algoritmusINS}
+\include{text/senzory}
+\include{text/hardware}
 
-%%% Vložení souboru 'text/vysledky' s popisem vysledků práce
-% (rozdělte na více souborů či kapitol, pokud je vhodné)
-\include{text/vysledky}
 
-%%% Vložení souboru 'text/zaver' se závěrem
 \include{text/zaver}
 
 %%% Vložení souboru 'text/literatura' se seznamem zdrojů
-\include{text/bibliografie}
+%\include{text/bibliografie}
+\include{text/bibliografie_Ordered}
 
 %%% Vložení souboru 'text/zkratky' se seznam použitých symbolů, veličin a zkratek
 \include{text/zkratky}
+%\include{text/zkratkyOrder}
 
 %%% Začátek příloh
 \appendix

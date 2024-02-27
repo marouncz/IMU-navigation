@@ -42,6 +42,20 @@
 \usepackage{booktabs} % Balíček, který umožňuje v tabulce používat
                       % příkazy \toprule, \midrule, \bottomrule
 
+%%%%%vlastni balicky
+\usepackage{makecell}
+\usepackage{siunitx}
+\sisetup{output-decimal-marker = {,}}
+\DeclareSIUnit\LSB{LSB}
+\sisetup{
+  inter-unit-product=\ensuremath{{\cdot}},
+%  tight-spacing=true,
+}
+\usepackage{subfigure}
+\usepackage{tablefootnote}
+\usepackage{amsmath}
+\usepackage[thinc]{esdiff}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%      Definice informací o dokumentu             %%%%%%%%%%
@@ -90,41 +104,171 @@
 	\frametitle{Cíle práce}
 	\begin{itemize}
 			\item Nastudovat
-			\item Popsat
-				\begin{itemize}
-					\item nastudované
+			\begin{itemize}
+					\item dostupné inerciální jednotky
 				\end{itemize}
-			\item Implementovat
+			\item Hardware
 				\begin{itemize}
-					\item nastudované
-					\item nové
+					\item vybrat vhodné senzory a komponenty bezdrátové jednotky
+					\item analyzovat potřeby záznamu dat a jejich ukládání
+					\item návrh DPS a realizace
 				\end{itemize}
-			\item Porovnat a vyhodnotit
-				\begin{itemize}
-						\item výsledky
-				\end{itemize}
+
 	\end{itemize}
 \end{frame}
+
+%%%%%%%%%%%%%
+\begin{frame} 
+	\frametitle{Princip fungování inerciální navigace}
+	
+			\begin{figure}%	
+				\centering
+				
+				\includegraphics[width=0.85\columnwidth]{obrazky/StrapdownBlock}
+				%lze vložit popisek, ale povetšinou je to v prezentaci zbytečné
+				%\caption{Blokové schéma algoritmu strapdown inerciální navigace, převzato z [1] [2]}%
+				%\label{obr:ukazka}
+			\end{figure}
+			\tiny [1] TITTERTON, D. H. a WESTON, J. L. \textit{Strapdown inertial navigation technology}. Second edition. Progress in astronautics and aeronautics, 207. Reston, VA: American Institute of Aeronautics and Astronautics, c2004. ISBN 1-56347-693-2.
+	
+\end{frame} 
 
 
 %%%%%%%%%%%%%
 \begin{frame} 
-	\frametitle{Klíčové nástroje}
+	\frametitle{Fúze dat z jiných senzorů}
+		\begin{alertblock}{Nepřesnost}
+		S časem díky integraci roste chyba měření.
+		\end{alertblock}
+		\vspace{4ex}
+		\begin{block}{Možnosti snížení chyby}
+		\begin{itemize}
+		\item GNSS - při částečně dostupném signálu
+		\item Magnetometr - omezení gyro driftu v horizontální rovině
+		\end{itemize}
+		\end{block}
 
-	% prostředí 'alertblock', které slouží pro zdůraznění informace
-	\begin{alertblock}{Pro práci je klíčový Eulerův vzorec}
-		$$\eul^{\jmag x}=\cos x + \jmag\sin x$$
-	\end{alertblock}
+	
+\end{frame} 
 
-	\vspace{4ex}
-	Eulerova identita je speciálním případem tohoto vzorce, jestliže dosadíme $x=\uppi$\,:
+%%%%%%%%%%%%%
+\begin{frame} 
+	\frametitle{Testování vývojových kitů}
+	
+	\begin{columns}[T] 								% prostředí sloupce s umístěním nahoře
+		\begin{column}{0.3\textwidth}		% první sloupec
+			3D tištěný držák pro zarovnání geometrických os:
+			%
+			\begin{itemize}
+				\item IMU - ADIS16505
+				\item GNSS - NEO-M8U
+			\end{itemize}
+			\vspace{0.5cm}
+			Zpracování dat:
+			%
+			\begin{itemize}
+				\item Matlab navigation toolbox - převážně pouze pro natočení, ne polohad
+				\item Asynchronost USB komunikace
+			\end{itemize}
+		\end{column}
+		%
+		\begin{column}{0.7\textwidth}		% druhý sloupec
+			\begin{figure}%	
+				\centering
+				\includegraphics[width=1\columnwidth]{obrazky/devBoards}
+				%lze vložit popisek, ale povetšinou je to v prezentaci zbytečné
+				%\caption{Testovací přípravek s vývojovými deskami}%
+				%\label{obr:ukazka}
+			\end{figure}
+		\end{column}
+	\end{columns}						
+			
 
-	% prostředí 'block', které slouží jako informativní
-	\begin{block}{Eulerova identita}
-		$$\eul^{\jmag \uppi}=\cos \uppi + \jmag\sin \uppi,$$\\
-		odkud vyplývá
-		$$\eul^{\jmag \uppi}+1=0.$$
-	\end{block}
+	
+\end{frame} 
+
+%%%%%%%%%%%%%
+\begin{frame} 
+	\frametitle{Hardware inerciální jednotky}
+	
+			\begin{figure}%	
+				\centering
+				
+				\includegraphics[width=0.62\columnwidth]{obrazky/IMUnav_H00_block}
+				%lze vložit popisek, ale povetšinou je to v prezentaci zbytečné
+				%\caption{Blokové schéma inerciální jednotky}%
+				%\label{obr:ukazka}
+			\end{figure}
+	
+\end{frame} 
+
+%%%%%%%%%%%%%
+\begin{frame} 
+	\frametitle{Požadavky na sběrnice}
+	\begin{table}[ht]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline 
+Druh periferie & Minimální požadovaný počet & Použití periferie \\ 
+\hline 
+\hline 
+I2C & 3 & \makecell{OLED displej, LSM303AGR, \\MPU6050, USB2514B}  \\ 
+\hline 
+SPI & 1 & ADIS16505 \\ 
+\hline 
+UART & 2 & NEO-M8U, ESP32 \\ 
+\hline 
+QUADSPI & 1 & NOR FLASH paměť \\ 
+\hline 
+SDIO & 1 & microSD karta \\ 
+\hline 
+ADC & 1 & měření napětí akumulátoru \\ 
+\hline 
+\end{tabular} 
+
+%\caption{Minimální požadavky na periferie mikroprocesoru} 
+\label{table:MCUperiferie}
+\end{table} 
+
+	
+
+	
+\end{frame} 
+
+
+%%%%%%%%%%%%%
+\begin{frame} 
+	\frametitle{Požadavky na paměť}
+	\begin{table}[h!]
+\centering
+\begin{tabular}{c|c}
+
+Senzor & Odhadovaný bitrate \\ 
+\hline 
+\hline 
+ADIS16505-2 & 375 kbit/s \\ 
+
+MPU-6050 & 422 kbit/s \\ 
+
+LSM303AGR & 7 kbit/s \\ 
+
+NEO-M8U & 1 kbit/s \\ 
+\hline
+
+Celkem & 805 kbit/s (0,1MB/s) \\ 
+
+\end{tabular} 
+%\caption{Odhad celkového bitratu pro záznam dat} 
+\label{table:memoryBW}
+\end{table} 
+	
+	12 MB dat při dvouminutovém záznamu.
+	
+	\begin{itemize}
+	\item SD karta
+	\item 32 MB NOR Flash
+	\end{itemize}
+	
 \end{frame} 
 
 
@@ -134,23 +278,21 @@
 	
 	\begin{columns}[T] 								% prostředí sloupce s umístěním nahoře
 		\begin{column}{0.4\textwidth}		% první sloupec
-			Obrázek znázorňuje model:\\[2ex]
-			%
+			
 			\begin{itemize}
-				\item Deska
-				\item Součástky
-				\item Signály
-				\item Napájení
+				\item KiCad
+				\item Čtyřvrstvá deska $ 100 \times 100$ mm
+				\item Impedance vedení pro GNSS a USB
+				\item hřebínky na odposlech komunikací
 			\end{itemize}
 		\end{column}
 		%
 		\begin{column}{0.6\textwidth}		% druhý sloupec
 			\begin{figure}%	
 				\centering
-				\vspace{1cm}	              % horizontální mezera
-				\includegraphics[width=0.8\columnwidth]{obrazky/soucastky}
+			    \includegraphics[width=0.78\columnwidth, trim={0 3.2cm 0 1.5cm},clip]{KiCad/boardTopParts}
 				%lze vložit popisek, ale povetšinou je to v prezentaci zbytečné
-				%\caption{Popisek obrázku}%
+				%\caption{Pohled osazení součástek}%
 				%\label{obr:ukazka}
 			\end{figure}
 		\end{column}
@@ -158,32 +300,33 @@
 \end{frame}
 
 
-%%%%%%%%%%%%%
+
+
+
 \begin{frame} 
-	\frametitle{Výsledky}
-	\vspace{1cm}
-	\begin{table}[]
-		\centering
-		\caption{Výsledky měření mobilních sítí}
-		\label{tab:tabulka}
-			\begin{tabular}{lcc}
-				\toprule
-					Technologie  & Rychlost stahování [kB/s] & Rychlost nahrávání [kB/s] \\
-				\midrule
-					GPRS (2,5G)	& 7,2 	& 3,6\\
-					UMTS 3G     & 48 		& 48\\
-					HSPA (3,5G)	&	1\,706	&	720\\
-					LTE (4G) 		& 40\,750 & 10\,750\\
-				\bottomrule                                       
-			\end{tabular}
-	\end{table}
+	\frametitle{3D model desky}
+	\begin{figure}%	
+				\centering
+				
+				\includegraphics[width=0.6\columnwidth]{KiCad/3Dboard}
+				%lze vložit popisek, ale povetšinou je to v prezentaci zbytečné
+				%\caption{3D model navržené DPS}%
+				%\label{obr:ukazka}
+			\end{figure}
 \end{frame}
 
 
 %%%%%%%%%%%%%
 \begin{frame} 
-	\frametitle{Závěr}
-	\dots
+	\frametitle{Cíle pro bakalářskou práci}
+	
+	\begin{itemize}
+	\item Firmware inerciální jednotky
+	\item Navrhnout komunikaci mezi PC a jednotkou + obslužný SW
+	\item Software na zpracování dat (Matlab / Python)
+	\item Možnosti fúze s GNSS, magnetometrem
+	\item Využití v MPC-RAR
+	\end{itemize}
 \end{frame}
 
 
@@ -196,12 +339,5 @@
 	\end{center}
 \end{frame}
 
-% otázky oponenta
-\frame{
-\frametitle{Otázky oponenta}
-	\emph{Jaká je souvislost Vašeho vzorce (1.2) s~Maxwellovými rovnicemi v~integrálním tvaru?}\\[2ex]
-	%
-	Již staří Římané\,\dots
-}
 
 \end{document}

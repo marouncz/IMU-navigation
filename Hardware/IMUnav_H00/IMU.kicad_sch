@@ -4,6 +4,13 @@
 
   (paper "A4")
 
+  (title_block
+    (title "IMUnav")
+    (date "2023-12-21")
+    (rev "H00")
+    (comment 1 "Inertial navigation unit")
+  )
+
   (lib_symbols
     (symbol "Device:C" (pin_numbers hide) (pin_names (offset 0.254)) (in_bom yes) (on_board yes)
       (property "Reference" "C" (at 0.635 2.54 0)
@@ -1169,6 +1176,19 @@
   (wire (pts (xy 161.29 73.66) (xy 161.29 71.12))
     (stroke (width 0) (type default))
     (uuid f634ffa7-2703-4598-a87c-0b3ef7b58954)
+  )
+
+  (text "ADIS16505 - accel + gyro\nBGA and PCB version" (at 168.91 33.02 0)
+    (effects (font (size 2.54 2.54) (thickness 0.508) bold) (justify left bottom))
+    (uuid 0493bb26-c2a5-481b-8241-337f8f2f2d67)
+  )
+  (text "MPU6050 - accel + gyro" (at 59.69 19.05 0)
+    (effects (font (size 2.54 2.54) (thickness 0.508) bold) (justify left bottom))
+    (uuid 6a40d923-b58d-49a0-9031-4e49cb0df3bc)
+  )
+  (text "ALSM3030 - accel + magnetometer" (at 45.72 86.36 0)
+    (effects (font (size 2.54 2.54) (thickness 0.508) bold) (justify left bottom))
+    (uuid ffb1b0bd-0de9-4f23-b792-795b1f2c6d69)
   )
 
   (hierarchical_label "ADIS_~{CS}" (shape input) (at 140.97 78.74 180) (fields_autoplaced)
