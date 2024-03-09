@@ -33,6 +33,7 @@
 #include "adis.h"
 #include "ssd1306_fonts.h"
 #include "lsm.h"
+#include "fatfs.h"
 
 /* USER CODE END Includes */
 
@@ -66,7 +67,7 @@ const osThreadAttr_t defaultTask_attributes = {
 osThreadId_t keepaliveTaskHandle;
 const osThreadAttr_t keepaliveTask_attributes = {
   .name = "keepaliveTask",
-  .stack_size = 128 * 4,
+  .stack_size = 1280 * 4,
   .priority = (osPriority_t) osPriorityLow,
 };
 /* Definitions for hubTask */
@@ -139,7 +140,6 @@ void StartAdisTask(void *argument);
 void StartLsmTask(void *argument);
 void StartLoggerTask(void *argument);
 
-extern void MX_USB_DEVICE_Init(void);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
 /* Hook prototypes */
@@ -237,8 +237,6 @@ void MX_FREERTOS_Init(void) {
 /* USER CODE END Header_StartDefaultTask */
 void StartDefaultTask(void *argument)
 {
-  /* init code for USB_DEVICE */
-  MX_USB_DEVICE_Init();
   /* USER CODE BEGIN StartDefaultTask */
   /* Infinite loop */
   for(;;)
@@ -249,6 +247,10 @@ void StartDefaultTask(void *argument)
 }
 
 /* USER CODE BEGIN Header_StartKeepaliveTask */
+FRESULT res; /* FatFs function common result code */
+uint32_t byteswritten, bytesread; /* File write/read counts */
+uint8_t wtext[] = "STM32 FATFS works great!"; /* File write buffer */
+uint8_t rtext[_MAX_SS];/* File read buffer */
 /**
 * @brief Function implementing the keepaliveTask thread.
 * @param argument: Not used
@@ -258,55 +260,95 @@ void StartDefaultTask(void *argument)
 void StartKeepaliveTask(void *argument)
 {
   /* USER CODE BEGIN StartKeepaliveTask */
-	W25Q_Init();		 // init the chip
-		//W25Q_EraseSector(0); // erase 4K sector - required before recording
+//	W25Q_Init();		 // init the chip
+//		//W25Q_EraseSector(0); // erase 4K sector - required before recording
+//
+//		// make test data
+//		u8_t byte = 0x65;
+//		u8_t byte_read = 0;
+//		u8_t in_page_shift = 0;
+//		u8_t page_number = 0;
+//		// write data
+//		W25Q_ProgramByte(byte, in_page_shift, page_number);
+//		// read data
+//		W25Q_ReadByte(&byte_read, in_page_shift, page_number);
+//
+//		// make example structure
+//		struct STR {
+//			u8_t abc;
+//			u32_t bca;
+//			char str[4];
+//			fl_t gg;
+//		} _str, _str2;
+//
+//
+//		// fill instance
+//		_str.abc = 0x20;
+//		_str.bca = 0x3F3F4A;
+//		_str.str[0] = 'a';
+//		_str.str[1] = 'b';
+//		_str.str[2] = 'c';
+//		_str.str[3] = '\0';
+//		_str.gg = 0.658;
+//
+//
+//		u16_t len = sizeof(_str);	// length of structure in bytes
+//
+//		// program structure
+//		W25Q_ProgramData((u8_t*) &_str, len, 1+in_page_shift, page_number);
+//		// read structure to another instance
+//		W25Q_ReadData((u8_t*) &_str2, len, 1+in_page_shift, page_number);
+//
+//		//W25Q_EraseChip();
+//		uint8_t testBuff[256] = {};
 
-		// make test data
-		u8_t byte = 0x65;
-		u8_t byte_read = 0;
-		u8_t in_page_shift = 0;
-		u8_t page_number = 0;
-		// write data
-		W25Q_ProgramByte(byte, in_page_shift, page_number);
-		// read data
-		W25Q_ReadByte(&byte_read, in_page_shift, page_number);
-
-		// make example structure
-		struct STR {
-			u8_t abc;
-			u32_t bca;
-			char str[4];
-			fl_t gg;
-		} _str, _str2;
-
-
-		// fill instance
-		_str.abc = 0x20;
-		_str.bca = 0x3F3F4A;
-		_str.str[0] = 'a';
-		_str.str[1] = 'b';
-		_str.str[2] = 'c';
-		_str.str[3] = '\0';
-		_str.gg = 0.658;
-
-
-		u16_t len = sizeof(_str);	// length of structure in bytes
-
-		// program structure
-		W25Q_ProgramData((u8_t*) &_str, len, 1+in_page_shift, page_number);
-		// read structure to another instance
-		W25Q_ReadData((u8_t*) &_str2, len, 1+in_page_shift, page_number);
-
-		//W25Q_EraseChip();
-		uint8_t testBuff[256] = {};
+		 if(f_mount(&SDFatFS, (TCHAR const*)SDPath, 0) != FR_OK)
+		  {
+		      Error_Handler();
+		  }
+		  else
+		  {
+		      if(f_mkfs((TCHAR const*)SDPath, FM_ANY, 0, rtext, sizeof(rtext)) != FR_OK)
+		      {
+		          Error_Handler();
+		      }
+		      else
+		      {
+		          //Open file for writing (Create)
+		          if(f_open(&SDFile, "STM32.TXT", FA_CREATE_ALWAYS | FA_WRITE) != FR_OK)
+		          {
+		              Error_Handler();
+		          }
+		          else
+		          {
 
 
 
+		              //Write to the text file
+		              res = f_write(&SDFile, wtext, strlen((char *)wtext), (void *)&byteswritten);
+		              if((byteswritten == 0) || (res != FR_OK))
+		              {
+		                  Error_Handler();
+		              }
+		              else
+		              {
+
+
+
+		                  f_close(&SDFile);
+		              }
+		          }
+		      }
+		  }
+		  f_mount(&SDFatFS, (TCHAR const*)NULL, 0);
 
 
 
 
-		W25Q_Sleep();	// go to sleep
+
+
+
+		//W25Q_Sleep();	// go to sleep
 
 	
   /* Infinite loop */
