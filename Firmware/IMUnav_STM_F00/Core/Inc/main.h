@@ -114,6 +114,7 @@ void Error_Handler(void);
 /* USER CODE BEGIN Private defines */
 typedef struct
 {
+
 	//struct size 54bytes/27words
 	double accelX;
 	double accelY;
@@ -128,12 +129,22 @@ typedef struct
 
 typedef struct
 {
+
 	//struct size 12bytes/6words
 	float magX;
 	float magY;
 	float magZ;
 
 }lsmDataStruc;
+
+typedef struct
+{
+	adisDataStruc adisData;
+	lsmDataStruc lsmData;
+
+
+
+}loggerStruc;
 
 
 /* USER CODE END Private defines */
