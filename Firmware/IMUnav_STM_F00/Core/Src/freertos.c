@@ -623,9 +623,9 @@ void StartLoggerTask(void *argument)
 		else
 		{
 
-			//Write to the text file
-			f_write(&SDFile, wtext, strlen((char*) wtext),
-					(void*) &byteswritten);
+//			//Write to the text file
+//			f_write(&SDFile, wtext, strlen((char*) wtext),
+//					(void*) &byteswritten);
 
 		}
 
