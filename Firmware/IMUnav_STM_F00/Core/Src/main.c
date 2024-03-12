@@ -21,13 +21,13 @@
 #include "cmsis_os.h"
 #include "adc.h"
 #include "dma.h"
+#include "fatfs.h"
 #include "fmpi2c.h"
 #include "i2c.h"
 #include "quadspi.h"
 #include "sdio.h"
 #include "spi.h"
 #include "usart.h"
-#include "usb_device.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -109,12 +109,15 @@ int main(void)
   MX_SPI4_Init();
   MX_I2C3_Init();
   MX_SDIO_SD_Init();
+  MX_FATFS_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
 
   /* Init scheduler */
-  osKernelInitialize();  /* Call init function for freertos objects (in freertos.c) */
+  osKernelInitialize();
+
+  /* Call init function for freertos objects (in freertos.c) */
   MX_FREERTOS_Init();
 
   /* Start scheduler */

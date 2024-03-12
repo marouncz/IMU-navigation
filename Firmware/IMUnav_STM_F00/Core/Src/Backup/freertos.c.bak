@@ -33,6 +33,7 @@
 #include "adis.h"
 #include "ssd1306_fonts.h"
 #include "lsm.h"
+#include "fatfs.h"
 
 /* USER CODE END Includes */
 
@@ -66,7 +67,7 @@ const osThreadAttr_t defaultTask_attributes = {
 osThreadId_t keepaliveTaskHandle;
 const osThreadAttr_t keepaliveTask_attributes = {
   .name = "keepaliveTask",
-  .stack_size = 128 * 4,
+  .stack_size = 1280 * 4,
   .priority = (osPriority_t) osPriorityLow,
 };
 /* Definitions for hubTask */
@@ -101,27 +102,37 @@ const osThreadAttr_t powerTask_attributes = {
 osThreadId_t adisTaskHandle;
 const osThreadAttr_t adisTask_attributes = {
   .name = "adisTask",
-  .stack_size = 1280 * 4,
+  .stack_size = 1000 * 4,
   .priority = (osPriority_t) osPriorityRealtime3,
 };
 /* Definitions for lsmTask */
 osThreadId_t lsmTaskHandle;
 const osThreadAttr_t lsmTask_attributes = {
   .name = "lsmTask",
-  .stack_size = 128 * 4,
+  .stack_size = 512 * 4,
   .priority = (osPriority_t) osPriorityRealtime2,
 };
 /* Definitions for loggerTask */
 osThreadId_t loggerTaskHandle;
 const osThreadAttr_t loggerTask_attributes = {
   .name = "loggerTask",
-  .stack_size = 2560 * 4,
+  .stack_size = 512 * 4,
   .priority = (osPriority_t) osPriorityNormal2,
 };
 /* Definitions for adisQ */
 osMessageQueueId_t adisQHandle;
 const osMessageQueueAttr_t adisQ_attributes = {
   .name = "adisQ"
+};
+/* Definitions for lsmQ */
+osMessageQueueId_t lsmQHandle;
+const osMessageQueueAttr_t lsmQ_attributes = {
+  .name = "lsmQ"
+};
+/* Definitions for loggerQ */
+osMessageQueueId_t loggerQHandle;
+const osMessageQueueAttr_t loggerQ_attributes = {
+  .name = "loggerQ"
 };
 
 /* Private function prototypes -----------------------------------------------*/
@@ -183,7 +194,13 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the queue(s) */
   /* creation of adisQ */
-  adisQHandle = osMessageQueueNew (16, sizeof(adisDataStruc), &adisQ_attributes);
+  adisQHandle = osMessageQueueNew (4, sizeof(adisDataStruc), &adisQ_attributes);
+
+  /* creation of lsmQ */
+  lsmQHandle = osMessageQueueNew (4, sizeof(lsmDataStruc), &lsmQ_attributes);
+
+  /* creation of loggerQ */
+  loggerQHandle = osMessageQueueNew (10, sizeof(loggerStruc), &loggerQ_attributes);
 
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
@@ -249,6 +266,10 @@ void StartDefaultTask(void *argument)
 }
 
 /* USER CODE BEGIN Header_StartKeepaliveTask */
+FRESULT res; /* FatFs function common result code */
+uint32_t byteswritten, bytesread; /* File write/read counts */
+uint8_t wtext[] = "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789"; /* File write buffer */
+uint8_t rtext[_MAX_SS];/* File read buffer */
 /**
 * @brief Function implementing the keepaliveTask thread.
 * @param argument: Not used
@@ -258,51 +279,99 @@ void StartDefaultTask(void *argument)
 void StartKeepaliveTask(void *argument)
 {
   /* USER CODE BEGIN StartKeepaliveTask */
-	W25Q_Init();		 // init the chip
-		//W25Q_EraseSector(0); // erase 4K sector - required before recording
-
-		// make test data
-		u8_t byte = 0x65;
-		u8_t byte_read = 0;
-		u8_t in_page_shift = 0;
-		u8_t page_number = 0;
-		// write data
-		W25Q_ProgramByte(byte, in_page_shift, page_number);
-		// read data
-		W25Q_ReadByte(&byte_read, in_page_shift, page_number);
-
-		// make example structure
-		struct STR {
-			u8_t abc;
-			u32_t bca;
-			char str[4];
-			fl_t gg;
-		} _str, _str2;
-
-
-		// fill instance
-		_str.abc = 0x20;
-		_str.bca = 0x3F3F4A;
-		_str.str[0] = 'a';
-		_str.str[1] = 'b';
-		_str.str[2] = 'c';
-		_str.str[3] = '\0';
-		_str.gg = 0.658;
-
-
-		u16_t len = sizeof(_str);	// length of structure in bytes
-
-		// program structure
-		W25Q_ProgramData((u8_t*) &_str, len, 1+in_page_shift, page_number);
-		// read structure to another instance
-		W25Q_ReadData((u8_t*) &_str2, len, 1+in_page_shift, page_number);
-
-		//W25Q_EraseChip();
+//	W25Q_Init();		 // init the chip
+//		//W25Q_EraseSector(0); // erase 4K sector - required before recording
+//
+//		// make test data
+//		u8_t byte = 0x65;
+//		u8_t byte_read = 0;
+//		u8_t in_page_shift = 0;
+//		u8_t page_number = 0;
+//		// write data
+//		W25Q_ProgramByte(byte, in_page_shift, page_number);
+//		// read data
+//		W25Q_ReadByte(&byte_read, in_page_shift, page_number);
+//
+//		// make example structure
+//		struct STR {
+//			u8_t abc;
+//			u32_t bca;
+//			char str[4];
+//			fl_t gg;
+//		} _str, _str2;
+//
+//
+//		// fill instance
+//		_str.abc = 0x20;
+//		_str.bca = 0x3F3F4A;
+//		_str.str[0] = 'a';
+//		_str.str[1] = 'b';
+//		_str.str[2] = 'c';
+//		_str.str[3] = '\0';
+//		_str.gg = 0.658;
+//
+//
+//		u16_t len = sizeof(_str);	// length of structure in bytes
+//
+//		// program structure
+//		W25Q_ProgramData((u8_t*) &_str, len, 1+in_page_shift, page_number);
+//		// read structure to another instance
+//		W25Q_ReadData((u8_t*) &_str2, len, 1+in_page_shift, page_number);
+//
+//		//W25Q_EraseChip();
 		uint8_t testBuff[256] = {};
 
+//		 if(f_mount(&SDFatFS, (TCHAR const*)SDPath, 0) != FR_OK)
+//		  {
+//		      Error_Handler();
+//		  }
+//		  else
+//		  {
+////		      if(f_mkfs((TCHAR const*)SDPath, FM_ANY, 0, rtext, sizeof(rtext)) != FR_OK)
+////		      {
+////		          Error_Handler();
+////		      }
+////		      else
+////		      {
+//		          //Open file for writing (Create)
+//		          if(f_open(&SDFile, "STM32.TXT", FA_CREATE_ALWAYS | FA_WRITE) != FR_OK)
+//		          {
+//		              Error_Handler();
+//		          }
+//		          else
+//		          {
+//
+//
+//
+//		              //Write to the text file
+//		              res = f_write(&SDFile, wtext, strlen((char *)wtext), (void *)&byteswritten);
+//		              for(int i = 0; i <100; i++)
+//		              {
+//		            	  f_write(&SDFile, wtext, strlen((char *)wtext), (void *)&byteswritten);
+//		              }
+//		              if((byteswritten == 0) || (res != FR_OK))
+//		              {
+//		                  Error_Handler();
+//		              }
+//		              else
+//		              {
+//
+//
+//
+//		                  f_close(&SDFile);
+//		              }
+//		          }
+////		      }
+//		  }
+//		  f_mount(&SDFatFS, (TCHAR const*)NULL, 0);
 
 
-		W25Q_Sleep();	// go to sleep
+
+
+
+
+
+		//W25Q_Sleep();	// go to sleep
 
 	
   /* Infinite loop */
@@ -471,16 +540,29 @@ void StartAdisTask(void *argument)
   /* USER CODE BEGIN StartAdisTask */
 	adisReset();
 	adisInit();
-
 	adisDataStruc adisLog;
+	loggerStruc loggerData;
+
+
+
 
 
 	/* Infinite loop */
   for(;;)
   {
 	  adisLog = adisRead();
-	  osMessageQueuePut(adisQHandle,  &adisLog, 1, osWaitForever);
+	  loggerData.adisData = adisLog;
+	  //osMessageQueuePut(adisQHandle,  &adisLog, 1, osWaitForever);
+	  if(osMessageQueueGetCount(lsmQHandle)>0)
+	  {
+		  osMessageQueueGet(lsmQHandle, &loggerData.lsmData, NULL, osWaitForever);
+	  }
+	  else
+	  {
+		  //loggerData.lsmData = NULL;
 
+	  }
+	  osMessageQueuePut(loggerQHandle,  &loggerData, 1, osWaitForever);
 
 
   }
@@ -488,6 +570,7 @@ void StartAdisTask(void *argument)
 }
 
 /* USER CODE BEGIN Header_StartLsmTask */
+
 /**
 * @brief Function implementing the lsmTask thread.
 * @param argument: Not used
@@ -497,14 +580,18 @@ void StartAdisTask(void *argument)
 void StartLsmTask(void *argument)
 {
   /* USER CODE BEGIN StartLsmTask */
+	lsmDataStruc lsmLog;
+
 	osDelay(1000);
 	lsmInit();
 	osDelay(100);
+
   /* Infinite loop */
   for(;;)
   {
-	  lsmDataStruc lsmLog;
+
 	  lsmLog = lsmRead();
+	  osMessageQueuePut(lsmQHandle,  &lsmLog, 1, osWaitForever);
 
 
   }
@@ -512,7 +599,8 @@ void StartLsmTask(void *argument)
 }
 
 /* USER CODE BEGIN Header_StartLoggerTask */
-adisDataStruc adisStore[10];
+loggerStruc loggerStore[10];
+loggerStruc loggerStoreFS;
 /**
 * @brief Function implementing the loggerTask thread.
 * @param argument: Not used
@@ -522,14 +610,49 @@ adisDataStruc adisStore[10];
 void StartLoggerTask(void *argument)
 {
   /* USER CODE BEGIN StartLoggerTask */
+	uint8_t buffer[sizeof(loggerStoreFS)];
+	if (f_mount(&SDFatFS, (TCHAR const*) SDPath, 0) != FR_OK)
+	{
+		Error_Handler();
+	}
+	else
+	{
 
-	uint8_t i = 0;
+		//Open file for writing (Create)
+		if (f_open(&SDFile, "STM32.TXT", FA_CREATE_ALWAYS | FA_WRITE) != FR_OK)
+		{
+			Error_Handler();
+		}
+		else
+		{
+
+			//Write to the text file
+			f_write(&SDFile, wtext, strlen((char*) wtext),
+					(void*) &byteswritten);
+
+		}
+
+	}
+
+	uint32_t i = 0;
+	while(i<1000)
+	{
+		osMessageQueueGet(loggerQHandle, &loggerStoreFS, NULL, osWaitForever);
+		memcpy(buffer, &loggerStoreFS, sizeof(loggerStoreFS));
+		f_write(&SDFile, buffer, sizeof(loggerStoreFS),
+							(void*) &byteswritten);
+		i++;
+	}
+
+	f_close(&SDFile);
+	f_mount(&SDFatFS, (TCHAR const*) NULL, 0);
+	i = 0;
   /* Infinite loop */
   for(;;)
   {
 
-    osDelay(10);
-    osMessageQueueGet(adisQHandle, &adisStore[i], NULL, osWaitForever);
+    osDelay(1);
+    osMessageQueueGet(loggerQHandle, &loggerStore[i], NULL, osWaitForever);
     i++;
     if(i==10)
     {
