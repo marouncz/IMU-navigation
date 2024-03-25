@@ -8,7 +8,7 @@ print(struct.calcsize(adis_format))
 print(struct.calcsize(lsm_format))
 
 # Open the binary file for reading
-with open('sample3.bin', 'rb') as f:
+with open('IMUDATA.bin', 'rb') as f:
     data = f.read()
 
 # Define the output CSV file name
