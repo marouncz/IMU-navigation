@@ -616,7 +616,7 @@ void StartLoggerTask(void *argument)
 	{
 
 		//Open file for writing (Create)
-		if (f_open(&SDFile, "STM32.TXT", FA_CREATE_ALWAYS | FA_WRITE) != FR_OK)
+		if (f_open(&SDFile, "imuData.bin", FA_CREATE_ALWAYS | FA_WRITE) != FR_OK)
 		{
 			Error_Handler();
 		}
@@ -632,7 +632,7 @@ void StartLoggerTask(void *argument)
 	}
 
 	uint32_t i = 0;
-	while(i<1000)
+	while(i<10000)
 	{
 		osMessageQueueGet(loggerQHandle, &loggerStoreFS, NULL, osWaitForever);
 		memcpy(buffer, &loggerStoreFS, sizeof(loggerStoreFS));
