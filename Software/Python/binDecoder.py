@@ -8,11 +8,11 @@ print(struct.calcsize(adis_format))
 print(struct.calcsize(lsm_format))
 
 # Open the binary file for reading
-with open('IMUDATA.bin', 'rb') as f:
+with open('IMUDATA.BIN', 'rb') as f:
     data = f.read()
 
 # Define the output CSV file name
-csv_file = 'output.csv'
+csv_file = 'outputWithHeader.csv'
 
 # Open the CSV file for writing
 with open(csv_file, 'w', newline='') as csvfile:
