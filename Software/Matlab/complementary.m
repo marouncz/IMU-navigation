@@ -1,7 +1,7 @@
 clear all
 close all
 clc
-data = readtable('output.csv');
+data = readtable('outputWithHeader.csv');
 
 % GyroscopeNoise and AccelerometerNoise is determined from the datasheet.
 GyroscopeNoiseADIS16505 = 3.0462e-06; % GyroscopeNoise (variance) in units of rad/s
@@ -15,8 +15,8 @@ magnetReadings = data(:, 10:12);
 accelReadings = table2array(accelReadings);
 gyroReadings = table2array(gyroReadings);
 magnetReadings = table2array(magnetReadings);
-gyroReadings(:, 2) = -1*gyroReadings(:, 2);
-accelReadings(:, 2) = -1*accelReadings(:, 2);
+% gyroReadings(:, 2) = -1*gyroReadings(:, 2);
+% accelReadings(:, 2) = -1*accelReadings(:, 2);
 % accelReadings(:, 3) = -1*accelReadings(:, 3);
 % magnetReadings(:, 3) = -1*magnetReadings(:, 3);
 
@@ -54,6 +54,8 @@ end
 
 
 rotatedAccel(:, 3) = rotatedAccel(:, 3) - 9.82;
+% rotatedAccel = highpass(rotatedAccel, 0.1, 400);
+
 
 velocity = cumtrapz(1/400, rotatedAccel);
 trajectory = cumtrapz(1/400, velocity);
@@ -62,7 +64,7 @@ figure(1);
 plot(rotatedAccel);
 figure(3);
 plot3(trajectory(1:4000, 1), trajectory(1:4000, 2), trajectory(1:4000, 3))
-% Fs  = 400;  % Hz
+% Fs  = 400;  % 
 % fuse = complementaryFilter('SampleRate', Fs);
 % 
 % q = fuse(accel, gyro, mag);
