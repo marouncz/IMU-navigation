@@ -35,14 +35,18 @@
 # [ ] Firmware
    - [X] drivers for all peripherals
    - [ ] GPS driver
+   - [ ] Display driver and graphical
+   - [ ] Control by buttons - calibration menu
+   - [ ] Record data also from the other 6-axis IMU
+   - [?] Record data also from the other accelerometer (which is coupled with magnetometer)
    - [X] store data from sensors in a file
    - [X] transfer data by USB into PC
 
 # [ ] PC signal processing
    - [X] convert data to CSV file in Python
-   - [ ] convert data in Matlab
-   - [ ] signal processing in Matlab navigation toolbox - get angles
-   - [ ] signal processing in Matlab navigation toolbox - get position
+   - [X] convert data in Matlab
+   - [X] signal processing in Matlab navigation toolbox - get approximate angles
+   - [X] signal processing in Matlab navigation toolbox - get approximate positions
 
 # [ ] Thesis
 
