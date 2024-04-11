@@ -150,7 +150,6 @@ void StartAdisTask(void *argument);
 void StartLsmTask(void *argument);
 void StartLoggerTask(void *argument);
 
-extern void MX_USB_DEVICE_Init(void);
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
 /* Hook prototypes */
@@ -254,8 +253,6 @@ void MX_FREERTOS_Init(void) {
 /* USER CODE END Header_StartDefaultTask */
 void StartDefaultTask(void *argument)
 {
-  /* init code for USB_DEVICE */
-  MX_USB_DEVICE_Init();
   /* USER CODE BEGIN StartDefaultTask */
   /* Infinite loop */
   for(;;)
@@ -619,23 +616,23 @@ void StartLoggerTask(void *argument)
 	{
 
 		//Open file for writing (Create)
-		if (f_open(&SDFile, "STM32.TXT", FA_CREATE_ALWAYS | FA_WRITE) != FR_OK)
+		if (f_open(&SDFile, "imuData.bin", FA_CREATE_ALWAYS | FA_WRITE) != FR_OK)
 		{
 			Error_Handler();
 		}
 		else
 		{
 
-			//Write to the text file
-			f_write(&SDFile, wtext, strlen((char*) wtext),
-					(void*) &byteswritten);
+//			//Write to the text file
+//			f_write(&SDFile, wtext, strlen((char*) wtext),
+//					(void*) &byteswritten);
 
 		}
 
 	}
 
 	uint32_t i = 0;
-	while(i<1000)
+	while(i<10000)
 	{
 		osMessageQueueGet(loggerQHandle, &loggerStoreFS, NULL, osWaitForever);
 		memcpy(buffer, &loggerStoreFS, sizeof(loggerStoreFS));
@@ -646,6 +643,7 @@ void StartLoggerTask(void *argument)
 
 	f_close(&SDFile);
 	f_mount(&SDFatFS, (TCHAR const*) NULL, 0);
+	MX_USB_DEVICE_Init();
 	i = 0;
   /* Infinite loop */
   for(;;)

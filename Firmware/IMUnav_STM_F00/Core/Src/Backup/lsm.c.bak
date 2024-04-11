@@ -39,7 +39,7 @@ lsmDataStruc lsmRead(void)
 	lsmData.magX = ((int16_t) ((lsmRxData[2] << 8) | lsmRxData[1]))
 					* (0.15);
 	lsmData.magY = ((int16_t) ((lsmRxData[4] << 8) | lsmRxData[3]))
-						* (0.15);
+						* (-0.15);
 	lsmData.magZ = ((int16_t) ((lsmRxData[6] << 8) | lsmRxData[5]))
 						* (0.15);
 

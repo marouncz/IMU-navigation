@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
+#include <GNSS.h>
 #include "FreeRTOS.h"
 #include "task.h"
 #include "main.h"
@@ -34,6 +35,8 @@
 #include "ssd1306_fonts.h"
 #include "lsm.h"
 #include "fatfs.h"
+#include "GNSS.h"
+#include "usart.h"
 
 /* USER CODE END Includes */
 
@@ -425,12 +428,24 @@ void StartGpsTask(void *argument)
 {
   /* USER CODE BEGIN StartGpsTask */
 	HAL_GPIO_WritePin(GPS_RST_GPIO_Port, GPS_RST_Pin, 1);
-	osDelay(10);
+	osDelay(3000);
+
+	GNSS_StateHandle GNSS_Handle;
+	GNSS_Init(&GNSS_Handle, &gpsUART);
+	osDelay(1000);
+	GNSS_LoadConfig(&GNSS_Handle);
+
+
   /* Infinite loop */
   for(;;)
-  {
-    osDelay(1);
-  }
+	{
+		GNSS_GetUniqID(&GNSS_Handle);
+		GNSS_ParseBuffer(&GNSS_Handle);
+		osDelay(250);
+		GNSS_GetPVTData(&GNSS_Handle);
+		GNSS_ParseBuffer(&GNSS_Handle);
+		osDelay(1000);
+	}
   /* USER CODE END StartGpsTask */
 }
 
@@ -450,7 +465,7 @@ void StartOledTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    osDelay(10000);
+    osDelay(1000);
 
   }
   /* USER CODE END StartOledTask */
