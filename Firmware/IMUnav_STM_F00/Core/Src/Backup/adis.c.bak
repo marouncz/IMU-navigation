@@ -74,7 +74,7 @@ void adisInit(void)
 
 adisDataStruc adisRead(void)
 {
-	osSemaphoreAcquire(adisTransmitCpltHandle, osWaitForever);
+	osSemaphoreAcquire(adisTransmitCpltHandle, 2000);
 	HAL_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, 1);
 	adisData.gyroX = ((int32_t) ((spiRxData[3] << 16) | spiRxData[2]))
 			* (0.00043633231 / 65536);

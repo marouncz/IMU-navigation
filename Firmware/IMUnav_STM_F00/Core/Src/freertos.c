@@ -18,7 +18,6 @@
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
-
 #include "FreeRTOS.h"
 #include "task.h"
 #include "main.h"
@@ -87,7 +86,7 @@ const osThreadAttr_t hubTask_attributes = {
 osThreadId_t gpsTaskHandle;
 const osThreadAttr_t gpsTask_attributes = {
   .name = "gpsTask",
-  .stack_size = 128 * 4,
+  .stack_size = 512 * 4,
   .priority = (osPriority_t) osPriorityBelowNormal,
 };
 /* Definitions for oledTask */
@@ -442,16 +441,13 @@ void StartGpsTask(void *argument)
   /* Infinite loop */
   for(;;)
 	{
-		GNSS_GetUniqID(&GNSS_Handle);
-		GNSS_ParseBuffer(&GNSS_Handle);
-		osDelay(250);
 		GNSS_GetPVTData(&GNSS_Handle);
 		GNSS_ParseBuffer(&GNSS_Handle);
 		osDelay(1000);
-		char fixString[2];
-		itoa(GNSS_Handle.fixType, fixString, 10);
-		ssd1306_SetCursor(0, 20);
-		ssd1306_WriteString(fixString, Font_7x10 , White);
+		char fixType[6][18] =
+		{ "GPS: No Fix", "GPS: DR only", "GPS: 2D-Fix", "GPS: 3D-Fix", "GPS: Time only fix" };
+		ssd1306_SetCursor(0, 0);
+		ssd1306_WriteString(fixType[GNSS_Handle.fixType], Font_7x10 , White);
 	}
   /* USER CODE END StartGpsTask */
 }
@@ -467,7 +463,7 @@ void StartOledTask(void *argument)
 {
   /* USER CODE BEGIN StartOledTask */
 	ssd1306_Init();
-	ssd1306_WriteString("IMUnav_STM_F00", Font_7x10 , White);
+	//ssd1306_WriteString("IMUnav_STM_F00", Font_7x10 , White);
 	ssd1306_UpdateScreen();
   /* Infinite loop */
   for(;;)
@@ -536,6 +532,11 @@ void StartPowerTask(void *argument)
 
 		  }
 	  }
+	  char voltageString[7];
+	  itoa(battVoltageFilt*1000, voltageString, 10);
+
+	  ssd1306_SetCursor(0, 20);
+	  ssd1306_WriteString(voltageString, Font_7x10 , White);
 
 
 

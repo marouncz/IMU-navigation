@@ -34,6 +34,11 @@
 #include "ssd1306_fonts.h"
 #include "lsm.h"
 #include "fatfs.h"
+#include "GNSS.h"
+#include "usart.h"
+#include <stdio.h>
+#include <stdlib.h>
+
 
 /* USER CODE END Includes */
 
@@ -425,12 +430,25 @@ void StartGpsTask(void *argument)
 {
   /* USER CODE BEGIN StartGpsTask */
 	HAL_GPIO_WritePin(GPS_RST_GPIO_Port, GPS_RST_Pin, 1);
-	osDelay(10);
+	osDelay(3000);
+
+	GNSS_StateHandle GNSS_Handle;
+	GNSS_Init(&GNSS_Handle, &gpsUART);
+	osDelay(1000);
+	GNSS_LoadConfig(&GNSS_Handle);
+
+
   /* Infinite loop */
   for(;;)
-  {
-    osDelay(1);
-  }
+	{
+		GNSS_GetPVTData(&GNSS_Handle);
+		GNSS_ParseBuffer(&GNSS_Handle);
+		osDelay(1000);
+		char fixType[6][18] =
+		{ "GPS: No Fix", "GPS: DR only", "GPS: 2D-Fix", "GPS: 3D-Fix", "GPS: Time only fix" };
+		ssd1306_SetCursor(0, 0);
+		ssd1306_WriteString(fixType[GNSS_Handle.fixType], Font_7x10 , White);
+	}
   /* USER CODE END StartGpsTask */
 }
 
@@ -445,12 +463,13 @@ void StartOledTask(void *argument)
 {
   /* USER CODE BEGIN StartOledTask */
 	ssd1306_Init();
-	ssd1306_WriteString("IMUnav_STM_F00", Font_7x10 , White);
+	//ssd1306_WriteString("IMUnav_STM_F00", Font_7x10 , White);
 	ssd1306_UpdateScreen();
   /* Infinite loop */
   for(;;)
   {
-    osDelay(10000);
+	ssd1306_UpdateScreen();
+    osDelay(100);
 
   }
   /* USER CODE END StartOledTask */
