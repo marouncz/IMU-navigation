@@ -34,7 +34,7 @@ void lsmInit(void)
 
 lsmDataStruc lsmRead(void)
 {
-	osSemaphoreAcquire(lsmTransmitCpltHandle, osWaitForever);
+	osSemaphoreAcquire(lsmTransmitCpltHandle, 2000);
 	//in microTesla
 	lsmData.magX = ((int16_t) ((lsmRxData[2] << 8) | lsmRxData[1]))
 					* (0.15);

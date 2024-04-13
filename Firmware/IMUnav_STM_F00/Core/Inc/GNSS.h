@@ -60,7 +60,7 @@ typedef struct
 	UART_HandleTypeDef *huart;
 
 	uint8_t uniqueID[4];
-	uint8_t uartWorkingBuffer[101];
+	volatile uint8_t uartWorkingBuffer[101];
 
 	unsigned short year;
 	uint8_t yearBytes[2];

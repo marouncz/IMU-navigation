@@ -18,7 +18,7 @@
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
-#include <GNSS.h>
+
 #include "FreeRTOS.h"
 #include "task.h"
 #include "main.h"
@@ -37,6 +37,9 @@
 #include "fatfs.h"
 #include "GNSS.h"
 #include "usart.h"
+#include <stdio.h>
+#include <stdlib.h>
+
 
 /* USER CODE END Includes */
 
@@ -445,6 +448,10 @@ void StartGpsTask(void *argument)
 		GNSS_GetPVTData(&GNSS_Handle);
 		GNSS_ParseBuffer(&GNSS_Handle);
 		osDelay(1000);
+		char fixString[2];
+		itoa(GNSS_Handle.fixType, fixString, 10);
+		ssd1306_SetCursor(0, 20);
+		ssd1306_WriteString(fixString, Font_7x10 , White);
 	}
   /* USER CODE END StartGpsTask */
 }
@@ -465,7 +472,8 @@ void StartOledTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1000);
+	ssd1306_UpdateScreen();
+    osDelay(100);
 
   }
   /* USER CODE END StartOledTask */
