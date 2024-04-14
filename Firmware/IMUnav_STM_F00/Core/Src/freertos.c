@@ -734,7 +734,7 @@ void StartLoggerTask(void *argument)
 	}
 
 	uint32_t i = 0;
-	while(i<10000)
+	while(i<30000)
 	{
 		osMessageQueueGet(loggerQHandle, &loggerStoreFS, NULL, osWaitForever);
 		memcpy(buffer, &loggerStoreFS, sizeof(loggerStoreFS));
