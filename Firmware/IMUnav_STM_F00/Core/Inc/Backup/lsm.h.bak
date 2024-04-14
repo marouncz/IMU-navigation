@@ -17,4 +17,6 @@ lsmDataStruc lsmRead(void);
 
 void lsmTriggerDMA(void);
 
+void lsmReleaseSemaphore(void);
+
 #endif /* INC_LSM_H_ */

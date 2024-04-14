@@ -65,6 +65,7 @@ void Error_Handler(void);
 #define analogADC hadc1
 #define gpsUART huart2
 #define lsmI2C hi2c3
+#define mpuI2C hi2c1
 #define LED1_Pin GPIO_PIN_4
 #define LED1_GPIO_Port GPIOE
 #define LED2_Pin GPIO_PIN_5
@@ -111,6 +112,13 @@ void Error_Handler(void);
 #define HUB_SDA_GPIO_Port GPIOC
 #define LSM_INT2ACCL_Pin GPIO_PIN_5
 #define LSM_INT2ACCL_GPIO_Port GPIOB
+#define MPU_CLKIN_Pin GPIO_PIN_7
+#define MPU_CLKIN_GPIO_Port GPIOB
+#define MPU_INT_Pin GPIO_PIN_0
+#define MPU_INT_GPIO_Port GPIOE
+#define MPU_INT_EXTI_IRQn EXTI0_IRQn
+#define MPU_FSYNC_Pin GPIO_PIN_1
+#define MPU_FSYNC_GPIO_Port GPIOE
 
 /* USER CODE BEGIN Private defines */
 typedef struct
@@ -137,6 +145,38 @@ typedef struct
 	float magZ;
 
 }lsmDataStruc;
+
+typedef struct
+{
+
+	//struct size
+	float accelX;
+	float accelY;
+	float accelZ;
+
+	float gyroX;
+	float gyroY;
+	float gyroZ;
+	float temp;
+
+} mpuDataStruc;
+
+typedef struct
+{
+
+	//struct size
+	float accelX;
+	float accelY;
+	float accelZ;
+
+	float gyroX;
+	float gyroY;
+	float gyroZ;
+	float temp;
+
+} gnssLoggedDataStruc;
+
+
 
 typedef struct
 {

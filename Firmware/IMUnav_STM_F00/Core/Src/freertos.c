@@ -38,6 +38,7 @@
 #include "usart.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "mpu.h"
 
 
 /* USER CODE END Includes */
@@ -124,6 +125,13 @@ const osThreadAttr_t loggerTask_attributes = {
   .stack_size = 512 * 4,
   .priority = (osPriority_t) osPriorityNormal2,
 };
+/* Definitions for mpuTask */
+osThreadId_t mpuTaskHandle;
+const osThreadAttr_t mpuTask_attributes = {
+  .name = "mpuTask",
+  .stack_size = 512 * 4,
+  .priority = (osPriority_t) osPriorityRealtime1,
+};
 /* Definitions for adisQ */
 osMessageQueueId_t adisQHandle;
 const osMessageQueueAttr_t adisQ_attributes = {
@@ -138,6 +146,16 @@ const osMessageQueueAttr_t lsmQ_attributes = {
 osMessageQueueId_t loggerQHandle;
 const osMessageQueueAttr_t loggerQ_attributes = {
   .name = "loggerQ"
+};
+/* Definitions for mpuQ */
+osMessageQueueId_t mpuQHandle;
+const osMessageQueueAttr_t mpuQ_attributes = {
+  .name = "mpuQ"
+};
+/* Definitions for gnssQ */
+osMessageQueueId_t gnssQHandle;
+const osMessageQueueAttr_t gnssQ_attributes = {
+  .name = "gnssQ"
 };
 
 /* Private function prototypes -----------------------------------------------*/
@@ -154,6 +172,7 @@ void StartPowerTask(void *argument);
 void StartAdisTask(void *argument);
 void StartLsmTask(void *argument);
 void StartLoggerTask(void *argument);
+void StartMpuTask(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -206,6 +225,12 @@ void MX_FREERTOS_Init(void) {
   /* creation of loggerQ */
   loggerQHandle = osMessageQueueNew (10, sizeof(loggerStruc), &loggerQ_attributes);
 
+  /* creation of mpuQ */
+  mpuQHandle = osMessageQueueNew (4, sizeof(mpuDataStruc), &mpuQ_attributes);
+
+  /* creation of gnssQ */
+  gnssQHandle = osMessageQueueNew (16, sizeof(gnssLoggedDataStruc), &gnssQ_attributes);
+
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
 
@@ -238,6 +263,9 @@ void MX_FREERTOS_Init(void) {
 
   /* creation of loggerTask */
   loggerTaskHandle = osThreadNew(StartLoggerTask, NULL, &loggerTask_attributes);
+
+  /* creation of mpuTask */
+  mpuTaskHandle = osThreadNew(StartMpuTask, NULL, &mpuTask_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -684,6 +712,30 @@ void StartLoggerTask(void *argument)
   /* USER CODE END StartLoggerTask */
 }
 
+/* USER CODE BEGIN Header_StartMpuTask */
+/**
+* @brief Function implementing the mpuTask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_StartMpuTask */
+void StartMpuTask(void *argument)
+{
+  /* USER CODE BEGIN StartMpuTask */
+	osDelay(100);
+	mpuInit();
+	osDelay(100);
+
+	mpuDataStruc mpuLog;
+  /* Infinite loop */
+  for(;;)
+  {
+	  mpuLog = mpuRead();
+
+  }
+  /* USER CODE END StartMpuTask */
+}
+
 /* Private application code --------------------------------------------------*/
 /* USER CODE BEGIN Application */
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
@@ -701,6 +753,31 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 		lsmTriggerDMA();
 
 	}
+	if (GPIO_Pin == MPU_INT_Pin)
+	{
+		if (mpuReady())
+		{
+			mpuTriggerDMA();
+		}
+
+	}
 }
+
+void HAL_I2C_MemRxCpltCallback(I2C_HandleTypeDef *hi2c)
+{
+	if (hi2c == &lsmI2C)
+	{
+		HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, 1);
+		lsmReleaseSemaphore();
+
+	}
+	if (hi2c == &mpuI2C)
+	{
+		mpuReleaseSemaphore();
+
+	}
+
+}
+
 /* USER CODE END Application */
 

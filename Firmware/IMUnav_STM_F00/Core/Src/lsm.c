@@ -54,8 +54,9 @@ void lsmTriggerDMA(void)
 
 }
 
-void HAL_I2C_MemRxCpltCallback(I2C_HandleTypeDef *hi2c)
+void lsmReleaseSemaphore(void)
 {
-	HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, 1);
 	osSemaphoreRelease(lsmTransmitCpltHandle);
 }
+
+
