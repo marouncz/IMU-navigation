@@ -133,7 +133,7 @@ typedef struct
 	double gyroY;
 	double gyroZ;
 	float temp;
-	uint16_t dataCNT;
+	uint32_t dataCNT;
 }adisDataStruc;
 
 typedef struct
@@ -157,6 +157,7 @@ typedef struct
 	float gyroX;
 	float gyroY;
 	float gyroZ;
+
 	float temp;
 
 } mpuDataStruc;
@@ -165,14 +166,26 @@ typedef struct
 {
 
 	//struct size
-	float accelX;
-	float accelY;
-	float accelZ;
 
-	float gyroX;
-	float gyroY;
-	float gyroZ;
-	float temp;
+	uint32_t year;
+	uint32_t month;
+	uint32_t day;
+	uint32_t hour;
+	uint32_t min;
+	uint32_t sec;
+	uint32_t fixType;
+
+	float fLon;
+	float fLat;
+
+	int32_t height;
+	int32_t hMSL;
+
+	uint32_t hAcc;
+	uint32_t vAcc;
+
+	int32_t gSpeed;
+	int32_t headMot;
 
 } gnssLoggedDataStruc;
 
@@ -182,6 +195,8 @@ typedef struct
 {
 	adisDataStruc adisData;
 	lsmDataStruc lsmData;
+	mpuDataStruc mpuData;
+	gnssLoggedDataStruc gnssLoggedData;
 
 
 

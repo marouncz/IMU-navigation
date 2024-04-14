@@ -39,6 +39,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "mpu.h"
+#include "usb_device.h"
 
 
 /* USER CODE END Includes */
@@ -461,6 +462,7 @@ void StartGpsTask(void *argument)
 	osDelay(3000);
 
 	GNSS_StateHandle GNSS_Handle;
+	gnssLoggedDataStruc gnssLoggedData;
 	GNSS_Init(&GNSS_Handle, &gpsUART);
 	osDelay(1000);
 	GNSS_LoadConfig(&GNSS_Handle);
@@ -472,6 +474,26 @@ void StartGpsTask(void *argument)
 		GNSS_GetPVTData(&GNSS_Handle);
 		GNSS_ParseBuffer(&GNSS_Handle);
 		osDelay(1000);
+
+		gnssLoggedData.year = GNSS_Handle.year;
+		gnssLoggedData.month = GNSS_Handle.month;
+		gnssLoggedData.day = GNSS_Handle.day;
+		gnssLoggedData.hour = GNSS_Handle.hour;
+		gnssLoggedData.min = GNSS_Handle.min;
+		gnssLoggedData.sec = GNSS_Handle.sec;
+		gnssLoggedData.fixType = GNSS_Handle.fixType;
+		gnssLoggedData.fLon = GNSS_Handle.fLon;
+		gnssLoggedData.fLat = GNSS_Handle.fLat;
+		gnssLoggedData.height = GNSS_Handle.height;
+		gnssLoggedData.hMSL = GNSS_Handle.hMSL;
+		gnssLoggedData.hAcc = GNSS_Handle.hAcc;
+		gnssLoggedData.vAcc = GNSS_Handle.vAcc;
+		gnssLoggedData.gSpeed = GNSS_Handle.gSpeed;
+		gnssLoggedData.headMot = GNSS_Handle.headMot;
+
+		osMessageQueuePut(gnssQHandle,  &gnssLoggedData, 1, osWaitForever);
+
+
 		char fixType[6][18] =
 		{ "GPS: No Fix", "GPS: DR only", "GPS: 2D-Fix", "GPS: 3D-Fix", "GPS: Time only fix" };
 		ssd1306_SetCursor(0, 0);
@@ -601,16 +623,44 @@ void StartAdisTask(void *argument)
   {
 	  adisLog = adisRead();
 	  loggerData.adisData = adisLog;
-	  //osMessageQueuePut(adisQHandle,  &adisLog, 1, osWaitForever);
-	  if(osMessageQueueGetCount(lsmQHandle)>0)
-	  {
-		  osMessageQueueGet(lsmQHandle, &loggerData.lsmData, NULL, osWaitForever);
-	  }
-	  else
-	  {
-		  //loggerData.lsmData = NULL;
 
-	  }
+		//append LSM data if available
+		if (osMessageQueueGetCount(lsmQHandle) > 0)
+		{
+			osMessageQueueGet(lsmQHandle, &loggerData.lsmData, NULL,
+					osWaitForever);
+		}
+		else
+		{
+			memset(&loggerData.lsmData, 0, sizeof(loggerData.lsmData));
+
+		}
+
+		//append MPU data if available
+		if (osMessageQueueGetCount(mpuQHandle) > 0)
+		{
+			osMessageQueueGet(mpuQHandle, &loggerData.mpuData, NULL,
+			osWaitForever);
+		}
+		else
+		{
+			memset(&loggerData.mpuData, 0, sizeof(loggerData.mpuData));
+
+		}
+
+		//append GNSS data if available
+		if (osMessageQueueGetCount(gnssQHandle) > 0)
+		{
+			osMessageQueueGet(gnssQHandle, &loggerData.gnssLoggedData, NULL,
+			osWaitForever);
+		}
+		else
+		{
+			memset(&loggerData.gnssLoggedData, 0, sizeof(loggerData.gnssLoggedData));
+
+		}
+
+
 	  osMessageQueuePut(loggerQHandle,  &loggerData, 1, osWaitForever);
 
 
@@ -731,6 +781,7 @@ void StartMpuTask(void *argument)
   for(;;)
   {
 	  mpuLog = mpuRead();
+	  osMessageQueuePut(mpuQHandle,  &mpuLog, 1, osWaitForever);
 
   }
   /* USER CODE END StartMpuTask */
