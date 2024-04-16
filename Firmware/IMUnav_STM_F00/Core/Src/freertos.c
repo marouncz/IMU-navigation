@@ -40,6 +40,7 @@
 #include <stdlib.h>
 #include "mpu.h"
 #include "usb_device.h"
+#include "gui.h"
 
 
 /* USER CODE END Includes */
@@ -518,6 +519,9 @@ void StartOledTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
+	  guiDrawBottomBox();
+	ssd1306_SetCursor(0, 54);
+	ssd1306_WriteString("Home", Font_7x10, White);
 	ssd1306_UpdateScreen();
     osDelay(100);
 
@@ -583,7 +587,7 @@ void StartPowerTask(void *argument)
 		  }
 	  }
 	  char voltageString[7];
-	  itoa(battVoltageFilt*1000, voltageString, 10);
+	  itoa(battVoltage*1000, voltageString, 10);
 
 	  ssd1306_SetCursor(0, 20);
 	  ssd1306_WriteString(voltageString, Font_7x10 , White);
