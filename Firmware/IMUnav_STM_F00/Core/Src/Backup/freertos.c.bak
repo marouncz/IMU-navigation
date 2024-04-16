@@ -39,6 +39,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "mpu.h"
+#include "usb_device.h"
+#include "gui.h"
 
 
 /* USER CODE END Includes */
@@ -147,6 +149,16 @@ osMessageQueueId_t loggerQHandle;
 const osMessageQueueAttr_t loggerQ_attributes = {
   .name = "loggerQ"
 };
+/* Definitions for mpuQ */
+osMessageQueueId_t mpuQHandle;
+const osMessageQueueAttr_t mpuQ_attributes = {
+  .name = "mpuQ"
+};
+/* Definitions for gnssQ */
+osMessageQueueId_t gnssQHandle;
+const osMessageQueueAttr_t gnssQ_attributes = {
+  .name = "gnssQ"
+};
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -214,6 +226,12 @@ void MX_FREERTOS_Init(void) {
 
   /* creation of loggerQ */
   loggerQHandle = osMessageQueueNew (10, sizeof(loggerStruc), &loggerQ_attributes);
+
+  /* creation of mpuQ */
+  mpuQHandle = osMessageQueueNew (4, sizeof(mpuDataStruc), &mpuQ_attributes);
+
+  /* creation of gnssQ */
+  gnssQHandle = osMessageQueueNew (16, sizeof(gnssLoggedDataStruc), &gnssQ_attributes);
 
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
@@ -445,6 +463,7 @@ void StartGpsTask(void *argument)
 	osDelay(3000);
 
 	GNSS_StateHandle GNSS_Handle;
+	gnssLoggedDataStruc gnssLoggedData;
 	GNSS_Init(&GNSS_Handle, &gpsUART);
 	osDelay(1000);
 	GNSS_LoadConfig(&GNSS_Handle);
@@ -456,6 +475,26 @@ void StartGpsTask(void *argument)
 		GNSS_GetPVTData(&GNSS_Handle);
 		GNSS_ParseBuffer(&GNSS_Handle);
 		osDelay(1000);
+
+		gnssLoggedData.year = GNSS_Handle.year;
+		gnssLoggedData.month = GNSS_Handle.month;
+		gnssLoggedData.day = GNSS_Handle.day;
+		gnssLoggedData.hour = GNSS_Handle.hour;
+		gnssLoggedData.min = GNSS_Handle.min;
+		gnssLoggedData.sec = GNSS_Handle.sec;
+		gnssLoggedData.fixType = GNSS_Handle.fixType;
+		gnssLoggedData.fLon = GNSS_Handle.fLon;
+		gnssLoggedData.fLat = GNSS_Handle.fLat;
+		gnssLoggedData.height = GNSS_Handle.height;
+		gnssLoggedData.hMSL = GNSS_Handle.hMSL;
+		gnssLoggedData.hAcc = GNSS_Handle.hAcc;
+		gnssLoggedData.vAcc = GNSS_Handle.vAcc;
+		gnssLoggedData.gSpeed = GNSS_Handle.gSpeed;
+		gnssLoggedData.headMot = GNSS_Handle.headMot;
+
+		osMessageQueuePut(gnssQHandle,  &gnssLoggedData, 1, osWaitForever);
+
+
 		char fixType[6][18] =
 		{ "GPS: No Fix", "GPS: DR only", "GPS: 2D-Fix", "GPS: 3D-Fix", "GPS: Time only fix" };
 		ssd1306_SetCursor(0, 0);
@@ -480,6 +519,9 @@ void StartOledTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
+	  guiDrawBottomBox();
+	ssd1306_SetCursor(0, 54);
+	ssd1306_WriteString("Home", Font_7x10, White);
 	ssd1306_UpdateScreen();
     osDelay(100);
 
@@ -545,7 +587,7 @@ void StartPowerTask(void *argument)
 		  }
 	  }
 	  char voltageString[7];
-	  itoa(battVoltageFilt*1000, voltageString, 10);
+	  itoa(battVoltage*1000, voltageString, 10);
 
 	  ssd1306_SetCursor(0, 20);
 	  ssd1306_WriteString(voltageString, Font_7x10 , White);
@@ -585,16 +627,44 @@ void StartAdisTask(void *argument)
   {
 	  adisLog = adisRead();
 	  loggerData.adisData = adisLog;
-	  //osMessageQueuePut(adisQHandle,  &adisLog, 1, osWaitForever);
-	  if(osMessageQueueGetCount(lsmQHandle)>0)
-	  {
-		  osMessageQueueGet(lsmQHandle, &loggerData.lsmData, NULL, osWaitForever);
-	  }
-	  else
-	  {
-		  //loggerData.lsmData = NULL;
 
-	  }
+		//append LSM data if available
+		if (osMessageQueueGetCount(lsmQHandle) > 0)
+		{
+			osMessageQueueGet(lsmQHandle, &loggerData.lsmData, NULL,
+					osWaitForever);
+		}
+		else
+		{
+			memset(&loggerData.lsmData, 0, sizeof(loggerData.lsmData));
+
+		}
+
+		//append MPU data if available
+		if (osMessageQueueGetCount(mpuQHandle) > 0)
+		{
+			osMessageQueueGet(mpuQHandle, &loggerData.mpuData, NULL,
+			osWaitForever);
+		}
+		else
+		{
+			memset(&loggerData.mpuData, 0, sizeof(loggerData.mpuData));
+
+		}
+
+		//append GNSS data if available
+		if (osMessageQueueGetCount(gnssQHandle) > 0)
+		{
+			osMessageQueueGet(gnssQHandle, &loggerData.gnssLoggedData, NULL,
+			osWaitForever);
+		}
+		else
+		{
+			memset(&loggerData.gnssLoggedData, 0, sizeof(loggerData.gnssLoggedData));
+
+		}
+
+
 	  osMessageQueuePut(loggerQHandle,  &loggerData, 1, osWaitForever);
 
 
@@ -668,7 +738,7 @@ void StartLoggerTask(void *argument)
 	}
 
 	uint32_t i = 0;
-	while(i<10000)
+	while(i<30000)
 	{
 		osMessageQueueGet(loggerQHandle, &loggerStoreFS, NULL, osWaitForever);
 		memcpy(buffer, &loggerStoreFS, sizeof(loggerStoreFS));
@@ -715,6 +785,7 @@ void StartMpuTask(void *argument)
   for(;;)
   {
 	  mpuLog = mpuRead();
+	  osMessageQueuePut(mpuQHandle,  &mpuLog, 1, osWaitForever);
 
   }
   /* USER CODE END StartMpuTask */

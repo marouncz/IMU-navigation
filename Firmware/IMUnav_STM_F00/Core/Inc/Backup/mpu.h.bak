@@ -19,4 +19,6 @@ void mpuTriggerDMA(void);
 
 void mpuReleaseSemaphore(void);
 
+uint8_t mpuReady(void);
+
 #endif /* INC_mpu_H_ */
