@@ -41,6 +41,8 @@
 #include "mpu.h"
 #include "usb_device.h"
 #include "gui.h"
+#include "rtc.h"
+
 
 
 /* USER CODE END Includes */
@@ -298,10 +300,7 @@ void StartDefaultTask(void *argument)
 }
 
 /* USER CODE BEGIN Header_StartKeepaliveTask */
-FRESULT res; /* FatFs function common result code */
-uint32_t byteswritten, bytesread; /* File write/read counts */
-uint8_t wtext[] = "0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789"; /* File write buffer */
-uint8_t rtext[_MAX_SS];/* File read buffer */
+
 /**
 * @brief Function implementing the keepaliveTask thread.
 * @param argument: Not used
@@ -311,99 +310,7 @@ uint8_t rtext[_MAX_SS];/* File read buffer */
 void StartKeepaliveTask(void *argument)
 {
   /* USER CODE BEGIN StartKeepaliveTask */
-//	W25Q_Init();		 // init the chip
-//		//W25Q_EraseSector(0); // erase 4K sector - required before recording
-//
-//		// make test data
-//		u8_t byte = 0x65;
-//		u8_t byte_read = 0;
-//		u8_t in_page_shift = 0;
-//		u8_t page_number = 0;
-//		// write data
-//		W25Q_ProgramByte(byte, in_page_shift, page_number);
-//		// read data
-//		W25Q_ReadByte(&byte_read, in_page_shift, page_number);
-//
-//		// make example structure
-//		struct STR {
-//			u8_t abc;
-//			u32_t bca;
-//			char str[4];
-//			fl_t gg;
-//		} _str, _str2;
-//
-//
-//		// fill instance
-//		_str.abc = 0x20;
-//		_str.bca = 0x3F3F4A;
-//		_str.str[0] = 'a';
-//		_str.str[1] = 'b';
-//		_str.str[2] = 'c';
-//		_str.str[3] = '\0';
-//		_str.gg = 0.658;
-//
-//
-//		u16_t len = sizeof(_str);	// length of structure in bytes
-//
-//		// program structure
-//		W25Q_ProgramData((u8_t*) &_str, len, 1+in_page_shift, page_number);
-//		// read structure to another instance
-//		W25Q_ReadData((u8_t*) &_str2, len, 1+in_page_shift, page_number);
-//
-//		//W25Q_EraseChip();
-		uint8_t testBuff[256] = {};
 
-//		 if(f_mount(&SDFatFS, (TCHAR const*)SDPath, 0) != FR_OK)
-//		  {
-//		      Error_Handler();
-//		  }
-//		  else
-//		  {
-////		      if(f_mkfs((TCHAR const*)SDPath, FM_ANY, 0, rtext, sizeof(rtext)) != FR_OK)
-////		      {
-////		          Error_Handler();
-////		      }
-////		      else
-////		      {
-//		          //Open file for writing (Create)
-//		          if(f_open(&SDFile, "STM32.TXT", FA_CREATE_ALWAYS | FA_WRITE) != FR_OK)
-//		          {
-//		              Error_Handler();
-//		          }
-//		          else
-//		          {
-//
-//
-//
-//		              //Write to the text file
-//		              res = f_write(&SDFile, wtext, strlen((char *)wtext), (void *)&byteswritten);
-//		              for(int i = 0; i <100; i++)
-//		              {
-//		            	  f_write(&SDFile, wtext, strlen((char *)wtext), (void *)&byteswritten);
-//		              }
-//		              if((byteswritten == 0) || (res != FR_OK))
-//		              {
-//		                  Error_Handler();
-//		              }
-//		              else
-//		              {
-//
-//
-//
-//		                  f_close(&SDFile);
-//		              }
-//		          }
-////		      }
-//		  }
-//		  f_mount(&SDFatFS, (TCHAR const*)NULL, 0);
-
-
-
-
-
-
-
-		//W25Q_Sleep();	// go to sleep
 
 	
   /* Infinite loop */
@@ -467,6 +374,7 @@ void StartGpsTask(void *argument)
 	GNSS_Init(&GNSS_Handle, &gpsUART);
 	osDelay(1000);
 	GNSS_LoadConfig(&GNSS_Handle);
+	uint8_t rtcFlag = 0;
 
 
   /* Infinite loop */
@@ -494,9 +402,40 @@ void StartGpsTask(void *argument)
 
 		osMessageQueuePut(gnssQHandle,  &gnssLoggedData, 1, osWaitForever);
 
+		if (rtcFlag == 0 && GNSS_Handle.fixType > 2)
+		{
+			//first gps synce after power up, set rtc
+			rtcFlag = 1;
+			RTC_TimeTypeDef sTime =
+			{ 0 };
+			RTC_DateTypeDef sDate =
+			{ 0 };
 
-		char fixType[6][18] =
-		{ "GPS: No Fix", "GPS: DR only", "GPS: 2D-Fix", "GPS: 3D-Fix", "GPS: Time only fix" };
+			sTime.Hours = GNSS_Handle.hour;
+			sTime.Minutes = GNSS_Handle.min;
+			sTime.Seconds = GNSS_Handle.sec;
+			sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
+			sTime.StoreOperation = RTC_STOREOPERATION_RESET;
+			if (HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN) != HAL_OK)
+			{
+				Error_Handler();
+			}
+			//sDate.WeekDay = RTC_WEEKDAY_MONDAY;
+			sDate.Month = GNSS_Handle.month;
+			sDate.Date = GNSS_Handle.day;
+			sDate.Year = GNSS_Handle.year - 2000;
+
+			if (HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN) != HAL_OK)
+			{
+				Error_Handler();
+			}
+
+		}
+
+
+		char fixType[6][19] =
+		{ "GPS: No Fix       ", "GPS: DR only      ", "GPS: 2D-Fix       ",
+				"GPS: 3D-Fix       ", "GPS: Time only fix" };
 		ssd1306_SetCursor(0, 0);
 		ssd1306_WriteString(fixType[GNSS_Handle.fixType], Font_7x10 , White);
 	}
@@ -519,11 +458,28 @@ void StartOledTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-	  guiDrawBottomBox();
-	ssd1306_SetCursor(0, 54);
-	ssd1306_WriteString("Home", Font_7x10, White);
-	ssd1306_UpdateScreen();
-    osDelay(100);
+		guiDrawBottomBox();
+		ssd1306_SetCursor(0, 54);
+		ssd1306_WriteString("Home", Font_7x10, White);
+
+		ssd1306_SetCursor(0, 32);
+		ssd1306_WriteString("UTC: ", Font_7x10, White);
+		char timeString[20] = "";
+		RTC_TimeTypeDef sTime =
+		{ 0 };
+		RTC_DateTypeDef sDate =
+		{ 0 };
+		HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
+		HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
+
+		sprintf(timeString, "%02d:%02d:%02d", sTime.Hours, sTime.Minutes, sTime.Seconds);
+
+
+
+		ssd1306_WriteString(timeString, Font_7x10, White);
+
+		ssd1306_UpdateScreen();
+		osDelay(100);
 
   }
   /* USER CODE END StartOledTask */
@@ -551,7 +507,7 @@ void StartPowerTask(void *argument)
 	HAL_ADC_Init(&analogADC);
 
 	float supplyVoltage = 3.3;
-	float mcuTemp = 25;
+	float mcuTemp = 24;
 	float battVoltage = 3.7;
 	float usbVoltage = 5;
 	float battVoltageFilt = 3.7;
@@ -587,7 +543,9 @@ void StartPowerTask(void *argument)
 		  }
 	  }
 	  char voltageString[7];
-	  itoa(battVoltage*1000, voltageString, 10);
+
+	  sprintf(voltageString, "%.2f V", battVoltage);
+
 
 	  ssd1306_SetCursor(0, 20);
 	  ssd1306_WriteString(voltageString, Font_7x10 , White);
@@ -704,6 +662,12 @@ void StartLsmTask(void *argument)
 /* USER CODE BEGIN Header_StartLoggerTask */
 loggerStruc loggerStore[10];
 loggerStruc loggerStoreFS;
+
+FRESULT res; /* FatFs function common result code */
+uint32_t byteswritten, bytesread; /* File write/read counts */
+//uint8_t rtext[_MAX_SS];/* File read buffer */
+
+
 /**
 * @brief Function implementing the loggerTask thread.
 * @param argument: Not used
