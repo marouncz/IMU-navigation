@@ -295,9 +295,6 @@ void EXTI9_5_IRQHandler(void)
 /**
   * @brief This function handles TIM1 trigger and commutation interrupts and TIM11 global interrupt.
   */
-
-
-
 void TIM1_TRG_COM_TIM11_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM1_TRG_COM_TIM11_IRQn 0 */
