@@ -105,7 +105,7 @@ const osThreadAttr_t oledTask_attributes = {
 osThreadId_t powerTaskHandle;
 const osThreadAttr_t powerTask_attributes = {
   .name = "powerTask",
-  .stack_size = 128 * 4,
+  .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityLow2,
 };
 /* Definitions for adisTask */
@@ -528,7 +528,7 @@ void StartPowerTask(void *argument)
 	  supplyVoltage = *VREFINT_CAL_ADDR * VREFINT_CAL_VREF / adcDataDMA[REF_CHANNEL]/1000.0;
 	  mcuTemp = -279.0 + 400.0*(supplyVoltage*adcDataDMA[TMP_CHANNEL]/4095.0);
 	  usbVoltage = (supplyVoltage*adcDataDMA[USB_CHANNEL]/4095.0)*(33.0+27.0)/33.0;
-	  battVoltage = (supplyVoltage*adcDataDMA[BAT_CHANNEL]/4095.0)*(33.0+27.0)/33.0;
+	  battVoltage = (supplyVoltage*adcDataDMA[BAT_CHANNEL]/4095.0)*(33.1+27.16)/33.0;
 
 	  battVoltageFilt = ADCIIRCOEFF * battVoltage + (1.0-ADCIIRCOEFF)*battVoltageFilt;
 
@@ -542,9 +542,9 @@ void StartPowerTask(void *argument)
 
 		  }
 	  }
-	  char voltageString[7];
+	  char voltageString[13];
 
-	  sprintf(voltageString, "%.2f V", battVoltage);
+	  snprintf(voltageString, 13, "BATT: %.2f V", battVoltage);
 
 
 	  ssd1306_SetCursor(0, 20);

@@ -98,7 +98,7 @@ const osThreadAttr_t gpsTask_attributes = {
 osThreadId_t oledTaskHandle;
 const osThreadAttr_t oledTask_attributes = {
   .name = "oledTask",
-  .stack_size = 128 * 4,
+  .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for powerTask */
@@ -542,13 +542,15 @@ void StartPowerTask(void *argument)
 
 		  }
 	  }
-	  char voltageString[7];
+	  char voltageString[13];
 
-	  sprintf(voltageString, "%.2f V", battVoltage);
+	  snprintf(voltageString, 13, "BATT: %.2f V", battVoltage);
 
 
-	  ssd1306_SetCursor(0, 20);
+	  ssd1306_SetCursor(0, 10);
 	  ssd1306_WriteString(voltageString, Font_7x10 , White);
+
+
 
 
 
