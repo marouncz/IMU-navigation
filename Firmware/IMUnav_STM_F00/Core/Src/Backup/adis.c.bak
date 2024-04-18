@@ -72,25 +72,29 @@ void adisInit(void)
 
 }
 
+#define GYRO_SCALE (0.00043633231 / 65536)
+#define ACCEL_SCALE (0.00245 / 65536)
+
+
 adisDataStruc adisRead(void)
 {
 	osSemaphoreAcquire(adisTransmitCpltHandle, 2000);
 	HAL_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, 1);
 	adisData.gyroX = ((int32_t) ((spiRxData[3] << 16) | spiRxData[2]))
-			* (0.00043633231 / 65536);
+			* GYRO_SCALE;
 	adisData.gyroY = ((int32_t) ((spiRxData[5] << 16) | spiRxData[4]))
-			* (0.00043633231 / 65536);
+			* GYRO_SCALE;
 	adisData.gyroZ = ((int32_t) ((spiRxData[7] << 16) | spiRxData[6]))
-			* (0.00043633231 / 65536);
+			* GYRO_SCALE;
 
 	adisData.accelX = ((int32_t) ((spiRxData[9] << 16) | spiRxData[8]))
-			* (0.00245 / 65536);
+			* ACCEL_SCALE;
 	adisData.accelY = ((int32_t) ((spiRxData[11] << 16) | spiRxData[10]))
-			* (0.00245 / 65536);
+			* ACCEL_SCALE;
 	adisData.accelZ = ((int32_t) ((spiRxData[13] << 16) | spiRxData[12]))
-			* (0.00245 / 65536);
+			* ACCEL_SCALE;
 
-	adisData.temp = ((int16_t) (spiRxData[14])) * 0.1;
+	adisData.temp = ((int16_t) (spiRxData[14])) * 0.1f;
 
 	adisData.dataCNT = ((int16_t) (spiRxData[15]));
 	HAL_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, 0);
