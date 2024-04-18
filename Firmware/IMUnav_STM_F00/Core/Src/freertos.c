@@ -65,7 +65,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-
+guiInfoStruc guiInfo = {0};
 /* USER CODE END Variables */
 /* Definitions for defaultTask */
 osThreadId_t defaultTaskHandle;
@@ -187,7 +187,6 @@ unsigned long getRunTimeCounterValue(void);
 
 /* USER CODE BEGIN 1 */
 /* Functions needed when configGENERATE_RUN_TIME_STATS is on */
-/* Functions needed when configGENERATE_RUN_TIME_STATS is on */
 __weak void configureTimerForRunTimeStats(void)
 {
 	HAL_TIM_Base_Start_IT(&htim11);
@@ -297,7 +296,22 @@ void StartDefaultTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+		osDelay(10);
+		guiInfo.buttons[0] = !HAL_GPIO_ReadPin(BUTTON1_GPIO_Port, BUTTON1_Pin);
+		guiInfo.buttons[1] = !HAL_GPIO_ReadPin(BUTTON2_GPIO_Port, BUTTON2_Pin);
+		guiInfo.buttons[2] = !HAL_GPIO_ReadPin(BUTTON3_GPIO_Port, BUTTON3_Pin);
+		guiInfo.buttons[3] = !HAL_GPIO_ReadPin(BUTTON4_GPIO_Port, BUTTON4_Pin);
+
+		osDelay(10);
+		RTC_TimeTypeDef sTime =
+		{ 0 };
+		RTC_DateTypeDef sDate =
+		{ 0 };
+		HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
+		HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
+		guiInfo.boardStats.sTime = sTime;
+		guiInfo.boardStats.sDate = sDate;
+
   }
   /* USER CODE END StartDefaultTask */
 }
@@ -463,33 +477,18 @@ void StartOledTask(void *argument)
 {
   /* USER CODE BEGIN StartOledTask */
 	ssd1306_Init();
-	//ssd1306_WriteString("IMUnav_STM_F00", Font_7x10 , White);
+	guiDrawBottomBox();
+
+
 	ssd1306_UpdateScreen();
   /* Infinite loop */
   for(;;)
   {
-		guiDrawBottomBox();
-		ssd1306_SetCursor(0, 54);
-		ssd1306_WriteString("Home", Font_7x10, White);
 
-		ssd1306_SetCursor(0, 32);
-		ssd1306_WriteString("UTC: ", Font_7x10, White);
-		char timeString[20] = "";
-		RTC_TimeTypeDef sTime =
-		{ 0 };
-		RTC_DateTypeDef sDate =
-		{ 0 };
-		HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
-		HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
-
-		sprintf(timeString, "%02d:%02d:%02d", sTime.Hours, sTime.Minutes, sTime.Seconds);
+	  guiStateMachine(&guiInfo);
 
 
-
-		ssd1306_WriteString(timeString, Font_7x10, White);
-
-		ssd1306_UpdateScreen();
-		osDelay(100);
+		osDelay(1);
 
   }
   /* USER CODE END StartOledTask */
@@ -521,11 +520,6 @@ void StartPowerTask(void *argument)
 	float battVoltage = 3.7;
 	float usbVoltage = 5;
 	float battVoltageFilt = 3.7;
-
-
-
-
-
 	//minimum temperature sensor sampling time 10us, slope 2.5mv/degC, 0.76V at 25degC
 
 
@@ -548,24 +542,17 @@ void StartPowerTask(void *argument)
 		  HAL_GPIO_WritePin(PWR_OFF_GPIO_Port, PWR_OFF_Pin, 1);
 		  while(1)
 		  {
-			  //
+			  //this loop should be entered only for a short while and than powered down
 
 		  }
 	  }
-	  char voltageString[13];
 
-	  snprintf(voltageString, 13, "BATT: %.2f V", battVoltage);
+	  guiInfo.boardStats.battVoltage = battVoltage;
+	  guiInfo.boardStats.battVoltageFilt = battVoltageFilt;
+	  guiInfo.boardStats.mcuTemp = mcuTemp;
+	  guiInfo.boardStats.supplyVoltage = supplyVoltage;
+	  guiInfo.boardStats.usbVoltage = usbVoltage;
 
-
-	  ssd1306_SetCursor(0, 10);
-	  ssd1306_WriteString(voltageString, Font_7x10 , White);
-
-
-
-
-
-
-	  osDelay(1000);
 
   }
   /* USER CODE END StartPowerTask */
@@ -597,6 +584,7 @@ void StartAdisTask(void *argument)
   {
 	  adisLog = adisRead();
 	  loggerData.adisData = adisLog;
+	  guiInfo.adis = adisLog;
 
 		//append LSM data if available
 		if (osMessageQueueGetCount(lsmQHandle) > 0)
@@ -665,6 +653,7 @@ void StartLsmTask(void *argument)
 
 	  lsmLog = lsmRead();
 	  osMessageQueuePut(lsmQHandle,  &lsmLog, 1, osWaitForever);
+	  guiInfo.lsm = lsmLog;
 
 
   }
@@ -704,10 +693,6 @@ void StartLoggerTask(void *argument)
 		}
 		else
 		{
-
-//			//Write to the text file
-//			f_write(&SDFile, wtext, strlen((char*) wtext),
-//					(void*) &byteswritten);
 
 		}
 
@@ -762,6 +747,7 @@ void StartMpuTask(void *argument)
   {
 	  mpuLog = mpuRead();
 	  osMessageQueuePut(mpuQHandle,  &mpuLog, 1, osWaitForever);
+	  guiInfo.mpu = mpuLog;
 
   }
   /* USER CODE END StartMpuTask */

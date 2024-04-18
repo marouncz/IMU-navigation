@@ -8,6 +8,27 @@
 #ifndef INC_GUI_H_
 #define INC_GUI_H_
 
+typedef enum
+{
+	INFO,
+	RECORD,
+	STOP,
+	CALIBRATION
+
+}guiStateEnum;
+
+typedef enum
+{
+	BOARD,
+	MPU6050,
+	ADIS,
+	LSM,
+	GPS
+}infoSubstateEnum;
 void guiDrawBottomBox(void);
+
+void guiStateMachine(guiInfoStruc* guiInfo);
+
+void printInfoScreen(guiInfoStruc* guiInfo);
 
 #endif /* INC_GUI_H_ */

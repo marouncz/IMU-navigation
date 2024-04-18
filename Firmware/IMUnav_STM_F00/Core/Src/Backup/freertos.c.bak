@@ -65,7 +65,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-
+guiInfoStruc guiInfo = {0};
 /* USER CODE END Variables */
 /* Definitions for defaultTask */
 osThreadId_t defaultTaskHandle;
@@ -187,7 +187,6 @@ unsigned long getRunTimeCounterValue(void);
 
 /* USER CODE BEGIN 1 */
 /* Functions needed when configGENERATE_RUN_TIME_STATS is on */
-/* Functions needed when configGENERATE_RUN_TIME_STATS is on */
 __weak void configureTimerForRunTimeStats(void)
 {
 	HAL_TIM_Base_Start_IT(&htim11);
@@ -297,7 +296,7 @@ void StartDefaultTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+    osDelay(10);
   }
   /* USER CODE END StartDefaultTask */
 }
@@ -463,14 +462,15 @@ void StartOledTask(void *argument)
 {
   /* USER CODE BEGIN StartOledTask */
 	ssd1306_Init();
-	//ssd1306_WriteString("IMUnav_STM_F00", Font_7x10 , White);
+	guiDrawBottomBox();
+
+
 	ssd1306_UpdateScreen();
   /* Infinite loop */
   for(;;)
   {
-		guiDrawBottomBox();
-		ssd1306_SetCursor(0, 54);
-		ssd1306_WriteString("Home", Font_7x10, White);
+
+
 
 		ssd1306_SetCursor(0, 32);
 		ssd1306_WriteString("UTC: ", Font_7x10, White);
@@ -548,23 +548,23 @@ void StartPowerTask(void *argument)
 		  HAL_GPIO_WritePin(PWR_OFF_GPIO_Port, PWR_OFF_Pin, 1);
 		  while(1)
 		  {
-			  //
+			  //this loop should be entered only for a short while and than powered down
 
 		  }
 	  }
+
+	  guiInfo.boardStats.battVoltage = battVoltage;
+	  guiInfo.boardStats.battVoltageFilt = battVoltageFilt;
+	  guiInfo.boardStats.mcuTemp = mcuTemp;
+	  guiInfo.boardStats.supplyVoltage = supplyVoltage;
+	  guiInfo.boardStats.usbVoltage = usbVoltage;
+
 	  char voltageString[13];
 
 	  snprintf(voltageString, 13, "BATT: %.2f V", battVoltage);
 
-
 	  ssd1306_SetCursor(0, 10);
 	  ssd1306_WriteString(voltageString, Font_7x10 , White);
-
-
-
-
-
-
 	  osDelay(1000);
 
   }
@@ -597,6 +597,7 @@ void StartAdisTask(void *argument)
   {
 	  adisLog = adisRead();
 	  loggerData.adisData = adisLog;
+	  guiInfo.adis = adisLog;
 
 		//append LSM data if available
 		if (osMessageQueueGetCount(lsmQHandle) > 0)
@@ -665,6 +666,7 @@ void StartLsmTask(void *argument)
 
 	  lsmLog = lsmRead();
 	  osMessageQueuePut(lsmQHandle,  &lsmLog, 1, osWaitForever);
+	  guiInfo.lsm = lsmLog;
 
 
   }
@@ -704,10 +706,6 @@ void StartLoggerTask(void *argument)
 		}
 		else
 		{
-
-//			//Write to the text file
-//			f_write(&SDFile, wtext, strlen((char*) wtext),
-//					(void*) &byteswritten);
 
 		}
 
@@ -762,6 +760,7 @@ void StartMpuTask(void *argument)
   {
 	  mpuLog = mpuRead();
 	  osMessageQueuePut(mpuQHandle,  &mpuLog, 1, osWaitForever);
+	  guiInfo.mpu = mpuLog;
 
   }
   /* USER CODE END StartMpuTask */

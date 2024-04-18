@@ -72,6 +72,14 @@ void Error_Handler(void);
 #define LED2_GPIO_Port GPIOE
 #define LED3_Pin GPIO_PIN_6
 #define LED3_GPIO_Port GPIOE
+#define BUTTON1_Pin GPIO_PIN_0
+#define BUTTON1_GPIO_Port GPIOC
+#define BUTTON2_Pin GPIO_PIN_1
+#define BUTTON2_GPIO_Port GPIOC
+#define BUTTON3_Pin GPIO_PIN_2
+#define BUTTON3_GPIO_Port GPIOC
+#define BUTTON4_Pin GPIO_PIN_3
+#define BUTTON4_GPIO_Port GPIOC
 #define USB_VOLTAGE_ADC_Pin GPIO_PIN_0
 #define USB_VOLTAGE_ADC_GPIO_Port GPIOA
 #define BATT_VOLTAGE_Pin GPIO_PIN_1
@@ -201,6 +209,34 @@ typedef struct
 
 
 }loggerStruc;
+
+typedef struct
+{
+
+	float supplyVoltage;
+	float mcuTemp;
+	float battVoltage;
+	float usbVoltage;
+	float battVoltageFilt;
+
+	RTC_TimeTypeDef sTime;
+	RTC_DateTypeDef sDate;
+
+} boardStatsStruc;
+
+typedef struct
+{
+	adisDataStruc adis;
+	lsmDataStruc lsm;
+	mpuDataStruc mpu;
+	gnssLoggedDataStruc gnss;
+	boardStatsStruc boardStats;
+	uint8_t buttons[4];
+
+
+
+
+}guiInfoStruc;
 
 
 /* USER CODE END Private defines */

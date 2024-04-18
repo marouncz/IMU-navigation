@@ -202,6 +202,33 @@ typedef struct
 
 }loggerStruc;
 
+typedef struct
+{
+
+	float supplyVoltage;
+	float mcuTemp;
+	float battVoltage;
+	float usbVoltage;
+	float battVoltageFilt;
+
+	RTC_TimeTypeDef sTime;
+	RTC_DateTypeDef sDate;
+
+} boardStatsStruc;
+
+typedef struct
+{
+	adisDataStruc adis;
+	lsmDataStruc lsm;
+	mpuDataStruc mpu;
+	gnssLoggedDataStruc gnss;
+	boardStatsStruc boardStats;
+
+
+
+
+}guiInfoStruc;
+
 
 /* USER CODE END Private defines */
 
