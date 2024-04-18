@@ -64,27 +64,31 @@ void mpuInit(void)
 
 }
 
+#define ACCEL_SCALE (78.4/32768.0)
+#define GYRO_SCALE (8.72665 / 32768.0)
+
+
 mpuDataStruc mpuRead(void)
 {
 	osSemaphoreAcquire(mpuReceiveCpltHandle, 2000);
 	//in ms-2
 	mpuData.accelX = ((int16_t) ((mpuRxData[0] << 8) | mpuRxData[1]))
-					* (78.4/32768.0);
+					* ACCEL_SCALE;
 	mpuData.accelY = ((int16_t) ((mpuRxData[2] << 8) | mpuRxData[3]))
-						* (78.4/32768.0);
+						* ACCEL_SCALE;
 	mpuData.accelZ = ((int16_t) ((mpuRxData[4] << 8) | mpuRxData[5]))
-						* (78.4/32768.0);
+						* ACCEL_SCALE;
 
 	mpuData.temp = ((int16_t) ((mpuRxData[6] << 8) | mpuRxData[7]))
 								/340.0 + 36.53;
 
 	//in rads-1
 	mpuData.gyroX = ((int16_t) ((mpuRxData[8] << 8) | mpuRxData[9]))
-			* (8.72665 / 32768.0);
+			* GYRO_SCALE;
 	mpuData.gyroY = ((int16_t) ((mpuRxData[10] << 8) | mpuRxData[11]))
-			* (8.72665 / 32768.0);
+			* GYRO_SCALE;
 	mpuData.gyroZ = ((int16_t) ((mpuRxData[12] << 8) | mpuRxData[13]))
-			* (8.72665 / 32768.0);
+			* GYRO_SCALE;
 
 	return mpuData;
 }
@@ -108,9 +112,3 @@ void mpuReleaseSemaphore(void)
 {
 	osSemaphoreRelease(mpuReceiveCpltHandle);
 }
-
-/*void HAL_I2C_MemRxCpltCallback(I2C_HandleTypeDef *hi2c)
-{
-	//HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, 1);
-	osSemaphoreRelease(mpuReceiveCpltHandle);
-}*/

@@ -360,6 +360,7 @@ void StartHubTask(void *argument)
 }
 
 /* USER CODE BEGIN Header_StartGpsTask */
+#define SYNC_TIME_GPS 0
 /**
 * @brief Function implementing the gpsTask thread.
 * @param argument: Not used
@@ -378,6 +379,8 @@ void StartGpsTask(void *argument)
 	osDelay(1000);
 	GNSS_LoadConfig(&GNSS_Handle);
 	uint8_t rtcFlag = 0;
+
+
 
 
   /* Infinite loop */
@@ -405,7 +408,7 @@ void StartGpsTask(void *argument)
 
 		osMessageQueuePut(gnssQHandle,  &gnssLoggedData, 1, osWaitForever);
 
-		if (rtcFlag == 0 && GNSS_Handle.fixType > 2)
+		if (rtcFlag == 0 && GNSS_Handle.fixType > 2 && SYNC_TIME_GPS)
 		{
 			//first gps synce after power up, set rtc
 			rtcFlag = 1;
@@ -419,7 +422,7 @@ void StartGpsTask(void *argument)
 			sTime.Seconds = GNSS_Handle.sec;
 			sTime.DayLightSaving = RTC_DAYLIGHTSAVING_NONE;
 			sTime.StoreOperation = RTC_STOREOPERATION_RESET;
-			if (HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BIN) != HAL_OK)
+			if (HAL_RTC_SetTime(&hrtc, &sTime, RTC_FORMAT_BCD) != HAL_OK)
 			{
 				Error_Handler();
 			}
@@ -428,7 +431,7 @@ void StartGpsTask(void *argument)
 			sDate.Date = GNSS_Handle.day;
 			sDate.Year = GNSS_Handle.year - 2000;
 
-			if (HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BIN) != HAL_OK)
+			if (HAL_RTC_SetDate(&hrtc, &sDate, RTC_FORMAT_BCD) != HAL_OK)
 			{
 				Error_Handler();
 			}
@@ -472,8 +475,8 @@ void StartOledTask(void *argument)
 		{ 0 };
 		RTC_DateTypeDef sDate =
 		{ 0 };
-		HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
-		HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
+		HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BCD);
+		HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BCD);
 
 		sprintf(timeString, "%02d:%02d:%02d", sTime.Hours, sTime.Minutes, sTime.Seconds);
 

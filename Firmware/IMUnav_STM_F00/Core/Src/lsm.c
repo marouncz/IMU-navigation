@@ -32,16 +32,17 @@ void lsmInit(void)
 	HAL_I2C_Mem_Read(&lsmI2C, LSM_MAG_ADDRESS, 0xE7, 1, &lsmRxData, 7, 100);
 }
 
+#define MAG_SCALE 0.15
 lsmDataStruc lsmRead(void)
 {
 	osSemaphoreAcquire(lsmTransmitCpltHandle, 2000);
 	//in microTesla
 	lsmData.magX = ((int16_t) ((lsmRxData[2] << 8) | lsmRxData[1]))
-					* (0.15);
+					* MAG_SCALE;
 	lsmData.magY = ((int16_t) ((lsmRxData[4] << 8) | lsmRxData[3]))
-						* (-0.15);
+						* (-1)*MAG_SCALE;
 	lsmData.magZ = ((int16_t) ((lsmRxData[6] << 8) | lsmRxData[5]))
-						* (0.15);
+						* MAG_SCALE;
 
 	return lsmData;
 }
