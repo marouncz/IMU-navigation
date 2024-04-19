@@ -296,7 +296,22 @@ void StartDefaultTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    osDelay(10);
+		osDelay(10);
+		guiInfo.buttons[0] = !HAL_GPIO_ReadPin(BUTTON1_GPIO_Port, BUTTON1_Pin);
+		guiInfo.buttons[1] = !HAL_GPIO_ReadPin(BUTTON2_GPIO_Port, BUTTON2_Pin);
+		guiInfo.buttons[2] = !HAL_GPIO_ReadPin(BUTTON3_GPIO_Port, BUTTON3_Pin);
+		guiInfo.buttons[3] = !HAL_GPIO_ReadPin(BUTTON4_GPIO_Port, BUTTON4_Pin);
+
+		osDelay(10);
+		RTC_TimeTypeDef sTime =
+		{ 0 };
+		RTC_DateTypeDef sDate =
+		{ 0 };
+		HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
+		HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
+		guiInfo.boardStats.sTime = sTime;
+		guiInfo.boardStats.sDate = sDate;
+
   }
   /* USER CODE END StartDefaultTask */
 }
@@ -441,12 +456,6 @@ void StartGpsTask(void *argument)
 
 		}
 
-
-		char fixType[6][19] =
-		{ "GPS: No Fix       ", "GPS: DR only      ", "GPS: 2D-Fix       ",
-				"GPS: 3D-Fix       ", "GPS: Time only fix" };
-		ssd1306_SetCursor(0, 0);
-		ssd1306_WriteString(fixType[GNSS_Handle.fixType], Font_7x10 , White);
 	}
   /* USER CODE END StartGpsTask */
 }
@@ -470,26 +479,10 @@ void StartOledTask(void *argument)
   for(;;)
   {
 
+	  guiStateMachine(&guiInfo);
 
 
-		ssd1306_SetCursor(0, 32);
-		ssd1306_WriteString("UTC: ", Font_7x10, White);
-		char timeString[20] = "";
-		RTC_TimeTypeDef sTime =
-		{ 0 };
-		RTC_DateTypeDef sDate =
-		{ 0 };
-		HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
-		HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
-
-		sprintf(timeString, "%02d:%02d:%02d", sTime.Hours, sTime.Minutes, sTime.Seconds);
-
-
-
-		ssd1306_WriteString(timeString, Font_7x10, White);
-
-		ssd1306_UpdateScreen();
-		osDelay(100);
+		osDelay(1);
 
   }
   /* USER CODE END StartOledTask */
@@ -521,11 +514,6 @@ void StartPowerTask(void *argument)
 	float battVoltage = 3.7;
 	float usbVoltage = 5;
 	float battVoltageFilt = 3.7;
-
-
-
-
-
 	//minimum temperature sensor sampling time 10us, slope 2.5mv/degC, 0.76V at 25degC
 
 
@@ -559,13 +547,6 @@ void StartPowerTask(void *argument)
 	  guiInfo.boardStats.supplyVoltage = supplyVoltage;
 	  guiInfo.boardStats.usbVoltage = usbVoltage;
 
-	  char voltageString[13];
-
-	  snprintf(voltageString, 13, "BATT: %.2f V", battVoltage);
-
-	  ssd1306_SetCursor(0, 10);
-	  ssd1306_WriteString(voltageString, Font_7x10 , White);
-	  osDelay(1000);
 
   }
   /* USER CODE END StartPowerTask */
