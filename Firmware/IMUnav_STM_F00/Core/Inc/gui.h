@@ -23,7 +23,7 @@ typedef enum
 	MPU6050,
 	ADIS,
 	LSM,
-	GPS
+	GNSS
 }infoSubstateEnum;
 void guiDrawBottomBox(void);
 

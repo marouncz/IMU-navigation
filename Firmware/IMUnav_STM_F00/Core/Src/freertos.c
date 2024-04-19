@@ -456,12 +456,6 @@ void StartGpsTask(void *argument)
 
 		}
 
-
-		char fixType[6][19] =
-		{ "GPS: No Fix       ", "GPS: DR only      ", "GPS: 2D-Fix       ",
-				"GPS: 3D-Fix       ", "GPS: Time only fix" };
-		ssd1306_SetCursor(0, 0);
-		ssd1306_WriteString(fixType[GNSS_Handle.fixType], Font_7x10 , White);
 	}
   /* USER CODE END StartGpsTask */
 }
