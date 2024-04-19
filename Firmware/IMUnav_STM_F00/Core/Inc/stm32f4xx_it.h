@@ -76,6 +76,8 @@ void OTG_FS_IRQHandler(void);
 void DMA2_Stream6_IRQHandler(void);
 void I2C3_EV_IRQHandler(void);
 void SPI4_IRQHandler(void);
+void FMPI2C1_EV_IRQHandler(void);
+void FMPI2C1_ER_IRQHandler(void);
 /* USER CODE BEGIN EFP */
 
 /* USER CODE END EFP */

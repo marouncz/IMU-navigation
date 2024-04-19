@@ -59,6 +59,7 @@ volatile unsigned long ulHighFrequencyTimerTicks = 0;
 extern PCD_HandleTypeDef hpcd_USB_OTG_FS;
 extern DMA_HandleTypeDef hdma_adc1;
 extern ADC_HandleTypeDef hadc1;
+extern FMPI2C_HandleTypeDef hfmpi2c1;
 extern DMA_HandleTypeDef hdma_i2c1_rx;
 extern DMA_HandleTypeDef hdma_i2c1_tx;
 extern DMA_HandleTypeDef hdma_i2c3_rx;
@@ -514,6 +515,34 @@ void SPI4_IRQHandler(void)
   /* USER CODE BEGIN SPI4_IRQn 1 */
 
   /* USER CODE END SPI4_IRQn 1 */
+}
+
+/**
+  * @brief This function handles FMPI2C1 event interrupt.
+  */
+void FMPI2C1_EV_IRQHandler(void)
+{
+  /* USER CODE BEGIN FMPI2C1_EV_IRQn 0 */
+
+  /* USER CODE END FMPI2C1_EV_IRQn 0 */
+  HAL_FMPI2C_EV_IRQHandler(&hfmpi2c1);
+  /* USER CODE BEGIN FMPI2C1_EV_IRQn 1 */
+
+  /* USER CODE END FMPI2C1_EV_IRQn 1 */
+}
+
+/**
+  * @brief This function handles FMPI2C1 error interrupt.
+  */
+void FMPI2C1_ER_IRQHandler(void)
+{
+  /* USER CODE BEGIN FMPI2C1_ER_IRQn 0 */
+
+  /* USER CODE END FMPI2C1_ER_IRQn 0 */
+  HAL_FMPI2C_ER_IRQHandler(&hfmpi2c1);
+  /* USER CODE BEGIN FMPI2C1_ER_IRQn 1 */
+
+  /* USER CODE END FMPI2C1_ER_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */

@@ -71,14 +71,14 @@ guiInfoStruc guiInfo = {0};
 osThreadId_t defaultTaskHandle;
 const osThreadAttr_t defaultTask_attributes = {
   .name = "defaultTask",
-  .stack_size = 1024 * 4,
+  .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for keepaliveTask */
 osThreadId_t keepaliveTaskHandle;
 const osThreadAttr_t keepaliveTask_attributes = {
   .name = "keepaliveTask",
-  .stack_size = 1280 * 4,
+  .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityLow,
 };
 /* Definitions for hubTask */
@@ -92,14 +92,14 @@ const osThreadAttr_t hubTask_attributes = {
 osThreadId_t gpsTaskHandle;
 const osThreadAttr_t gpsTask_attributes = {
   .name = "gpsTask",
-  .stack_size = 512 * 4,
+  .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityBelowNormal,
 };
 /* Definitions for oledTask */
 osThreadId_t oledTaskHandle;
 const osThreadAttr_t oledTask_attributes = {
   .name = "oledTask",
-  .stack_size = 256 * 4,
+  .stack_size = 1024 * 4,
   .priority = (osPriority_t) osPriorityNormal,
 };
 /* Definitions for powerTask */
@@ -113,14 +113,14 @@ const osThreadAttr_t powerTask_attributes = {
 osThreadId_t adisTaskHandle;
 const osThreadAttr_t adisTask_attributes = {
   .name = "adisTask",
-  .stack_size = 1000 * 4,
+  .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityRealtime3,
 };
 /* Definitions for lsmTask */
 osThreadId_t lsmTaskHandle;
 const osThreadAttr_t lsmTask_attributes = {
   .name = "lsmTask",
-  .stack_size = 512 * 4,
+  .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityRealtime2,
 };
 /* Definitions for loggerTask */
@@ -471,10 +471,6 @@ void StartOledTask(void *argument)
 {
   /* USER CODE BEGIN StartOledTask */
 	ssd1306_Init();
-	guiDrawBottomBox();
-
-
-	ssd1306_UpdateScreen();
   /* Infinite loop */
   for(;;)
   {

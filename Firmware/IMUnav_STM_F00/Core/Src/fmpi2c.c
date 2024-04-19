@@ -102,6 +102,12 @@ void HAL_FMPI2C_MspInit(FMPI2C_HandleTypeDef* fmpi2cHandle)
 
     /* FMPI2C1 clock enable */
     __HAL_RCC_FMPI2C1_CLK_ENABLE();
+
+    /* FMPI2C1 interrupt Init */
+    HAL_NVIC_SetPriority(FMPI2C1_EV_IRQn, 5, 0);
+    HAL_NVIC_EnableIRQ(FMPI2C1_EV_IRQn);
+    HAL_NVIC_SetPriority(FMPI2C1_ER_IRQn, 5, 0);
+    HAL_NVIC_EnableIRQ(FMPI2C1_ER_IRQn);
   /* USER CODE BEGIN FMPI2C1_MspInit 1 */
 
   /* USER CODE END FMPI2C1_MspInit 1 */
@@ -125,6 +131,9 @@ void HAL_FMPI2C_MspDeInit(FMPI2C_HandleTypeDef* fmpi2cHandle)
     */
     HAL_GPIO_DeInit(GPIOD, OLED_SCL_Pin|OLED_SDA_Pin);
 
+    /* FMPI2C1 interrupt Deinit */
+    HAL_NVIC_DisableIRQ(FMPI2C1_EV_IRQn);
+    HAL_NVIC_DisableIRQ(FMPI2C1_ER_IRQn);
   /* USER CODE BEGIN FMPI2C1_MspDeInit 1 */
 
   /* USER CODE END FMPI2C1_MspDeInit 1 */

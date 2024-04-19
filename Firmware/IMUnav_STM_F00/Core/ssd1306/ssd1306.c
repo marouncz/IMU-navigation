@@ -4,9 +4,18 @@
 #include <string.h>  // For memcpy
 #include "main.h"
 //#include "ssd1306_conf.h"
+#include "cmsis_os2.h"
 #include "cmsis_os.h"
+#include "FreeRTOS.h"
+#include "task.h"
+#include "fmpi2c.h"
 
 #if defined(SSD1306_USE_I2C)
+
+/* Definitions for oledTransmitCplt */
+osSemaphoreId_t oledTransmitCpltHandle;
+const osSemaphoreAttr_t oledTransmitCplt_attributes =
+{ .name = "oledTransmitCplt" };
 
 void ssd1306_Reset(void) {
     /* for I2C - do nothing */
@@ -14,13 +23,20 @@ void ssd1306_Reset(void) {
 
 // Send a byte to the command register
 void ssd1306_WriteCommand(uint8_t byte) {
-    HAL_FMPI2C_Mem_Write(&SSD1306_I2C_PORT, SSD1306_I2C_ADDR, 0x00, 1, &byte, 1, HAL_MAX_DELAY);
+	osSemaphoreAcquire(oledTransmitCpltHandle, 2500);
+    HAL_FMPI2C_Mem_Write_IT(&SSD1306_I2C_PORT, SSD1306_I2C_ADDR, 0x00, 1, &byte, 1);
 
 }
 
 // Send data
 void ssd1306_WriteData(uint8_t* buffer, size_t buff_size) {
-    HAL_FMPI2C_Mem_Write(&SSD1306_I2C_PORT, SSD1306_I2C_ADDR, 0x40, 1, buffer, buff_size, HAL_MAX_DELAY);
+	osSemaphoreAcquire(oledTransmitCpltHandle, 2500);
+	HAL_FMPI2C_Mem_Write_IT(&SSD1306_I2C_PORT, SSD1306_I2C_ADDR, 0x40, 1, buffer, buff_size);
+}
+
+void HAL_FMPI2C_MemTxCpltCallback(FMPI2C_HandleTypeDef *hfmpi2c)
+{
+	osSemaphoreRelease(oledTransmitCpltHandle);
 }
 
 #elif defined(SSD1306_USE_SPI)
@@ -57,6 +73,8 @@ void ssd1306_WriteData(uint8_t* buffer, size_t buff_size) {
 #endif
 
 
+
+
 // Screenbuffer
 static uint8_t SSD1306_Buffer[SSD1306_BUFFER_SIZE];
 
@@ -75,6 +93,7 @@ SSD1306_Error_t ssd1306_FillBuffer(uint8_t* buf, uint32_t len) {
 
 /* Initialize the oled screen */
 void ssd1306_Init(void) {
+	oledTransmitCpltHandle = osSemaphoreNew(1, 1, &oledTransmitCplt_attributes);
     // Reset OLED
     ssd1306_Reset();
 
