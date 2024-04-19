@@ -23,9 +23,10 @@ typedef enum
 	MPU6050,
 	ADIS,
 	LSM,
-	GNSS
+	GNSS,
+	LAST
 }infoSubstateEnum;
-void guiDrawBottomBox(void);
+void guiDrawBottomBox(char buttonText[][5]);
 
 void guiStateMachine(guiInfoStruc* guiInfo);
 

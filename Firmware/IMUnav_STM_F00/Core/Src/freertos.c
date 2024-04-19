@@ -471,10 +471,6 @@ void StartOledTask(void *argument)
 {
   /* USER CODE BEGIN StartOledTask */
 	ssd1306_Init();
-	guiDrawBottomBox();
-
-
-	ssd1306_UpdateScreen();
   /* Infinite loop */
   for(;;)
   {
