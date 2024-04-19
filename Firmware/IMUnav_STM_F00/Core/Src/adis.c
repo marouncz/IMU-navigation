@@ -96,7 +96,7 @@ adisDataStruc adisRead(void)
 
 	adisData.temp = ((int16_t) (spiRxData[14])) * 0.1f;
 
-	adisData.dataCNT = ((int16_t) (spiRxData[15]));
+	adisData.dataCNT = ((uint32_t) (spiRxData[15]));
 	HAL_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, 0);
 
 	return adisData;

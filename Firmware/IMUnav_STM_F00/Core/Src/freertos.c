@@ -422,6 +422,8 @@ void StartGpsTask(void *argument)
 
 		osMessageQueuePut(gnssQHandle,  &gnssLoggedData, 1, osWaitForever);
 
+		guiInfo.gnss = gnssLoggedData;
+
 		if (rtcFlag == 0 && GNSS_Handle.fixType > 2 && SYNC_TIME_GPS)
 		{
 			//first gps synce after power up, set rtc
