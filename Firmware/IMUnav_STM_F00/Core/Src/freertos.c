@@ -422,7 +422,7 @@ void StartGpsTask(void *argument)
 
 		guiInfo.gnss = gnssLoggedData;
 
-		if (rtcFlag == 0 && GNSS_Handle.fixType > 2 && SYNC_TIME_GPS)
+		if (rtcFlag == 0 && GNSS_Handle.fixType == 3 && SYNC_TIME_GPS)
 		{
 			//first gps synce after power up, set rtc
 			rtcFlag = 1;
@@ -453,6 +453,7 @@ void StartGpsTask(void *argument)
 			{
 				Error_Handler();
 			}
+
 
 		}
 
