@@ -121,10 +121,16 @@ void printInfoScreen(guiInfoStruc *guiInfo)
 		}
 
 		char tempString[17];
-		snprintf(tempString, 17, "TEMP: %.2f degC",
+		snprintf(tempString, 17, "TEMP: %.1f degC",
 				guiInfo->boardStats.mcuTemp);
 		ssd1306_SetCursor(0, 20);
 		ssd1306_WriteString(tempString, Font_7x10, White);
+
+		char supplyString[17];
+		snprintf(supplyString, 17, "PSU: %.2f V  ",
+				guiInfo->boardStats.supplyVoltage);
+		ssd1306_SetCursor(0, 30);
+		ssd1306_WriteString(supplyString, Font_7x10, White);
 
 		ssd1306_UpdateScreen();
 		osDelay(100);
@@ -136,6 +142,26 @@ void printInfoScreen(guiInfoStruc *guiInfo)
 		strcpy(buttonText[0], "ADIS");
 		guiDrawBottomBox(buttonText);
 
+		char mpuAxisHeader[20] =  "[rad/s]  [m/s^2]";
+		ssd1306_SetCursor(20, 0);
+		ssd1306_WriteString(mpuAxisHeader, Font_6x8, White);
+
+		char mpuAxisStringX[17];
+		snprintf(mpuAxisStringX, 17, "X: %+06.2f %+06.2f", guiInfo->mpu.gyroX,
+				guiInfo->mpu.accelX);
+		ssd1306_SetCursor(0, 10);
+		ssd1306_WriteString(mpuAxisStringX, Font_7x10, White);
+		char mpuAxisStringY[17];
+		snprintf(mpuAxisStringY, 17, "Y: %+06.2f %+06.2f", guiInfo->mpu.gyroY,
+				guiInfo->mpu.accelY);
+		ssd1306_SetCursor(0, 20);
+		ssd1306_WriteString(mpuAxisStringY, Font_7x10, White);
+		char mpuAxisStringZ[17];
+		snprintf(mpuAxisStringZ, 17, "Z: %+06.2f %+06.2f", guiInfo->mpu.gyroZ,
+				guiInfo->mpu.accelZ);
+		ssd1306_SetCursor(0, 30);
+		ssd1306_WriteString(mpuAxisStringZ, Font_7x10, White);
+
 		ssd1306_UpdateScreen();
 		osDelay(100);
 		break;
@@ -145,6 +171,32 @@ void printInfoScreen(guiInfoStruc *guiInfo)
 		strcpy(buttonText[0], "LSM ");
 		guiDrawBottomBox(buttonText);
 
+		char AdisAxisHeader[20] = "[rad/s]  [m/s^2]";
+		ssd1306_SetCursor(20, 0);
+		ssd1306_WriteString(AdisAxisHeader, Font_6x8, White);
+
+		char AdisAxisStringX[17];
+		snprintf(AdisAxisStringX, 17, "X: %+06.2f %+06.2f", guiInfo->adis.gyroX,
+				guiInfo->adis.accelX);
+		ssd1306_SetCursor(0, 10);
+		ssd1306_WriteString(AdisAxisStringX, Font_7x10, White);
+		char AdisAxisStringY[17];
+		snprintf(AdisAxisStringY, 17, "Y: %+06.2f %+06.2f", guiInfo->adis.gyroY,
+				guiInfo->adis.accelY);
+		ssd1306_SetCursor(0, 20);
+		ssd1306_WriteString(AdisAxisStringY, Font_7x10, White);
+		char AdisAxisStringZ[17];
+		snprintf(AdisAxisStringZ, 17, "Z: %+06.2f %+06.2f", guiInfo->adis.gyroZ,
+				guiInfo->adis.accelZ);
+		ssd1306_SetCursor(0, 30);
+		ssd1306_WriteString(AdisAxisStringZ, Font_7x10, White);
+
+		char dataCntString[17];
+		snprintf(dataCntString, 17, "dataCNT: %lu",
+				guiInfo->adis.dataCNT);
+		ssd1306_SetCursor(0, 42);
+		ssd1306_WriteString(dataCntString, Font_6x8, White);
+
 		ssd1306_UpdateScreen();
 		osDelay(100);
 		break;
@@ -153,6 +205,27 @@ void printInfoScreen(guiInfoStruc *guiInfo)
 		ssd1306_Fill(Black);
 		strcpy(buttonText[0], "GNSS");
 		guiDrawBottomBox(buttonText);
+
+
+		char LsmAxisHeader[20] = "[uT]";
+		ssd1306_SetCursor(20, 0);
+		ssd1306_WriteString(LsmAxisHeader, Font_6x8, White);
+
+		char LsmAxisStringX[17];
+		snprintf(LsmAxisStringX, 17, "X: %+07.2f", guiInfo->lsm.magX);
+		ssd1306_SetCursor(0, 10);
+		ssd1306_WriteString(LsmAxisStringX, Font_7x10, White);
+
+		char LsmAxisStringY[17];
+		snprintf(LsmAxisStringY, 17, "Y: %+07.2f", guiInfo->lsm.magY);
+		ssd1306_SetCursor(0, 20);
+		ssd1306_WriteString(LsmAxisStringY, Font_7x10, White);
+
+		char LsmAxisStringZ[17];
+		snprintf(LsmAxisStringZ, 17, "Z: %+07.2f", guiInfo->lsm.magZ);
+		ssd1306_SetCursor(0, 30);
+		ssd1306_WriteString(LsmAxisStringZ, Font_7x10, White);
+
 
 		ssd1306_UpdateScreen();
 		osDelay(100);
@@ -165,8 +238,18 @@ void printInfoScreen(guiInfoStruc *guiInfo)
 		char fixType[6][19] =
 		{ "GPS: No Fix       ", "GPS: DR only      ", "GPS: 2D-Fix       ",
 				"GPS: 3D-Fix       ", "GPS: Time only fix" };
-		ssd1306_SetCursor(0, 00);
+		ssd1306_SetCursor(0, 0);
 		ssd1306_WriteString(fixType[guiInfo->gnss.fixType], Font_7x10, White);
+
+		char latitudeString[19];
+		snprintf(latitudeString, 19, "LAT: %+02.9f", guiInfo->gnss.fLat);
+		ssd1306_SetCursor(0, 10);
+		ssd1306_WriteString(latitudeString, Font_7x10, White);
+
+		char longitudeString[19];
+		snprintf(longitudeString, 19, "LON: %+02.9f", guiInfo->gnss.fLon);
+		ssd1306_SetCursor(0, 20);
+		ssd1306_WriteString(longitudeString, Font_7x10, White);
 
 		ssd1306_UpdateScreen();
 		osDelay(100);

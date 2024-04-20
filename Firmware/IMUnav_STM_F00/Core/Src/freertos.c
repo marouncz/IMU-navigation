@@ -303,10 +303,8 @@ void StartDefaultTask(void *argument)
 		guiInfo.buttons[3] = !HAL_GPIO_ReadPin(BUTTON4_GPIO_Port, BUTTON4_Pin);
 
 		osDelay(10);
-		RTC_TimeTypeDef sTime =
-		{ 0 };
-		RTC_DateTypeDef sDate =
-		{ 0 };
+		RTC_TimeTypeDef sTime;
+		RTC_DateTypeDef sDate;
 		HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
 		HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
 		guiInfo.boardStats.sTime = sTime;
