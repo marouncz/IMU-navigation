@@ -18,6 +18,8 @@ uint8_t loggerOn = 0;
 guiStateEnum guiState = INFO;
 infoSubstateEnum infoSubstate = BOARD;
 
+uint32_t loggingTime = 0;
+
 uint8_t isLoggerOn(void)
 {
 	return loggerOn;
@@ -66,17 +68,22 @@ void guiStateMachine(guiInfoStruc *guiInfo)
 			if(i == 1)
 			{
 				loggerOn = 1;
+				loggingTime = HAL_GetTick();
+				guiState = RECORD;
 			}
 
 			if(i == 2)
 			{
 				loggerOn = 0;
+				guiState = INFO;
 			}
 
 		}
 	}
 	memcpy(prevButtonState, buttonState, sizeof(buttonState));
 
+	char buttonText[4][5] =
+		{ "HOME", "RECD", "STOP", "CALB" };
 
 	switch (guiState)
 	{
@@ -87,6 +94,20 @@ void guiStateMachine(guiInfoStruc *guiInfo)
 		break;
 	case RECORD:
 		//gui handler for recording screen
+
+		ssd1306_Fill( Black);
+		guiDrawBottomBox(buttonText);
+
+		float recordingTime = (HAL_GetTick()-loggingTime)/1000.0f;
+
+		char timeString[20] = "";
+		snprintf(timeString, 20, "TIME: %.2f",
+				recordingTime);
+		ssd1306_SetCursor(0, 0);
+		ssd1306_WriteString(timeString, Font_7x10, White);
+
+		ssd1306_UpdateScreen();
+		osDelay(100);
 		break;
 	case STOP:
 		//gui handler for stop screen
