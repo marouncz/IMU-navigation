@@ -13,9 +13,15 @@
 #include "cmsis_os2.h"
 #include <string.h>
 
+uint8_t loggerOn = 0;
 
 guiStateEnum guiState = INFO;
 infoSubstateEnum infoSubstate = BOARD;
+
+uint8_t isLoggerOn(void)
+{
+	return loggerOn;
+}
 
 void guiDrawBottomBox(char buttonText[][5])
 {
@@ -55,6 +61,16 @@ void guiStateMachine(guiInfoStruc *guiInfo)
 				{
 					infoSubstate = 0;
 				}
+			}
+
+			if(i == 1)
+			{
+				loggerOn = 1;
+			}
+
+			if(i == 2)
+			{
+				loggerOn = 0;
 			}
 
 		}

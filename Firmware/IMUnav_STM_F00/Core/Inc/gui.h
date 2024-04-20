@@ -26,10 +26,16 @@ typedef enum
 	GNSS,
 	LAST
 }infoSubstateEnum;
+
+
+uint8_t isLoggerOn(void);
+
+
 void guiDrawBottomBox(char buttonText[][5]);
 
 void guiStateMachine(guiInfoStruc* guiInfo);
 
 void printInfoScreen(guiInfoStruc* guiInfo);
+
 
 #endif /* INC_GUI_H_ */

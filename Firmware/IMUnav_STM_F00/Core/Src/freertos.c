@@ -43,6 +43,8 @@
 #include "gui.h"
 #include "rtc.h"
 #include "tim.h"
+#include "usbd_core.h"
+#include "usbd_msc.h"
 
 
 
@@ -669,51 +671,74 @@ uint32_t byteswritten, bytesread; /* File write/read counts */
 void StartLoggerTask(void *argument)
 {
   /* USER CODE BEGIN StartLoggerTask */
+	uint8_t loggerState = 0;
+	uint8_t prevLoggerState = 0;
 	uint8_t buffer[sizeof(loggerStoreFS)];
-	if (f_mount(&SDFatFS, (TCHAR const*) SDPath, 0) != FR_OK)
-	{
-		Error_Handler();
-	}
-	else
-	{
 
-		//Open file for writing (Create)
-		if (f_open(&SDFile, "imuData.bin", FA_CREATE_ALWAYS | FA_WRITE) != FR_OK)
-		{
-			Error_Handler();
-		}
-		else
-		{
+	extern USBD_HandleTypeDef hUsbDeviceFS;
 
-		}
 
-	}
-
-	uint32_t i = 0;
-	while(i<30000)
-	{
-		osMessageQueueGet(loggerQHandle, &loggerStoreFS, NULL, osWaitForever);
-		memcpy(buffer, &loggerStoreFS, sizeof(loggerStoreFS));
-		f_write(&SDFile, buffer, sizeof(loggerStoreFS),
-							(void*) &byteswritten);
-		i++;
-	}
-
-	f_close(&SDFile);
-	f_mount(&SDFatFS, (TCHAR const*) NULL, 0);
-	MX_USB_DEVICE_Init();
-	i = 0;
   /* Infinite loop */
   for(;;)
   {
+		loggerState = isLoggerOn();
 
-    osDelay(1);
-    osMessageQueueGet(loggerQHandle, &loggerStore[i], NULL, osWaitForever);
-    i++;
-    if(i==10)
-    {
-    	i=0;
-    }
+		if (loggerState && !prevLoggerState)
+		{
+			//logger just turned on
+			//deinit usb
+
+			USBD_LL_DeInit(&hUsbDeviceFS);
+
+
+			if (f_mount(&SDFatFS, (TCHAR const*) SDPath, 0) != FR_OK)
+			{
+				Error_Handler();
+			}
+			else
+			{
+
+				//Open file for writing (Create)
+				if (f_open(&SDFile, "imuData.bin", FA_CREATE_ALWAYS | FA_WRITE)
+						!= FR_OK)
+				{
+					Error_Handler();
+				}
+				else
+				{
+
+				}
+
+			}
+
+		}
+		else if (loggerState && prevLoggerState)
+		{
+			// logging cycle
+			osMessageQueueGet(loggerQHandle, &loggerStoreFS, NULL,
+					osWaitForever);
+			memcpy(buffer, &loggerStoreFS, sizeof(loggerStoreFS));
+			f_write(&SDFile, buffer, sizeof(loggerStoreFS),
+										(void*) &byteswritten);
+		}
+		else if (!loggerState && prevLoggerState)
+		{
+			//logger just turned off
+			f_close(&SDFile);
+			f_mount(&SDFatFS, (TCHAR const*) NULL, 0);
+			USBD_LL_Init(&hUsbDeviceFS);
+			MX_USB_DEVICE_Init();
+		}
+		else
+		{
+			//turned off logger
+			osDelay(1);
+			osMessageQueueGet(loggerQHandle, &loggerStore[0], NULL,
+			osWaitForever);
+		}
+		prevLoggerState = loggerState;
+
+
   }
   /* USER CODE END StartLoggerTask */
 }
