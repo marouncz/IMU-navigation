@@ -32,6 +32,7 @@ mpuCalibrationStruc mpuCal =
 
 void calibrateAccel(void)
 {
+
 	extern osThreadId_t adisTaskHandle;
 	extern osThreadId_t mpuTaskHandle;
 
@@ -171,9 +172,9 @@ void calibrateAccel(void)
 	adisCal.accelGainZ = adisX[4];
 	adisCal.accelOffsetZ = adisX[5];
 
-	adisCal.gyroOffsetX = adisGyroOffset[0]/6.0;
-	adisCal.gyroOffsetY = adisGyroOffset[1]/6.0;
-	adisCal.gyroOffsetZ = adisGyroOffset[2]/6.0;
+	adisCal.gyroOffsetX = -adisGyroOffset[0]/6.0;
+	adisCal.gyroOffsetY = -adisGyroOffset[1]/6.0;
+	adisCal.gyroOffsetZ = -adisGyroOffset[2]/6.0;
 
 	mpuCal.accelGainX = mpuX[0];
 	mpuCal.accelOffsetX = mpuX[1];
@@ -182,9 +183,9 @@ void calibrateAccel(void)
 	mpuCal.accelGainZ = mpuX[4];
 	mpuCal.accelOffsetZ = mpuX[5];
 
-	mpuCal.gyroOffsetX = mpuGyroOffset[0]/6.0;
-	mpuCal.gyroOffsetY = mpuGyroOffset[1]/6.0;
-	mpuCal.gyroOffsetZ = mpuGyroOffset[2]/6.0;
+	mpuCal.gyroOffsetX = -mpuGyroOffset[0]/6.0;
+	mpuCal.gyroOffsetY = -mpuGyroOffset[1]/6.0;
+	mpuCal.gyroOffsetZ = -mpuGyroOffset[2]/6.0;
 
 	ssd1306_Fill(Black);
 	guiDrawBottomBox(buttonText);

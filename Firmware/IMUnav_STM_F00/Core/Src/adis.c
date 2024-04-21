@@ -12,6 +12,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "cmsis_os2.h"
+#include "calibration.h"
 
 volatile uint16_t spiRxData[17];
 volatile uint16_t spiTxData[17] =
@@ -97,6 +98,15 @@ adisDataStruc adisRead(void)
 	adisData.temp = ((int16_t) (spiRxData[14])) * 0.1f;
 
 	adisData.dataCNT = ((uint32_t) (spiRxData[15]));
+
+	static adisCalibrationStruc adisCal;
+	adisCal = adisCalibrationConst();
+	adisData.gyroX += adisCal.gyroOffsetX;
+	adisData.gyroY += adisCal.gyroOffsetY;
+	adisData.gyroZ += adisCal.gyroOffsetZ;
+	adisData.accelX = (adisData.accelX*adisCal.accelGainX) + adisCal.accelOffsetX;
+	adisData.accelY = (adisData.accelY*adisCal.accelGainY) + adisCal.accelOffsetY;
+	adisData.accelZ = (adisData.accelZ*adisCal.accelGainZ) + adisCal.accelOffsetZ;
 	HAL_GPIO_WritePin(LED3_GPIO_Port, LED3_Pin, 0);
 
 	return adisData;

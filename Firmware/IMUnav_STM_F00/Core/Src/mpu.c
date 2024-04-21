@@ -12,6 +12,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "cmsis_os2.h"
+#include "calibration.h"
 
 #define MPU_ADDRESS 0b1101000<<1
 
@@ -89,6 +90,15 @@ mpuDataStruc mpuRead(void)
 			* GYRO_SCALE;
 	mpuData.gyroZ = ((int16_t) ((mpuRxData[12] << 8) | mpuRxData[13]))
 			* GYRO_SCALE;
+
+	static mpuCalibrationStruc mpuCal;
+	mpuCal = mpuCalibrationConst();
+	mpuData.gyroX += mpuCal.gyroOffsetX;
+	mpuData.gyroY += mpuCal.gyroOffsetY;
+	mpuData.gyroZ += mpuCal.gyroOffsetZ;
+	mpuData.accelX = (mpuData.accelX*mpuCal.accelGainX) + mpuCal.accelOffsetX;
+	mpuData.accelY = (mpuData.accelY*mpuCal.accelGainY) + mpuCal.accelOffsetY;
+	mpuData.accelZ = (mpuData.accelZ*mpuCal.accelGainZ) + mpuCal.accelOffsetZ;
 
 	return mpuData;
 }
