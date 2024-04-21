@@ -10,5 +10,8 @@
 
 void calibrateAccel(void);
 
+adisCalibrationStruc adisCalibrationConst(void);
+
+mpuCalibrationStruc mpuCalibrationConst(void);
 
 #endif /* INC_CALIBRATION_H_ */

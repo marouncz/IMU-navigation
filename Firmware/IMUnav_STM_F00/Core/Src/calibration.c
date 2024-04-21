@@ -79,6 +79,9 @@ void calibrateAccel(void)
 	}
 	double adisGravity[18];
 	double mpuGravity[18];
+	double adisGyroOffset[3] = {0};
+	double mpuGyroOffset[3] = {0};
+
 
 	for (uint8_t edgeNumber = 1; edgeNumber < 7; edgeNumber++)
 	{
@@ -128,6 +131,13 @@ void calibrateAccel(void)
 			mpuSum.gyroZ += mpuData.gyroZ;
 		}
 
+		adisGyroOffset[0] += adisSum.gyroX/50.0;
+		adisGyroOffset[1] += adisSum.gyroY/50.0;
+		adisGyroOffset[2] += adisSum.gyroZ / 50.0;
+		mpuGyroOffset[0] += mpuSum.gyroX / 50.0;
+		mpuGyroOffset[1] += mpuSum.gyroY / 50.0;
+		mpuGyroOffset[2] += mpuSum.gyroZ / 50.0;
+
 		adisGravity[0 + edgeNumber - 1] = adisSum.accelX / 50.0;
 		adisGravity[6 + edgeNumber - 1] = adisSum.accelY / 50.0;
 		adisGravity[12 + edgeNumber - 1] = adisSum.accelZ / 50.0;
@@ -161,12 +171,20 @@ void calibrateAccel(void)
 	adisCal.accelGainZ = adisX[4];
 	adisCal.accelOffsetZ = adisX[5];
 
+	adisCal.gyroOffsetX = adisGyroOffset[0]/6.0;
+	adisCal.gyroOffsetY = adisGyroOffset[1]/6.0;
+	adisCal.gyroOffsetZ = adisGyroOffset[2]/6.0;
+
 	mpuCal.accelGainX = mpuX[0];
 	mpuCal.accelOffsetX = mpuX[1];
 	mpuCal.accelGainY = mpuX[2];
 	mpuCal.accelOffsetY = mpuX[3];
 	mpuCal.accelGainZ = mpuX[4];
 	mpuCal.accelOffsetZ = mpuX[5];
+
+	mpuCal.gyroOffsetX = mpuGyroOffset[0]/6.0;
+	mpuCal.gyroOffsetY = mpuGyroOffset[1]/6.0;
+	mpuCal.gyroOffsetZ = mpuGyroOffset[2]/6.0;
 
 	ssd1306_Fill(Black);
 	guiDrawBottomBox(buttonText);
@@ -180,4 +198,14 @@ void calibrateAccel(void)
 	osThreadResume(adisTaskHandle);
 	osThreadResume(mpuTaskHandle);
 
+}
+
+adisCalibrationStruc adisCalibrationConst(void)
+{
+	return adisCal;
+}
+
+mpuCalibrationStruc mpuCalibrationConst(void)
+{
+	return mpuCal;
 }
