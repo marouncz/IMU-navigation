@@ -238,6 +238,38 @@ typedef struct
 
 }guiInfoStruc;
 
+typedef struct
+{
+	double accelGainX;
+	double accelOffsetX;
+	double accelGainY;
+	double accelOffsetY;
+	double accelGainZ;
+	double accelOffsetZ;
+
+	double gyroOffsetX;
+	double gyroOffsetY;
+	double gyroOffsetZ;
+
+
+}adisCalibrationStruc;
+
+typedef struct
+{
+	float accelGainX;
+	float accelOffsetX;
+	float accelGainY;
+	float accelOffsetY;
+	float accelGainZ;
+	float accelOffsetZ;
+
+	float gyroOffsetX;
+	float gyroOffsetY;
+	float gyroOffsetZ;
+
+
+}mpuCalibrationStruc;
+
 
 /* USER CODE END Private defines */
 

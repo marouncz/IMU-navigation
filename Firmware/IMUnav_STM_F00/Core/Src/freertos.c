@@ -46,9 +46,6 @@
 #include "usbd_core.h"
 #include "usbd_msc.h"
 
-#include "AccelCalSolver.h"
-#include "AccelCalSolver_terminate.h"
-#include "rt_nonfinite.h"
 
 /* USER CODE END Includes */
 
@@ -337,30 +334,6 @@ void StartKeepaliveTask(void *argument)
   {
 	HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
     osDelay(500);
-    double dv[18];
-    for(int i = 0; i < 6; i++)
-    {
-    	osDelay(7000);
-    	HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, 1);
-    	dv[0+i] = guiInfo.adis.accelX;
-    	dv[6+i] = guiInfo.adis.accelY;
-    	dv[12+i] = guiInfo.adis.accelZ;
-    	osDelay(3000);
-    	    	HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, 0);
-
-    }
-
-
-/*    double dv[18] = { -0.0169,   -0.0172 ,  -0.0161,   -0.0123  , -0.0176 ,  -0.0164,
-    		   -0.0709 ,  -0.0780  , -0.0821,   -0.0820  , -0.0845  , -0.0864,
-    		    9.8181 ,   9.8241  ,  9.8225  ,  9.8200  ,  9.8228  ,  9.8199,
-
-    };*/
-		double fval[6];
-		double x[6];
-		double gravityScalar = 9.81275;
-
-		AccelCalSolver(dv, gravityScalar, x, fval);
   }
   /* USER CODE END StartKeepaliveTask */
 }
