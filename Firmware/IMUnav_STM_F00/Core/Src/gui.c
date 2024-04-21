@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "cmsis_os2.h"
 #include <string.h>
+#include "calibration.h"
 
 uint8_t loggerOn = 0;
 
@@ -77,6 +78,15 @@ void guiStateMachine(guiInfoStruc *guiInfo)
 				loggerOn = 0;
 				guiState = INFO;
 			}
+			if(i == 3)
+			{
+				//calibration state machine
+				loggerOn = 0;
+				calibrateAccel();
+
+
+
+			}
 
 		}
 	}
@@ -130,7 +140,7 @@ void printInfoScreen(guiInfoStruc *guiInfo)
 	case BOARD:
 		//
 		ssd1306_Fill(Black);
-		strcpy(buttonText[0], "MPU ");
+		strcpy(buttonText[0], "HOME");
 		guiDrawBottomBox(buttonText);
 
 		char timeString[20] = "";
@@ -176,7 +186,7 @@ void printInfoScreen(guiInfoStruc *guiInfo)
 	case MPU6050:
 		//
 		ssd1306_Fill(Black);
-		strcpy(buttonText[0], "ADIS");
+		strcpy(buttonText[0], "MPU ");
 		guiDrawBottomBox(buttonText);
 
 		char mpuAxisHeader[20] =  "[rad/s]  [m/s^2]";
@@ -205,7 +215,7 @@ void printInfoScreen(guiInfoStruc *guiInfo)
 	case ADIS:
 		//
 		ssd1306_Fill(Black);
-		strcpy(buttonText[0], "LSM ");
+		strcpy(buttonText[0], "ADIS");
 		guiDrawBottomBox(buttonText);
 
 		char AdisAxisHeader[20] = "[rad/s]  [m/s^2]";
@@ -240,7 +250,7 @@ void printInfoScreen(guiInfoStruc *guiInfo)
 	case LSM:
 		//
 		ssd1306_Fill(Black);
-		strcpy(buttonText[0], "GNSS");
+		strcpy(buttonText[0], "LSM ");
 		guiDrawBottomBox(buttonText);
 
 
@@ -270,7 +280,7 @@ void printInfoScreen(guiInfoStruc *guiInfo)
 	case GNSS:
 		//
 		ssd1306_Fill(Black);
-		strcpy(buttonText[0], "HOME");
+		strcpy(buttonText[0], "GNSS");
 		guiDrawBottomBox(buttonText);
 		char fixType[6][19] =
 		{ "GPS: No Fix       ", "GPS: DR only      ", "GPS: 2D-Fix       ",

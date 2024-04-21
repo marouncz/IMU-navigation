@@ -43,8 +43,12 @@
 #include "gui.h"
 #include "rtc.h"
 #include "tim.h"
+#include "usbd_core.h"
+#include "usbd_msc.h"
 
-
+#include "AccelCalSolver.h"
+#include "AccelCalSolver_terminate.h"
+#include "rt_nonfinite.h"
 
 /* USER CODE END Includes */
 
@@ -303,10 +307,8 @@ void StartDefaultTask(void *argument)
 		guiInfo.buttons[3] = !HAL_GPIO_ReadPin(BUTTON4_GPIO_Port, BUTTON4_Pin);
 
 		osDelay(10);
-		RTC_TimeTypeDef sTime =
-		{ 0 };
-		RTC_DateTypeDef sDate =
-		{ 0 };
+		RTC_TimeTypeDef sTime;
+		RTC_DateTypeDef sDate;
 		HAL_RTC_GetTime(&hrtc, &sTime, RTC_FORMAT_BIN);
 		HAL_RTC_GetDate(&hrtc, &sDate, RTC_FORMAT_BIN);
 		guiInfo.boardStats.sTime = sTime;
@@ -335,6 +337,21 @@ void StartKeepaliveTask(void *argument)
   {
 	HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
     osDelay(500);
+
+    double dv[18] = {-0.016870367431640623,	-0.0709220718383789,	9.8181450881958,
+    -0.017242899322509764,	-0.07804294509887695,	9.824111280822754,
+    -0.01608545227050781,	-0.08212393569946289,	9.822480626678466,
+    -0.012348955535888672,	-0.08197481079101562,	9.82000580368042,
+    -0.017572028350830077,	-0.08449711151123046,	9.822826578521727,
+    -0.01641009521484375,	-0.0864403335571289,	9.819929652404785
+    };
+		double fval[6];
+		double x[6];
+		/* Initialize function 'AccelCalSolver' input arguments. */
+		/* Initialize function input argument 'accel'. */
+		/* Call the entry-point 'AccelCalSolver'. */
+
+		AccelCalSolver(dv, x, fval);
   }
   /* USER CODE END StartKeepaliveTask */
 }
@@ -424,7 +441,7 @@ void StartGpsTask(void *argument)
 
 		guiInfo.gnss = gnssLoggedData;
 
-		if (rtcFlag == 0 && GNSS_Handle.fixType > 2 && SYNC_TIME_GPS)
+		if (rtcFlag == 0 && GNSS_Handle.fixType == 3 && SYNC_TIME_GPS)
 		{
 			//first gps synce after power up, set rtc
 			rtcFlag = 1;
@@ -455,6 +472,7 @@ void StartGpsTask(void *argument)
 			{
 				Error_Handler();
 			}
+
 
 		}
 
@@ -670,51 +688,74 @@ uint32_t byteswritten, bytesread; /* File write/read counts */
 void StartLoggerTask(void *argument)
 {
   /* USER CODE BEGIN StartLoggerTask */
+	uint8_t loggerState = 0;
+	uint8_t prevLoggerState = 0;
 	uint8_t buffer[sizeof(loggerStoreFS)];
-	if (f_mount(&SDFatFS, (TCHAR const*) SDPath, 0) != FR_OK)
-	{
-		Error_Handler();
-	}
-	else
-	{
 
-		//Open file for writing (Create)
-		if (f_open(&SDFile, "imuData.bin", FA_CREATE_ALWAYS | FA_WRITE) != FR_OK)
-		{
-			Error_Handler();
-		}
-		else
-		{
+	extern USBD_HandleTypeDef hUsbDeviceFS;
 
-		}
 
-	}
-
-	uint32_t i = 0;
-	while(i<30000)
-	{
-		osMessageQueueGet(loggerQHandle, &loggerStoreFS, NULL, osWaitForever);
-		memcpy(buffer, &loggerStoreFS, sizeof(loggerStoreFS));
-		f_write(&SDFile, buffer, sizeof(loggerStoreFS),
-							(void*) &byteswritten);
-		i++;
-	}
-
-	f_close(&SDFile);
-	f_mount(&SDFatFS, (TCHAR const*) NULL, 0);
-	MX_USB_DEVICE_Init();
-	i = 0;
   /* Infinite loop */
   for(;;)
   {
+		loggerState = isLoggerOn();
 
-    osDelay(1);
-    osMessageQueueGet(loggerQHandle, &loggerStore[i], NULL, osWaitForever);
-    i++;
-    if(i==10)
-    {
-    	i=0;
-    }
+		if (loggerState && !prevLoggerState)
+		{
+			//logger just turned on
+			//deinit usb
+
+			USBD_LL_DeInit(&hUsbDeviceFS);
+
+
+			if (f_mount(&SDFatFS, (TCHAR const*) SDPath, 0) != FR_OK)
+			{
+				Error_Handler();
+			}
+			else
+			{
+
+				//Open file for writing (Create)
+				if (f_open(&SDFile, "imuData.bin", FA_CREATE_ALWAYS | FA_WRITE)
+						!= FR_OK)
+				{
+					Error_Handler();
+				}
+				else
+				{
+
+				}
+
+			}
+
+		}
+		else if (loggerState && prevLoggerState)
+		{
+			// logging cycle
+			osMessageQueueGet(loggerQHandle, &loggerStoreFS, NULL,
+					osWaitForever);
+			memcpy(buffer, &loggerStoreFS, sizeof(loggerStoreFS));
+			f_write(&SDFile, buffer, sizeof(loggerStoreFS),
+										(void*) &byteswritten);
+		}
+		else if (!loggerState && prevLoggerState)
+		{
+			//logger just turned off
+			f_close(&SDFile);
+			f_mount(&SDFatFS, (TCHAR const*) NULL, 0);
+			USBD_LL_Init(&hUsbDeviceFS);
+			MX_USB_DEVICE_Init();
+		}
+		else
+		{
+			//turned off logger
+			osDelay(1);
+			osMessageQueueGet(loggerQHandle, &loggerStore[0], NULL,
+			osWaitForever);
+		}
+		prevLoggerState = loggerState;
+
+
   }
   /* USER CODE END StartLoggerTask */
 }
