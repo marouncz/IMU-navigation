@@ -1,7 +1,7 @@
 clear all
 close all
 clc
-data = readtable('output3.csv');
+data = readtable('output.csv');
 
 accelReadings = data(:, 1:3);
 gyroReadings = data(:, 4:6);

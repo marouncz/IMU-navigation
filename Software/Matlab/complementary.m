@@ -1,7 +1,7 @@
 clear all
 close all
 clc
-data = readtable('outputWithHeader.csv');
+data = readtable('output.csv');
 
 % GyroscopeNoise and AccelerometerNoise is determined from the datasheet.
 GyroscopeNoiseADIS16505 = 3.0462e-06; % GyroscopeNoise (variance) in units of rad/s
@@ -44,9 +44,9 @@ rotMatrixGyro = eul2rotm(gyroRotation);
 
 
 
-rotatedAccel = zeros(10000,3);
+rotatedAccel = zeros(5729,3);
 
-for i = 1:10000
+for i = 1:5729
 
     rotatedAccel(i, :) = rotMatrixGyro(:,:,i) * transpose(accel(i, :));
 end
