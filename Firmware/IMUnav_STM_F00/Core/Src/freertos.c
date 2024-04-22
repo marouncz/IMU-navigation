@@ -675,6 +675,7 @@ void StartLoggerTask(void *argument)
 	uint8_t buffer[sizeof(loggerStoreFS)];
 
 	extern USBD_HandleTypeDef hUsbDeviceFS;
+	MX_USB_DEVICE_Init();
 
 
   /* Infinite loop */

@@ -68,6 +68,22 @@ void guiStateMachine(guiInfoStruc *guiInfo)
 
 			if(i == 1)
 			{
+				ssd1306_Fill(Black);
+				char buttonText[4][5] =
+						{ "HOME", "RECD", "STOP", "CALB" };
+				guiDrawBottomBox(buttonText);
+
+				for (uint8_t countdown = 5; countdown > 0; countdown--)
+				{
+					ssd1306_SetCursor(0, 0);
+					char countdownString[22];
+					snprintf(countdownString, 22, "Recording in %d s",
+							countdown);
+					ssd1306_WriteString(countdownString, Font_7x10, White);
+					ssd1306_UpdateScreen();
+					osDelay(1000);
+				}
+
 				loggerOn = 1;
 				loggingTime = HAL_GetTick();
 				guiState = RECORD;
@@ -111,7 +127,7 @@ void guiStateMachine(guiInfoStruc *guiInfo)
 		float recordingTime = (HAL_GetTick()-loggingTime)/1000.0f;
 
 		char timeString[20] = "";
-		snprintf(timeString, 20, "TIME: %.2f",
+		snprintf(timeString, 20, "TIME: %.2f s",
 				recordingTime);
 		ssd1306_SetCursor(0, 0);
 		ssd1306_WriteString(timeString, Font_7x10, White);
