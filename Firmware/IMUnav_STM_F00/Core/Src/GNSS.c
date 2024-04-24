@@ -42,9 +42,6 @@ const osSemaphoreAttr_t gpsReceiveCplt_attributes =
 { .name = "gpsReceiveCplt" };
 
 
-//GNSS_StateHandle GNSS;
-
-
 /*!
  * Structure initialization.
  * @param GNSS Pointer to main GNSS structure.
@@ -318,19 +315,6 @@ void GNSS_LoadConfig(GNSS_StateHandle *GNSS) {
 }
 
 
-
-/*!
- *  Creates a checksum based on UBX standard.
- * @param class Class value from UBX doc.
- * @param messageID MessageID value from UBX doc.
- * @param dataLength Data length value from UBX doc.
- * @param payload Just payload.
- * @return  Returns checksum.
- */
-uint8_t GNSS_Checksum(uint8_t class, uint8_t messageID, uint8_t dataLength,uint8_t *payload) {
-//todo: Look at 32.4 UBX Checksum
-	return 0;
-}
 
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)

@@ -90,8 +90,6 @@ typedef struct
 
 }GNSS_StateHandle;
 
-//GNSS_StateHandle GNSS_Handle;
-
 
 enum GNSSMode{Portable=0, Stationary=1, Pedestrian=2, Automotiv=3, Airbone1G=5, Airbone2G=6,Airbone4G=7,Wirst=8,Bike=9};
 

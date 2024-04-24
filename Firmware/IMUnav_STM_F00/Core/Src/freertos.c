@@ -403,6 +403,7 @@ void StartGpsTask(void *argument)
 		GNSS_ParseBuffer(&GNSS_Handle);
 		osDelay(1000);
 
+
 		gnssLoggedData.year = GNSS_Handle.year;
 		gnssLoggedData.month = GNSS_Handle.month;
 		gnssLoggedData.day = GNSS_Handle.day;
@@ -487,14 +488,12 @@ void StartOledTask(void *argument)
 }
 
 /* USER CODE BEGIN Header_StartPowerTask */
-volatile uint16_t adcDataDMA[4];
+
 #define USB_CHANNEL 0
 #define BAT_CHANNEL 1
 #define TMP_CHANNEL 2
 #define REF_CHANNEL 3
 #define ADCIIRCOEFF 0.3
-
-
 
 /**
 * @brief Function implementing the powerTask thread.
@@ -506,6 +505,8 @@ void StartPowerTask(void *argument)
 {
   /* USER CODE BEGIN StartPowerTask */
 	HAL_ADC_Init(&analogADC);
+
+	volatile uint16_t adcDataDMA[4];
 
 	float supplyVoltage = 3.3;
 	float mcuTemp = 24;
@@ -528,7 +529,6 @@ void StartPowerTask(void *argument)
 
 	  battVoltageFilt = ADCIIRCOEFF * battVoltage + (1.0-ADCIIRCOEFF)*battVoltageFilt;
 
-
 	  if(battVoltageFilt < 3.5) // batttery low voltage
 	  {
 		  HAL_GPIO_WritePin(PWR_OFF_GPIO_Port, PWR_OFF_Pin, 1);
@@ -544,8 +544,6 @@ void StartPowerTask(void *argument)
 	  guiInfo.boardStats.mcuTemp = mcuTemp;
 	  guiInfo.boardStats.supplyVoltage = supplyVoltage;
 	  guiInfo.boardStats.usbVoltage = usbVoltage;
-
-
   }
   /* USER CODE END StartPowerTask */
 }
@@ -566,10 +564,6 @@ void StartAdisTask(void *argument)
 	adisInit();
 	adisDataStruc adisLog;
 	loggerStruc loggerData;
-
-
-
-
 
 	/* Infinite loop */
   for(;;)
@@ -653,12 +647,7 @@ void StartLsmTask(void *argument)
 }
 
 /* USER CODE BEGIN Header_StartLoggerTask */
-loggerStruc loggerStore[10];
-loggerStruc loggerStoreFS;
 
-FRESULT res; /* FatFs function common result code */
-uint32_t byteswritten, bytesread; /* File write/read counts */
-//uint8_t rtext[_MAX_SS];/* File read buffer */
 
 
 /**
@@ -670,9 +659,16 @@ uint32_t byteswritten, bytesread; /* File write/read counts */
 void StartLoggerTask(void *argument)
 {
   /* USER CODE BEGIN StartLoggerTask */
+	loggerStruc loggerStore[10];
+	loggerStruc loggerStoreFS;
+
+	FRESULT res; /* FatFs function common result code */
+	uint32_t byteswritten, bytesread; /* File write/read counts */
+
 	uint8_t loggerState = 0;
 	uint8_t prevLoggerState = 0;
 	uint8_t buffer[sizeof(loggerStoreFS)];
+
 
 	extern USBD_HandleTypeDef hUsbDeviceFS;
 	MX_USB_DEVICE_Init();
