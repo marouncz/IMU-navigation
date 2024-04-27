@@ -24,7 +24,8 @@ Integrovaný obvod MPU6050 je standardní 6 osé \ac{MEMS} \ac{IMU}, vhodné mim
 MPU6050 disponuje rozhraním \ac{I2C} s maximální frekvencí hodinového signálu 400 kHz. \cite{euxR3Yh5ol4JWNAi}
 Pokud bychom chtěli vyčítat ze senzoru data při maximální možné vzorkovací frekvenci, byla by potřeba minimální přenosová rychlost sběrnice:
 \begin{equation}
-f_{\mathrm{clk}}=3~\mathrm{osy} \cdot(f_{\mathrm{gyro}} + f_{\mathrm{acc}})\cdot (\mathrm{16bitů} + 2 \cdot \mathrm{ACK})=3\cdot(8000+1000)\cdot(16+2)=\SI{486}{\kilo\hertz}
+f_{\
+mathrm{clk}}=3~\mathrm{osy} \cdot(f_{\mathrm{gyro}} + f_{\mathrm{acc}})\cdot (\mathrm{16bitů} + 2 \cdot \mathrm{ACK})=3\cdot(8000+1000)\cdot(16+2)=\SI{486}{\kilo\hertz}
 \end{equation}
 Při vyčítání dat o maximální vzorkovací frekvenci jsme omezeni samotným \ac{I2C} rozhraním senzoru (využití maximální vzorkovací frekvence je teoreticky možné krátkodobě, pomocí interního 1kB FIFO zásobníku).\cite{euxR3Yh5ol4JWNAi}
 
