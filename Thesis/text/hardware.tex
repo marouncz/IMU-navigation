@@ -81,7 +81,7 @@ Kromě výše popsané Flash paměti jednotka obsahuje i slot na microSD kartu, 
 \end{figure}
 Pro ovládání uživatelem disponuje jednotka grafickým \ac{OLED} displejem s úhlopříčkou 0,96 palce a rozlišením $ 128 \times 64 $ pixelů, který je připojený přes sběrnici \ac{I2C}. Společně s 4 tlačítky by měl poskytnout dostatečně univerzální a pohodlné uživatelské rozhraní.
 
-\section{Napájení}
+\section{Napájení} \label{napajeni}
 Inerciální jednotka je napájena z jednoho Li-Ion akumulátoru velikosti 18650. Nabíjení je realizováno obvodem BQ24075RGT, který monitoruje nabíjecí odebíraný proud jednotkou. Proud, kterým je nabíjen akumulátor je regulován tak, aby nepřekročil maximální hranici 900 mA z USB portu. \cite{F5eZCtr2LLRsr9NT}
 
 Všechny součásti inerciální jednotky (až na \ac{RTC} a zálohovací registry hlavního \ac{MCU} a \ac{GPS} modulu) jsou napájeny skrz DC/DC měnič z výstupního vývodu tohoto nabíjecího obvodu. V případě, že je připojena jednotka do \ac{USB} a nabíjí se, na výstupním pinu nabíjecího obvodu je napájecí napětí USB portu. Díky tomu nedochází k velkým ztrátám pokud je jednotka zapnuta a nabíjí se zároveň. Jestliže je \ac{USB} odpojeno, skrz interní tranzistor je jednotka napájena z akumulátoru. \cite{F5eZCtr2LLRsr9NT}
@@ -113,7 +113,7 @@ V neposlední řadě byla zvážena i dostupnost vybíraných procesorů u nejob
 
 \input{text/tabulky/MCUperiferie}
 
-Na základě těchto požadavků byl vybrán mikrokontrolér \emph{STM32F446VET6}. Jedná se 32bitový Arm Cortex-M4 procesor z portfolia „high performance“ mikrokontrolérů výrobce STMicroelectronics. Splňuje všechny výše zmíněné minimální požadavky, v obvodovém zapojení byla použita i USB periferie procesoru, která může mít různá využití. Procesor obsahuje 512 kB paměti Flash a 128 kB paměti RAM, maximální hodinová frekvence je 180 MHz a disponuje matematickým koprocesorem pro operace s plovoucí desetinou čárkou. Vzhledem k počtu \ac{GPIO} v zapojení inerciální jednotky byla vybrána varianta procesoru v pouzdře LQFP100. \cite{csdGtKJDMSdbwJ9r}
+Na základě těchto požadavků byl vybrán mikrokontrolér \emph{STM32F446VET6}. Jedná se o 32bitový Arm Cortex-M4 procesor z portfolia „high performance“ mikrokontrolérů výrobce STMicroelectronics. Splňuje všechny výše zmíněné minimální požadavky, v obvodovém zapojení byla použita i USB periferie procesoru, která může mít různá využití. Procesor obsahuje 512 kB paměti Flash a 128 kB paměti RAM, maximální hodinová frekvence je 180 MHz a disponuje matematickým koprocesorem pro operace s plovoucí desetinou čárkou. Vzhledem k počtu \ac{GPIO} v zapojení inerciální jednotky byla vybrána varianta procesoru v pouzdře LQFP100. \cite{csdGtKJDMSdbwJ9r}
 
 \section{ESP32}
 Pro splnění požadavků zadání práce je potřeba, aby mohla inerciální jednotka komunikovat bezdrátově s PC zpracovávajícím data. Pro tento úkol byl vybrán bezdrátový modul ESP32-C3-Mini. Jedná se o jeden z novějších produktů portfolia bezdrátových modulů firmy Espressif. Podporuje standard WiFi 802.11 b/g/n a Bluetooth~LE~5. \cite{zJ7x5ye8Y5eJn1E2}
@@ -150,6 +150,95 @@ Typ a tloušťka substrátu \ac{DPS} byla vybrána v konfiguraci JLC04161H-7628,
 \input{text/tabulky/materialStackup}
 
 Většina pouzder pasivních součástek byla vybrána o velikosti 0603, což by mělo poskytnout dostatečný kompromis mezi velikostí výsledné desky a možností ruční výměny součástky pro případné opravy na prvním prototypu. Prototypová deska je také opatřena měřícími body na napájecích větvích a konektorovými hřebínky na digitálních komunikacích pro možnost připojení osciloskopu, nebo logického analyzátoru na odposlouchávání komunikace mezi \ac{MCU} a jednotlivými senzory. 
+
+\section{Konstrukce}
+
+Všechny SMD součástky, kromě \ac{GNSS} a \ac{IMU} modulu byly osazeny strojově, zbylé součástky a konstrukční prvky ručně. Vzhledem k tomu, že deska byla navržena pro možnost výběru použití BGA, nebo PCB varianty ADIS16505, tak v případě použití hotového modulu je potřeba použít izolační desku, která zamezí nežádoucím zkratům mezi odkrytými ploškami neosazeného BGA pouzdra a PCB varianty inerciálního modulu. K tomuto účelu byl navržen jednoduchý 3D tištěný izolační prvek, který je vložen mezi jednotlivé desky, znázorněn na obrázku \ref{fig:adisIsolator}.
+
+\begin{figure}
+     \centering
+     \begin{subfigure}[b]{0.45\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{obrazky/isolatorADIS}
+         \caption{Fotografie umístěného izolátoru}
+       
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.45\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{obrazky/ModelIsolatorADIS}
+         \caption{3D model izolátoru}
+         
+     \end{subfigure}
+        \caption{Izolační podložka IMU}
+        \label{fig:adisIsolator}
+\end{figure}
+
+Obdobné izolační podložky byly také navrženy a použity ze spodní strany distančních sloupků držící \ac{OLED} displej.
+
+\begin{figure}
+     \centering
+     \begin{subfigure}[b]{0.45\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{obrazky/boxWithLid}
+         \caption{3D model krabičky bez víka}
+       
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.45\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{obrazky/boxNoLid}
+         \caption{3D model krabičky s víkem}
+         
+     \end{subfigure}
+        \caption{3D model krabičky}
+        \label{fig:boxModel}
+\end{figure}
+
+Dále byla navržena a vyrobena 3D tištěná montážní krabička pro ochranu citlivých komponent zařízení při běžném užívání a manipulaci. Veškeré modely v této práci jsou navrženy pomocí 3D \ac{CAD} programu Fusion 360 od firmy Autodesk. Ve spodní části krabičky jsou přidané závitové vložky, které byly teplem vlisovány do plastového dílu pomocí mikropájky. \ac{DPS} je připevněna k tomuto dílu pomocí čtveřice nylonových distančních sloupků, které zároveň slouží jako vzpěry pro vrchní díl krabice. Sestavené zařízení je na obrázku \ref{fig:boxPhoto}.
+
+\begin{figure}
+     \centering
+     \begin{subfigure}[b]{0.4\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{obrazky/imuNavPCB}
+         \caption{Spodní díl krabičky s deskou}
+       
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.4\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{obrazky/ImunavFront}
+         \caption{Hotová sestava}
+         
+     \end{subfigure}
+        \caption{Fotografie zařízení}
+        \label{fig:boxPhoto}
+\end{figure}
+
+\section{Ověření základních funkcí hardwaru jednotky}
+Při prvním zapnutí desky byl k napájení použit laboratorní zdroj s proudovým omezením místo Li-Ion akumulátoru, aby v případě chyby v zapojení byla šance poškození co nejvíce omezena. Zařízení při použití napájecího napětí 4 V odebíralo proud zhruba 198 mA, což je v tolerovaných mezích. Dále bylo zkontrolováno, zdali 3,3V snižující měnič, který napájí všechny citlivé komponenty pracuje správně. Bylo změřeno napětí 3,313 V na jeho výstupu, je tedy v pořádku.
+
+Jako další důležitý blok byla zkontrolována funkčnost S/R klopného obvodu, která poskytuje ochranu proti podvybití, popsána v kapitole \ref{napajeni}. K tomuto byl vytvořen jednoduchý firmware procesoru, který průběžně měří napětí akumulátoru pomocí \ac{ADC} a v případě, že klesne pod úroveň 3,5 V přepne pin na vstupu KO do stavu log. 1. Tento stav byl simulován postupným snižováním výstupního napětí laboratorního zdroje. K vypnutí zařízení došlo při 3,54 V a ve vypnutém stavu zařízení odebíralo proud $ \SI{19,73}{\micro\ampere} $, což je spotřeba samotných klopných obvodů a \ac{RTC} zálohovacích registrů \ac{MCU} a \ac{GNSS} modulu. Při tomto napětí zbývá v akumulátoru zhruba 10 \% energie \cite{Cheruiyot2022914}, můžeme tedy vypočítat jak dlouho je možné ponechat zařízení softwarově vypnuté se sepnutým hlavním vypínačem, aniž by došlo k degradaci akumulátoru:
+
+\begin{equation}
+t = \dfrac{C\cdot 0,1}{I}=\dfrac{2,9\cdot 0,1}{19,73 \cdot 10^{-6}}= \SI{1.68}{\roku}
+\end{equation}
+Kde C je kapacita akumulátoru v Ah a I je proudový odběr vypnutého zařízení.
+
+Při připojení zařízení ke zdroji pomocí \ac{USB} bylo napájení obnoveno, což je žádoucí. Také byla zkontrolována proudová spotřeba při nabíjení akumulátoru pomocí orientačního \ac{USB} měřicího přístroje, ta byla 751 mA v případě, že je zařízení zapnuté a akumulátor se nabíjí.
+
+Další části zařízení jsou úzce vázány na software, jejich funkčnost byla tedy postupně testována při vývoji. Později byl odhalen drobný nedostatek co se hardwarového návrhu týče, a to v oblasti \ac{RTC} periferie hlavního procesoru. Ta slouží k udržení aktuálního času, který je možné synchronizovat například pomocí \ac{GNSS}. Z tohoto důvodu výrobce \ac{MCU} umožňuje napájet periferii pomocí separátního pinu \emph{VBAT} který je využíván při vypnutém hlavním napájení a má velice malý proudový odběr, jehož zdrojem je lineární napěťový regulátor s malým klidovým proudem připojeným přímo k akumulátoru. Vzhledem k tomu, že tato funkcionalita není pro aplikaci inerciální navigace klíčová a jedná se pouze o možnost zvýšení pohodlí uživatele, tak nebyly kladeny vysoké nároky na její přesnost, proto nebyl zapojen externí nízkofrekvenční krystalový oscilátor \emph{LSE} s domněním, že bude postačovat pouze interní oscilátor \emph{LSI RC}. Ukázalo se ovšem, že z napájecí domény \emph{VBAT} je poskytováno napájení pouze externímu nízkofrekvenčnímu oscilátoru, nikoliv internímu \cite{csdGtKJDMSdbwJ9r}. Z tohoto důvodu byl dodatečně přidán 32,768kHz krystal, společně se zatěžovacími kondenzátory (viz. obrázek \ref{fig:RTCcrystal}), který byl po otestování připevněn lepidlem.
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{obrazky/RTCcrystal}
+    \caption{Dodatečná oprava RTC oscilátoru}
+    \label{fig:RTCcrystal}
+\end{figure}
+
+
 
 
 
