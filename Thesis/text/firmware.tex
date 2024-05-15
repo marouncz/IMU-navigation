@@ -42,15 +42,26 @@ Popsat chování a funkcionalitu firmwaru této aplikace dohromady by bylo pomě
     \includegraphics[width=0.3\textwidth]{obrazky/KeepaliveTask}
     \caption{Vývojový diagram KeepaliveTask}
 \end{figure}
-Jedná se o úlohu s nejnižší prioritou...
-
+Jedná se o úlohu s nastavenou nejnižší prioritou. Slouží pouze pro ladicí účely a umožňuje jednoduchou a rychlou reprezentaci stavu systému pomocí blikající LED, zdali je spouštěn i task s nejnižší prioritou.
 \subsection{hubTask}
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.3\textwidth]{obrazky/HubTask}
+    \includegraphics[width=0.25\textwidth]{obrazky/HubTask}
     \caption{Vývojový diagram HubTask}
 \end{figure}
+Tato úloha vykonává funkce pouze při zapnutí zařízení, a to konfiguraci a sepnutí vestavěného \ac{USB} rozbočovače. Do něj jsou nahrána konfigurační data pomocí sběrnice I2C, jako je například \ac{VID}, \ac{PID} a nastavení jednotlivých portů. Následně jsou registry rozbočovače přepnuty do režimu pouze pro čtení a \ac{USB} rozhraní zapnuto.
 \subsection{powerTask}
+V tomto tasku jsou periodicky měřena všechna analogová napětí pomocí \ac{ADC} procesoru, například napětí zdroje, USB portu, akumulátoru, ale i teplota procesoru. Tyto stavové veličiny jsou zobrazovány pomocí \ac{GUI}. Čtené hodnoty napětí akumulátoru jsou průměrovány pomocí pohyblivého exponenciálního filtru, který je možný zapsat pomocí rovnice \ref{eq:EMA}.
+
+\begin{equation} \label{eq:EMA}
+y[n]=\alpha \cdot x[n] + (1-\alpha)\cdot y[n-1]
+\end{equation}
+
+Kde $ x[n] $ je přečtená hodnota napětí, $ y[n] $ vyfiltrovaná hodnota napětí, $ y[n-1] $ výsledek vyfiltrované hodnoty napětí z předešlého cyklu a $ \alpha $ je nastavitelný koeficient odezvy filtru. Experimentálně bylo odzkoušeno, že vhodných výsledků filtrace šumu je možné dosáhnout s $ \alpha = 0,3$.
+
+V případě, že klesne napětí akumulátoru pod hranici 3,5 V je zařízení vypnuto překlopení S/R klopného obvodu, který je zmiňovaný v kapitole \ref{hardware} a tím je dosažena ochrana akumulátoru proti podvybití.
+
+
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.3\textwidth]{obrazky/PowerTask}
