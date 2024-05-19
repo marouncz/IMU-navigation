@@ -174,20 +174,20 @@ Všechny SMD součástky, kromě \ac{GNSS} a \ac{IMU} modulu byly osazeny strojo
         \label{fig:adisIsolator}
 \end{figure}
 
-Obdobné izolační podložky byly také navrženy a použity ze spodní strany distančních sloupků držící \ac{OLED} displej.
+Obdobné izolační podložky byly také navrženy a použity při montáži distančních sloupků držící \ac{OLED} displej.
 
 \begin{figure}
      \centering
      \begin{subfigure}[b]{0.45\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{obrazky/boxWithLid}
+         \includegraphics[width=\textwidth]{obrazky/boxNoLid}
          \caption{3D model krabičky bez víka}
        
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.45\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{obrazky/boxNoLid}
+         \includegraphics[width=\textwidth]{obrazky/boxWithLid}
          \caption{3D model krabičky s víkem}
          
      \end{subfigure}
@@ -195,7 +195,7 @@ Obdobné izolační podložky byly také navrženy a použity ze spodní strany 
         \label{fig:boxModel}
 \end{figure}
 
-Dále byla navržena a vyrobena 3D tištěná montážní krabička pro ochranu citlivých komponent zařízení při běžném užívání a manipulaci. Veškeré modely v této práci jsou navrženy pomocí 3D \ac{CAD} programu Fusion 360 od firmy Autodesk. Ve spodní části krabičky jsou přidané závitové vložky, které byly teplem vlisovány do plastového dílu pomocí mikropájky. \ac{DPS} je připevněna k tomuto dílu pomocí čtveřice nylonových distančních sloupků, které zároveň slouží jako vzpěry pro vrchní díl krabice. Sestavené zařízení je na obrázku \ref{fig:boxPhoto}.
+Dále byla navržena a vyrobena 3D tištěná montážní krabička (obrázek \ref{fig:boxModel}) pro ochranu citlivých komponent zařízení při běžném užívání a manipulaci. Veškeré modely v této práci jsou navrženy pomocí 3D \ac{CAD} programu Fusion 360 od firmy Autodesk. Ve spodní části krabičky jsou přidané závitové vložky, které byly teplem vlisovány do plastového dílu pomocí mikropájky. \ac{DPS} je připevněna k tomuto dílu pomocí čtveřice nylonových distančních sloupků, které zároveň slouží jako vzpěry pro vrchní díl krabice. Sestavené zařízení je na obrázku \ref{fig:boxPhoto}.
 
 \begin{figure}
      \centering
@@ -219,14 +219,14 @@ Dále byla navržena a vyrobena 3D tištěná montážní krabička pro ochranu 
 \section{Ověření základních funkcí hardwaru jednotky}
 Při prvním zapnutí desky byl k napájení použit laboratorní zdroj s proudovým omezením místo Li-Ion akumulátoru, aby v případě chyby v zapojení byla šance poškození co nejvíce omezena. Zařízení při použití napájecího napětí 4 V odebíralo proud zhruba 198 mA, což je v tolerovaných mezích. Dále bylo zkontrolováno, zdali 3,3V snižující měnič, který napájí všechny citlivé komponenty pracuje správně. Bylo změřeno napětí 3,313 V na jeho výstupu, je tedy v pořádku.
 
-Jako další důležitý blok byla zkontrolována funkčnost S/R klopného obvodu, která poskytuje ochranu proti podvybití, popsána v kapitole \ref{napajeni}. K tomuto byl vytvořen jednoduchý firmware procesoru, který průběžně měří napětí akumulátoru pomocí \ac{ADC} a v případě, že klesne pod úroveň 3,5 V přepne pin na vstupu KO do stavu log. 1. Tento stav byl simulován postupným snižováním výstupního napětí laboratorního zdroje. K vypnutí zařízení došlo při 3,54 V a ve vypnutém stavu zařízení odebíralo proud $ \SI{19,73}{\micro\ampere} $, což je spotřeba samotných klopných obvodů a \ac{RTC} zálohovacích registrů \ac{MCU} a \ac{GNSS} modulu. Při tomto napětí zbývá v akumulátoru zhruba 10 \% energie \cite{Cheruiyot2022914}, můžeme tedy vypočítat jak dlouho je možné ponechat zařízení softwarově vypnuté se sepnutým hlavním vypínačem, aniž by došlo k degradaci akumulátoru:
+Jako další důležitý blok byla zkontrolována funkčnost S/R klopného obvodu, která poskytuje ochranu proti podvybití, popsanou v kapitole \ref{napajeni}. K tomuto byl vytvořen jednoduchý firmware procesoru, který průběžně měří napětí akumulátoru pomocí \ac{ADC} a v případě, že klesne pod úroveň 3,5 V přepne pin na vstupu KO do stavu log. 1. Tento stav byl simulován postupným snižováním výstupního napětí laboratorního zdroje. K vypnutí zařízení došlo při 3,54 V a ve vypnutém stavu zařízení odebíralo proud $ \SI{19,73}{\micro\ampere} $, což je spotřeba samotných klopných obvodů a \ac{RTC} zálohovacích registrů \ac{MCU} a \ac{GNSS} modulu. Při tomto napětí zbývá v akumulátoru zhruba 10 \% energie \cite{Cheruiyot2022914}, můžeme tedy vypočítat jak dlouho je možné ponechat zařízení softwarově vypnuté se sepnutým hlavním vypínačem, aniž by došlo k degradaci akumulátoru:
 
 \begin{equation}
 t = \dfrac{C\cdot 0,1}{I}=\dfrac{2,9\cdot 0,1}{19,73 \cdot 10^{-6}}= \SI{1.68}{\roku}
 \end{equation}
 Kde C je kapacita akumulátoru v Ah a I je proudový odběr vypnutého zařízení.
 
-Při připojení zařízení ke zdroji pomocí \ac{USB} bylo napájení obnoveno, což je žádoucí. Také byla zkontrolována proudová spotřeba při nabíjení akumulátoru pomocí orientačního \ac{USB} měřicího přístroje, ta byla 751 mA v případě, že je zařízení zapnuté a akumulátor se nabíjí.
+Při připojení zařízení ke zdroji pomocí \ac{USB} bylo napájení obnoveno, což je žádoucí. Také byla zkontrolována proudová spotřeba při nabíjení akumulátoru pomocí orientačního \ac{USB} měřicího přístroje TC66C, ta byla 751 mA v případě, že je zařízení zapnuté a akumulátor se nabíjí.
 
 Další části zařízení jsou úzce vázány na software, jejich funkčnost byla tedy postupně testována při vývoji. Později byl odhalen drobný nedostatek co se hardwarového návrhu týče, a to v oblasti \ac{RTC} periferie hlavního procesoru. Ta slouží k udržení aktuálního času, který je možné synchronizovat například pomocí \ac{GNSS}. Z tohoto důvodu výrobce \ac{MCU} umožňuje napájet periferii pomocí separátního pinu \emph{VBAT} který je využíván při vypnutém hlavním napájení a má velice malý proudový odběr, jehož zdrojem je lineární napěťový regulátor s malým klidovým proudem připojeným přímo k akumulátoru. Vzhledem k tomu, že tato funkcionalita není pro aplikaci inerciální navigace klíčová a jedná se pouze o možnost zvýšení pohodlí uživatele, tak nebyly kladeny vysoké nároky na její přesnost, proto nebyl zapojen externí nízkofrekvenční krystalový oscilátor \emph{LSE} s domněním, že bude postačovat pouze interní oscilátor \emph{LSI RC}. Ukázalo se ovšem, že z napájecí domény \emph{VBAT} je poskytováno napájení pouze externímu nízkofrekvenčnímu oscilátoru, nikoliv internímu \cite{csdGtKJDMSdbwJ9r}. Z tohoto důvodu byl dodatečně přidán 32,768kHz krystal, společně se zatěžovacími kondenzátory (viz. obrázek \ref{fig:RTCcrystal}), který byl po otestování připevněn lepidlem.
 
