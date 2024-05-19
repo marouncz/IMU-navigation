@@ -68,52 +68,112 @@ V případě, že klesne napětí akumulátoru pod hranici 3,5 V je zařízení 
     \caption{Vývojový diagram PowerTask}
 \end{figure}
 \subsection{gpsTask}
-Tato úloha se stará o periodické zpracování příchozích dat z GNSS modulu pomocí \ac{UBX} zpráv. Tyto data jsou přijímány pomocí sběrnice \ac{UART} a DMA, následně převedena do čitelné podoby (datum, čas, zeměpisná šířka, délka \ldots) pomocí knihovny GNSS parseru z \cite{SimpleMethod2021}.
-
-V této úloze je také kontrolováno kdy dojde k prvnímu přesnému určení polohy fixací na satelity a je aktualizován aktuální čas a datum do vnitřního \ac{RTC}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.3\textwidth]{obrazky/GpsTask}
     \caption{Vývojový diagram GpsTask}
 \end{figure}
+Tato úloha se stará o periodické zpracování příchozích dat z GNSS modulu pomocí \ac{UBX} zpráv. Tyto data jsou přijímány pomocí sběrnice \ac{UART} a DMA, následně převedena do čitelné podoby (datum, čas, zeměpisná šířka, délka \ldots) pomocí knihovny GNSS parseru \cite{SimpleMethod2021}.
+
+V této úloze je také kontrolováno kdy dojde k prvnímu přesnému určení polohy fixací na satelity a je aktualizován aktuální čas a datum do vnitřního \ac{RTC}.
+
 \subsection{lsmTask} \label{lsmTask}
-V tomto tasku jsou periodicky vyčítána data o magnetickém poli z elektronického kompasu LSM303. Ten je při zapnutí zresetován a následně inicializován rozsah, rozlišení a vzorkovací frekvence na 100 Hz. Po navzorkování dat magnetometr změní stav na svém pinu signalizujícím konec vzorkování. V ten okamžik je započat DMA přenos pomocí sběrnice I2C a jakmile jsou data vyčtena, převedou se do fyzikálních jednotek a odešlou se k záznamu.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.6\textwidth]{obrazky/LsmTask}
     \caption{Vývojový diagram LsmTask}
 \end{figure}
+V tomto tasku jsou periodicky vyčítána data o magnetickém poli z elektronického kompasu LSM303. Ten je při zapnutí zresetován a následně inicializován rozsah, rozlišení a vzorkovací frekvence na 100 Hz. Po navzorkování dat magnetometr změní stav na svém pinu signalizujícím konec vzorkování. V ten okamžik je započat DMA přenos pomocí sběrnice I2C a jakmile jsou data vyčtena, převedou se do fyzikálních jednotek a odešlou se k záznamu.
+
 \subsection{mpuTask}
-Tato úloha je velice obdobná předchozí z kapitoly \ref{lsmTask}. Zde jsou čtena a převáděna data z 6 osého IMU MPU6050 s frekvencí 400 Hz.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.6\textwidth]{obrazky/MpuTask}
     \caption{Vývojový diagram MpuTask}
 \end{figure}
+Tato úloha je velice obdobná předchozí z kapitoly \ref{lsmTask}. Zde jsou čtena a převáděna data z 6 osého IMU MPU6050 s frekvencí 400 Hz.
+
 \subsection{adisTask}
-Tento task, obdobně jako předchozí, obstarává inicializaci, vyčítání a konverzi dat z 6 osého IMU ADIS16505 se vzorkovací frekvencí 400 Hz. Zároveň slouží jako synchronizace k zarovnání řádků dat ve výsledném souboru. V případě, že jsou dostupná nová data z LSM303, nebo MPU6050, jsou přidána do celkové záznamové datové struktury, v opačném případě jsou na jejich odpovídající místa zapsány nuly. V nejhorším možném případě, tedy že data z ostatních senzorů jsou vzorkována těsně po navzorkování dat z ADIS16505 je jejich zpoždění délka jedné periody celkové vzorkovací frekvence, tedy 2,5 ms.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.95\textwidth]{obrazky/AdisTask}
     \caption{Vývojový diagram AdisTask}
 \end{figure}
+Tento task, obdobně jako předchozí, obstarává inicializaci, vyčítání a konverzi dat z 6 osého IMU ADIS16505 se vzorkovací frekvencí 400 Hz. Zároveň slouží jako synchronizace k zarovnání řádků dat ve výsledném souboru. V případě, že jsou dostupná nová data z LSM303, nebo MPU6050, jsou přidána do celkové záznamové datové struktury, v opačném případě jsou na jejich odpovídající místa zapsány nuly. V nejhorším možném případě, tedy že data z ostatních senzorů jsou vzorkována těsně po navzorkování dat z ADIS16505 je jejich zpoždění délka jedné periody celkové vzorkovací frekvence, tedy 2,5 ms.
+
 \subsection{loggerTask}
-Tato úloha provádí samotné ukládání dat. Testováním bylo zjištěno, že při použití kvalitnějších microSD karet (v zařízení je použita \emph{SAMSUNG 64GB EVO PLUS}) nedochází k náhodným delším prodlevám při zápisu. Zároveň v porovnání s NOR FLASH pamětí poskytuje řádově větší úložiště, rychlejší zápis bloku dat, není potřeba mazat každý sektor paměti před zápisem a také je jednoduší implementace souborového systému. Z těchto důvodů bylo rozhodnuto využití SD karty k ukládání měřených dat.
-
-Stavový automat v tomto tasku lze rozdělit do čtyř stavů: záznam dat, kdy jsou data průběžně ukládána, vypnutý záznam, kdy jsou data zahazována a začátek a konec záznamu, kdy dochází k inicializacím USB a souborových systémů. V průběhu záznamu je USB rozhraní vypnuté, aby nebylo možné zasahovat do souboru připojeným PC když je zrovna do něj zapisováno zařízením.
-
-Samotný přenos naměřených dat do počítače je realizován přes USB třídy vysokokapacitního úložiště. Připojený PC při potřebě čtení dat spustí přerušení na přenos s konkrétní adresou. Jelikož je na microSD kartě implementován souborový systém FatFS, je v běžných operačních systémech reprezentován jako obyčejné externí úložiště.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.99\textwidth]{obrazky/LoggerTask}
     \caption{Vývojový diagram LoggerTask}
 \end{figure}
+Tato úloha provádí samotné ukládání dat. Testováním bylo zjištěno, že při použití kvalitnějších microSD karet (v zařízení je použita \emph{SAMSUNG 64GB EVO PLUS}) nedochází k náhodným delším prodlevám při zápisu. Zároveň v porovnání s NOR FLASH pamětí poskytuje řádově větší úložiště, rychlejší zápis bloku dat, není potřeba mazat každý sektor paměti před zápisem a také je jednoduší implementace souborového systému. Z těchto důvodů bylo rozhodnuto využití SD karty k ukládání měřených dat.
+
+Stavový automat v tomto tasku lze rozdělit do čtyř stavů: záznam dat, kdy jsou data průběžně ukládána, vypnutý záznam, kdy jsou data zahazována a začátek a konec záznamu, kdy dochází k inicializacím USB a souborových systémů. V průběhu záznamu je USB rozhraní vypnuté, aby nebylo možné zasahovat do souboru připojeným PC když je zrovna do něj zapisováno zařízením.
+
+Samotný přenos naměřených dat do počítače je realizován přes USB třídy vysokokapacitního úložiště. Připojený PC při potřebě čtení dat spustí přerušení na přenos s konkrétní adresou. Jelikož je na microSD kartě implementován souborový systém FatFS, je v běžných operačních systémech reprezentován jako obyčejné externí úložiště.
+
 \subsection{oledTask}
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.9\textwidth]{obrazky/OledTask}
     \caption{Vývojový diagram OledTask}
 \end{figure}
+Tento task obstarává obsluhu uživatelského rozhraní pomocí grafického displeje a čtveřice tlačítek. Při každém cyklu
+je porovnán předchozí a stávající stav tlačítek. Jestliže došlo k nějakému stisknutí, změní se náležitě zobrazované informace a chování zařízení. Displej komunikuje s \ac{MCU} přes sběrnici I2C a k ovládání byla použita knihovna řadiče SSD1306 \cite{Alekseev2024}. Funkce jednotlivých tlačítek jsou reprezentovány ikonami ohraničenými rámečkem na spodní straně displeje.
+
+Stav zařízení by se dal zjednodušeně znázornit třemi možnými:
+\begin{itemize}
+\item Výchozí obrazovka stavových informací (obrázek \ref{fig:stateInfoGUI}) - pomocí ní je možné odečítat okamžité hodnoty veličin měřených senzory a zařízením. Při zapnutí je zobrazena výchozí domovská obrazovka, na které jsou přítomny provozní informace, jako je napětí akumulátoru, teplota procesoru, nebo čas uložený v RTC. Stisky tlačítka 1 (reprezentováno ikonou HOME na displeji) je možné měnit zobrazované informace na jednotlivé IMU, elektronický kompas a GNSS modul. Při změně obrazovky se také náležitě obmění levá spodní ikona náležící tlačítku 1. Všechny senzorové veličiny (lineární zrychlení, úhlová rychlost, velikost magnetické indukce) jsou již převedeny do jednotek SI.
+\item Záznam dat - Ten je možné aktivovat stiskem tlačítka 2, kterému náleží ikona RECD. Po jeho stisknutí je na displeji zobrazen pětisekundový odpočet, který slouží k tomu, aby uživatel umístil jednotku do nehybného stavu (i samotný stisk tlačítka může velice ovlivnit měření) a až poté je zapnut záznam dat. V průběhu záznamu je uživateli zobrazována délka zaznamenaných dat (v sekundách) a není nijak omezena. Záznam dat je poté možné přerušit stiskem tlačítka 3, kterému odpovídá ikona STOP.
+\item Kalibrace
+\end{itemize}
+
+\begin{figure}[h]
+     \centering
+     \begin{subfigure}[b]{0.29\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{obrazky/menuHome2}
+         \caption{Domovská obrazovka}
+       
+     \end{subfigure}
+     \hfill
+     \centering
+     \begin{subfigure}[b]{0.29\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{obrazky/menuMPU}
+         \caption{Hodnoty z MPU6050}
+         
+     \end{subfigure}
+     \hfill
+     \centering
+     \begin{subfigure}[b]{0.29\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{obrazky/menuADIS}
+         \caption{Hodnoty z ADIS16505}
+       
+     \end{subfigure}
+     \centering
+     \begin{subfigure}[b]{0.29\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{obrazky/menuLSM}
+         \caption{Hodnoty z LSM303}
+       
+     \end{subfigure}
+		\hfill
+     \begin{subfigure}[b]{0.29\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{obrazky/menuGPS}
+         \caption{Hodnoty z GNSS}
+         
+     \end{subfigure}
+
+        \caption{GUI stavových informací jednotlivých senzorů}
+        \label{fig:stateInfoGUI}
+\end{figure}
+
+
+
 
 \section{Kalibrace IMU}
 \section{Zarovnání paměti}
