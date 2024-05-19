@@ -39,14 +39,14 @@ Popsat chování a funkcionalitu firmwaru této aplikace dohromady by bylo pomě
 \subsection{KeepaliveTask}
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.25\textwidth]{obrazky/KeepaliveTask}
+    \includegraphics[width=0.22\textwidth]{obrazky/KeepaliveTask}
     \caption{Vývojový diagram KeepaliveTask}
 \end{figure}
 Jedná se o úlohu s nastavenou nejnižší prioritou. Slouží pouze pro ladicí účely a umožňuje jednoduchou a rychlou reprezentaci stavu systému pomocí blikající LED, zdali je spouštěn i task s nejnižší prioritou.
 \subsection{hubTask}
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.2\textwidth]{obrazky/HubTask}
+    \includegraphics[width=0.18\textwidth]{obrazky/HubTask}
     \caption{Vývojový diagram HubTask}
 \end{figure}
 Tato úloha vykonává funkce pouze při zapnutí zařízení, a to konfiguraci a sepnutí vestavěného \ac{USB} rozbočovače. Do něj jsou nahrána konfigurační data pomocí sběrnice I2C, jako je například \ac{VID}, \ac{PID} a nastavení jednotlivých portů. Následně jsou registry rozbočovače přepnuty do režimu pouze pro čtení a \ac{USB} rozhraní zapnuto.
@@ -64,13 +64,13 @@ V případě, že klesne napětí akumulátoru pod hranici 3,5 V je zařízení 
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.3\textwidth]{obrazky/PowerTask}
+    \includegraphics[width=0.25\textwidth]{obrazky/PowerTask}
     \caption{Vývojový diagram PowerTask}
 \end{figure}
 \subsection{gpsTask}
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.3\textwidth]{obrazky/GpsTask}
+    \includegraphics[width=0.25\textwidth]{obrazky/GpsTask}
     \caption{Vývojový diagram GpsTask}
 \end{figure}
 Tato úloha se stará o periodické zpracování příchozích dat z GNSS modulu pomocí \ac{UBX} zpráv. Tyto data jsou přijímány pomocí sběrnice \ac{UART} a DMA, následně převedena do čitelné podoby (datum, čas, zeměpisná šířka, délka \ldots) pomocí knihovny GNSS parseru \cite{SimpleMethod2021}.
@@ -116,7 +116,7 @@ Samotný přenos naměřených dat do počítače je realizován přes USB tří
 \subsection{oledTask}
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.9\textwidth]{obrazky/OledTask}
+    \includegraphics[width=0.8\textwidth]{obrazky/OledTask}
     \caption{Vývojový diagram OledTask}
 \end{figure}
 Tento task obstarává obsluhu uživatelského rozhraní pomocí grafického displeje a čtveřice tlačítek. Při každém cyklu
@@ -125,10 +125,6 @@ je porovnán předchozí a stávající stav tlačítek. Jestliže došlo k něj
 Stav zařízení by se dal zjednodušeně znázornit třemi možnými:
 \begin{itemize}
 \item Výchozí obrazovka stavových informací (obrázek \ref{fig:stateInfoGUI}) - pomocí ní je možné odečítat okamžité hodnoty veličin měřených senzory a zařízením. Při zapnutí je zobrazena výchozí domovská obrazovka, na které jsou přítomny provozní informace, jako je napětí akumulátoru, teplota procesoru, nebo čas uložený v RTC. Stisky tlačítka 1 (reprezentováno ikonou HOME na displeji) je možné měnit zobrazované informace na jednotlivé IMU, elektronický kompas a GNSS modul. Při změně obrazovky se také náležitě obmění levá spodní ikona náležící tlačítku 1. Všechny senzorové veličiny (lineární zrychlení, úhlová rychlost, velikost magnetické indukce) jsou již převedeny do jednotek SI.
-\item Záznam dat - Ten je možné aktivovat stiskem tlačítka 2, kterému náleží ikona RECD. Po jeho stisknutí je na displeji zobrazen pětisekundový odpočet, který slouží k tomu, aby uživatel umístil jednotku do nehybného stavu (i samotný stisk tlačítka může velice ovlivnit měření) a až poté je zapnut záznam dat. V průběhu záznamu je uživateli zobrazována délka zaznamenaných dat (v sekundách) a není nijak omezena. Záznam dat je poté možné přerušit stiskem tlačítka 3, kterému odpovídá ikona STOP.
-\item Kalibrace
-\end{itemize}
-
 \begin{figure}[h]
      \centering
      \begin{subfigure}[b]{0.29\textwidth}
@@ -172,10 +168,63 @@ Stav zařízení by se dal zjednodušeně znázornit třemi možnými:
         \label{fig:stateInfoGUI}
 \end{figure}
 
+\item Záznam dat (obrázek \ref{fig:recordGUI}) - Ten je možné aktivovat stiskem tlačítka 2, kterému náleží ikona RECD. Po jeho stisknutí je na displeji zobrazen pětisekundový odpočet, který slouží k tomu, aby uživatel umístil jednotku do nehybného stavu (i samotný zákmit ze stisku tlačítka může velice ovlivnit měření) a až poté je zapnut záznam dat. V průběhu záznamu je uživateli zobrazována délka zaznamenaných dat (v sekundách) a není nijak omezena. Záznam dat je poté možné přerušit stiskem tlačítka 3, kterému odpovídá ikona STOP.
 
+\begin{figure}[h]
+     \centering
+     \begin{subfigure}[b]{0.29\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{obrazky/menuREC1}
+         \caption{Odpočet startu}     
+     \end{subfigure}
+     \hfill
+     \centering
+     \begin{subfigure}[b]{0.29\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{obrazky/menuREC2}
+         \caption{Délka záznamu dat}   
+     \end{subfigure}
 
+        \caption{GUI záznamu dat}
+        \label{fig:recordGUI}
+\end{figure}
 
-\section{Kalibrace IMU}
+\item Kalibrace (obrázek \ref{fig:calibrationGUI})- toto menu slouží jako průvodce kalibrační procedurou. Aktivuje se stiskem tlačítka 4, kterému odpovídá ikona CALB. Následně je uživateli zobrazen dvoustránkový průvodce kalibrační procedurou, který popisuje jednotlivé kroky potřebné k úspěšnému provedení kalibrace. Poté je uživatel vyzván k umístění jednotky na jednu z 6 hran a po pětisekundovém odpočtu je změřeno 50 vzorků lineárního zrychlení a úhlové rychlosti z obou IMU a vypočítán jejich průměr. Tento postup se opakuje šestkrát s každou hranou zařízení, následně jsou z měření vypočteny kalibrační konstanty pomocí algoritmu popsaným v kapitole \ref{calibrationALG}.
+\end{itemize}
+\begin{figure}[h]
+     \centering
+     \begin{subfigure}[b]{0.24\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{obrazky/menuCAL1}
+         \caption{Průvodce 1}     
+     \end{subfigure}
+     \hfill
+     \centering
+     \begin{subfigure}[b]{0.24\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{obrazky/menuCAL2}
+         \caption{Průvodce 2}   
+     \end{subfigure}
+     \hfill
+          \centering
+     \begin{subfigure}[b]{0.24\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{obrazky/menuCAL3}
+         \caption{Odpočet měření}     
+     \end{subfigure}
+     \hfill
+     \centering
+     \begin{subfigure}[b]{0.24\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{obrazky/menuCAL4}
+         \caption{Hotový záznam}   
+     \end{subfigure}
+
+        \caption{GUI kalibrační procedury}
+        \label{fig:calibrationGUI}
+\end{figure}
+
+\section{Kalibrace IMU} \label{calibrationALG}
 \section{Zarovnání paměti}
 
 
