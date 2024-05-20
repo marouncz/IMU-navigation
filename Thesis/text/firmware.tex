@@ -229,6 +229,17 @@ Stav zařízení by se dal zjednodušeně znázornit třemi možnými:
 \end{figure}
 
 \section{Kalibrace IMU} \label{calibrationALG}
+Akcelerometry a gyroskopy jsou poměrně citlivé součástky. Přestože většina i těch levnějších IMU jsou v továrně výrobcem kalibrovány, jejich vlastnosti se můžou změnit například procesem pájení, změnou teploty, nebo mechanickým pnutím v desce plošných spojů. Drtivá většina popsaných kalibračních metod akcelerometrů se zaměřuje na korekci lineární křivkou, jedná se tedy o výpočet konstant k a q v rovnici $ y=k\cdot x + q $, kde $ x $ je měřená hodnota senzorem, $ k $ a $ q $ jsou kalibrační konstanty a $ y $ je výsledná veličina po kalibraci. Konstantu $ k $ můžeme označit jako gain a konstantu $ q $ jako offset. Většinou se dostupné metody kalibrací používají i pro kompenzaci odchylek natočení os senzorů vůči desce, nebo nějakému jinému referenčnímu prvku zařízení (například hrany krabice), které můžou vzniknout nepřesným pájením, nebo montáží. Tyto metody vyžadují buď nějaké přípravky, které nám umožní otáčet se zařízením o přesně definovaný úhel v pravoúhlých osách, nebo alespoň vyžadují přesné natáčení zařízení do poloh, kde dvě z os měří nulové zrychlení. \cite{eUM5mr8dMf0LyseX} \cite{6yeG6wAI1hTfmXJK}
+
+V této práci ovšem není až tak důležité kompenzovat natočení os senzorů, jelikož je zařízení určené pro manipulaci v rukách, jde nám tedy pouze o výpočet konstant $ k $ a $ q $, aby bylo měřeno zrychlení správné velikosti. Výroba výše zmíněných mechanických přípravků, které by byly dostatečně přesné a opakovatelné by byla náročná a nesouvisející s povahou této práce. Díky tomu, že nepotřebujeme kompenzovat natočení os, můžeme vycházet z dostupných kalibračních procedur a implementovat jejich podstatu v upravené podobě:
+
+Kalibrační procedura vychází ze znalosti velikosti tíhového zrychlení. Budeme-li mít akcelerometr nehybný, tak v jakékoliv jeho pozici by velikost vektoru zrychlení měla být rovna tíhovému zrychlení. To můžeme zapsat pomocí rovnice \ref{eq:sizeOfVect}.
+
+\begin{equation} \label{eq:sizeOfVect}
+\lvert\vec{a}\rvert=\sqrt{\lvert\vec{a_{x}}\rvert^{2}+\lvert\vec{a_{y}}\rvert^{2}+\lvert\vec{a_{z}}\rvert^{2}}
+\end{equation} 
+
+
 \section{Zarovnání paměti}
 
 
