@@ -48,7 +48,7 @@
       <param.ReportInfoVarName />
       <param.DefaultTestFile />
       <param.MergeInstrumentationResults>false</param.MergeInstrumentationResults>
-      <param.VerificationMode>option.VerificationMode.None</param.VerificationMode>
+      <param.VerificationMode />
       <param.VerificationStatus>option.VerificationStatus.Passed</param.VerificationStatus>
       <param.EnableMexProfiling>false</param.EnableMexProfiling>
       <var.BuiltWithMexProfiling />
@@ -274,7 +274,7 @@
       <param.DefaultTestFile />
       <param.MergeInstrumentationResults>false</param.MergeInstrumentationResults>
       <param.RanPilSilVerification>false</param.RanPilSilVerification>
-      <param.VerificationMode>option.VerificationMode.None</param.VerificationMode>
+      <param.VerificationMode />
       <param.VerificationStatus>option.VerificationStatus.Inactive</param.VerificationStatus>
       <param.CustomSourceCode />
       <param.CustomHeaderCode />
@@ -626,7 +626,7 @@
     <var.cfi.lastOutputRoot>codegen\mex\AccelCalSolver</var.cfi.lastOutputRoot>
     <var.cfi.preBuildChecksum>3233804030</var.cfi.preBuildChecksum>
     <var.lastCfiTestSnippet>accelCalibration</var.lastCfiTestSnippet>
-    <var.outdatedOnRestore>false</var.outdatedOnRestore>
+    <var.outdatedOnRestore />
     <var.lastUserSourceChecksum>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;checksum&gt;&lt;includedFiles&gt;&lt;file&gt;C:\Users\marou\Projekty\Marek Coufal\IMU-navigation\Software\Matlab\C generator\AccelCalSolver.m&lt;/file&gt;&lt;file&gt;C:\Users\marou\Projekty\Marek Coufal\IMU-navigation\Software\Matlab\C generator\gravityFun.m&lt;/file&gt;&lt;/includedFiles&gt;&lt;value&gt;1549207851&lt;/value&gt;&lt;/checksum&gt;</var.lastUserSourceChecksum>
     <var.sourceSetState>&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;&lt;sourceModel&gt;&lt;primarySourceFiles&gt;&lt;file&gt;C:\Users\marou\Projekty\Marek Coufal\IMU-navigation\Software\Matlab\C generator\AccelCalSolver.m&lt;/file&gt;&lt;file&gt;C:\Users\marou\Projekty\Marek Coufal\IMU-navigation\Software\Matlab\C generator\gravityFun.m&lt;/file&gt;&lt;/primarySourceFiles&gt;&lt;fixedPointSourceFiles/&gt;&lt;fixedPointSourceRegistered&gt;false&lt;/fixedPointSourceRegistered&gt;&lt;fixedPointSourceSelected&gt;false&lt;/fixedPointSourceSelected&gt;&lt;/sourceModel&gt;</var.sourceSetState>
     <param.forceMexBuild>false</param.forceMexBuild>

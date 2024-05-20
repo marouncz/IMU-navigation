@@ -247,6 +247,10 @@ Za velikosti zrychlení dosadíme měřené hodnoty akcelerometrem, korigované 
 
 Cílem je tedy určit konstanty k a q. K tomu je potřeba vyřešit nelineární rovnici o šesti neznámých. K řešení provedeme 6 měření a vytvoříme soustavu 6 nelineárních rovnic o 6 neznámých z rovnice \ref{eq:sizeOfCalVector}. Teoreticky nezáleží na natočení zařízení v průběhu 6 zmiňovaných měření, jelikož je počítána velikost vektoru zrychlení ze tří ortogonálních os senzoru, ovšem nejlepších výsledků dostaneme když natočíme zařízení na všechny z 6 stran krabičky zařízení (pravý bok, levý bok, spodní strana, horní strana, přední strana a zadní strana) jelikož v těchto případech budou měřena maxima a minima zrychlení pro všechny osy. Pokud bychom totiž provedli 6 měření v úplně stejné poloze zařízení, může se stát, že použitá numerická metoda řešení rovnic konverguje k řešení typu všechny gainy budou nulové a offset v jedné ose bude roven velikosti tíhového zrychlení. Toto řešení by bylo matematicky správné, ale nedávalo by smysl.
 
+Jednou z možností, jak kalibraci provést by bylo tzv. "offline", tedy provést kalibrační měření a následně data přenést do počítače a kalibrační konstanty vypočítat například pomocí MATLABu. To by ovšem omezilo univerzálnost vyvíjeného zařízení, také by byla kalibrace poměrně složitá a nemotorná z pohledu uživatele. Jako pohodlnější řešení byla zvolena implementace metody nejmenších čtverců pomocí funkce \texttt{fsolve} ve spojení s \emph{MATLAB Coder}.
+
+Nejdříve byla vytvořena následující funkce, která slouží k určení všech 6 kalibračních konstant akcelerometru. Tyto kalibrační konstanty jsou uložené do výstupního vektoru \texttt{x}. Vstupními argumenty je matice \texttt{accel(6,3)}, která obsahuje naměřené zrychlení a \texttt{gravityScalar}, což je velikost tíhového zrychlení.
+
 \begin{lstlisting}[
 frame=single,
 numbers=left,
@@ -269,7 +273,7 @@ options = optimoptions('fsolve','Algorithm','levenberg-marquardt','Display','off
 end
 \end{lstlisting}
 
-
+Kořeny rovnice jsou vyřešeny metodou nejmenších čtverců s výchozími body gain = 1 a offset = 0. Samotný tvar matice je definován v samostatném souboru a obsahuje šest rovnic \ref{eq:sizeOfCalVector} v upraveném tvaru:
 \begin{lstlisting}[
 frame=single,
 numbers=left,
@@ -289,9 +293,15 @@ F(6) = (accel(6,1)*x(1) + x(2))^2 + (accel(6,2)*x(3) + x(4))^2 + (accel(6,3)*x(5
 end
 \end{lstlisting}
 
+Také byla vytvořena testovací funkce na její ověření. Všechny zdrojové kódy jsou také dostupné v elektronické příloze. MATLAB umožňuje vytvořit zdrojový kód v jazyce C k těmto funkcím pomocí aplikace Coder. Optimalizace byla zvolena pro procesory ARM a vygenerované soubory použity a implementovány ve firmwaru zařízení. 
+
+Kalibrace gyroskopů lineární křivkou by byla bohužel složitější a již by vyžadovala nějaký přesný mechanický přípravek na natáčení zařízení o přesně definovaný úhel. Z tohoto důvodu je u gyroskopů kompenzován pouze jejich offset. Ten je měřen ve stejnou dobu při všech 6 měření akcelerometru. Následně je vypočten aritmetický průměr všech 6 měření pro každou osu gyroskopu zvlášť, tato hodnota představuje offset senzoru.
+
+\section{Převod dat do CSV souboru}
+Žádaným výstupem ze zařízení jsou naměřená data v nějakém jednoduše čitelném a univerzálním typu souboru, například \ac{CSV}, ve kterém jsou naměřené veličiny uloženy v textové podobě, oddělené čárkami. \ac{MCU} k záznamu dat a výpočtu používá standardní datové typy, jako je \texttt{int\_8}, \texttt{uint\_16}, \texttt{float}, \texttt{double} a podobně. Pokud bychom přímo v zařízení převáděly tyto čísla na text, tak se nám násobně zvětší nároky na rychlost a velikost ukládání dat. Například datový typ \texttt{int\_8} je v binární podobě reprezentován pouze jedním bytem, zatímco v textové podobě čtyřmi bajty (např. +127). Z tohoto důvodu jsou data na SD kartu ukládána v binární podobě a po přenosu do PC převedena do \ac{CSV} souboru pomocí skriptu napsaném v jazyce Python, který je dostupný v elektronické příloze.
 
 
-\section{Zarovnání paměti}
+
 
 
 
