@@ -236,8 +236,59 @@ V této práci ovšem není až tak důležité kompenzovat natočení os senzor
 Kalibrační procedura vychází ze znalosti velikosti tíhového zrychlení. Budeme-li mít akcelerometr nehybný, tak v jakékoliv jeho pozici by velikost vektoru zrychlení měla být rovna tíhovému zrychlení. To můžeme zapsat pomocí rovnice \ref{eq:sizeOfVect}.
 
 \begin{equation} \label{eq:sizeOfVect}
-\lvert\vec{a}\rvert=\sqrt{\lvert\vec{a_{x}}\rvert^{2}+\lvert\vec{a_{y}}\rvert^{2}+\lvert\vec{a_{z}}\rvert^{2}}
+\lvert\vec{a}\rvert=\sqrt{\lvert\vec{a_{x}}\rvert^{2}+\lvert\vec{a_{y}}\rvert^{2}+\lvert\vec{a_{z}}\rvert^{2}}=\lvert\vec{g}\rvert
 \end{equation} 
+
+Za velikosti zrychlení dosadíme měřené hodnoty akcelerometrem, korigované lineární křivkou. Dostaneme rovnici \ref{eq:sizeOfCalVector}.
+
+\begin{equation} \label{eq:sizeOfCalVector}
+\lvert\vec{g}\rvert=\sqrt{(k_{x}\cdot a_{x} + q_{x})^{2}+(k_{y}\cdot a_{y} + q_{y})^{2}+(k_{z}\cdot a_{z} + q_{z})^{2}}
+\end{equation} 
+
+Cílem je tedy určit konstanty k a q. K tomu je potřeba vyřešit nelineární rovnici o šesti neznámých. K řešení provedeme 6 měření a vytvoříme soustavu 6 nelineárních rovnic o 6 neznámých z rovnice \ref{eq:sizeOfCalVector}. Teoreticky nezáleží na natočení zařízení v průběhu 6 zmiňovaných měření, jelikož je počítána velikost vektoru zrychlení ze tří ortogonálních os senzoru, ovšem nejlepších výsledků dostaneme když natočíme zařízení na všechny z 6 stran krabičky zařízení (pravý bok, levý bok, spodní strana, horní strana, přední strana a zadní strana) jelikož v těchto případech budou měřena maxima a minima zrychlení pro všechny osy. Pokud bychom totiž provedli 6 měření v úplně stejné poloze zařízení, může se stát, že použitá numerická metoda řešení rovnic konverguje k řešení typu všechny gainy budou nulové a offset v jedné ose bude roven velikosti tíhového zrychlení. Toto řešení by bylo matematicky správné, ale nedávalo by smysl.
+
+\begin{lstlisting}[
+frame=single,
+numbers=left,
+style=Matlab-Pyglike,
+ basicstyle=\fontsize{9}{10}\selectfont\ttfamily]
+function [x,fval] = AccelCalSolver(accel, gravityScalar) %#codegen
+% The directive %#codegen indicates that the function
+% is intended for code generation
+arguments
+    accel (6,3) double
+    gravityScalar   (1,1) double
+end
+
+
+fun = @(x)gravityFun(x, accel, gravityScalar);%gravity function handler
+x0 = [1 0 1 0 1 0]; % Initial point - gain=1, offset=0
+options = optimoptions('fsolve','Algorithm','levenberg-marquardt','Display','off');
+[x,fval] = fsolve(fun, x0, options);
+
+end
+\end{lstlisting}
+
+
+\begin{lstlisting}[
+frame=single,
+numbers=left,
+style=Matlab-Pyglike,
+ basicstyle=\fontsize{9}{10}\selectfont\ttfamily]
+function F = gravityFun(x, accel, gravityScalar)
+F = zeros(6,1); % Allocate return array
+
+
+F(1) = (accel(1,1)*x(1) + x(2))^2 + (accel(1,2)*x(3) + x(4))^2 + (accel(1,3)*x(5) + x(6))^2 - gravityScalar^2;
+F(2) = (accel(2,1)*x(1) + x(2))^2 + (accel(2,2)*x(3) + x(4))^2 + (accel(2,3)*x(5) + x(6))^2 - gravityScalar^2;
+F(3) = (accel(3,1)*x(1) + x(2))^2 + (accel(3,2)*x(3) + x(4))^2 + (accel(3,3)*x(5) + x(6))^2 - gravityScalar^2;
+F(4) = (accel(4,1)*x(1) + x(2))^2 + (accel(4,2)*x(3) + x(4))^2 + (accel(4,3)*x(5) + x(6))^2 - gravityScalar^2;
+F(5) = (accel(5,1)*x(1) + x(2))^2 + (accel(5,2)*x(3) + x(4))^2 + (accel(5,3)*x(5) + x(6))^2 - gravityScalar^2;
+F(6) = (accel(6,1)*x(1) + x(2))^2 + (accel(6,2)*x(3) + x(4))^2 + (accel(6,3)*x(5) + x(6))^2 - gravityScalar^2;
+
+end
+\end{lstlisting}
+
 
 
 \section{Zarovnání paměti}
