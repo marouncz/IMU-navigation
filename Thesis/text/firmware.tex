@@ -300,7 +300,7 @@ Kalibrace gyroskopů lineární křivkou by byla bohužel složitější a již 
 \section{Převod dat do CSV souboru}
 Žádaným výstupem ze zařízení jsou naměřená data v nějakém jednoduše čitelném a univerzálním typu souboru, například \ac{CSV}, ve kterém jsou naměřené veličiny uloženy v textové podobě, oddělené čárkami. \ac{MCU} k záznamu dat a výpočtu používá standardní datové typy, jako je \texttt{int\_8}, \texttt{uint\_16}, \texttt{float}, \texttt{double} a podobně. Pokud bychom přímo v zařízení převáděly tyto čísla na text, tak se nám násobně zvětší nároky na rychlost a velikost ukládání dat. Například datový typ \texttt{int\_8} je v binární podobě reprezentován pouze jedním bytem, zatímco v textové podobě čtyřmi bajty (např. +127). Z tohoto důvodu jsou data na SD kartu ukládána v binární podobě a po přenosu do PC převedena do \ac{CSV} souboru pomocí skriptu napsaném v jazyce Python, který je dostupný v elektronické příloze.
 
-
+Tento skript má v sobě definované pořadí jednotlivých datových typů ukládané struktury proměnných. Také bylo potřeba přidat zarovnávací (padding) bity, které kompilátor automaticky přidává na zarovnání proměnných v paměti pro správné fungování MCU. Toto zarovnání je definováno v sestavovacím souboru (linker file) a pro uživatelskou oblast RAM je nastaveno na 64 bitů.
 
 
 
