@@ -1,7 +1,7 @@
 clear all
 close all
 clc
-data = readtable('koleckoKolemFEKTU.csv');
+data = readtable('chuzePoByte.csv');
 % data.adisAccelY = -data.adisAccelY;
 % data.adisAccelZ = -data.adisAccelZ;
 % data.adisGyroY = -data.adisGyroY;
@@ -9,28 +9,26 @@ data = readtable('koleckoKolemFEKTU.csv');
 
 
 % GyroscopeNoise and AccelerometerNoise is determined from the datasheet.
-GyroscopeNoiseADIS16505 = 3.0462e-06; % GyroscopeNoise (variance) in units of rad/s
-AccelerometerNoiseADIS16505 = 0.0061; % AccelerometerNoise (variance) in units of m/s^2
+GyroscopeNoiseADIS16505 = [deg2rad(0.082) deg2rad(0.082) deg2rad(0.116)]; % GyroscopeNoise (variance) in units of rad/s
+GyroscopeBiasNoiseADIS16505 = [deg2rad(2.2/3600) deg2rad(2.7/3600) deg2rad(1.6/3600)];
+AccelerometerNoiseADIS16505 = [0.0048 0.0048 0.00607]; % AccelerometerNoise (variance) in units of m/s^2
+AccelerometerBiasNoiseADIS16505 = [26.5e-6 26.5e-6 43.1e-6];
 
 accel = [data.adisAccelX data.adisAccelY data.adisAccelZ];
 gyro = [data.adisGyroX data.adisGyroY data.adisGyroZ];
-gnssLLA = [data.fLat data.fLon data.height./1000];
+gnssLLA = [ data.fLat data.fLon data.height./1000];
 mag = [data.lsmMagX data.lsmMagY data.lsmMagZ];
 
 latitude = rmmissing(data.fLat);
 longitude = rmmissing(data.fLon);
 
-accelModel = insAccelerometer;
-gyroModel = insGyroscope;
-option = insOptions(ReferenceFrame="ENU");
 imuFs = 400;
-f = insEKF(insAccelerometer,insGyroscope,insMotionPose, option);
-stateparts(f, "Position", )
+f = insfilterMARG('ReferenceFrame','ENU');
 f.IMUSampleRate = imuFs;
 f.ReferenceLocation = gnssLLA(find(~isnan(data.fLat), 1), :);
-% f.AccelerometerBiasNoise = 2e-4;
+% f.AccelerometerBiasNoise = AccelerometerBiasNoiseADIS16505;
 % f.AccelerometerNoise = AccelerometerNoiseADIS16505;
-% f.GyroscopeBiasNoise = 1e-16;
+% f.GyroscopeBiasNoise = GyroscopeBiasNoiseADIS16505;
 % f.GyroscopeNoise = GyroscopeNoiseADIS16505;
 % f.MagnetometerBiasNoise = 1e-10;
 % f.GeomagneticVectorNoise = 1e-12;
@@ -51,11 +49,13 @@ for ii = 1:size(accel,1)               % Fuse IMU
    % end
 
    if ~isnan(data.fLat(ii))                    % Fuse GPS 
-       f.fusegps(gnssLLA(ii,:),diag([1 1 1]));
+       f.fusegps(gnssLLA(ii,:),diag([10 10 10]));
 
    end
- 
+    
    [p(ii,:),q(ii)] = pose(f);           %Log estimated pose
+   stateinfos(ii, :) = f.State;
+   
 end
 
 

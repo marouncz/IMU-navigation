@@ -10,22 +10,19 @@ data = readtable('koleckoKolemFEKTU.csv');
 
 % GyroscopeNoise and AccelerometerNoise is determined from the datasheet.
 GyroscopeNoiseADIS16505 = 3.0462e-06; % GyroscopeNoise (variance) in units of rad/s
-AccelerometerNoiseADIS16505 = 0.0061; % AccelerometerNoise (variance) in units of m/s^2
+AccelerometerNoiseADIS16505 = [0.0048 0.0048 0.00607]; % AccelerometerNoise (variance) in units of m/s^2
+AccelerometerBiasNoiseADIS16505 = [0.0048 0.0048 0.00607];
 
-accel = [data.adisAccelX data.adisAccelY data.adisAccelZ];
-gyro = [data.adisGyroX data.adisGyroY data.adisGyroZ];
-gnssLLA = [data.fLat data.fLon data.height./1000];
-mag = [data.lsmMagX data.lsmMagY data.lsmMagZ];
+accel = [data.adisAccelY data.adisAccelX -data.adisAccelZ];
+gyro = [data.adisGyroY data.adisGyroX -data.adisGyroZ];
+gnssLLA = [ data.fLat data.fLon data.height./1000];
+mag = [data.lsmMagY data.lsmMagX -data.lsmMagZ];
 
 latitude = rmmissing(data.fLat);
 longitude = rmmissing(data.fLon);
 
-accelModel = insAccelerometer;
-gyroModel = insGyroscope;
-option = insOptions(ReferenceFrame="ENU");
 imuFs = 400;
-f = insEKF(insAccelerometer,insGyroscope,insMotionPose, option);
-stateparts(f, "Position", )
+f = insfilterMARG('ReferenceFrame','NED');
 f.IMUSampleRate = imuFs;
 f.ReferenceLocation = gnssLLA(find(~isnan(data.fLat), 1), :);
 % f.AccelerometerBiasNoise = 2e-4;
@@ -45,21 +42,23 @@ q = zeros(N,1,'quaternion');
 for ii = 1:size(accel,1)               % Fuse IMU
    f.predict(accel(ii,:), gyro(ii,:));
         
-   % if ~isnan(data.lsmMagX(ii))                    % Fuse  magnetometer
-   %     f.fusemag(mag(ii,:),diag([1 1 1]));
-   % 
-   % end
+   if ~isnan(data.lsmMagX(ii))                    % Fuse  magnetometer
+       f.fusemag(mag(ii,:),diag([1 1 1]));
+
+   end
 
    if ~isnan(data.fLat(ii))                    % Fuse GPS 
        f.fusegps(gnssLLA(ii,:),diag([1 1 1]));
 
    end
- 
+    
    [p(ii,:),q(ii)] = pose(f);           %Log estimated pose
+   stateinfos(ii, :) = f.State;
+   
 end
 
 
-[fusedLat, fusedLon, fusedAlt] = local2latlon(p(:,1), p(:,2), p(:,3), f.ReferenceLocation);
+[fusedLat, fusedLon, fusedAlt] = local2latlon(p(:,2), p(:,1), -p(:,3), f.ReferenceLocation);
 
 
 figure(1)

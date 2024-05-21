@@ -1,7 +1,7 @@
 clear all
 close all
 clc
-data = readtable('ctverecChuze.csv');
+data = readtable('chuzePoByte.csv');
 
 % GyroscopeNoise and AccelerometerNoise is determined from the datasheet.
 GyroscopeNoiseADIS16505 = 3.0462e-06; % GyroscopeNoise (variance) in units of rad/s
@@ -31,28 +31,28 @@ plot(gyro);
 % rotation matrix from ahrsfilter
 decim = 1;
 Fs = 400;
-fuse = ahrsfilter('SampleRate',Fs,'DecimationFactor',decim, 'GyroscopeNoise', GyroscopeNoiseADIS16505, 'AccelerometerNoise', AccelerometerNoiseADIS16505, 'LinearAccelerationDecayFactor', 0.09, 'MagneticDisturbanceDecayFactor', 0.09, 'ReferenceFrame','ENU');
+fuse = ahrsfilter('SampleRate',Fs,'DecimationFactor',decim, 'GyroscopeNoise', GyroscopeNoiseADIS16505, 'AccelerometerNoise', AccelerometerNoiseADIS16505, 'LinearAccelerationDecayFactor', 0.09, 'MagneticDisturbanceDecayFactor', 0.09, 'ReferenceFrame',);
 q = fuse(accelerometerReadings,gyroscopeReadings,magnetometerReadings);
 rotMatrix = quat2rotm(q);
 
 % rotation matrix from gyro integration only
-gyroRotation = cumtrapz(1/Fs, gyroscopeReadings);
+gyroRotation = cumtrapz(1/400, gyroscopeReadings);
 gyroRotation = wrapToPi(gyroRotation);
 rotMatrixGyro = eul2rotm(gyroRotation);
 
 
 
-N = numel(accel(:,1));
-rotatedAccel = zeros(N,3);
 
-for i = 1:N
+rotatedAccel = zeros(5729,3);
+
+for i = 1:5729
 
     rotatedAccel(i, :) = rotMatrixGyro(:,:,i) * transpose(accel(i, :));
 end
 
 
 
-rotatedAccel(:, 3) = rotatedAccel(:, 3) - 9.81275;
+rotatedAccel(:, 3) = rotatedAccel(:, 3) - 9.82;
 % rotatedAccel = highpass(rotatedAccel, 0.1, 400);
 
 
@@ -62,7 +62,7 @@ trajectory = cumtrapz(1/400, velocity);
 figure(1);
 plot(rotatedAccel);
 figure(3);
-plot3(trajectory(:, 1), trajectory(:, 2), trajectory(:, 3))
+plot3(trajectory(1:4000, 1), trajectory(1:4000, 2), trajectory(1:4000, 3))
 % Fs  = 400;  % 
 % fuse = complementaryFilter('SampleRate', Fs);
 % 
