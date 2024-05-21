@@ -12,38 +12,39 @@ gyro = [data.adisGyroX data.adisGyroY data.adisGyroZ];
 gnssLLA = [ data.fLat data.fLon data.height./1000];
 mag = [data.lsmMagX data.lsmMagY data.lsmMagZ];
 
+%calculate initial Orientation based on gravity vector of the first sample
+initAccel = accel(1, :);
+initAccelNorm = initAccel/norm(initAccel);
+gravity = [0 0 1];
+initRotationAxis = cross(initAccelNorm, gravity);
+initRotationAngle = acos(dot(initAccelNorm, gravity));
+initRotationAxis = initRotationAxis/norm(initRotationAxis);
+K = [0 -initRotationAxis(3) initRotationAxis(2); 
+     initRotationAxis(3) 0 -initRotationAxis(1); 
+     -initRotationAxis(2) initRotationAxis(1) 0];
 
-% accelReadings = table2array(accelReadings);
-% gyroReadings = table2array(gyroReadings);
-% magnetReadings = table2array(magnetReadings);
-% gyroReadings(:, 2) = -1*gyroReadings(:, 2);
-% accelReadings(:, 2) = -1*accelReadings(:, 2);
-% accelReadings(:, 3) = -1*accelReadings(:, 3);
-% magnetReadings(:, 3) = -1*magnetReadings(:, 3);
+R = eye(3) + sin(initRotationAngle) * K + (1 - cos(initRotationAngle)) * K^2;
+init_euler_angles = rotm2eul(R, 'XYZ');
 
 
-
-accelerometerReadings = accel;
-gyroscopeReadings = gyro;
-magnetometerReadings = mag;
+figure(1);
 plot(gyro);
+title("Raw gyro data")
+figure(2);
+plot(accel);
+title("Raw accel data")
 
-% rotation matrix from ahrsfilter
-decim = 1;
 Fs = 400;
-fuse = ahrsfilter('SampleRate',Fs,'DecimationFactor',decim, 'GyroscopeNoise', GyroscopeNoiseADIS16505, 'AccelerometerNoise', AccelerometerNoiseADIS16505, 'LinearAccelerationDecayFactor', 0.09, 'MagneticDisturbanceDecayFactor', 0.09, 'ReferenceFrame','ENU');
-q = fuse(accelerometerReadings,gyroscopeReadings,magnetometerReadings);
-rotMatrix = quat2rotm(q);
 
 % rotation matrix from gyro integration only
-gyroRotation = cumtrapz(1/Fs, gyroscopeReadings);
+gyroRotation = cumtrapz(1/Fs, gyro);
+gyroRotation = gyroRotation + init_euler_angles;
 gyroRotation = wrapToPi(gyroRotation);
-rotMatrixGyro = eul2rotm(gyroRotation);
-
-
+rotMatrixGyro = eul2rotm(gyroRotation, "XYZ");
 
 N = numel(accel(:,1));
 rotatedAccel = zeros(N,3);
+
 
 for i = 1:N
 
@@ -51,29 +52,26 @@ for i = 1:N
 end
 
 
+rotatedAccelWithoutGravity = rotatedAccel;
+rotatedAccelWithoutGravity(:, 3) = rotatedAccelWithoutGravity(:, 3) - 9.81275;
+% rotatedAccelWithoutGravity = highpass(rotatedAccelWithoutGravity, 1, 400);
 
-rotatedAccel(:, 3) = rotatedAccel(:, 3) - 9.81275;
-% rotatedAccel = highpass(rotatedAccel, 0.1, 400);
+velocity = cumtrapz(1/Fs, rotatedAccelWithoutGravity);
+trajectory = cumtrapz(1/Fs, velocity);
 
-
-velocity = cumtrapz(1/400, rotatedAccel);
-trajectory = cumtrapz(1/400, velocity);
-
-figure(1);
-plot(rotatedAccel);
 figure(3);
-plot3(trajectory(:, 1), trajectory(:, 2), trajectory(:, 3))
-% Fs  = 400;  % 
-% fuse = complementaryFilter('SampleRate', Fs);
-% 
-% q = fuse(accel, gyro, mag);
-figure(2);
-plot(eulerd( q, 'ZYX', 'frame'));
-title('Orientation Estimate');
-legend('Z-rotation', 'Y-rotation', 'X-rotation');
-ylabel('Degrees');
-
+plot(rotatedAccel);
+title("Acceleration vector with gravity with reference to earth");
 figure(4);
+plot(rotatedAccelWithoutGravity);
+title("Acceleration vector without gravity with reference to earth");
+
+
+figure(5);
+plot3(trajectory(:, 1), trajectory(:, 2), trajectory(:, 3))
+title("Calculated trajectory")
+
+figure(6);
 plot(rad2deg(gyroRotation));
 title('Orientation Estimate');
 legend('X-rotation', 'Y-rotation', 'Z-rotation');
