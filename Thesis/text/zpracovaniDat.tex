@@ -3,7 +3,7 @@ Vytvořené zařízení inerciální jednotky poskytuje poměrně velké množst
 
 Všechny níže popsané skripty byly vytvořené v prostředí MATLAB, jelikož je v něm manipulace s vektory a maticemi jednoduchá. Také můžeme využít již hotových modelů chování senzorů a implementovaných filtrů z Navigation Toolboxu, který je stále poměrně rozsáhle rozšiřován. V elektronické příloze jsou kromě skriptů dostupná i vzorová naměřená data, převedena do formátu csv, které je možné použít k experimentování. Obsahují například chůzi napříč budovou a místností, jízdu autem na venkovním prostranství a měření jednotky v klidu.
 
-\section{Výpočet trajektorie pomocí pohybových rovnic}
+\section{Výpočet trajektorie pomocí pohybových rovnic} \label{noFiltProcessing}
 Jedná se o základní způsob zpracování dat, který byl popsán v kapitole \ref{INSalg}, které lze nejlépe vystihnout obrázkem  \ref{StrapdownBlock}. Nejdříve je vypočteno z prvního vzorku zrychlení natočení celého zařízení vůči zemi, tedy směr tíhového vektoru. Z tohoto důvodu je potřeba, aby zařízení bylo při začátku měření nepohyblivé. Následně jsou data z gyroskopu integrována numerickou lichoběžníkovou metodou, abychom získali změnu orientace jednotky, ke kterému je přičten výchozí stav.
 
 Z těchto úhlů natočení je vypočtena rotační matice, pomocí které otočíme měřená data zrychlení z body framu do earth framu. Z tohoto rotovaného zrychlení je následně odečten vektor tíhového zrychlení a pomocí dvou dalších numerických integrací otočeného zrychlení vypočteme odhad trajektorie.
@@ -36,19 +36,36 @@ Na obrázku \ref{fig:IMURawData} jsou vidět nezpracovaná zaznamenaná data. Ú
      \begin{subfigure}[b]{0.49\textwidth}
          \centering
          \includegraphics[width=\textwidth]{obrazky/matlab/1measOrient}
-         \caption{Natočení jednotky}     
+         \caption{Natočení jednotky}   
+         \label{fig:Rotation}  
      \end{subfigure}
      \hfill
      \centering
      \begin{subfigure}[b]{0.49\textwidth}
          \centering
          \includegraphics[width=\textwidth]{obrazky/matlab/1measAccelEframeWithoutG}
-         \caption{Zrychlení v e-frame bez tíhového zrychlení.}   
+         \caption{Zrychlení v e-frame bez tíhového.}   
+         \label{fig:AccelWithoutG}  
      \end{subfigure}
 
         \caption{Výsledky po první integraci}
         \label{fig:rotationAccel}
 \end{figure}
 
-Po integraci dat úhlové rychlosti můžeme určit natočení jednotky a rotovat vektory zrychlení do e-frame. Po odečtení tíhového zrychlení z osy Z dostaneme data na obrázku \ref{fig:rotationAccel}.
+Po integraci dat úhlové rychlosti můžeme určit natočení jednotky (znázorněno na obrázku \ref{fig:Rotation} ) a rotovat vektory zrychlení do e-frame. Po odečtení tíhového zrychlení z osy Z dostaneme data na obrázku \ref{fig:AccelWithoutG}.
+
+Na obou grafech z obrázku \ref{fig:rotationAccel} je patrně vidět problém čistě inerciální navigace, kde na konci měření není zrychlení, nebo natočení v osách X a Y nulové. To je způsobené kumulováním chyby při integraci dat. Toto bývá označováno jako gyro drift. Často jsou chyby potlačovány použitím kalmanova filtru, kde je drift gyroskopu kompenzován dlouhodobým měřením směru tíhového zrychlení, což je vhodné pro případ, že by naším cílem bylo určit pouze náklon v prostoru. Ovšem vzhledem k tomu, že použití filtrů přináší časovou prodlevu v ustálení měření orientace, tak jsou data akcelerometru stále krátkodobě natáčena ve špatném směru, což po následné integraci na rychlost a trajektorii stále přináší velkou chybu.
+
+Po následných dvou numerických integrací zrychlení můžeme výslednou trajektorii reprezentovat v 3D prostoru obrázkem \ref{fig:Trajectory}, kde je v počátku mírně vidět tendence chůze v přímce, ale poté nastává integrací chyby úplné znehodnocení dat. 
+
+\begin{figure}[h]
+     \centering
+         \includegraphics[width=0.5\textwidth]{obrazky/matlab/1measTraj}
+         \caption{Odhad trajektorie}
+        \label{fig:Trajectory}
+\end{figure}
+
+\section{Vliv kalibrace senzorů}
+Za krátkou zmínku stojí i porovnání vlivu kalibrace senzorů na výsledná data. Na to můžeme použít skript z kapitoly \ref{noFiltProcessing}. Přestože odhad trajektorie nemá moc velkou vypovídající hodnotu, tak přesnost senzorů můžeme alespoň částečně posoudit například tím, jak moc se změřené zrychlení v e-framu s odečteným tíhovým zrychlením na konci měření když je zařízení v klidu odchyluje od nuly.
+
 

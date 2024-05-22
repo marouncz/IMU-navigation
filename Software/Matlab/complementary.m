@@ -79,6 +79,9 @@ ylabel("Lineární zrychlení (m \cdot s^{-2})")
 figure(5);
 plot3(trajectory(:, 1), trajectory(:, 2), trajectory(:, 3))
 title("Vypočtený odhad trajektorie")
+xlabel("Osa X (m)")
+ylabel("Osa Y (m)")
+zlabel("Osa Z (m)")
 
 figure(6);
 plot(rad2deg(gyroRotation));
