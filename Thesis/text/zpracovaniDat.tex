@@ -66,6 +66,43 @@ Po následných dvou numerických integrací zrychlení můžeme výslednou traj
 \end{figure}
 
 \section{Vliv kalibrace senzorů}
-Za krátkou zmínku stojí i porovnání vlivu kalibrace senzorů na výsledná data. Na to můžeme použít skript z kapitoly \ref{noFiltProcessing}. Přestože odhad trajektorie nemá moc velkou vypovídající hodnotu, tak přesnost senzorů můžeme alespoň částečně posoudit například tím, jak moc se změřené zrychlení v e-framu s odečteným tíhovým zrychlením na konci měření když je zařízení v klidu odchyluje od nuly.
+Za krátkou zmínku stojí i porovnání vlivu kalibrace senzorů na výsledná data. Na to můžeme použít skript z kapitoly \ref{noFiltProcessing}. Přestože odhad trajektorie nemá moc velkou vypovídající hodnotu, tak přesnost senzorů můžeme alespoň částečně posoudit například tím, jak moc se změřené zrychlení v e-framu s odečteným tíhovým zrychlením na konci měření když je zařízení v klidu odchyluje od nuly. Byla provedena dvě obdobná měření při chůzi s jednotkou trajektorie stejného tvaru z předchozí kapitoly, bez kalibrace a s kalibrací.
+
+\begin{figure}[h]
+     \centering
+     \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{obrazky/matlab/1adisNoCal}
+         \caption{ADIS16505 bez kalibrace}   
+         \label{fig:adisNoCal}  
+     \end{subfigure}
+     \hfill
+     \centering
+     \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{obrazky/matlab/1mpuNoCal}
+         \caption{MPU6050 bez kalibrace}   
+         \label{fig:mpuNoCal}  
+     \end{subfigure}
+     
+     
+     \centering
+     \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{obrazky/matlab/1adisWithCal}
+         \caption{ADIS16505 s kalibrací}   
+         \label{fig:AdisWithCal}  
+     \end{subfigure}
+     \hfill
+     \centering
+     \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{obrazky/matlab/1mpuWithCal}
+         \caption{MPU6050 s kalibrací}   
+         \label{fig:mpuWithCal}  
+     \end{subfigure}
+        \caption{Porovnání senzorů s kalibrací a bez kalibrace}
+        \label{fig:calibrationComp}
+\end{figure}
 
 

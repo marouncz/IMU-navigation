@@ -75,6 +75,7 @@ title("Naměřené lineární zrychlení otočené do e-frame, bez tíhového zr
 legend('X', 'Y', 'Z');
 xlabel("Číslo vzorku (-)")
 ylabel("Lineární zrychlení (m \cdot s^{-2})")
+ylim([-10 10])
 
 figure(5);
 plot3(trajectory(:, 1), trajectory(:, 2), trajectory(:, 3))
