@@ -1,7 +1,7 @@
 clear all
 close all
 clc
-data = readtable('koleckoKolemFEKTU.csv');
+data = readtable('koleckoKolemFEKTUCALB.csv');
 % data.adisAccelY = -data.adisAccelY;
 % data.adisAccelZ = -data.adisAccelZ;
 % data.adisGyroY = -data.adisGyroY;

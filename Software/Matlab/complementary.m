@@ -3,10 +3,7 @@ close all
 clc
 data = readtable('ctverecChuze.csv');
 
-% GyroscopeNoise and AccelerometerNoise is determined from the datasheet.
-GyroscopeNoiseADIS16505 = 3.0462e-06; % GyroscopeNoise (variance) in units of rad/s
-AccelerometerNoiseADIS16505 = 0.0061; % AccelerometerNoise (variance) in units of m/s^2
-
+% load data
 accel = [data.adisAccelX data.adisAccelY data.adisAccelZ];
 gyro = [data.adisGyroX data.adisGyroY data.adisGyroZ];
 gnssLLA = [ data.fLat data.fLon data.height./1000];
@@ -30,10 +27,16 @@ init_euler_angles = rotm2eul(R, 'XYZ');
 
 figure(1);
 plot(gyro);
-title("Raw gyro data")
+title("Naměřená úhlová rychlost")
+legend('X', 'Y', 'Z');
+xlabel("Číslo vzorku")
+ylabel("Úhlová rychlost (rad \cdot s^{-1})")
 figure(2);
 plot(accel);
-title("Raw accel data")
+title("Naměřené lineární zrychlení")
+legend('X', 'Y', 'Z');
+xlabel("Číslo vzorku (-)")
+ylabel("Lineární zrychlení (m \cdot s^{-2})")
 
 Fs = 400;
 
@@ -62,18 +65,24 @@ trajectory = cumtrapz(1/Fs, velocity);
 
 figure(3);
 plot(rotatedAccel);
-title("Acceleration vector with gravity with reference to earth");
+title("Naměřené lineární zrychlení otočené do e-frame, včetně tíhového zrychlení")
+legend('X', 'Y', 'Z');
+xlabel("Číslo vzorku (-)")
+ylabel("Lineární zrychlení (m \cdot s^{-2})")
 figure(4);
 plot(rotatedAccelWithoutGravity);
-title("Acceleration vector without gravity with reference to earth");
-
+title("Naměřené lineární zrychlení otočené do e-frame, bez tíhového zrychlení")
+legend('X', 'Y', 'Z');
+xlabel("Číslo vzorku (-)")
+ylabel("Lineární zrychlení (m \cdot s^{-2})")
 
 figure(5);
 plot3(trajectory(:, 1), trajectory(:, 2), trajectory(:, 3))
-title("Calculated trajectory")
+title("Vypočtený odhad trajektorie")
 
 figure(6);
 plot(rad2deg(gyroRotation));
-title('Orientation Estimate');
-legend('X-rotation', 'Y-rotation', 'Z-rotation');
-ylabel('Degrees');
+title('Odhad natočení');
+legend('X rotace', 'Y rotace', 'Z rotace');
+ylabel('Natočení kolem osy (°)');
+xlabel("Číslo vzorku (-)")

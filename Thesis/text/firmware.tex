@@ -304,6 +304,8 @@ Tento skript má v sobě definované pořadí jednotlivých datových typů ukl�
 
 Jak bylo popsáno v kapitole \ref{loggerTask}, v případě, že senzory s nižší vzorkovací frekvencí nenaměřily nová data, zapíšou na všechna odpovídající místa nuly. Skript proto kontroluje tato místa a v případě, že struktura dat senzoru obsahuje samé nuly, nahradí je prázdným místem.
 
+Natočení os jednotlivých senzorů v zařízení se mezi sebou liší, proto jsou upravena tak, aby odpovídala referenčním osám ADIS16505, které jsou v pořadí ENU (East, North, Up).
+
 
 
 
