@@ -105,4 +105,11 @@ Za krátkou zmínku stojí i porovnání vlivu kalibrace senzorů na výsledná 
         \label{fig:calibrationComp}
 \end{figure}
 
+Na obrázku \ref{fig:calibrationComp} můžeme vidět porovnání dvou měření se zpracovanými daty z obou IMU. ADIS16505 dosahuje na konci měření maximální odchylku zrychlení zhruba $ \SI[per-mode = symbol]{2}{\metre\per\second\squared} $ s i bez kalibrace. To odpovídá tomu, že se jedná o poměrně přesný a nákladný senzor. Po kalibraci jsou totiž konstanty gainu pro všechny osy akcelerometru většinou řádově rovny 0,99990 a lepší, není jej potřeba tedy téměř kalibrovat. Situace je ovšem jiná u IMU MPU6050, které bez kalibrace dosahuje dvojnásobné odchylky od ADIS16505, zatímco po kalibraci je jeho odchylka zhruba srovnatelná s přesnějším senzorem.
+
+Z tohoto můžeme usoudit, že i takto poměrně jednoduchá metoda kalibrace má poměrně dost pozitivní dopady na výsledky měření levnějších IMU.
+
+\section{Fůze dat s GNSS}
+Na fůzi
+
 
