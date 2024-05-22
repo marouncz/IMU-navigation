@@ -19,6 +19,7 @@ gravity = [0 0 1];
 initRotationAxis = cross(initAccelNorm, gravity);
 initRotationAngle = acos(dot(initAccelNorm, gravity));
 initRotationAxis = initRotationAxis/norm(initRotationAxis);
+% convert axis and angle to rotation matrix
 K = [0 -initRotationAxis(3) initRotationAxis(2); 
      initRotationAxis(3) 0 -initRotationAxis(1); 
      -initRotationAxis(2) initRotationAxis(1) 0];
@@ -54,7 +55,7 @@ end
 
 rotatedAccelWithoutGravity = rotatedAccel;
 rotatedAccelWithoutGravity(:, 3) = rotatedAccelWithoutGravity(:, 3) - 9.81275;
-% rotatedAccelWithoutGravity = highpass(rotatedAccelWithoutGravity, 1, 400);
+% rotatedAccelWithoutGravity = highpass(rotatedAccelWithoutGravity, 0.01, 400);
 
 velocity = cumtrapz(1/Fs, rotatedAccelWithoutGravity);
 trajectory = cumtrapz(1/Fs, velocity);
