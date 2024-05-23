@@ -1,10 +1,10 @@
 \chapter{Zpracování dat}
-Vytvořené zařízení inerciální jednotky poskytuje poměrně velké množství dat které je možné různě zpracovávat. Kromě samotných dat z dvou IMU také zaznamenává měřené hodnoty z elektronického kompasu a GNSS modulu. V průběhu vypracování práce se ukázalo, že zpracovat data tak, abychom dosáhli uspokojivých výsledků není vůbec jednoduché a zasloužilo by si samo o sobě rozsah další práce. V této kapitole budou popsány zejména dva postupy zpracování měření, a to výpočet trajektorie čistě z pohybových rovnic a fůze dat s GNSS. Později bylo také zjištěno, že navigace čistě z inerciálních dat nedosahuje uspokojivých výsledků a je zapotřebí korekce dat z GNSS, který ovšem má často ve vnitřních prostorech velmi špatné pokrytí.
+Vytvořené zařízení inerciální jednotky poskytuje poměrně velké množství dat které je možné různě zpracovávat. Kromě samotných dat z dvou IMU také zaznamenává měřené hodnoty z elektronického kompasu a GNSS modulu. V průběhu vypracování práce se ukázalo, že zpracovat data tak, abychom dosáhli uspokojivých výsledků není vůbec jednoduché a zasloužilo by si samo o sobě rozsah další práce. V této kapitole budou popsány zejména dva postupy zpracování měření, a to výpočet trajektorie čistě z pohybových rovnic a fůze dat s GNSS. Později bylo také zjištěno, že navigace čistě z inerciálních dat nedosahuje uspokojivých výsledků a je zapotřebí korekce dat z GNSS, který má ovšem často ve vnitřních prostorech velmi špatné pokrytí.
 
 Všechny níže popsané skripty byly vytvořené v prostředí MATLAB, jelikož je v něm manipulace s vektory a maticemi jednoduchá. Také můžeme využít již hotových modelů chování senzorů a implementovaných filtrů z Navigation Toolboxu, který je stále poměrně rozsáhle rozšiřován. V elektronické příloze jsou kromě skriptů dostupná i vzorová naměřená data, převedena do formátu csv, které je možné použít k experimentování. Obsahují například chůzi napříč budovou a místností, jízdu autem na venkovním prostranství a měření jednotky v klidu.
 
 \section{Výpočet trajektorie pomocí pohybových rovnic} \label{noFiltProcessing}
-Jedná se o základní způsob zpracování dat, který byl popsán v kapitole \ref{INSalg}, které lze nejlépe vystihnout obrázkem  \ref{StrapdownBlock}. Nejdříve je vypočteno z prvního vzorku zrychlení natočení celého zařízení vůči zemi, tedy směr tíhového vektoru. Z tohoto důvodu je potřeba, aby zařízení bylo při začátku měření nepohyblivé. Následně jsou data z gyroskopu integrována numerickou lichoběžníkovou metodou, abychom získali změnu orientace jednotky, ke kterému je přičten výchozí stav.
+Jedná se o základní způsob zpracování dat, který byl popsán v kapitole \ref{INSalg}, které lze nejlépe vystihnout obrázkem  \ref{StrapdownBlock}. Nejdříve je vypočteno z prvního vzorku zrychlení natočení celého zařízení vůči zemi, tedy směr tíhového vektoru. Z tohoto důvodu je potřeba, aby zařízení bylo při začátku měření nepohyblivé. Následně jsou data z gyroskopu integrována numerickou lichoběžníkovou metodou, abychom získali změnu orientace zařízení, ke kterému je přičten výchozí stav.
 
 Z těchto úhlů natočení je vypočtena rotační matice, pomocí které otočíme měřená data zrychlení z body framu do earth framu. Z tohoto rotovaného zrychlení je následně odečten vektor tíhového zrychlení a pomocí dvou dalších numerických integrací otočeného zrychlení vypočteme odhad trajektorie.
 
@@ -29,7 +29,7 @@ Pro demonstraci tohoto postupu byla vytvořena vzorová data chůze ve tvaru obd
         \label{fig:IMURawData}
 \end{figure}
 
-Na obrázku \ref{fig:IMURawData} jsou vidět nezpracovaná zaznamenaná data. Úhlová rychlost v ose Z obsahuje výrazné špičky, jedná se o otáčení v rozích pomyslného čtverce. Na datech akcelerometru je vidět, že celý čas měření byla jednotka převážně ve vodorovné pozici, jelikož lineární zrychlení v ose Z představuje tíhové zrychlení. Zákmity ve zrychlení jsou způsobeny kroky chůze.
+Na obrázku \ref{fig:IMURawData} jsou vidět nezpracovaná zaznamenaná data. Úhlová rychlost v ose Z obsahuje výrazné špičky, jedná se o otáčení v rozích pomyslného obdélníku. Na datech akcelerometru je vidět, že celý čas měření byla jednotka převážně ve vodorovné pozici, jelikož lineární zrychlení v ose Z představuje tíhové zrychlení. Zákmity ve zrychlení jsou způsobeny kroky chůze.
 
 \begin{figure}[h]
      \centering
@@ -56,7 +56,7 @@ Po integraci dat úhlové rychlosti můžeme určit natočení jednotky (znázor
 
 Na obou grafech z obrázku \ref{fig:rotationAccel} je patrně vidět problém čistě inerciální navigace, kde na konci měření není zrychlení, nebo natočení v osách X a Y nulové. To je způsobené kumulováním chyby při integraci dat. Toto bývá označováno jako gyro drift. Často jsou chyby potlačovány použitím kalmanova filtru, kde je drift gyroskopu kompenzován dlouhodobým měřením směru tíhového zrychlení, což je vhodné pro případ, že by naším cílem bylo určit pouze náklon v prostoru. Ovšem vzhledem k tomu, že použití filtrů přináší časovou prodlevu v ustálení měření orientace, tak jsou data akcelerometru stále krátkodobě natáčena ve špatném směru, což po následné integraci na rychlost a trajektorii stále přináší velkou chybu.
 
-Po následných dvou numerických integrací zrychlení můžeme výslednou trajektorii reprezentovat v 3D prostoru obrázkem \ref{fig:Trajectory}, kde je v počátku mírně vidět tendence chůze v přímce, ale poté nastává integrací chyby úplné znehodnocení dat. 
+Po následných dvou numerických integracích zrychlení můžeme výslednou trajektorii reprezentovat v 3D prostoru obrázkem \ref{fig:Trajectory}, kde je v počátku mírně vidět tendence chůze v přímce, ale poté nastává integrací chyby úplné znehodnocení dat. 
 
 \begin{figure}[h]
      \centering
@@ -107,7 +107,7 @@ Za krátkou zmínku stojí i porovnání vlivu kalibrace senzorů na výsledná 
 
 Na obrázku \ref{fig:calibrationComp} můžeme vidět porovnání dvou měření se zpracovanými daty z obou IMU. ADIS16505 dosahuje na konci měření maximální odchylku zrychlení zhruba $ \SI[per-mode = symbol]{2}{\metre\per\second\squared} $ s i bez kalibrace. To odpovídá tomu, že se jedná o poměrně přesný a nákladný senzor. Po kalibraci jsou totiž konstanty gainu pro všechny osy akcelerometru většinou řádově rovny 0,99990 a lepší, není jej potřeba tedy téměř kalibrovat. Situace je ovšem jiná u IMU MPU6050, které bez kalibrace dosahuje dvojnásobné odchylky od ADIS16505, zatímco po kalibraci je jeho odchylka zhruba srovnatelná s přesnějším senzorem.
 
-Z tohoto můžeme usoudit, že i takto poměrně jednoduchá metoda kalibrace má poměrně dost pozitivní dopady na výsledky měření levnějších IMU.
+Z tohoto můžeme usoudit, že i takto poměrně jednoduchá metoda kalibrace má dost pozitivní dopady na výsledky měření levnějších IMU.
 
 \section{Fůze dat s GNSS}
 Na fúzi inerciálních dat byl použit filtr s připravenými modely senzorů akcelerometru, gyroskopu, magnetometru a GNSS. Na odhad polohy využívá rozšířený kalmanův filtr s 22 prvkovým stavovým vektorem, který kromě pozice sleduje i natočení, rychlost biasy akcelerometru, gyroskopu a magnetometru a odhad magnetického pole Země. \cite{M7nvHLyk8N0V3ub2}
@@ -161,5 +161,5 @@ Základní informace o stavu GNSS modulu v zařízení je možné zobrazovat na 
 \section{Princip fungování IMU, vliv kalibrace a určení náklonu a polohy inerciální jednotkou}
 Tato laboratorní úloha může být zaměřena na popsání principu fungování IMU, jaké veličiny lze měřit pomocí inerciálních senzorů, vliv a způsob kalibrace, zobrazení naměřených dat a jednotlivých dílčích veličin (zrychlení, orientace, rychlost, úhel), faktory ovlivňující nepřesnost výsledku a fúze dat s ostatními senzory. 
 
-Pomocí zobrazených veličin na displeji lze zobrazit všechny měřené údaje zařízením. Lze jednoduše znázornit měření tíhového pole akcelerometrem v případě, že je jednotka v klidu. Následně lze pohybem se zařízením reprezentovat změny úhlové rychlosti a zrychlení. Také je možné výpočtem velikosti vektoru tíhového zrychlení otestovat přesnost senzorů před a po kalibraci, popřípadě i kalibrační konstanty vypočítat ručně pomocí dodaného kalibračního skriptu v MATLABu. Dále je možné reprezentovat z naměřených dat jednotlivé veličiny po integraci z čistě inerciální navigace a problémy spjaté s její nepřesností. Také můžeme využít skriptu na fúzi dat a otestovat její fungování, na to by bylo ovšem vhodné ještě zpracování dat vylepšit, abychom dosáhli uspokojivých výsledků.
+Pomocí zobrazených veličin na displeji lze zobrazit všechny měřené údaje zařízením. Můžeme jednoduše znázornit měření tíhového pole akcelerometrem v případě, že je jednotka v klidu. Následně lze pohybem se zařízením reprezentovat změny úhlové rychlosti a zrychlení. Také je možné výpočtem velikosti vektoru tíhového zrychlení otestovat přesnost senzorů před a po kalibraci, popřípadě i kalibrační konstanty vypočítat ručně pomocí dodaného kalibračního skriptu v MATLABu. Dále je možné reprezentovat z naměřených dat jednotlivé veličiny po integraci z čistě inerciální navigace a problémy spjaté s její nepřesností. Také můžeme využít skriptu na fúzi dat a otestovat její fungování, na to by bylo ovšem vhodné ještě zpracování dat vylepšit, abychom dosáhli uspokojivých výsledků.
 
