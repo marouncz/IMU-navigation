@@ -2,16 +2,12 @@ clear all
 close all
 clc
 data = readtable('koleckoKolemFEKTUCALB.csv');
-% data.adisAccelY = -data.adisAccelY;
-% data.adisAccelZ = -data.adisAccelZ;
-% data.adisGyroY = -data.adisGyroY;
-% data.adisGyroZ = -data.adisGyroZ;
 
 
 % GyroscopeNoise and AccelerometerNoise is determined from the datasheet.
-GyroscopeNoiseADIS16505 = [deg2rad(0.082) deg2rad(0.082) deg2rad(0.116)]; % GyroscopeNoise (variance) in units of rad/s
+GyroscopeNoiseADIS16505 = [deg2rad(0.082) deg2rad(0.082) deg2rad(0.116)]; 
 GyroscopeBiasNoiseADIS16505 = [deg2rad(2.2/3600) deg2rad(2.7/3600) deg2rad(1.6/3600)];
-AccelerometerNoiseADIS16505 = [0.0048 0.0048 0.00607]; % AccelerometerNoise (variance) in units of m/s^2
+AccelerometerNoiseADIS16505 = [0.0048 0.0048 0.00607]; 
 AccelerometerBiasNoiseADIS16505 = [26.5e-6 26.5e-6 43.1e-6];
 
 accel = [data.adisAccelX data.adisAccelY data.adisAccelZ];
@@ -33,9 +29,9 @@ f.ReferenceLocation = gnssLLA(find(~isnan(data.fLat), 1), :);
 % f.MagnetometerBiasNoise = 1e-10;
 % f.GeomagneticVectorNoise = 1e-12;
 f.StateCovariance = 1e-9*ones(22);
-% % f.State = initstate;
+% f.State = initstate;
  
-gpsidx = 1;
+
 N = size(accel,1);
 p = zeros(N,3);
 q = zeros(N,1,'quaternion');
@@ -64,9 +60,14 @@ end
 
 figure(1)
 plot3(p(:, 1), p(:, 2), p(:, 3));
+title("Vypočtený odhad trajektorie")
+xlabel("Osa X (m)")
+ylabel("Osa Y (m)")
+zlabel("Osa Z (m)")
 figure(2)
 geoplot(latitude, longitude);
-title("Unprocessed GNSS data")
+title("Originální GNSS data")
+
 figure(3)
 geoplot(fusedLat, fusedLon);
-title("Fused GNSS data")
+title("Fúze GNSS + IMU")

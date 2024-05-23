@@ -110,6 +110,38 @@ Na obrázku \ref{fig:calibrationComp} můžeme vidět porovnání dvou měření
 Z tohoto můžeme usoudit, že i takto poměrně jednoduchá metoda kalibrace má poměrně dost pozitivní dopady na výsledky měření levnějších IMU.
 
 \section{Fůze dat s GNSS}
-Na fůzi
+Na fúzi inerciálních dat byl použit filtr s připravenými modely senzorů akcelerometru, gyroskopu, magnetometru a GNSS. Na odhad polohy využívá rozšířený kalmanův filtr s 22 prvkovým stavovým vektorem, který kromě pozice sleduje i natočení, rychlost biasy akcelerometru, gyroskopu a magnetometru a odhad magnetického pole Země. \cite{M7nvHLyk8N0V3ub2}
 
+Pro zpracování dat byl použit vzorek měření jízdy autem ve venkovním prostředí, kde je  příjem GNSS signálu spolehlivější. Na obrázku \ref{fig:gnssOriginal} jsou zobrazena naměřená data polohy GNSS přijímače, na obrázku \ref{fig:gnnsIMUFusion} je zobrazen odhad polohy z fúze GNSS a IMU dat pomocí filtru \texttt{insFilterMARG}. Jak je vidět, tak výsledky nejsou optimální, zejména ve výchozí pozici měření, kde dochází k ustálení filtru.
 
+Přesnost výsledků filtru je poměrně závislá na správném nastavení kovarianční matice 22 prvkového stavového vektoru a nastavení rozptylu šumu a biasu jednotlivých senzorů. Zde byly použity pouze odhady a výchozí hodnoty těchto veličin. Pro správné fungování bude pravděpodobně potřeba tyto hodnoty přesně vyčíslit, což umožňují například některé ladicí funkce Navigation toolboxu, ty ovšem využívají buď modelů konkrétních použitých součástek, nebo na měření se zařízením, se kterým bylo pohybováno po přesně definované trajektorii, což vzhledem k časové náročnosti takového měření a předchozích částí této práce nebylo realizováno.  
+
+\begin{figure}[h]
+     \centering
+         \includegraphics[width=0.5\textwidth]{obrazky/matlab/2gnss}
+         \caption{Naměřená GNSS data}
+        \label{fig:gnssOriginal}
+\end{figure}
+
+\begin{figure}[h]
+     \centering
+     \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{obrazky/matlab/2gnssIMU3d}
+         \caption{Odhad trajektorie v 3D prostoru}   
+         
+     \end{subfigure}
+     \hfill
+     \centering
+     \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{obrazky/matlab/2gnssIMU}
+         \caption{Odhad trajektorie na mapě}   
+         
+     \end{subfigure}
+     
+     \caption{Odhad trajektorie z fúze dat GNSS a IMU}
+     \label{fig:gnnsIMUFusion}  
+\end{figure}
+
+\chapter{Koncepce laboratorní úlohy}
