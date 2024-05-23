@@ -12,17 +12,17 @@ Dále je možné pomocí stejného grafického rozhraní importovat rozšiřují
      \begin{subfigure}[b]{0.4\textwidth}
          \centering
          \includegraphics[width=\textwidth]{obrazky/cubePinout}
-         \caption{Konfigurace pinů}
+         \caption{Konfigurace pinů.}
        
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.4\textwidth}
          \centering
          \includegraphics[width=\textwidth]{obrazky/cubeClock}
-         \caption{Konfigurace hodin}
+         \caption{Konfigurace hodin.}
          
      \end{subfigure}
-        \caption{Konfigurace MCU v STM32CubeIDE}
+        \caption{Konfigurace MCU v STM32CubeIDE.}
         \label{fig:cubeConfig}
 \end{figure}
 
@@ -42,14 +42,14 @@ Diagramy byly vytvořeny s úmyslem co nejlépe a nejjednodušeji reprezentovat 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.22\textwidth]{obrazky/KeepaliveTask}
-    \caption{Vývojový diagram KeepaliveTask}
+    \caption{Vývojový diagram KeepaliveTask.}
 \end{figure}
 Jedná se o úlohu s nastavenou nejnižší prioritou. Slouží pouze pro ladicí účely a umožňuje jednoduchou a rychlou reprezentaci stavu systému pomocí blikající LED, zdali je spouštěn i task s nejnižší prioritou. V případě, že by LED přestala blikat, znamená to, že buď nějaký z vyšších tasků využívá výpočetní čas natolik, že se již nespustí úlohy s nižší prioritou, nebo došlo k chybě systému (například problémy přístupu do paměti)
 \subsection{hubTask}
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.18\textwidth]{obrazky/HubTask}
-    \caption{Vývojový diagram HubTask}
+    \caption{Vývojový diagram HubTask.}
 \end{figure}
 Tato úloha vykonává funkce pouze při zapnutí zařízení, a to konfiguraci a sepnutí vestavěného \ac{USB} rozbočovače. Do něj jsou nahrána konfigurační data pomocí sběrnice I2C, jako je například \ac{VID}, \ac{PID}, nastavení napájecího režimu a nastavení jednotlivých portů. U tohoto rozbočovače jsou zapnuty pouze využívané porty, aby byla snížena spotřeba zařízení. Následně jsou registry rozbočovače přepnuty do režimu pouze pro čtení a \ac{USB} rozhraní zapnuto. Při běhu zařízení již konfigurace zůstává stejná a task je neaktivní.
 \subsection{powerTask}
@@ -67,13 +67,13 @@ V případě, že klesne napětí akumulátoru pod hranici 3,5 V je zařízení 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.25\textwidth]{obrazky/PowerTask}
-    \caption{Vývojový diagram PowerTask}
+    \caption{Vývojový diagram PowerTask.}
 \end{figure}
 \subsection{gpsTask}
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.25\textwidth]{obrazky/GpsTask}
-    \caption{Vývojový diagram GpsTask}
+    \caption{Vývojový diagram GpsTask.}
 \end{figure}
 Tato úloha se stará o periodické zpracování příchozích dat z GNSS modulu pomocí \ac{UBX} zpráv. Tyto data jsou přijímány pomocí sběrnice \ac{UART} a je využito DMA přenosu, následně převedena do čitelné podoby (datum, čas, zeměpisná šířka, délka\ldots) pomocí knihovny GNSS parseru \cite{SimpleMethod2021}.
 
@@ -83,7 +83,7 @@ V této úloze je také kontrolováno kdy dojde k prvnímu přesnému určení p
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.6\textwidth]{obrazky/LsmTask}
-    \caption{Vývojový diagram LsmTask}
+    \caption{Vývojový diagram LsmTask.}
 \end{figure}
 V tomto tasku jsou periodicky vyčítána data o magnetickém poli z elektronického kompasu LSM303. Ten je při zapnutí zresetován a následně inicializován rozsah, rozlišení a vzorkovací frekvence na 100 Hz. Po navzorkování dat magnetometr změní stav na svém pinu signalizujícím konec vzorkování. V ten okamžik je započat DMA přenos pomocí sběrnice I2C a jakmile jsou data vyčtena, převedou se do fyzikálních jednotek a odešlou se k záznamu. Využití DMA a přerušení data ready pinu senzoru nám umožňuje využívat plně neblokující kód, který má nízké využití výpočetního času MCU.
 
@@ -91,7 +91,7 @@ V tomto tasku jsou periodicky vyčítána data o magnetickém poli z elektronick
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.6\textwidth]{obrazky/MpuTask}
-    \caption{Vývojový diagram MpuTask}
+    \caption{Vývojový diagram MpuTask.}
 \end{figure}
 Tato úloha je velice obdobná předchozí z kapitoly \ref{lsmTask}. Zde jsou čtena a převáděna data z 6 osého IMU MPU6050 s frekvencí 400 Hz.
 
@@ -99,7 +99,7 @@ Tato úloha je velice obdobná předchozí z kapitoly \ref{lsmTask}. Zde jsou č
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.95\textwidth]{obrazky/AdisTask}
-    \caption{Vývojový diagram AdisTask}
+    \caption{Vývojový diagram AdisTask.}
 \end{figure}
 Tento task, obdobně jako předchozí, obstarává inicializaci, vyčítání a konverzi dat z 6 osého IMU ADIS16505 se vzorkovací frekvencí 400 Hz. Komunikace se senzorem probíhá přes sběrnici SPI a stejně jako u ostatních senzorů, je využíváno přerušení a DMA přenosů k vytvoření neblokujícího kódu. Vzhledem k vyššímu rozlišení senzoru v porovnání s ostatními je pro ukládání hodnot převedených do jednotek SI využíván datový typ \texttt{double} místo \texttt{float}.
 
@@ -109,7 +109,7 @@ Vzorkování dat z ADIS16505 zároveň slouží jako synchronizace k zarovnání
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.99\textwidth]{obrazky/LoggerTask}
-    \caption{Vývojový diagram LoggerTask}
+    \caption{Vývojový diagram LoggerTask.}
 \end{figure}
 Tato úloha provádí samotné ukládání dat. Testováním bylo zjištěno, že při použití kvalitnějších microSD karet (v zařízení je použita \emph{SAMSUNG 64GB EVO PLUS}) nedochází k náhodným delším prodlevám při zápisu. Zároveň v porovnání s NOR FLASH pamětí poskytuje řádově větší úložiště, rychlejší zápis bloku dat, není potřeba mazat každý sektor paměti před zápisem a také je jednoduší implementace souborového systému. Z těchto důvodů bylo rozhodnuto využití SD karty k ukládání měřených dat.
 
@@ -121,7 +121,7 @@ Samotný přenos naměřených dat do počítače je realizován přes USB tří
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{obrazky/OledTask}
-    \caption{Vývojový diagram OledTask}
+    \caption{Vývojový diagram OledTask.}
 \end{figure}
 Tento task obstarává obsluhu uživatelského rozhraní pomocí grafického displeje a čtveřice tlačítek. Při každém cyklu
 je porovnán předchozí a stávající stav tlačítek. Jestliže došlo k nějakému stisknutí, změní se náležitě zobrazované informace a chování zařízení. Displej komunikuje s \ac{MCU} přes sběrnici I2C a k ovládání byla použita knihovna řadiče SSD1306 \cite{Alekseev2024}. Funkce jednotlivých tlačítek jsou reprezentovány ikonami ohraničenými rámečkem na spodní straně displeje.
@@ -134,7 +134,7 @@ Stav zařízení by se dal zjednodušeně znázornit třemi možnými:
      \begin{subfigure}[b]{0.29\textwidth}
          \centering
          \includegraphics[width=\textwidth]{obrazky/menuHome2}
-         \caption{Domovská obrazovka}
+         \caption{Domovská obrazovka.}
        
      \end{subfigure}
      \hfill
@@ -142,7 +142,7 @@ Stav zařízení by se dal zjednodušeně znázornit třemi možnými:
      \begin{subfigure}[b]{0.29\textwidth}
          \centering
          \includegraphics[width=\textwidth]{obrazky/menuMPU}
-         \caption{Hodnoty z MPU6050}
+         \caption{Hodnoty z MPU6050.}
          
      \end{subfigure}
      \hfill
@@ -150,25 +150,25 @@ Stav zařízení by se dal zjednodušeně znázornit třemi možnými:
      \begin{subfigure}[b]{0.29\textwidth}
          \centering
          \includegraphics[width=\textwidth]{obrazky/menuADIS}
-         \caption{Hodnoty z ADIS16505}
+         \caption{Hodnoty z ADIS16505.}
        
      \end{subfigure}
      \centering
      \begin{subfigure}[b]{0.29\textwidth}
          \centering
          \includegraphics[width=\textwidth]{obrazky/menuLSM}
-         \caption{Hodnoty z LSM303}
+         \caption{Hodnoty z LSM303.}
        
      \end{subfigure}
 		\hfill
      \begin{subfigure}[b]{0.29\textwidth}
          \centering
          \includegraphics[width=\textwidth]{obrazky/menuGPS}
-         \caption{Hodnoty z GNSS}
+         \caption{Hodnoty z GNSS.}
          
      \end{subfigure}
 
-        \caption{GUI stavových informací jednotlivých senzorů}
+        \caption{GUI stavových informací jednotlivých senzorů.}
         \label{fig:stateInfoGUI}
 \end{figure}
 
@@ -179,17 +179,17 @@ Stav zařízení by se dal zjednodušeně znázornit třemi možnými:
      \begin{subfigure}[b]{0.29\textwidth}
          \centering
          \includegraphics[width=\textwidth]{obrazky/menuREC1}
-         \caption{Odpočet startu}     
+         \caption{Odpočet startu.}     
      \end{subfigure}
      \hfill
      \centering
      \begin{subfigure}[b]{0.29\textwidth}
          \centering
          \includegraphics[width=\textwidth]{obrazky/menuREC2}
-         \caption{Délka záznamu dat}   
+         \caption{Délka záznamu dat.}   
      \end{subfigure}
 
-        \caption{GUI záznamu dat}
+        \caption{GUI záznamu dat.}
         \label{fig:recordGUI}
 \end{figure}
 
@@ -200,31 +200,31 @@ Stav zařízení by se dal zjednodušeně znázornit třemi možnými:
      \begin{subfigure}[b]{0.24\textwidth}
          \centering
          \includegraphics[width=\textwidth]{obrazky/menuCAL1}
-         \caption{Průvodce 1}     
+         \caption{Průvodce 1.}     
      \end{subfigure}
      \hfill
      \centering
      \begin{subfigure}[b]{0.24\textwidth}
          \centering
          \includegraphics[width=\textwidth]{obrazky/menuCAL2}
-         \caption{Průvodce 2}   
+         \caption{Průvodce 2.}   
      \end{subfigure}
      \hfill
           \centering
      \begin{subfigure}[b]{0.24\textwidth}
          \centering
          \includegraphics[width=\textwidth]{obrazky/menuCAL3}
-         \caption{Odpočet měření}     
+         \caption{Odpočet měření.}     
      \end{subfigure}
      \hfill
      \centering
      \begin{subfigure}[b]{0.24\textwidth}
          \centering
          \includegraphics[width=\textwidth]{obrazky/menuCAL4}
-         \caption{Hotový záznam}   
+         \caption{Hotový záznam.}   
      \end{subfigure}
 
-        \caption{GUI kalibrační procedury}
+        \caption{GUI kalibrační procedury.}
         \label{fig:calibrationGUI}
 \end{figure}
 
