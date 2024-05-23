@@ -145,3 +145,13 @@ Přesnost výsledků filtru je poměrně závislá na správném nastavení kova
 \end{figure}
 
 \chapter{Koncepce laboratorní úlohy}
+Vzhledem k poměrně velké univerzálnosti vytvořeného hardwaru a obslužných skriptů jsou možnosti využití tohoto zařízení poměrně velké. Jako koncepci laboratorní úlohy můžeme zmínit třeba dvě následující.
+\section{Analýza využití GNSS, dostupnost signálu a obsluha}
+Tato laboratorní úloha by se mohla týkat analýzy dostupnosti a využití GNSS signálů uvnitř a vně budov, obsluhy a fungování navigačních modulů. Základní informace o stavu GNSS modulu v zařízení je možné zobrazovat na displeji jednotky. Také díky tomu, že je zapojený USB port GNSS modulu NEO-M8U do interního rozbočovače zařízení, lze využít například jakýkoliv terminál sériového rozhraní, nebo obslužnou aplikaci u-center od výrobce Ublox pro zobrazení dostupných satelitů navigačních systémů a jejich síly signálu, zaznamenat časovou závislost počtu satelitů od doby zapnutí zařízení, nebo faktory ovlivňující kvalitu GNSS signálu (překážky, atmosferické podmínky\ldots). Použitý GNSS modul podporuje všechny světové navigační systémy, lze tedy zaznamenat i počet dostupných satelitů jednotlivých systémů (GPS, BeiDou, Glonass, Galileo). Laboratorní úloha se také může věnovat dekódování NMEA zpráv, nebo určení přesnosti změřené polohy.
+
+\begin{figure}[h]
+     \centering
+         \includegraphics[width=0.99\textwidth]{obrazky/uCenter}
+         \caption{Obslužná aplikace u-center}
+        \label{fig:uCenter}
+\end{figure}
