@@ -147,7 +147,9 @@ Přesnost výsledků filtru je poměrně závislá na správném nastavení kova
 \chapter{Koncepce laboratorní úlohy}
 Vzhledem k poměrně velké univerzálnosti vytvořeného hardwaru a obslužných skriptů jsou možnosti využití tohoto zařízení poměrně velké. Jako koncepci laboratorní úlohy můžeme zmínit třeba dvě následující.
 \section{Analýza využití GNSS, dostupnost signálu a obsluha}
-Tato laboratorní úloha by se mohla týkat analýzy dostupnosti a využití GNSS signálů uvnitř a vně budov, obsluhy a fungování navigačních modulů. Základní informace o stavu GNSS modulu v zařízení je možné zobrazovat na displeji jednotky. Také díky tomu, že je zapojený USB port GNSS modulu NEO-M8U do interního rozbočovače zařízení, lze využít například jakýkoliv terminál sériového rozhraní, nebo obslužnou aplikaci u-center od výrobce Ublox pro zobrazení dostupných satelitů navigačních systémů a jejich síly signálu, zaznamenat časovou závislost počtu satelitů od doby zapnutí zařízení, nebo faktory ovlivňující kvalitu GNSS signálu (překážky, atmosferické podmínky\ldots). Použitý GNSS modul podporuje všechny světové navigační systémy, lze tedy zaznamenat i počet dostupných satelitů jednotlivých systémů (GPS, BeiDou, Glonass, Galileo). Laboratorní úloha se také může věnovat dekódování NMEA zpráv, nebo určení přesnosti změřené polohy.
+Tato laboratorní úloha by se mohla týkat analýzy dostupnosti a využití GNSS signálů uvnitř a vně budov, obsluhy a fungování navigačních modulů. 
+
+Základní informace o stavu GNSS modulu v zařízení je možné zobrazovat na displeji jednotky. Také díky tomu, že je zapojený USB port GNSS modulu NEO-M8U do interního rozbočovače zařízení, lze využít například jakýkoliv terminál sériového rozhraní, nebo obslužnou aplikaci u-center od výrobce Ublox pro zobrazení dostupných satelitů navigačních systémů a jejich síly signálu, zaznamenat časovou závislost počtu satelitů od doby zapnutí zařízení, nebo faktory ovlivňující kvalitu GNSS signálu (překážky, atmosferické podmínky\ldots). Použitý GNSS modul podporuje všechny světové navigační systémy, lze tedy zaznamenat i počet dostupných satelitů jednotlivých systémů (GPS, BeiDou, Glonass, Galileo). Laboratorní úloha se také může věnovat dekódování NMEA zpráv, nebo určení přesnosti změřené polohy.
 
 \begin{figure}[h]
      \centering
@@ -155,3 +157,9 @@ Tato laboratorní úloha by se mohla týkat analýzy dostupnosti a využití GNS
          \caption{Obslužná aplikace u-center}
         \label{fig:uCenter}
 \end{figure}
+
+\section{Princip fungování IMU, vliv kalibrace a určení náklonu a polohy inerciální jednotkou}
+Tato laboratorní úloha může být zaměřena na popsání principu fungování IMU, jaké veličiny lze měřit pomocí inerciálních senzorů, vliv a způsob kalibrace, zobrazení naměřených dat a jednotlivých dílčích veličin (zrychlení, orientace, rychlost, úhel), faktory ovlivňující nepřesnost výsledku a fúze dat s ostatními senzory. 
+
+Pomocí zobrazených veličin na displeji lze zobrazit všechny měřené údaje zařízením. Lze jednoduše znázornit měření tíhového pole akcelerometrem v případě, že je jednotka v klidu. Následně lze pohybem se zařízením reprezentovat změny úhlové rychlosti a zrychlení. Také je možné výpočtem velikosti vektoru tíhového zrychlení otestovat přesnost senzorů před a po kalibraci, popřípadě i kalibrační konstanty vypočítat ručně pomocí dodaného kalibračního skriptu v MATLABu. Dále je možné reprezentovat z naměřených dat jednotlivé veličiny po integraci z čistě inerciální navigace a problémy spjaté s její nepřesností. Také můžeme využít skriptu na fúzi dat a otestovat její fungování, na to by bylo ovšem vhodné ještě zpracování dat vylepšit, abychom dosáhli uspokojivých výsledků.
+
