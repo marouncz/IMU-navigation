@@ -8,7 +8,7 @@
 
 Hardware inerciální jednotky je realizován tak, aby umožňoval zaznamenávat hodnoty změřené inerciálními senzory a poskytovat dohromady data o rozměru 9~\ac{DoF} (akcelerometr, gyroskop a magnetometr). Jednotka také obsahuje \ac{GPS} modul s vestavěným \ac{IMU}, jehož použití by mohlo být vhodné například v prostorech s alespoň částečným pokrytím signálu \ac{GPS}.
 
-Naměřená data je možné uložit do externí NOR Flash paměti připojené k \ac{MCU}, popřípadě lze využít i kartu typu microSD. K přenosu dat pro jejich následné zpracování v PC primárně slouží ESP32-C3, umožňující bezdrátovou komunikaci přes Wifi, nebo Bluetooth. Konektor \ac{USB} typu C umožňuje nabíjení vestavěného Li-Ion akumulátoru jednotky a komunikaci mezi PC a ESP32, \ac{GPS} modulem a hlavním \ac{MCU} skrze vestavěný \ac{USB} rozbočovač. Toto rozhraní je plánované pro použití např. ke konfiguračním, nebo ladícím účelům.
+Naměřená data je možné uložit do externí NOR Flash paměti připojené k \ac{MCU}, popřípadě lze využít i kartu typu microSD. Konektor \ac{USB} typu C umožňuje nabíjení vestavěného Li-Ion akumulátoru jednotky a komunikaci mezi PC a ESP32, \ac{GPS} modulem a hlavním \ac{MCU} skrze vestavěný \ac{USB} rozbočovač. K přenosu dat pro jejich následné zpracování v PC primárně slouží USB rozhraní, ale zařízení disponuje i bezdrátovým modulem ESP32-C3, umožňující komunikaci přes Wifi, nebo Bluetooth.
 
 Pro jednoduchou volnost pohybu je jednotka napájena jedním Li-Ion akumulátorem velikosti 18650, při záznamu dat tedy nebude potřeba externího zdroje energie. Grafický \ac{OLED} displej a 4 tlačítka slouží jako uživatelské rozhraní při používání jednotky.
 
@@ -71,7 +71,7 @@ V případě, že bychom chtěli zaznamenávat data ze všech senzorů při jeji
 
 Z tohoto důvodu je v obvodovém zapojení inerciální jednotky implementována 32MB NOR Flash paměť, propojená s hlavním \ac{MCU} přes sběrnici QUADSPI s maximální možnou hodinovou frekvencí 120 Mhz, měla by tedy být pro potřeby této aplikace dostačující. \cite{CgaRYSTpwKhEZZr7}
 
-Kromě výše popsané Flash paměti jednotka obsahuje i slot na microSD kartu, která by z uživatelského hlediska mohla být jednodušší k použití, ovšem při zápisu může latence SD karty být (krátkodobě) až stovky ms \cite{Kraewinkel2020}. To by mohlo znemožnit její použití v případě, že by hlavní \ac{MCU} měl nedostatek volné paměti RAM pro krátkodobé uchování dat, proto bude o její využití rozhodnuto až později.
+Kromě výše popsané Flash paměti jednotka obsahuje i slot na microSD kartu, která by z uživatelského hlediska mohla být jednodušší k použití, ovšem při zápisu může latence SD karty být (krátkodobě) až stovky ms \cite{Kraewinkel2020}. To by mohlo znemožnit její použití v případě, že by hlavní \ac{MCU} měl nedostatek volné paměti RAM pro krátkodobé uchování dat, proto bude o její využití rozhodnuto až v následujících kapitolách.
 
 \section{Uživatelské rozhraní}
 \begin{figure}[h]

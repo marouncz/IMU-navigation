@@ -1,5 +1,5 @@
 \chapter{Firmware inerciální jednotky}
-Firmware hlavního \ac{MCU} byl vyvíjen pomocí volně dostupného \ac{IDE} poskytovaného výrobcem - \emph{STM32CubeIDE}. Jedná se o nástroj určený pro práci s jazyky C/C++, GCC kompilátorem založeném na Eclipse \cite{V2Tf5wsrbWcbQdoW}. Zároveň poskytuje grafické rozhraní pro konfiguraci a generování knihoven založených na \ac{HAL}, možnost použití \ac{RTOS} a ladící prostředí.
+Firmware hlavního \ac{MCU} byl vyvíjen pomocí volně dostupného \ac{IDE} poskytovaného výrobcem - \emph{STM32CubeIDE}. Jedná se o nástroj určený pro práci s jazyky C/C++, GCC kompilátorem, založeném na Eclipse \cite{V2Tf5wsrbWcbQdoW}. Zároveň poskytuje grafické rozhraní pro konfiguraci a generování knihoven \ac{HAL}, možnost použití \ac{RTOS} a ladící prostředí.
 
 V této práci byly použity poskytované knihovny HAL a FreeRTOS pro ulehčení a urychlení vývoje firmwaru. Jejich použití často s sebou nese nevýhody, jako je například horší využití paměti, nebo výpočetního výkonu, z tohoto důvodu byl zvolen takový \ac{MCU}, aby měl dostatečné rezervy pro jejich použití.
 \section{HAL}
@@ -77,7 +77,7 @@ V případě, že klesne napětí akumulátoru pod hranici 3,5 V je zařízení 
 \end{figure}
 Tato úloha se stará o periodické zpracování příchozích dat z GNSS modulu pomocí \ac{UBX} zpráv. Tyto data jsou přijímány pomocí sběrnice \ac{UART} a je využito DMA přenosu, následně převedena do čitelné podoby (datum, čas, zeměpisná šířka, délka\ldots) pomocí knihovny GNSS parseru \cite{SimpleMethod2021}.
 
-V této úloze je také kontrolováno kdy dojde k prvnímu přesnému určení polohy fixací na satelity a je aktualizován aktuální čas a datum do vnitřního \ac{RTC}.
+V této úloze je také kontrolováno kdy dojde k prvnímu přesnému určení polohy fixací na satelity a je aktualizován čas a datum do vnitřního \ac{RTC}.
 
 \subsection{lsmTask} \label{lsmTask}
 \begin{figure}[h]
@@ -103,7 +103,7 @@ Tato úloha je velice obdobná předchozí z kapitoly \ref{lsmTask}. Zde jsou č
 \end{figure}
 Tento task, obdobně jako předchozí, obstarává inicializaci, vyčítání a konverzi dat z 6 osého IMU ADIS16505 se vzorkovací frekvencí 400 Hz. Komunikace se senzorem probíhá přes sběrnici SPI a stejně jako u ostatních senzorů, je využíváno přerušení a DMA přenosů k vytvoření neblokujícího kódu. Vzhledem k vyššímu rozlišení senzoru v porovnání s ostatními je pro ukládání hodnot převedených do jednotek SI využíván datový typ \texttt{double} místo \texttt{float}.
 
-Vzorkování dat z ADIS16505 zároveň slouží jako synchronizace k zarovnání řádků dat ve výsledném souboru naměřených dat, tedy v případě, že jsou dostupná nová data z LSM303, nebo MPU6050, jsou přidána do celkové záznamové datové struktury, v opačném případě jsou na jejich odpovídající místa zapsány nuly. V nejhorším možném případě, tedy že data z ostatních senzorů jsou vzorkována těsně po navzorkování dat z ADIS16505 je jejich zpoždění délka jedné periody celkové vzorkovací frekvence, tedy 2,5 ms.
+Vzorkování dat z ADIS16505 zároveň slouží jako synchronizace k zarovnání řádků dat ve výsledném souboru naměřených dat, tedy v případě, že jsou dostupná nová data z LSM303, nebo MPU6050, jsou přidána do celkové záznamové datové struktury, v opačném případě jsou na jejich odpovídající místa zapsány nuly. V nejhorším možném případě, tedy že data z ostatních senzorů jsou vzorkována těsně po navzorkování z ADIS16505 je jejich zpoždění rovno délce jedné periody celkové vzorkovací frekvence, tedy 2,5 ms.
 
 \subsection{loggerTask} \label{loggerTask}
 \begin{figure}[h]
@@ -116,6 +116,8 @@ Tato úloha provádí samotné ukládání dat. Testováním bylo zjištěno, ž
 Stavový automat v tomto tasku lze rozdělit do čtyř stavů: záznam dat, kdy jsou data průběžně ukládána, vypnutý záznam, kdy jsou data zahazována a začátek a konec záznamu, kdy dochází k inicializacím USB a souborových systémů. V průběhu záznamu je USB rozhraní vypnuté, aby nebylo možné zasahovat do souboru připojeným PC když je zrovna do něj zapisováno zařízením.
 
 Samotný přenos naměřených dat do počítače je realizován přes USB třídy vysokokapacitního úložiště. Připojený PC při potřebě čtení dat spustí přerušení na přenos s konkrétní adresou. Jelikož je na microSD kartě implementován souborový systém FatFS, je v běžných operačních systémech reprezentován jako obyčejné externí úložiště.
+
+Jednotka je také vybavena WiFi modulem pro bezdrátovou komunikaci, který by bylo možné využít pro bezdrátový přenos dat. Zatím byl ovšem implementován pouze přenos pomocí USB, jelikož je hlavní MCU propojen s bezdrátovým rozhraním přes sběrnici UART s maximální rychlostí komunikace 500 kBaud/s, a přenos dat při delším měření by byl poměrně dlouhý.
 
 \subsection{oledTask}
 \begin{figure}[h]
@@ -142,7 +144,7 @@ Stav zařízení by se dal zjednodušeně znázornit třemi možnými:
      \begin{subfigure}[b]{0.29\textwidth}
          \centering
          \includegraphics[width=\textwidth]{obrazky/menuMPU}
-         \caption{Hodnoty z MPU6050.}
+         \caption{Hodnoty MPU6050.}
          
      \end{subfigure}
      \hfill
@@ -150,21 +152,21 @@ Stav zařízení by se dal zjednodušeně znázornit třemi možnými:
      \begin{subfigure}[b]{0.29\textwidth}
          \centering
          \includegraphics[width=\textwidth]{obrazky/menuADIS}
-         \caption{Hodnoty z ADIS16505.}
+         \caption{Hodnoty ADIS16505.}
        
      \end{subfigure}
      \centering
      \begin{subfigure}[b]{0.29\textwidth}
          \centering
          \includegraphics[width=\textwidth]{obrazky/menuLSM}
-         \caption{Hodnoty z LSM303.}
+         \caption{Hodnoty LSM303.}
        
      \end{subfigure}
 		\hfill
      \begin{subfigure}[b]{0.29\textwidth}
          \centering
          \includegraphics[width=\textwidth]{obrazky/menuGPS}
-         \caption{Hodnoty z GNSS.}
+         \caption{Hodnoty GNSS.}
          
      \end{subfigure}
 
@@ -193,7 +195,7 @@ Stav zařízení by se dal zjednodušeně znázornit třemi možnými:
         \label{fig:recordGUI}
 \end{figure}
 
-\item Kalibrace (obrázek \ref{fig:calibrationGUI})- toto menu slouží jako průvodce kalibrační procedurou. Aktivuje se stiskem tlačítka 4, kterému odpovídá ikona CALB. Následně je uživateli zobrazen dvoustránkový průvodce kalibrační procedurou, který popisuje jednotlivé kroky potřebné k úspěšnému provedení kalibrace. Poté je uživatel vyzván k umístění jednotky na jednu z 6 hran a po pětisekundovém odpočtu je změřeno 50 vzorků lineárního zrychlení a úhlové rychlosti z obou IMU a vypočítán jejich průměr. Tento postup se opakuje šestkrát s každou hranou zařízení. Následně jsou z měření vypočteny kalibrační konstanty pomocí algoritmu popsaným v kapitole \ref{calibrationALG}.
+\item Kalibrace (obrázek \ref{fig:calibrationGUI}) - toto menu slouží jako průvodce kalibrační procedurou. Aktivuje se stiskem tlačítka 4, kterému odpovídá ikona CALB. Následně je uživateli zobrazen dvoustránkový průvodce kalibrační procedurou, který popisuje jednotlivé kroky potřebné k úspěšnému provedení kalibrace. Poté je uživatel vyzván k umístění jednotky na jednu z 6 hran a po pětisekundovém odpočtu je změřeno 50 vzorků lineárního zrychlení a úhlové rychlosti z obou IMU a vypočítán jejich průměr. Tento postup se opakuje šestkrát s každou hranou zařízení. Následně jsou z měření vypočteny kalibrační konstanty pomocí algoritmu popsaném v kapitole \ref{calibrationALG}.
 \end{itemize}
 \begin{figure}[h]
      \centering
@@ -229,7 +231,7 @@ Stav zařízení by se dal zjednodušeně znázornit třemi možnými:
 \end{figure}
 
 \section{Kalibrace IMU} \label{calibrationALG}
-Akcelerometry a gyroskopy jsou poměrně citlivé součástky. Přestože většina i těch levnějších IMU jsou v továrně výrobcem kalibrovány, jejich vlastnosti se můžou změnit například procesem pájení, změnou teploty, nebo mechanickým pnutím v desce plošných spojů. Drtivá většina popsaných kalibračních metod akcelerometrů se zaměřuje na korekci lineární křivkou, jedná se tedy o výpočet konstant k a q v rovnici $ y=k\cdot x + q $, kde $ x $ je měřená hodnota senzorem, $ k $ a $ q $ jsou kalibrační konstanty a $ y $ je výsledná veličina po kalibraci. Konstantu $ k $ můžeme označit jako gain a konstantu $ q $ jako offset. Většinou se dostupné metody kalibrací používají i pro kompenzaci odchylek natočení os senzorů vůči desce, nebo nějakému jinému referenčnímu prvku zařízení (například hrany krabice), které můžou vzniknout nepřesným pájením, nebo montáží. Tyto metody vyžadují buď nějaké přípravky, které nám umožní otáčet se zařízením o přesně definovaný úhel v pravoúhlých osách, nebo alespoň vyžadují přesné natáčení zařízení do poloh, kde dvě z os měří nulové zrychlení. \cite{eUM5mr8dMf0LyseX} \cite{6yeG6wAI1hTfmXJK}
+Akcelerometry a gyroskopy jsou poměrně citlivé součástky. Přestože většina i těch levnějších IMU jsou v továrně výrobcem kalibrovány, jejich vlastnosti se můžou změnit například procesem pájení, změnou teploty, nebo mechanickým pnutím v desce plošných spojů. Drtivá většina popsaných kalibračních metod akcelerometrů se zaměřuje na korekci lineární křivkou, jedná se tedy o výpočet konstant k a q v rovnici $ y=k\cdot x + q $, kde $ x $ je měřená hodnota senzorem, $ k $ a $ q $ jsou kalibrační konstanty a $ y $ je výsledná veličina po kalibraci. Konstantu $ k $ můžeme označit jako gain a konstantu $ q $ jako offset. Většinou se dostupné metody kalibrací používají i pro kompenzaci odchylek natočení os senzorů vůči desce, nebo nějakému jinému referenčnímu prvku zařízení (například hrany krabice), které můžou vzniknout nepřesným pájením, nebo montáží. Tyto metody vyžadují buď přípravky, které nám umožní otáčet se zařízením o přesně definovaný úhel v pravoúhlých osách, nebo alespoň vyžadují přesné natáčení zařízení do poloh, kde dvě z os měří nulové zrychlení. \cite{eUM5mr8dMf0LyseX} \cite{6yeG6wAI1hTfmXJK}
 
 V této práci ovšem není až tak důležité kompenzovat natočení os senzorů, jelikož je zařízení určené pro manipulaci v rukách, jde nám tedy pouze o výpočet konstant $ k $ a $ q $, aby bylo měřeno zrychlení správné velikosti. Výroba výše zmíněných mechanických přípravků, které by byly dostatečně přesné a opakovatelné by byla náročná a nesouvisející s povahou této práce. Díky tomu, že nepotřebujeme kompenzovat natočení os, můžeme vycházet z dostupných kalibračních procedur a implementovat jejich podstatu v upravené podobě:
 
@@ -298,7 +300,7 @@ Také byla vytvořena testovací funkce na její ověření. Všechny zdrojové 
 Kalibrace gyroskopů lineární křivkou by byla bohužel složitější a již by vyžadovala nějaký přesný mechanický přípravek na natáčení zařízení o přesně definovaný úhel. Z tohoto důvodu je u gyroskopů kompenzován pouze jejich offset. Ten je měřen ve stejnou dobu při všech 6 měření akcelerometru. Následně je vypočten aritmetický průměr všech 6 měření pro každou osu gyroskopu zvlášť, tato hodnota představuje offset senzoru.
 
 \section{Převod dat do CSV souboru}
-Žádaným výstupem ze zařízení jsou naměřená data v nějakém jednoduše čitelném a univerzálním typu souboru, například \ac{CSV}, ve kterém jsou naměřené veličiny uloženy v textové podobě, oddělené čárkami. \ac{MCU} k záznamu dat a výpočtu používá standardní datové typy, jako je \texttt{int\_8}, \texttt{uint\_16}, \texttt{float}, \texttt{double} a podobně. Pokud bychom přímo v zařízení převáděly tyto čísla na text, tak se nám násobně zvětší nároky na rychlost a velikost ukládání dat. Například datový typ \texttt{int\_8} je v binární podobě reprezentován pouze jedním bytem, zatímco v textové podobě čtyřmi bajty (např. +127). Z tohoto důvodu jsou data na SD kartu ukládána v binární podobě a po přenosu do PC převedena do \ac{CSV} souboru pomocí skriptu napsaném v jazyce Python, který je dostupný v elektronické příloze.
+Žádaným výstupem ze zařízení jsou naměřená data v jednoduše čitelném a univerzálním typu souboru, například \ac{CSV}, ve kterém jsou naměřené veličiny uloženy v textové podobě, oddělené čárkami. \ac{MCU} k záznamu dat a výpočtu používá standardní datové typy, jako je \texttt{int\_8}, \texttt{uint\_16}, \texttt{float}, \texttt{double} a podobně. Pokud bychom přímo v zařízení převáděly tato čísla na text, tak se nám násobně zvětší nároky na rychlost a velikost ukládání dat. Například datový typ \texttt{int\_8} je v binární podobě reprezentován pouze jedním bytem, zatímco v textové podobě čtyřmi bajty (např. +127). Z tohoto důvodu jsou data na SD kartu ukládána v binární podobě a po přenosu do PC převedena do \ac{CSV} souboru pomocí skriptu napsaném v jazyce Python, který je dostupný v elektronické příloze.
 
 Tento skript má v sobě definované pořadí jednotlivých datových typů ukládané struktury proměnných. Také bylo potřeba přidat zarovnávací (padding) bity, které kompilátor automaticky přidává na zarovnání proměnných v paměti pro správné fungování MCU. Toto zarovnání je definováno v sestavovacím souboru (linker file) a pro uživatelskou oblast RAM je nastaveno na 64 bitů.
 

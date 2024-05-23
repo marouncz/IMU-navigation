@@ -2,7 +2,7 @@
 \section{Využití inerciální navigace}
 Možnost navigace a znalost polohy je pro lidstvo již dlouhou dobu důležitá jak v průmyslu, tak i v každodenním životě. Pravděpodobně nejrozšířenějším druhem navigace jsou tzv. globální navigační systémy, například \ac{GPS}. Ovšem pro některé aplikace nemusí být použití \ac{GNSS}, ať už z politických, či technických důvodů ideální. Pro navigaci v oblasti letectví a námořnictví se začala inerciální navigace využívat kolem roku 1960 a je využívána dodnes. \cite{Tittertonc2004}
 
-Díky stále přesnějším a levnějším inerciálním senzorům se rozšiřují možnosti využití inerciální navigace i do běžných průmyslových aplikacích, například v oblastech robotiky, automobilové techniky, nebo i pro údržbu podzemních infrastruktur, mapování kanalizací a další. \cite{Tittertonc2004} Tato práce se zabývá využitím inerciální navigace pro účely určení polohy uvnitř budov, kde je pokrytí signálem globálních navigačních systémů velmi slabé, nebo žádné.
+Díky stále přesnějším a levnějším inerciálním senzorům se rozšiřují možnosti využití inerciální navigace i do běžných průmyslových aplikacích, například v oblastech robotiky, automobilové techniky, nebo i pro údržbu podzemních infrastruktur, mapování kanalizací a další. \cite{Tittertonc2004} Tato práce se zabývá využitím inerciální navigace pro účely určení polohy uvnitř budov a fúzí dat z dalších senzorů.
 
 \section{Princip fungování inerciální navigace} \label{INSPrinciple}
 Inerciální navigační systémy pracují na principu nepřímého měření z dat, které poskytuje akcelerometr a gyroskop.   
@@ -25,7 +25,7 @@ x(t)=x(t_{0}) + \int_{t_{0}}^{t} v(s) \,ds\
 \end{equation}
 
 Aby bylo možné s inerciální jednotkou volně pohybovat v prostoru, je potřeba kromě znalosti polohy měřit, nebo kompenzovat její natočení. 
-Jednou z možností jak kompenzovat rotaci jednotky je připevnění akcelerometrů na gimbal, který bude udržovat jejich natočení vůči Zemi konstantní. Tohoto principu se často využívá v letectví, zejména kvůli jejich vysoké přesnosti, ovšem velkou nevýhodou bývá mechanická složitost a velikost. \cite{Grewal2013} \cite{Polak2018}
+Jednou z možností jak kompenzovat rotaci jednotky je připevněním akcelerometrů na gimbal, který bude udržovat jejich natočení vůči Zemi konstantní. Tohoto principu se často využívá v letectví, zejména kvůli jejich vysoké přesnosti, ovšem velkou nevýhodou bývá mechanická složitost a velikost. \cite{Grewal2013} \cite{Polak2018}
 
 Druhou možností, jak kompenzovat natočení je měřit jeho úhel a následně zrychlení z akcelerometru rotovat vůči referenčnímu systému.\cite{Grewal2013} \cite{Polak2018}
 K tomuto účelu slouží gyroskopy, které měří úhlovou rychlost $ \omega $ otáčení jednotky kolem osy. Podobně jako se zrychlením u akcelerometru, znalostí počátečního úhlu $ \varphi (t_{0}) $ v čase $ t_{0} $ můžeme pomocí úhlové rychlosti $ \omega $ v časech $ s>t_{0} $ určit úhel natočení $ \varphi (t) $, ovšem tentokrát pouze jednou integrací.
@@ -73,7 +73,7 @@ Kde $ \Omega = \SI{7,292E-5}{\radian\per\second}$ je rychlost rotace Země kolem
 \vec{v}_{e} = \left. \diff{\vec{r}}{t} \right|_{e} = \vec{v}_{i} - \vec{\omega_{ie}} \times \vec{r}
 \end{equation}
 
-S přepočty mezi i a e frame je potřeba nakládat zejména při navigaci letadel a raket, kdy je potřeba započíst i rotaci Země, vzhledem k dlouhým úsekům času i vzdálenosti. V této práci se ovšem zabýváme navigací uvnitř budov, kdy doba měření může být řádově v jednotkách minut a vzdálenost ve stovkách metrů. Vliv rotace Země tedy bude velmi malý.
+S přepočty mezi i a e frame je potřeba nakládat zejména při navigaci letadel a raket, kdy je potřeba započíst i rotaci Země, vzhledem k dlouhým úsekům času i vzdálenosti. V této práci se ovšem zabýváme navigací na malé vzdálenosti, kdy doba měření může být řádově v jednotkách minut a vzdálenost ve stovkách metrů. Vliv rotace Země tedy bude velmi malý.
 
 \section{Tíhové pole Země}
 Jak již bylo popsáno v kapitole \ref{INSPrinciple}, zrychlení měřené inerciální jednotkou v i-frame je složené ze statické tíhové síly a dynamické síly způsobené zrychlením na jednotku hmotnosti. Působení této dynamické síly je často označováno jako tzv. „specifická síla“ $ \vec{f} $ představující sílu na jednotku hmotnosti, tedy zrychlení. S její pomocí můžeme rovnici \ref{eq:aiDiff} rozepsat na: \cite{Tittertonc2004} \cite{Grewal2013}
