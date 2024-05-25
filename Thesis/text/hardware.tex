@@ -6,38 +6,39 @@
     \caption{Blokové schéma inerciální jednotky.}
 \end{figure}
 
-Hardware inerciální jednotky je realizován tak, aby umožňoval zaznamenávat hodnoty změřené inerciálními senzory a poskytovat dohromady data o rozměru 9~\ac{DoF} (akcelerometr, gyroskop a magnetometr). Jednotka také obsahuje \ac{GPS} modul s vestavěným \ac{IMU}, jehož použití by mohlo být vhodné například v prostorech s alespoň částečným pokrytím signálu \ac{GPS}.
+Hardware inerciální jednotky je realizován tak, aby umožňoval zaznamenávat hodnoty změřené inerciálními senzory a poskytovat dohromady devítiosé data (akcelerometr, gyroskop a magnetometr). Jednotka také obsahuje \ac{GPS} modul s vestavěným \ac{IMU}, jehož použití by mohlo být vhodné například v prostorech s alespoň částečným pokrytím signálu \ac{GPS}.
 
-Naměřená data je možné uložit do externí NOR Flash paměti připojené k \ac{MCU}, popřípadě lze využít i kartu typu microSD. Konektor \ac{USB} typu C umožňuje nabíjení vestavěného Li-Ion akumulátoru jednotky a komunikaci mezi PC a ESP32, \ac{GPS} modulem a hlavním \ac{MCU} skrze vestavěný \ac{USB} rozbočovač. K přenosu dat pro jejich následné zpracování v PC primárně slouží USB rozhraní, ale zařízení disponuje i bezdrátovým modulem ESP32-C3, umožňující komunikaci přes Wifi, nebo Bluetooth.
+Naměřená data je možné uložit do externí NOR Flash paměti připojené k mikrokontroléru (\emph{Microcontroller
+Unit}, \acsu{MCU}), popřípadě lze využít i kartu typu microSD. Konektor univerzální sériové sběrnice (\emph{Universal Serial Bus}, \acsu{USB}) typu C umožňuje nabíjení vestavěného Li-Ion akumulátoru jednotky a komunikaci mezi PC a ESP32, \ac{GPS} modulem a hlavním \ac{MCU} skrze vestavěný \ac{USB} rozbočovač. K přenosu dat pro jejich následné zpracování v PC primárně slouží USB rozhraní, ale zařízení disponuje i bezdrátovým modulem ESP32-C3, umožňující komunikaci přes WiFi, nebo Bluetooth.
 
-Pro jednoduchou volnost pohybu je jednotka napájena jedním Li-Ion akumulátorem velikosti 18650, při záznamu dat tedy nebude potřeba externího zdroje energie. Grafický \ac{OLED} displej a 4 tlačítka slouží jako uživatelské rozhraní při používání jednotky.
+Pro jednoduchou volnost pohybu je jednotka napájena jedním Li-Ion akumulátorem velikosti 18650, při záznamu dat tedy nebude potřeba externího zdroje energie. Grafický organický LED (\emph{Organic Light-Emitting Diode}, \acsu{OLED}) displej a 4 tlačítka slouží jako uživatelské rozhraní při používání jednotky.
 
 \section{Akcelerometr a gyroskop} \label{AccGyroText}
-Jednotka obsahuje dvě 6~\ac{DoF} \ac{IMU} (gyroskop s akcelerometrem) rozdílných parametrů a řádově rozdílné ceny. Takto odlišné součástky byly vybrány proto, aby bylo možné porovnat vliv přesnosti, šumu, biasu a driftu senzorů na následně zpracovaná data.
+Jednotka obsahuje dvě šestiosá \ac{IMU} (gyroskop s akcelerometrem) rozdílných parametrů a řádově rozdílné ceny. Takto odlišné součástky byly vybrány proto, aby bylo možné porovnat vliv přesnosti, šumu, biasu a driftu senzorů na následně zpracovaná data.
 V tabulce \ref{table:fyzikalniPorovnaniIMU} jsou porovnány důležité parametry senzorů MPU6050 a ADIS16505-2. Pro účely inerciální navigace je důležitý zejména nízký bias a drift senzorů, aby při integraci dat k vyhodnocení polohy nebyla integrována i driftová chyba, což má za výsledek velmi nepřesné zpracování hodnot. \cite{Blocher2021322}
 
-\input{text/tabulky/gyroAccParams}
-
-Integrovaný obvod MPU6050 je standardní 6 osé \ac{MEMS} \ac{IMU}, vhodné mimo jiné pro použití v mobilních zařízeních a dalších podobných aplikacích. Jeho vnitřní gyroskop a akcelerometr má softwarově přepínatelné rozsahy měřených veličin. Kromě inerciálních senzorů má i vestavěný signálový procesor pro fúzi a filtrování dat přímo v integrovaném obvodu. Tato funkce může být vhodná pro odlehčení výpočetního výkonu hlavního procesoru, ovšem pro účely této práce nebude signálový procesor využit, jelikož se měřená data budou zpracovávat až po jejich naměření v PC, ne v reálném čase. Vzorkovací frekvence gyroskopu je 8 kHz a akcelerometru 1 kHz, oba senzory mají 16bitové rozlišení.
+Integrovaný obvod MPU6050 je standardní šestiosé \ac{MEMS} \ac{IMU}, vhodné mimo jiné pro použití v mobilních zařízeních a dalších podobných aplikacích. Jeho vnitřní gyroskop a akcelerometr má softwarově přepínatelné rozsahy měřených veličin. Kromě inerciálních senzorů má i vestavěný signálový procesor pro fúzi a filtrování dat přímo v integrovaném obvodu. Tato funkce může být vhodná pro odlehčení výpočetního výkonu hlavního procesoru, ovšem pro účely této práce nebude signálový procesor využit, jelikož se měřená data budou zpracovávat až po jejich naměření v PC, ne v reálném čase. Vzorkovací frekvence gyroskopu je 8 kHz a akcelerometru 1 kHz, oba senzory mají 16bitové rozlišení.
 \cite{euxR3Yh5ol4JWNAi}
 
-MPU6050 disponuje rozhraním \ac{I2C} s maximální frekvencí hodinového signálu 400 kHz. \cite{euxR3Yh5ol4JWNAi}
-Pokud bychom chtěli vyčítat ze senzoru data při maximální možné vzorkovací frekvenci, byla by potřeba minimální přenosová rychlost sběrnice:
+MPU6050 disponuje rozhraním mezi-obvodové komunikace (\emph{Inter-Integrated Circuit}, \acsu{I2C}) s maximální frekvencí hodinového signálu 400 kHz. \cite{euxR3Yh5ol4JWNAi}
+Pokud bychom chtěli vyčítat ze senzoru data při maximální možné vzorkovací frekvenci, byla by potřeba minimální přenosová rychlost sběrnice
 \begin{equation}
 f_{\
-mathrm{clk}}=3~\mathrm{osy} \cdot(f_{\mathrm{gyro}} + f_{\mathrm{acc}})\cdot (\mathrm{16bitů} + 2 \cdot \mathrm{ACK})=3\cdot(8000+1000)\cdot(16+2)=\SI{486}{\kilo\hertz}
+mathrm{clk}}=3~\mathrm{osy} \cdot(f_{\mathrm{gyro}} + f_{\mathrm{acc}})\cdot (\mathrm{16bitů} + 2 \cdot \mathrm{ACK})=3\cdot(8000+1000)\cdot(16+2)=\SI{486}{\kilo\hertz} .
 \end{equation}
 Při vyčítání dat o maximální vzorkovací frekvenci jsme omezeni samotným \ac{I2C} rozhraním senzoru (využití maximální vzorkovací frekvence je teoreticky možné krátkodobě, pomocí interního 1kB FIFO zásobníku).\cite{euxR3Yh5ol4JWNAi}
 
-Jelikož pro účely inerciální navigace stačí vzorkovací frekvence dat v  řádu stovek~Hz \cite{Wei2022}, tak není tato limitace omezující. Senzor je propojen s hlavním \ac{MCU} přes \ac{I2C} sběrnici s frekvencí hodinového signálu 400 kHz a není sdílena s žádným jiným zařízením, aby bylo možné, v případě potřeby, využít maximální dostupný potenciál senzoru (i přestože je reálná potřeba vzorkovací frekvence nižší).
+Jelikož pro účely inerciální navigace stačí vzorkovací frekvence dat v  řádu stovek hertz \cite{Wei2022}, tak není tato limitace omezující. Senzor je propojen s hlavním \ac{MCU} přes \ac{I2C} sběrnici s frekvencí hodinového signálu 400 kHz a není sdílena s žádným jiným zařízením, aby bylo možné, v případě potřeby, využít maximální dostupný potenciál senzoru (i přestože je reálná potřeba vzorkovací frekvence nižší).
 
-Integrovaný obvod ADIS16505-2 je precizní 6 osé \ac{MEMS} \ac{IMU}, vhodné pro použití v průmyslových a navigačních aplikacích s poměrně nízkým driftem a vysokou přesností. Na rozdíl od MPU6050 nemá přepínatelný dynamický rozsah, je fixně daný variantou součástky. Vzorkovací frekvence gyroskopu i akcelerometru je 2 kHz, oba senzory mají 32bitové rozlišení. S hlavním \ac{MCU} komunikuje přes sběrnici \ac{SPI} s maximální frekvencí hodinového signálu 2,1 Mhz. \cite{UZFqHmQU7ZzI3OLB} Pokud budeme chtít vyčítat data ze senzoru při maximální možné vzorkovací frekvenci, bude potřeba minimální přenosová rychlost sběrnice: 
+\input{text/tabulky/gyroAccParams}
+Integrovaný obvod ADIS16505-2 je precizní šestiosé \ac{MEMS} \ac{IMU}, vhodné pro použití v průmyslových a navigačních aplikacích s poměrně nízkým driftem a vysokou přesností. Na rozdíl od MPU6050 nemá přepínatelný dynamický rozsah, je fixně daný variantou součástky. Vzorkovací frekvence gyroskopu i akcelerometru je 2 kHz, oba senzory mají 32bitové rozlišení. S hlavním \ac{MCU} komunikuje přes sběrnici sériového periferního rozhraní (\emph{Serial
+Peripheral Interface}, \acsu{SPI}) s maximální frekvencí hodinového signálu 2,1 MHz. \cite{UZFqHmQU7ZzI3OLB} Pokud budeme chtít vyčítat data ze senzoru při maximální možné vzorkovací frekvenci, bude potřeba minimální přenosová rychlost sběrnice
 \begin{equation}
-f_{\mathrm{clk}}=3~\mathrm{osy} \cdot(f_{\mathrm{gyro}} + f_{\mathrm{acc}})\cdot \mathrm{32bitů}=3\cdot(2000+2000)\cdot 32=\SI{384}{\kilo\hertz}
+f_{\mathrm{clk}}=3~\mathrm{osy} \cdot(f_{\mathrm{gyro}} + f_{\mathrm{acc}})\cdot \mathrm{32bitů}=3\cdot(2000+2000)\cdot 32=\SI{384}{\kilo\hertz} .
 \end{equation}
 Nejsme tedy omezeni maximální frekvencí hodinového signálu a můžeme teoreticky využívat senzor i při nejvyšší možné rychlosti.
 
-Výrobce prodává tento obvod ve variantě 100 pinového \ac{BGA} čipu, ale i jako vývojovou desku osazenou senzorem a kolíkovou lištou (obrázek \ref{fig:ADIS16505PCB}) pro jednodušší práci s osazením \ac{DPS}. \cite{UZFqHmQU7ZzI3OLB} Hardware jednotky byl navržen tak, aby bylo možné využít jak samotný \ac{BGA} čip, tak i hotový modul s konektorem.
+Výrobce prodává tento obvod ve variantě stopinového pouzdra matice kuliček (\emph{Ball Grid Array}, \acsu{BGA}) čipu, ale i jako vývojovou desku osazenou senzorem a kolíkovou lištou (obrázek \ref{fig:ADIS16505PCB}) pro jednodušší práci s osazením \ac{DPS}. \cite{UZFqHmQU7ZzI3OLB} Hardware jednotky byl navržen tak, aby bylo možné využít jak samotný \ac{BGA} čip, tak i hotový modul s konektorem.
 
 \begin{figure}[h]
     \centering
@@ -47,11 +48,11 @@ Výrobce prodává tento obvod ve variantě 100 pinového \ac{BGA} čipu, ale i 
 \end{figure}
 
 \section{Magnetometr}
-Vzhledem k tomu, že výběr komerčně dostupných 9 \ac{DoF} (akcelerometr, gyroskop a magnetometr) je značně omezený, popřípadě součástky prodávané jako devítiosé IMU jsou ve skutečnosti moduly více součástek na jedné desce, tak je ve výsledném obvodovém zapojení použit senzor magnetické indukce jakožto samostatná součástka. 
+Vzhledem k tomu, že výběr komerčně dostupných devítiosých senzorů (akcelerometr, gyroskop a magnetometr) je značně omezený, popřípadě součástky prodávané jako devítiosé IMU jsou ve skutečnosti moduly více součástek na jedné desce, tak je ve výsledném obvodovém zapojení použit senzor magnetické indukce jakožto samostatná součástka. 
 
 Přestože fúze dat z magnetometru může mít pozitivní dopady na zmenšení chyby trajektorie \cite{Tkhorenko2018}, jeho použití uvnitř budov je značně omezené vzhledem k jednoduché ovlivnitelnosti měření blízkými feromagnetickými látkami, silovými rozvody elektřiny a pod. Proto nebyly na výběr magnetometru kladeny vysoké požadavky a slouží spíše pro porovnání vlivu přítomnosti / absence naměřených dat z tohoto senzoru.
 
-K tomuto účelu byl vybrán běžně dostupný obvod LSM303AGR, který kromě magnetometru v pouzdře obsahuje i akcelerometr, ten ovšem nebude pro potřeby práce využit, jelikož tuto funkci obstarávají součástky z kapitoly \ref{AccGyroText}.
+K tomuto účelu byl vybrán běžně dostupný obvod LSM303AGR, který kromě magnetometru v pouzdře obsahuje i akcelerometr, ten ovšem nebude pro potřeby práce využit, jelikož tuto funkci obstarávají akcelerometr a gyroskop z kapitoly \ref{AccGyroText}.
 
 Magnetometr komunikuje s hlavním \ac{MCU} přes sběrnici \ac{I2C} s maximální vzorkovací frekvencí 150 Hz, dynamickým rozsahem $ \pm \SI{4.915}{\milli\tesla} $ a 16bitovým rozlišením. \cite{RD5DwZcremhT6bgp}
 
@@ -63,15 +64,16 @@ Výrobce udává, že modul zvládne odhadovat polohu po ztrátě signálu \ac{G
 
 NEO-M8U umí využívat všechny světové navigační systémy (uvedeny v tabulce~\ref{table:gnssBands})
 \input{text/tabulky/gnssBands}
-Tento modul komunikuje s hlavním \ac{MCU} přes sběrnici \ac{UART}, pomocí standardizovaných \ac{NMEA} příkazů v textové podobě, nebo pomocí binárního protokolu \ac{UBX}, který je specifikován výrobcem. Použití protokolu \ac{NMEA} je omezené pouze na standardní funkce \ac{GNSS} modulů, pokud chceme využít speciálních funkcí, například inerciální navigace, je nutné použít proprietární protokol \ac{UBX}. \cite{DLQg9bT6V1GWKhxh} NEO-M8U také disponuje \ac{USB} portem, skrz který je možné modul ovládat a konfigurovat pomocí PC aplikace výrobce. Tento port je připojen na integrovaný \ac{USB} rozbočovač a lze jej využít například pro vývojové účely.
+Tento modul komunikuje s hlavním \ac{MCU} přes sběrnici univerzálního asynchronního přijímače-vysílače (\emph{Universal Asynchronous Receiver-Transmitter}, \acsu{UART}), pomocí standardizovaných příkazů americká organizace
+námořní elektroniky (\emph{National Marine Electronics Association}, \acsu{NMEA}) příkazů v textové podobě, nebo pomocí binárního protokolu \ac{UBX}, který je specifikován výrobcem. Použití protokolu \ac{NMEA} je omezené pouze na standardní funkce \ac{GNSS} modulů, pokud chceme využít speciálních funkcí, například inerciální navigace, je nutné použít proprietární protokol \ac{UBX}. \cite{DLQg9bT6V1GWKhxh} NEO-M8U také disponuje \ac{USB} portem, skrz který je možné modul ovládat a konfigurovat pomocí PC aplikace výrobce. Tento port je připojen na integrovaný \ac{USB} rozbočovač a lze jej využít například pro vývojové účely.
 
 \section{Paměť}
 \input{text/tabulky/memoryBW}
 V případě, že bychom chtěli zaznamenávat data ze všech senzorů při jejich maximálních vzorkovacích frekvencích, nebude množství změřených dat zanedbatelné. V tabulce \ref{table:memoryBW} je hrubý odhad potřebné rychlosti záznamu dat pro tento krajní případ. Pokud bude měření trvat např. 2 minuty, vygenerujeme dohromady 12 MB dat, což převyšuje velikost paměti většiny dostupných \ac{MCU}.
 
-Z tohoto důvodu je v obvodovém zapojení inerciální jednotky implementována 32MB NOR Flash paměť, propojená s hlavním \ac{MCU} přes sběrnici QUADSPI s maximální možnou hodinovou frekvencí 120 Mhz, měla by tedy být pro potřeby této aplikace dostačující. \cite{CgaRYSTpwKhEZZr7}
+Z tohoto důvodu je v obvodovém zapojení inerciální jednotky implementována 32MB NOR Flash paměť, propojená s hlavním \ac{MCU} přes sběrnici QUADSPI s maximální možnou hodinovou frekvencí 120 MHz. Měla by tedy být pro potřeby této aplikace z pohledu velikosti paměti a datového toku dostačující. \cite{CgaRYSTpwKhEZZr7}
 
-Kromě výše popsané Flash paměti jednotka obsahuje i slot na microSD kartu, která by z uživatelského hlediska mohla být jednodušší k použití, ovšem při zápisu může latence SD karty být (krátkodobě) až stovky ms \cite{Kraewinkel2020}. To by mohlo znemožnit její použití v případě, že by hlavní \ac{MCU} měl nedostatek volné paměti RAM pro krátkodobé uchování dat, proto bude o její využití rozhodnuto až v následujících kapitolách.
+Kromě výše popsané Flash paměti jednotka obsahuje i slot na microSD kartu, která by z uživatelského hlediska mohla být jednodušší k použití, ovšem při zápisu může latence SD karty být (krátkodobě) až stovky milisekund. \cite{Kraewinkel2020} To by mohlo znemožnit jejím použití v případě, že by hlavní \ac{MCU} měl nedostatek volné paměti RAM pro krátkodobé uchování dat, proto bude o její využití rozhodnuto až v následujících kapitolách.
 
 \section{Uživatelské rozhraní}
 \begin{figure}[h]
@@ -84,26 +86,26 @@ Pro ovládání uživatelem disponuje jednotka grafickým \ac{OLED} displejem s 
 \section{Napájení} \label{napajeni}
 Inerciální jednotka je napájena z jednoho Li-Ion akumulátoru velikosti 18650. Nabíjení je realizováno obvodem BQ24075RGT, který monitoruje nabíjecí odebíraný proud jednotkou. Proud, kterým je nabíjen akumulátor je regulován tak, aby nepřekročil maximální hranici 900 mA z USB portu. \cite{F5eZCtr2LLRsr9NT}
 
-Všechny součásti inerciální jednotky (až na \ac{RTC} a zálohovací registry hlavního \ac{MCU} a \ac{GPS} modulu) jsou napájeny skrz DC/DC měnič z výstupního vývodu tohoto nabíjecího obvodu. V případě, že je připojena jednotka do \ac{USB} a nabíjí se, na výstupním pinu nabíjecího obvodu je napájecí napětí USB portu. Díky tomu nedochází k velkým ztrátám pokud je jednotka zapnuta a nabíjí se zároveň. Jestliže je \ac{USB} odpojeno, skrz interní tranzistor je jednotka napájena z akumulátoru. \cite{F5eZCtr2LLRsr9NT}
+Všechny součásti inerciální jednotky (až na obvod reálného času (\emph{Real Time Clock}, \acsu{RTC}) a zálohovací registry hlavního \ac{MCU} a \ac{GPS} modulu) jsou napájeny skrz DC/DC měnič z výstupního vývodu tohoto nabíjecího obvodu. V případě, že je připojena jednotka do \ac{USB} a nabíjí se, na výstupním pinu nabíjecího obvodu je napájecí napětí USB portu. Díky tomu nedochází k velkým ztrátám pokud je jednotka zapnuta a nabíjí se zároveň. Jestliže je \ac{USB} odpojeno, skrz interní tranzistor je jednotka napájena z akumulátoru. \cite{F5eZCtr2LLRsr9NT}
 
-Nabíjecí obvod také umožňuje kompletní odpojení napájení jednotky přes jeden z vývodů. Toho je využito pro ochranu akumulátoru proti podvybití pomocí zapojení S/R klopného obvodu na napájení \ac{USB} a jednoho z výstupů procesoru. Napětí akumulátoru je měřeno pomocí \ac{ADC} mikrokontroléru. Jestliže klesne pod definovanou úroveň, pomocí pulzu bude celý obvod odpojen od napájení až do té doby, dokud uživatel znova nepřipojí jednotku do \ac{USB} portu.
+Nabíjecí obvod také umožňuje kompletní odpojení napájení jednotky přes jeden z vývodů. Toho je využito pro ochranu akumulátoru proti podvybití pomocí zapojení S/R klopného obvodu na napájení \ac{USB} a jednoho z výstupů procesoru. Napětí akumulátoru je měřeno pomocí \ac{ADC} mikrokontroléru. Jestliže klesne pod definovanou úroveň, pomocí pulzu bude celý obvod odpojen od napájení až do té doby, dokud uživatel znovu nepřipojí jednotku do \ac{USB} portu.
 
 \input{text/tabulky/powerConsumption}
 
-Vzhledem k většímu počtu součástek není odebíraný proud z 3,3V napájecí větve malý (zhruba 0,5 A, viz. tabulka \ref{table:currentConsumption}). Budeme-li uvažovat rozsah výstupního napětí nabíjecího obvodu 3,5 V (vybitý akumulátor) až 5 V (zařízení připojené do \ac{USB}) zjistíme, že pro napájení 3,3V větve není vhodný lineární regulátor, zejména kvůli vysokému ztrátovému výkonu. Ten je v krajním případě:
+Vzhledem k většímu počtu součástek není odebíraný proud z 3,3V napájecí větve malý (zhruba 0,5 A, viz. tabulka \ref{table:currentConsumption}). Budeme-li uvažovat rozsah výstupního napětí nabíjecího obvodu 3,5 V (vybitý akumulátor) až 5 V (zařízení připojené do \ac{USB}) zjistíme, že pro napájení 3,3V větve není vhodný lineární regulátor, zejména kvůli vysokému ztrátovému výkonu. Ten je v krajním případě
 
 \begin{equation}
-P_{\mathrm{ztrátový}} = (U_{\mathrm{USB}}-U_{\mathrm{IO}})\cdot I_{\mathrm{IO}}=(5-3,3)\cdot 0,5= \SI{0,85}{\watt}
+P_{\mathrm{ztrátový}} = (U_{\mathrm{USB}}-U_{\mathrm{IO}})\cdot I_{\mathrm{IO}}=(5-3,3)\cdot 0,5= \SI{0,85}{\watt} .
 \end{equation}
 
 Proto byl na napájení hlavní 3,3V větve vybrán spínaný regulátor TPS62823. Jedná se o buck (snižující) měnič s integrovaným výkonovým tranzistorem pracujícím na frekvenci 2,2 MHz. Díky vyšší spínací frekvenci je možné využít menší komponenty, zejména cívku a filtrační kondenzátory na výstup, ovšem je potřeba dodržet doporučovaná pravidla při návrhu desky pro omezení rušení a velkých proudových smyček. Rozsah napájecího napětí čipu je 2,4 až 5 V, maximální výstupní proud 3 A. \cite{mGnys3WmOkWuaQHN}
 
-Minimální napětí, na které můžeme nechat akumulátor vybít je dáno odpory přechodů Drain-Source vnitřních tranzistorů nabíjecího obvodu, DC/DC měniče a stejnosměrným odporem cívky. V tomto případě bude regulátor pracovat v módu s minimální střídou. \cite{mGnys3WmOkWuaQHN} Toto napětí je:
+Minimální napětí, na které můžeme nechat akumulátor vybít je dáno odpory přechodů Drain-Source vnitřních tranzistorů nabíjecího obvodu, DC/DC měniče a stejnosměrným odporem cívky. V tomto případě bude regulátor pracovat v módu s minimální střídou. \cite{mGnys3WmOkWuaQHN} Toto napětí je
 \begin{equation}
 \begin{matrix}
  U_{\mathrm{batMin}} = U_{\mathrm{out}} + I_{\mathrm{out}} \cdot (R_{\mathrm{DS(charge)}} + R_{\mathrm{DS(conv)}} + R_{\mathrm{DC(L)}})= \\
   =3,3 + 0,5 \cdot (0,05 + 0,026 + 0,014) = \SI{3,345}{\volt}
-\end{matrix}
+\end{matrix} .
  \end{equation}
 
 \section{Hlavní procesor}
@@ -113,7 +115,8 @@ V neposlední řadě byla zvážena i dostupnost vybíraných procesorů u nejob
 
 \input{text/tabulky/MCUperiferie}
 
-Na základě těchto požadavků byl vybrán mikrokontrolér \emph{STM32F446VET6}. Jedná se o 32bitový Arm Cortex-M4 procesor z portfolia „high performance“ mikrokontrolérů výrobce STMicroelectronics. Splňuje všechny výše zmíněné minimální požadavky, v obvodovém zapojení byla použita i USB periferie procesoru, která může mít různá využití. Procesor obsahuje 512 kB paměti Flash a 128 kB paměti RAM, maximální hodinová frekvence je 180 MHz a disponuje matematickým koprocesorem pro operace s plovoucí desetinou čárkou. Vzhledem k počtu \ac{GPIO} v zapojení inerciální jednotky byla vybrána varianta procesoru v pouzdře LQFP100. \cite{csdGtKJDMSdbwJ9r}
+Na základě těchto požadavků byl vybrán mikrokontrolér \emph{STM32F446VET6}. Jedná se o 32bitový ARM Cortex-M4 procesor z portfolia „high performance“ mikrokontrolérů výrobce STMicroelectronics. Splňuje všechny výše zmíněné minimální požadavky, v obvodovém zapojení byla použita i USB periferie procesoru, která může mít různá využití. Procesor obsahuje 512 kB paměti Flash a 128 kB paměti RAM, maximální hodinová frekvence je 180 MHz a disponuje matematickým koprocesorem pro operace s plovoucí desetinou čárkou. Vzhledem k počtu univerzálních vstupních/výstupních pinů (\emph{General Purpose Input/
+Output}, \acsu{GPIO}) v zapojení inerciální jednotky byla vybrána varianta procesoru v pouzdře LQFP100. \cite{csdGtKJDMSdbwJ9r}
 
 \section{ESP32}
 Pro splnění požadavků zadání práce je potřeba, aby mohla inerciální jednotka komunikovat bezdrátově s PC zpracovávajícím data. Pro tento úkol byl vybrán bezdrátový modul ESP32-C3-Mini. Jedná se o jeden z novějších produktů portfolia bezdrátových modulů firmy Espressif. Podporuje standard WiFi 802.11 b/g/n a Bluetooth~LE~5. \cite{zJ7x5ye8Y5eJn1E2}
@@ -141,12 +144,13 @@ Vzhledem k asynchronnosti \ac{USB} komunikace bylo složité udržet definované
     \label{fig:3Dboard}
 \end{figure}
 
-Schéma i \ac{DPS} byla navržena v programu KiCad. V příloze \ref{schemaApp} je schéma inerciální jednotky rozdělené do několika logických bloků. Příloha \ref{placementApp} obsahuje pohled na osazení součástek vrchní vrstvy a přílohy \ref{TopApp} až \ref{BottomApp} obsahují nákres jednotlivých vrstev mědi. Na obrázku \ref{fig:3Dboard} je vygenerovaný 3D model \ac{DPS}. Celý projekt programu KiCad je také dostupný v elektronické příloze.
+Schéma i \ac{DPS} byly navrženy v programu KiCad. V příloze \ref{schemaApp} je schéma inerciální jednotky rozdělené do několika logických bloků. Příloha \ref{placementApp} obsahuje pohled na osazení součástek vrchní vrstvy a přílohy \ref{TopApp} až \ref{BottomApp} obsahují nákres jednotlivých vrstev mědi. Na obrázku \ref{fig:3Dboard} je vygenerovaný 3D model \ac{DPS}. Celý projekt programu KiCad je také dostupný v elektronické příloze.
 
 Inerciální jednotka je realizována jako čtyřvrstvá deska plošných spojů o velikosti $ 100 \times 100 $ mm s uspořádáním vrstev popsaném v tabulce \ref{table:signalStackup}.
 \input{text/tabulky/signalStackup}
 
-Typ a tloušťka substrátu \ac{DPS} byla vybrána v konfiguraci JLC04161H-7628, jejich mechanické uspořádání a dielektrické vlastnosti jsou popsané v tabulce \ref{table:materialStackup}. Pomocí kalkulačky výrobce byly vypočteny potřebné hodnoty požadovaných šířek a mezer spojů mikropáskového vedení pro impedanci \SI{50}{\ohm} a \SI{90}{\ohm}. Hodnoty pro vedení o impedanci \SI{50}{\ohm} byly použity při návrhu cest mezi \ac{GPS} modulem a \ac{SMA} anténou. Šírka a vzdálenost diferenciálního páru o impedanci \SI{90}{\ohm} byla použita při návrhu \ac{USB} části zapojení.
+Typ a tloušťka substrátu \ac{DPS} byla vybrána v konfiguraci JLC04161H-7628, jejich mechanické uspořádání a dielektrické vlastnosti jsou popsané v tabulce \ref{table:materialStackup}. Pomocí kalkulačky výrobce byly vypočteny potřebné hodnoty požadovaných šířek a mezer spojů mikropáskového vedení pro impedanci \SI{50}{\ohm} a \SI{90}{\ohm}. Hodnoty pro vedení o impedanci \SI{50}{\ohm} byly použity při návrhu cest mezi \ac{GPS} modulem a anténo subminiaturní verze A (\emph{Sub-
+Miniature version A}, \acsu{SMA}). Šírka a vzdálenost diferenciálního páru o impedanci \SI{90}{\ohm} byla použita při návrhu \ac{USB} části zapojení.
 \input{text/tabulky/materialStackup}
 
 Většina pouzder pasivních součástek byla vybrána o velikosti 0603, což by mělo poskytnout dostatečný kompromis mezi velikostí výsledné desky a možností ruční výměny součástky pro případné opravy na prvním prototypu. Prototypová deska je také opatřena měřícími body na napájecích větvích a konektorovými hřebínky na digitálních komunikacích pro možnost připojení osciloskopu, nebo logického analyzátoru na odposlouchávání komunikace mezi \ac{MCU} a jednotlivými senzory. 
@@ -195,7 +199,8 @@ Obdobné izolační podložky byly také navrženy a použity při montáži dis
         \label{fig:boxModel}
 \end{figure}
 
-Dále byla navržena a vyrobena 3D tištěná montážní krabička (obrázek \ref{fig:boxModel}) pro ochranu citlivých komponent zařízení při běžném užívání a manipulaci. Veškeré modely v této práci jsou navrženy pomocí 3D \ac{CAD} programu Fusion 360 od firmy Autodesk. Ve spodní části krabičky jsou přidané závitové vložky, které byly teplem vlisovány do plastového dílu pomocí mikropájky. \ac{DPS} je připevněna k tomuto dílu pomocí čtveřice nylonových distančních sloupků, které zároveň slouží jako vzpěry pro vrchní díl krabice. Sestavené zařízení je na obrázku \ref{fig:boxPhoto}.
+Dále byla navržena a vyrobena 3D tištěná montážní krabička (obrázek \ref{fig:boxModel}) pro ochranu citlivých komponent zařízení při běžném užívání a manipulaci. Veškeré modely v této práci jsou navrženy pomocí 3D počítačem podporovanému
+projektovacímu (\emph{Computer-Aided Design}, \acsu{CAD}) programu Fusion 360 od firmy Autodesk. Ve spodní části krabičky jsou přidané závitové vložky, které byly teplem vlisovány do plastového dílu pomocí mikropájky. \ac{DPS} je připevněna k tomuto dílu pomocí čtveřice nylonových distančních sloupků, které zároveň slouží jako vzpěry pro vrchní díl krabice. Sestavené zařízení je na obrázku \ref{fig:boxPhoto}.
 
 \begin{figure}
      \centering
@@ -217,18 +222,18 @@ Dále byla navržena a vyrobena 3D tištěná montážní krabička (obrázek \r
 \end{figure}
 
 \section{Ověření základních funkcí hardwaru jednotky}
-Při prvním zapnutí desky byl k napájení použit laboratorní zdroj s proudovým omezením místo Li-Ion akumulátoru, aby v případě chyby v zapojení byla šance poškození co nejvíce omezena. Zařízení při použití napájecího napětí 4 V odebíralo proud zhruba 198 mA, což je v tolerovaných mezích. Dále bylo zkontrolováno, zdali 3,3V snižující měnič, který napájí všechny citlivé komponenty pracuje správně. Bylo změřeno napětí 3,313 V na jeho výstupu, je tedy v pořádku.
+Při prvním zapnutí desky byl k napájení použit laboratorní zdroj s proudovým omezením místo Li-Ion akumulátoru, aby v případě chyby v zapojení byla co nejvíce omezena šance poškození součástek. Zařízení při použití napájecího napětí 4 V odebíralo proud zhruba 198 mA, což je v tolerovaných mezích. Dále bylo zkontrolováno, zdali 3,3V snižující měnič, který napájí všechny citlivé komponenty, pracuje správně. Bylo změřeno napětí 3,313 V na jeho výstupu, je tedy v pořádku.
 
-Jako další důležitý blok byla zkontrolována funkčnost S/R klopného obvodu, která poskytuje ochranu proti podvybití, popsanou v kapitole \ref{napajeni}. K tomuto byl vytvořen jednoduchý firmware procesoru, který průběžně měří napětí akumulátoru pomocí \ac{ADC} a v případě, že klesne pod úroveň 3,5 V přepne pin na vstupu KO do stavu log. 1. Tento stav byl simulován postupným snižováním výstupního napětí laboratorního zdroje. K vypnutí zařízení došlo při 3,54 V a ve vypnutém stavu zařízení odebíralo proud $ \SI{19,73}{\micro\ampere} $, což je spotřeba samotných klopných obvodů a \ac{RTC} zálohovacích registrů \ac{MCU} a \ac{GNSS} modulu. Při tomto napětí zbývá v akumulátoru zhruba 10 \% energie \cite{Cheruiyot2022914}, můžeme tedy vypočítat jak dlouho je možné ponechat zařízení softwarově vypnuté se sepnutým hlavním vypínačem, aniž by došlo k degradaci akumulátoru:
+Jako další důležitý blok byla zkontrolována funkčnost S/R klopného obvodu, který poskytuje ochranu proti podvybití, popsanou v kapitole \ref{napajeni}. K tomuto byl vytvořen jednoduchý firmware procesoru, který průběžně měří napětí akumulátoru pomocí \ac{ADC} a v případě, že klesne pod úroveň 3,5 V přepne pin na vstupu KO do stavu logické jedničky. Tento stav byl simulován postupným snižováním výstupního napětí laboratorního zdroje. K vypnutí zařízení došlo při 3,54 V a ve vypnutém stavu zařízení odebíralo proud $ \SI{19,73}{\micro\ampere} $, což je spotřeba samotných klopných obvodů a \ac{RTC} zálohovacích registrů \ac{MCU} a \ac{GNSS} modulu. Při tomto napětí zbývá v akumulátoru zhruba 10 \% energie \cite{Cheruiyot2022914}, můžeme tedy vypočítat jak dlouho je možné ponechat zařízení softwarově vypnuté se sepnutým hlavním vypínačem, aniž by došlo k degradaci akumulátoru
 
 \begin{equation}
-t = \dfrac{C\cdot 0,1}{I}=\dfrac{2,9\cdot 0,1}{19,73 \cdot 10^{-6}}= \SI{1.68}{\roku}
+t = \dfrac{C\cdot 0,1}{I}=\dfrac{2,9\cdot 0,1}{19,73 \cdot 10^{-6}}= \SI{1.68}{\roku} ,
 \end{equation}
-Kde C je kapacita akumulátoru v Ah a I je proudový odběr vypnutého zařízení.
+kde C je kapacita akumulátoru v ampérhodinách a I je proudový odběr vypnutého zařízení.
 
 Při připojení zařízení ke zdroji pomocí \ac{USB} bylo napájení obnoveno, což je žádoucí. Také byla zkontrolována proudová spotřeba při nabíjení akumulátoru pomocí orientačního \ac{USB} měřicího přístroje TC66C, ta byla 751 mA v případě, že je zařízení zapnuté a akumulátor se nabíjí.
 
-Další části zařízení jsou úzce vázány na software, jejich funkčnost byla tedy postupně testována při vývoji. Později byl odhalen drobný nedostatek co se hardwarového návrhu týče, a to v oblasti \ac{RTC} periferie hlavního procesoru. Ta slouží k udržení aktuálního času, který je možné synchronizovat například pomocí \ac{GNSS}. Z tohoto důvodu výrobce \ac{MCU} umožňuje napájet periferii pomocí separátního pinu \emph{VBAT} který je využíván při vypnutém hlavním napájení a má velice malý proudový odběr, jehož zdrojem je lineární napěťový regulátor s malým klidovým proudem připojeným přímo k akumulátoru. Vzhledem k tomu, že tato funkcionalita není pro aplikaci inerciální navigace klíčová a jedná se pouze o možnost zvýšení pohodlí uživatele, tak nebyly kladeny vysoké nároky na její přesnost, proto nebyl zapojen externí nízkofrekvenční krystalový oscilátor \emph{LSE} s domněním, že bude postačovat pouze interní oscilátor \emph{LSI RC}. Ukázalo se ovšem, že z napájecí domény \emph{VBAT} je poskytováno napájení pouze externímu nízkofrekvenčnímu oscilátoru, nikoliv internímu \cite{csdGtKJDMSdbwJ9r}. Z tohoto důvodu byl dodatečně přidán 32,768kHz krystal, společně se zatěžovacími kondenzátory (viz. obrázek \ref{fig:RTCcrystal}), který byl po otestování připevněn lepidlem.
+Další části zařízení jsou úzce vázány na software, jejich funkčnost byla tedy postupně testována při vývoji. Později byl odhalen drobný nedostatek hardwarového návrhu, a to v oblasti \ac{RTC} periferie hlavního procesoru. Ta slouží k udržení aktuálního času, který je možné synchronizovat například pomocí \ac{GNSS}. Z tohoto důvodu výrobce \ac{MCU} umožňuje napájet periferii pomocí separátního pinu \emph{VBAT} který je využíván při vypnutém hlavním napájení a má velice malý proudový odběr, jehož zdrojem je lineární napěťový regulátor s malým klidovým proudem připojeným přímo k akumulátoru. Vzhledem k tomu, že tato funkcionalita není pro aplikaci inerciální navigace klíčová a jedná se pouze o možnost zvýšení pohodlí uživatele, tak nebyly kladeny vysoké nároky na její přesnost, proto nebyl zapojen externí nízkofrekvenční krystalový oscilátor \emph{LSE} s domněním, že bude postačovat pouze interní oscilátor \emph{LSI RC}. Ukázalo se ovšem, že z napájecí domény \emph{VBAT} je poskytováno napájení pouze externímu nízkofrekvenčnímu oscilátoru, nikoliv internímu \cite{csdGtKJDMSdbwJ9r}. Z tohoto důvodu byl dodatečně přidán 32,768kHz krystal, společně se zatěžovacími kondenzátory (viz. obrázek \ref{fig:RTCcrystal}), který byl po otestování připevněn lepidlem.
 
 
 \begin{figure}[h]

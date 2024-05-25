@@ -1,9 +1,10 @@
 \chapter{Firmware inerciální jednotky}
-Firmware hlavního \ac{MCU} byl vyvíjen pomocí volně dostupného \ac{IDE} poskytovaného výrobcem - \emph{STM32CubeIDE}. Jedná se o nástroj určený pro práci s jazyky C/C++, GCC kompilátorem, založeném na Eclipse \cite{V2Tf5wsrbWcbQdoW}. Zároveň poskytuje grafické rozhraní pro konfiguraci a generování knihoven \ac{HAL}, možnost použití \ac{RTOS} a ladící prostředí.
+Firmware hlavního \ac{MCU} byl vyvíjen pomocí volně dostupného vývojového prostředí (\emph{Integrated Developement
+Enviroment}, \acsu{IDE}) poskytovaného výrobcem - \emph{STM32CubeIDE}. Jedná se o nástroj určený pro práci s jazyky C/C++, GCC kompilátorem, založeném na Eclipse \cite{V2Tf5wsrbWcbQdoW}. Zároveň poskytuje grafické rozhraní pro konfiguraci a generování knihoven vrstvy abstrakce hardwaru (\emph{Hardware Abstraction Layer}, \acsu{HAL}), možnost použití operačního systému reálného času (\emph{Real Time Operating System}, \acsu{RTOS}) a ladící prostředí.
 
 V této práci byly použity poskytované knihovny HAL a FreeRTOS pro ulehčení a urychlení vývoje firmwaru. Jejich použití často s sebou nese nevýhody, jako je například horší využití paměti, nebo výpočetního výkonu, z tohoto důvodu byl zvolen takový \ac{MCU}, aby měl dostatečné rezervy pro jejich použití.
 \section{HAL}
-Generování kódu \ac{HAL} v  STM32CubeIDE je možné pomocí grafického rozhraní, které poskytuje uživateli možnost nastavení jednotlivých pinů, periferií, komunikačních rozhraní a vnitřních hodin (obrázek \ref{fig:cubeConfig}). Vygenerované knihovny následně umožňují uživateli pracovat s \ac{MCU} s jistou mírou abstrakce, například není nutné znát a pracovat s názvy jednotlivých registrů. Typickým příkladem můžou být komunikační sběrnice (\ac{SPI}, \ac{I2C} \ldots), pro které jsou dostupné obslužné funkce na čtení a vysílání dat, jak v blokujícím režimu, tak i v neblokujícím (například pomocí \ac{DMA}). \cite{V2Tf5wsrbWcbQdoW}
+Generování kódu \ac{HAL} v  STM32CubeIDE je možné pomocí grafického rozhraní, které poskytuje uživateli možnost nastavení jednotlivých pinů, periferií, komunikačních rozhraní a vnitřních hodin (obrázek \ref{fig:cubeConfig}). Vygenerované knihovny následně umožňují uživateli pracovat s \ac{MCU} s jistou mírou abstrakce, například není nutné znát a pracovat s názvy jednotlivých registrů. Typickým příkladem můžou být komunikační sběrnice (\ac{SPI}, \ac{I2C} \ldots), pro které jsou dostupné obslužné funkce na čtení a vysílání dat, jak v blokujícím režimu, tak i v neblokujícím (například pomocí přímého vstupu do paměti (\emph{Direct Memory Acces}, \acsu{DMA}). \cite{V2Tf5wsrbWcbQdoW}
 
 Dále je možné pomocí stejného grafického rozhraní importovat rozšiřující softwarové balíčky, i když už se nejedná přímo o \ac{HAL}. V této práci byly použity \emph{FATFS} pro manipulaci se soubory na microSD kartě, \emph{FreeRTOS} jakožto jeden z dostupných \ac{RTOS} a \emph{USB\_DEVICE} pro práci s \ac{USB} rozhraním třídy \ac{MSC}.
 
@@ -27,16 +28,17 @@ Dále je možné pomocí stejného grafického rozhraní importovat rozšiřují
 \end{figure}
 
 \section{FreeRTOS}
-V této aplikaci je potřeba vyčítat, převádět a zapisovat data z několika různých senzorů které nemají přesně stejný hodinový signál, zároveň obsluhovat \ac{GUI} a provádět záznam dat. Pro potřeby synchronizace několika úloh, které nemají stejné periody, nebo například čekají na vstup od uživatele se hodí \ac{RTOS}.
+V této aplikaci je potřeba vyčítat, převádět a zapisovat data z několika různých senzorů, které nemají přesně stejný hodinový signál, zároveň obsluhovat grafické uživatelské rozhraní (\emph{Graphical
+User Interface}, \acsu{GUI}) a provádět záznam dat. Pro potřeby synchronizace několika úloh, které nemají stejné periody, nebo například čekají na vstup od uživatele se hodí \ac{RTOS}.
 
-Byla vybrána jedna z variant operačních systémů reálného času, a to FreeRTOS. Jedná se o jednoduchý open-source systém, který je hojně využíván ve vestavěných aplikacích. Umožňuje aplikaci virtuálně rozdělit na několik samostatných vláken (tzv. \emph{tasků}) s různými prioritami. Časování tasků je možné například pomocí neblokujících prodlev, nebo semaforů. FreeRTOS také plní funkci správy a alokace paměti. Předávání informací mezi jednotlivými tasky se provádí pomocí tzv. \emph{Queues}, které představují \ac{FIFO} zásobníky s nastavitelnou délkou fronty a velikostí jednotlivých dat. Díky tomu je možné se vyvarovat použití globálních proměnných. \cite{Zhu2011}
+Byla vybrána jedna z variant operačních systémů reálného času, a to FreeRTOS. Jedná se o jednoduchý open-source systém, který je hojně využíván ve vestavěných aplikacích. Umožňuje aplikaci virtuálně rozdělit na několik samostatných vláken (tzv. \emph{tasků}) s různými prioritami. Časování tasků je možné například pomocí neblokujících prodlev, nebo semaforů. FreeRTOS také plní funkci správy a alokace paměti. Předávání informací mezi jednotlivými tasky se provádí pomocí tzv. \emph{Queues}, které představují zásobníky první dovnitř, první ven (\emph{First In First Out}, \acsu{FIFO}) s nastavitelnou délkou fronty a velikostí jednotlivých dat. Díky tomu je možné se vyvarovat použití globálních proměnných. \cite{Zhu2011}
 
 Práce s FreeRTOS je v STM32CubeIDE zjednodušená také díky poměrně dobré možnosti ladit aplikace pomocí již vestavěného RTOS-aware debuggeru, díky kterému můžeme například analyzovat využití paměti jednotlivých tasků, využití času, nebo kontrolovat stavy semaforů a velikost obsazených Queues. 
 
 \section{Vývojové diagramy firmwaru}
 Popsat chování a funkcionalitu firmwaru této aplikace dohromady by bylo poměrně nepřehledné. Proto budou jednotlivé funkce rozděleny do několika samostatných logických bloků, kde každý blok reprezentuje jeden task operačního systému.
 
-Diagramy byly vytvořeny s úmyslem co nejlépe a nejjednodušeji reprezentovat chování jednotlivých tasků, proto i ty představují jistou míru abstrakce a neobsahují velké množství detailů, jako jsou různé prodlevy, obsluhy pinů, kontroly časovačů a podobně, aby byly diagramy lépe čitelné. Kompletní zdrojový kód je dostupný v elektronické příloze práce.
+Diagramy byly vytvořeny s úmyslem co nejlépe a nejjednodušeji reprezentovat chování jednotlivých tasků, proto i ty představují jistou míru abstrakce a neobsahují velké množství detailů, jako jsou různé prodlevy, obsluhy pinů, kontroly časovačů a podobně, aby byly lépe čitelné. Kompletní zdrojový kód je dostupný v elektronické příloze práce.
 
 \subsection{KeepaliveTask}
 \begin{figure}[h]
@@ -51,15 +53,15 @@ Jedná se o úlohu s nastavenou nejnižší prioritou. Slouží pouze pro ladic�
     \includegraphics[width=0.18\textwidth]{obrazky/HubTask}
     \caption{Vývojový diagram HubTask.}
 \end{figure}
-Tato úloha vykonává funkce pouze při zapnutí zařízení, a to konfiguraci a sepnutí vestavěného \ac{USB} rozbočovače. Do něj jsou nahrána konfigurační data pomocí sběrnice I2C, jako je například \ac{VID}, \ac{PID}, nastavení napájecího režimu a nastavení jednotlivých portů. U tohoto rozbočovače jsou zapnuty pouze využívané porty, aby byla snížena spotřeba zařízení. Následně jsou registry rozbočovače přepnuty do režimu pouze pro čtení a \ac{USB} rozhraní zapnuto. Při běhu zařízení již konfigurace zůstává stejná a task je neaktivní.
+Tato úloha vykonává funkce pouze při zapnutí zařízení, a to konfiguraci a sepnutí vestavěného \ac{USB} rozbočovače. Do něj jsou nahrána konfigurační data pomocí sběrnice I2C, jako je například identifikace výrobce (\emph{Vendor ID}, \acsu{VID}), identifikace produktu (\emph{Product ID}, \acsu{PID}), nastavení napájecího režimu a nastavení jednotlivých portů. U tohoto rozbočovače jsou zapnuty pouze využívané porty, aby byla snížena spotřeba zařízení. Následně jsou registry rozbočovače přepnuty do režimu pouze pro čtení a \ac{USB} rozhraní zapnuto. Při běhu zařízení již konfigurace zůstává stejná a task je neaktivní.
 \subsection{powerTask}
-V tomto tasku jsou periodicky měřena všechna analogová napětí pomocí \ac{ADC} procesoru, například napětí zdroje, USB portu, akumulátoru, ale i teplota procesoru. Tyto stavové veličiny jsou zobrazovány pomocí \ac{GUI}. Čtené hodnoty napětí akumulátoru jsou průměrovány pomocí pohyblivého exponenciálního filtru, který je možný zapsat pomocí rovnice \ref{eq:EMA}.
+V tomto tasku jsou periodicky měřena všechna analogová napětí pomocí \ac{ADC} procesoru, například napětí zdroje, USB portu, akumulátoru, ale i teplota procesoru. Tyto stavové veličiny jsou zobrazovány pomocí \ac{GUI}. Čtené hodnoty napětí akumulátoru jsou průměrovány pomocí pohyblivého exponenciálního filtru, který je možný zapsat pomocí rovnice
 
 \begin{equation} \label{eq:EMA}
-y[n]=\alpha \cdot x[n] + (1-\alpha)\cdot y[n-1]
+y[n]=\alpha \cdot x[n] + (1-\alpha)\cdot y[n-1] ,
 \end{equation}
 
-Kde $ x[n] $ je přečtená hodnota napětí, $ y[n] $ vyfiltrovaná hodnota napětí, $ y[n-1] $ výsledek vyfiltrované hodnoty napětí z předešlého cyklu a $ \alpha $ je nastavitelný koeficient odezvy filtru. Experimentálně bylo odzkoušeno, že vhodných výsledků filtrace šumu je možné dosáhnout s $ \alpha = 0,3$. Tento typ filtru byl zvolen zejména pro jeho jednoduchost a úsporné využití paměti.
+kde $ x[n] $ je přečtená hodnota napětí, $ y[n] $ vyfiltrovaná hodnota napětí, $ y[n-1] $ výsledek vyfiltrované hodnoty napětí z předešlého cyklu a $ \alpha $ je nastavitelný koeficient odezvy filtru. Experimentálně bylo odzkoušeno, že vhodných výsledků filtrace šumu je možné dosáhnout s $ \alpha = 0,3$. Tento typ filtru byl zvolen zejména pro jeho jednoduchost a úsporné využití paměti.
 
 V případě, že klesne napětí akumulátoru pod hranici 3,5 V je zařízení vypnuto překlopením S/R klopného obvodu, který je zmiňovaný v kapitole \ref{hardware} a tím je dosažena ochrana akumulátoru proti podvybití. Poté je možné zařízení znova zapnout pouze připojením do USB nabíječky.
 
@@ -75,9 +77,9 @@ V případě, že klesne napětí akumulátoru pod hranici 3,5 V je zařízení 
     \includegraphics[width=0.25\textwidth]{obrazky/GpsTask}
     \caption{Vývojový diagram GpsTask.}
 \end{figure}
-Tato úloha se stará o periodické zpracování příchozích dat z GNSS modulu pomocí \ac{UBX} zpráv. Tyto data jsou přijímány pomocí sběrnice \ac{UART} a je využito DMA přenosu, následně převedena do čitelné podoby (datum, čas, zeměpisná šířka, délka\ldots) pomocí knihovny GNSS parseru \cite{SimpleMethod2021}.
+Tato úloha se stará o periodické zpracování příchozích dat z GNSS modulu pomocí \ac{UBX} zpráv. Tato data jsou přijímány pomocí sběrnice \ac{UART} a je využito DMA přenosu, následně jsou převedena do čitelné podoby (datum, čas, zeměpisná šířka, délka\ldots) pomocí knihovny GNSS parseru \cite{SimpleMethod2021}.
 
-V této úloze je také kontrolováno kdy dojde k prvnímu přesnému určení polohy fixací na satelity a je aktualizován čas a datum do vnitřního \ac{RTC}.
+V této úloze je také kontrolováno, kdy dojde k prvnímu přesnému určení polohy fixací na satelity a je aktualizován čas a datum do vnitřního \ac{RTC}.
 
 \subsection{lsmTask} \label{lsmTask}
 \begin{figure}[h]
@@ -93,7 +95,7 @@ V tomto tasku jsou periodicky vyčítána data o magnetickém poli z elektronick
     \includegraphics[width=0.6\textwidth]{obrazky/MpuTask}
     \caption{Vývojový diagram MpuTask.}
 \end{figure}
-Tato úloha je velice obdobná předchozí z kapitoly \ref{lsmTask}. Zde jsou čtena a převáděna data z 6 osého IMU MPU6050 s frekvencí 400 Hz.
+Tato úloha je velice obdobná předchozí z kapitoly \ref{lsmTask}. Zde jsou čtena a převáděna data z šestiosého IMU MPU6050 s frekvencí 400 Hz.
 
 \subsection{adisTask}
 \begin{figure}[h]
@@ -101,7 +103,7 @@ Tato úloha je velice obdobná předchozí z kapitoly \ref{lsmTask}. Zde jsou č
     \includegraphics[width=0.95\textwidth]{obrazky/AdisTask}
     \caption{Vývojový diagram AdisTask.}
 \end{figure}
-Tento task, obdobně jako předchozí, obstarává inicializaci, vyčítání a konverzi dat z 6 osého IMU ADIS16505 se vzorkovací frekvencí 400 Hz. Komunikace se senzorem probíhá přes sběrnici SPI a stejně jako u ostatních senzorů, je využíváno přerušení a DMA přenosů k vytvoření neblokujícího kódu. Vzhledem k vyššímu rozlišení senzoru v porovnání s ostatními je pro ukládání hodnot převedených do jednotek SI využíván datový typ \texttt{double} místo \texttt{float}.
+Tento task, obdobně jako předchozí, obstarává inicializaci, vyčítání a konverzi dat z šestiosého IMU ADIS16505 se vzorkovací frekvencí 400 Hz. Komunikace se senzorem probíhá přes sběrnici SPI a stejně jako u ostatních senzorů, je využíváno přerušení a DMA přenosů k vytvoření neblokujícího kódu. Vzhledem k vyššímu rozlišení senzoru v porovnání s ostatními je pro ukládání hodnot převedených do jednotek SI využíván datový typ \texttt{double} místo \texttt{float}.
 
 Vzorkování dat z ADIS16505 zároveň slouží jako synchronizace k zarovnání řádků dat ve výsledném souboru naměřených dat, tedy v případě, že jsou dostupná nová data z LSM303, nebo MPU6050, jsou přidána do celkové záznamové datové struktury, v opačném případě jsou na jejich odpovídající místa zapsány nuly. V nejhorším možném případě, tedy že data z ostatních senzorů jsou vzorkována těsně po navzorkování z ADIS16505 je jejich zpoždění rovno délce jedné periody celkové vzorkovací frekvence, tedy 2,5 ms.
 
@@ -111,7 +113,7 @@ Vzorkování dat z ADIS16505 zároveň slouží jako synchronizace k zarovnání
     \includegraphics[width=0.99\textwidth]{obrazky/LoggerTask}
     \caption{Vývojový diagram LoggerTask.}
 \end{figure}
-Tato úloha provádí samotné ukládání dat. Testováním bylo zjištěno, že při použití kvalitnějších microSD karet (v zařízení je použita \emph{SAMSUNG 64GB EVO PLUS}) nedochází k náhodným delším prodlevám při zápisu. Zároveň v porovnání s NOR FLASH pamětí poskytuje řádově větší úložiště, rychlejší zápis bloku dat, není potřeba mazat každý sektor paměti před zápisem a také je jednoduší implementace souborového systému. Z těchto důvodů bylo rozhodnuto využití SD karty k ukládání měřených dat.
+Tato úloha provádí samotné ukládání dat. Testováním bylo zjištěno, že při použití kvalitnějších microSD karet (v zařízení je použita \emph{SAMSUNG 64GB EVO PLUS}) nedochází k náhodným delším prodlevám při zápisu. Zároveň v porovnání s NOR FLASH pamětí poskytuje řádově větší úložiště, rychlejší zápis bloku dat, není potřeba mazat každý sektor paměti před zápisem a také je jednoduší implementace souborového systému. Z těchto důvodů bylo rozhodnuto o využití SD karty k ukládání měřených dat.
 
 Stavový automat v tomto tasku lze rozdělit do čtyř stavů: záznam dat, kdy jsou data průběžně ukládána, vypnutý záznam, kdy jsou data zahazována a začátek a konec záznamu, kdy dochází k inicializacím USB a souborových systémů. V průběhu záznamu je USB rozhraní vypnuté, aby nebylo možné zasahovat do souboru připojeným PC když je zrovna do něj zapisováno zařízením.
 
@@ -130,7 +132,7 @@ je porovnán předchozí a stávající stav tlačítek. Jestliže došlo k něj
 
 Stav zařízení by se dal zjednodušeně znázornit třemi možnými:
 \begin{itemize}
-\item Výchozí obrazovka stavových informací (obrázek \ref{fig:stateInfoGUI}) - pomocí ní je možné odečítat okamžité hodnoty veličin měřených senzory a zařízením. Při zapnutí je zobrazena výchozí domovská obrazovka, na které jsou přítomny provozní informace, jako je napětí akumulátoru, teplota procesoru, nebo čas uložený v RTC. Stisky tlačítka 1 (reprezentováno ikonou HOME na displeji) je možné měnit zobrazované informace na jednotlivé IMU, elektronický kompas a GNSS modul. Při změně obrazovky se také náležitě obmění levá spodní ikona reprezentující tlačítko 1. Všechny senzorové veličiny (lineární zrychlení, úhlová rychlost, velikost magnetické indukce) jsou již převedeny a zobrazeny v jednotkách soustavy SI.
+\item Výchozí obrazovka stavových informací (obrázek \ref{fig:stateInfoGUI}) - pomocí ní je možné odečítat okamžité hodnoty veličin měřených senzory a zařízením. Při zapnutí je zobrazena výchozí domovská obrazovka, na které jsou přítomny provozní informace, jako je napětí akumulátoru, teplota procesoru, nebo čas uložený v RTC. Stisky tlačítka 1 (reprezentováno ikonou HOME na displeji) je možné měnit zobrazované informace na jednotlivé IMU, elektronický kompas a GNSS modul. Při změně obrazovky se také náležitě obmění levá spodní ikona reprezentující tlačítko 1. Všechny senzorové veličiny (lineární zrychlení, úhlová rychlost, velikost magnetické indukce) jsou již převedeny a zobrazeny v jednotkách z mezinárodní soustavy jednotek.
 \begin{figure}[h]
      \centering
      \begin{subfigure}[b]{0.29\textwidth}
@@ -233,21 +235,21 @@ Stav zařízení by se dal zjednodušeně znázornit třemi možnými:
 \section{Kalibrace IMU} \label{calibrationALG}
 Akcelerometry a gyroskopy jsou poměrně citlivé součástky. Přestože většina i těch levnějších IMU jsou v továrně výrobcem kalibrovány, jejich vlastnosti se můžou změnit například procesem pájení, změnou teploty, nebo mechanickým pnutím v desce plošných spojů. Drtivá většina popsaných kalibračních metod akcelerometrů se zaměřuje na korekci lineární křivkou, jedná se tedy o výpočet konstant k a q v rovnici $ y=k\cdot x + q $, kde $ x $ je měřená hodnota senzorem, $ k $ a $ q $ jsou kalibrační konstanty a $ y $ je výsledná veličina po kalibraci. Konstantu $ k $ můžeme označit jako gain a konstantu $ q $ jako offset. Většinou se dostupné metody kalibrací používají i pro kompenzaci odchylek natočení os senzorů vůči desce, nebo nějakému jinému referenčnímu prvku zařízení (například hrany krabice), které můžou vzniknout nepřesným pájením, nebo montáží. Tyto metody vyžadují buď přípravky, které nám umožní otáčet se zařízením o přesně definovaný úhel v pravoúhlých osách, nebo alespoň vyžadují přesné natáčení zařízení do poloh, kde dvě z os měří nulové zrychlení. \cite{eUM5mr8dMf0LyseX} \cite{6yeG6wAI1hTfmXJK}
 
-V této práci ovšem není až tak důležité kompenzovat natočení os senzorů, jelikož je zařízení určené pro manipulaci v rukách, jde nám tedy pouze o výpočet konstant $ k $ a $ q $, aby bylo měřeno zrychlení správné velikosti. Výroba výše zmíněných mechanických přípravků, které by byly dostatečně přesné a opakovatelné by byla náročná a nesouvisející s povahou této práce. Díky tomu, že nepotřebujeme kompenzovat natočení os, můžeme vycházet z dostupných kalibračních procedur a implementovat jejich podstatu v upravené podobě:
+V této práci ovšem není až tak důležité kompenzovat natočení os senzorů, jelikož je zařízení určené pro manipulaci v rukách, jde nám tedy pouze o výpočet konstant $ k $ a $ q $, aby bylo měřeno zrychlení správné velikosti. Výroba výše zmíněných mechanických přípravků, které by byly dostatečně přesné a opakovatelné, by byla náročná a nesouvisející s povahou této práce. Díky tomu, že nepotřebujeme kompenzovat natočení os, můžeme vycházet z dostupných kalibračních procedur a implementovat jejich podstatu v upravené podobě:
 
 Kalibrační procedura vychází ze znalosti velikosti tíhového zrychlení. Budeme-li mít akcelerometr nehybný, tak v jakékoliv jeho pozici by velikost vektoru zrychlení měla být rovna tíhovému zrychlení. To můžeme zapsat pomocí rovnice \ref{eq:sizeOfVect}.
 
 \begin{equation} \label{eq:sizeOfVect}
-\lvert\vec{a}\rvert=\sqrt{\lvert\vec{a_{x}}\rvert^{2}+\lvert\vec{a_{y}}\rvert^{2}+\lvert\vec{a_{z}}\rvert^{2}}=\lvert\vec{g}\rvert
+\lvert\vec{a}\rvert=\sqrt{\lvert\vec{a_{x}}\rvert^{2}+\lvert\vec{a_{y}}\rvert^{2}+\lvert\vec{a_{z}}\rvert^{2}}=\lvert\vec{g}\rvert .
 \end{equation} 
 
 Za velikosti zrychlení dosadíme měřené hodnoty akcelerometrem, korigované lineární křivkou. Dostaneme rovnici \ref{eq:sizeOfCalVector}.
 
 \begin{equation} \label{eq:sizeOfCalVector}
-\lvert\vec{g}\rvert=\sqrt{(k_{x}\cdot a_{x} + q_{x})^{2}+(k_{y}\cdot a_{y} + q_{y})^{2}+(k_{z}\cdot a_{z} + q_{z})^{2}}
+\lvert\vec{g}\rvert=\sqrt{(k_{x}\cdot a_{x} + q_{x})^{2}+(k_{y}\cdot a_{y} + q_{y})^{2}+(k_{z}\cdot a_{z} + q_{z})^{2}} .
 \end{equation} 
 
-Cílem je tedy určit konstanty k a q. K tomu je potřeba vyřešit nelineární rovnici o šesti neznámých. K řešení provedeme 6 měření a vytvoříme soustavu 6 nelineárních rovnic o 6 neznámých z rovnice \ref{eq:sizeOfCalVector}. Teoreticky nezáleží na natočení zařízení v průběhu 6 zmiňovaných měření, jelikož je počítána velikost vektoru zrychlení ze tří ortogonálních os senzoru, ovšem nejlepších výsledků dostaneme když natočíme zařízení na všechny z 6 stran krabičky zařízení (pravý bok, levý bok, spodní strana, horní strana, přední strana a zadní strana) jelikož v těchto případech budou měřena maxima a minima zrychlení pro všechny osy. Pokud bychom totiž provedli 6 měření v úplně stejné poloze zařízení, může se stát, že použitá numerická metoda řešení rovnic konverguje k řešení typu všechny gainy budou nulové a offset v jedné ose bude roven velikosti tíhového zrychlení. Toto řešení by bylo matematicky správné, ale nedávalo by smysl.
+Cílem je tedy určit konstanty k a q. K tomu je potřeba vyřešit nelineární rovnici o šesti neznámých. K řešení provedeme 6 měření a vytvoříme soustavu 6 nelineárních rovnic o 6 neznámých z rovnice \ref{eq:sizeOfCalVector}. Teoreticky nezáleží na natočení zařízení v průběhu 6 zmiňovaných měření, jelikož je počítána velikost vektoru zrychlení ze tří ortogonálních os senzoru, ovšem nejlepších výsledků dosáhneme, když natočíme zařízení na všechny ze 6 stran krabičky zařízení (pravý bok, levý bok, spodní strana, horní strana, přední strana a zadní strana), jelikož v těchto případech budou měřena maxima a minima zrychlení pro všechny osy. Pokud bychom totiž provedli 6 měření v úplně stejné poloze zařízení, může se stát, že použitá numerická metoda řešení rovnic konverguje k řešení typu všechny gainy budou nulové a offset v jedné ose bude roven velikosti tíhového zrychlení. Toto řešení by bylo matematicky správné, ale nedávalo by smysl.
 
 Jednou z možností, jak kalibraci provést by bylo tzv. "offline", tedy provést kalibrační měření a následně data přenést do počítače a kalibrační konstanty vypočítat například pomocí MATLABu. To by ovšem omezilo univerzálnost vyvíjeného zařízení, také by byla kalibrace poměrně složitá a nemotorná z pohledu uživatele. Jako pohodlnější řešení byla zvolena implementace metody nejmenších čtverců pomocí funkce \texttt{fsolve} ve spojení s \emph{MATLAB Coder}.
 
@@ -300,11 +302,11 @@ Také byla vytvořena testovací funkce na její ověření. Všechny zdrojové 
 Kalibrace gyroskopů lineární křivkou by byla bohužel složitější a již by vyžadovala nějaký přesný mechanický přípravek na natáčení zařízení o přesně definovaný úhel. Z tohoto důvodu je u gyroskopů kompenzován pouze jejich offset. Ten je měřen ve stejnou dobu při všech 6 měření akcelerometru. Následně je vypočten aritmetický průměr všech 6 měření pro každou osu gyroskopu zvlášť, tato hodnota představuje offset senzoru.
 
 \section{Převod dat do CSV souboru}
-Žádaným výstupem ze zařízení jsou naměřená data v jednoduše čitelném a univerzálním typu souboru, například \ac{CSV}, ve kterém jsou naměřené veličiny uloženy v textové podobě, oddělené čárkami. \ac{MCU} k záznamu dat a výpočtu používá standardní datové typy, jako je \texttt{int\_8}, \texttt{uint\_16}, \texttt{float}, \texttt{double} a podobně. Pokud bychom přímo v zařízení převáděly tato čísla na text, tak se nám násobně zvětší nároky na rychlost a velikost ukládání dat. Například datový typ \texttt{int\_8} je v binární podobě reprezentován pouze jedním bytem, zatímco v textové podobě čtyřmi bajty (např. +127). Z tohoto důvodu jsou data na SD kartu ukládána v binární podobě a po přenosu do PC převedena do \ac{CSV} souboru pomocí skriptu napsaném v jazyce Python, který je dostupný v elektronické příloze.
+Žádaným výstupem ze zařízení jsou naměřená data v jednoduše čitelném a univerzálním typu souboru, například čárkou oddělené hodnoty (\emph{Comma Separated Value}, \acsu{CSV}), ve kterém jsou naměřené veličiny uloženy v textové podobě, oddělené čárkami. \ac{MCU} k záznamu dat a výpočtu používá standardní datové typy, jako je \texttt{int\_8}, \texttt{uint\_16}, \texttt{float}, \texttt{double} a podobně. Pokud bychom přímo v zařízení převáděli tato čísla na text, tak se násobně zvětší nároky na rychlost a velikost ukládání dat. Například datový typ \texttt{int\_8} je v binární podobě reprezentován pouze jedním bytem, zatímco v textové podobě čtyřmi bajty (např. +127). Z tohoto důvodu jsou data na SD kartu ukládána v binární podobě a po přenosu do PC převedena do \ac{CSV} souboru pomocí skriptu napsaném v jazyce Python, který je dostupný v elektronické příloze.
 
 Tento skript má v sobě definované pořadí jednotlivých datových typů ukládané struktury proměnných. Také bylo potřeba přidat zarovnávací (padding) bity, které kompilátor automaticky přidává na zarovnání proměnných v paměti pro správné fungování MCU. Toto zarovnání je definováno v sestavovacím souboru (linker file) a pro uživatelskou oblast RAM je nastaveno na 64 bitů.
 
-Jak bylo popsáno v kapitole \ref{loggerTask}, v případě, že senzory s nižší vzorkovací frekvencí nenaměřily nová data, zapíšou na všechna odpovídající místa nuly. Skript proto kontroluje tato místa a v případě, že struktura dat senzoru obsahuje samé nuly, nahradí je prázdným místem.
+V případě, že senzory s nižší vzorkovací frekvencí nenaměřily nová data, zapíšou na všechna odpovídající místa nuly. Skript proto kontroluje tato místa a v případě, že struktura dat senzoru obsahuje samé nuly, nahradí je prázdným místem.
 
 Natočení os jednotlivých senzorů v zařízení se mezi sebou liší, proto jsou upravena tak, aby odpovídala referenčním osám ADIS16505, které jsou v pořadí ENU (East, North, Up).
 
