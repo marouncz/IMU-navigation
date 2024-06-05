@@ -216,41 +216,6 @@
 
 
 
-%%%%%%%%%%%%%
-\begin{frame} 
-	\frametitle{Požadavky na paměť}
-	\begin{table}[h!]
-\centering
-\begin{tabular}{c|c}
-
-Senzor & Odhadovaný bitrate \\ 
-\hline 
-\hline 
-ADIS16505-2 & 375 kbit/s \\ 
-
-MPU-6050 & 422 kbit/s \\ 
-
-LSM303AGR & 7 kbit/s \\ 
-
-NEO-M8U & 1 kbit/s \\ 
-\hline
-
-Celkem & 805 kbit/s (0,1MB/s) \\ 
-
-\end{tabular} 
-%\caption{Odhad celkového bitratu pro záznam dat} 
-\label{table:memoryBW}
-\end{table} 
-	
-	12 MB dat při dvouminutovém záznamu.
-	
-	\begin{itemize}
-	\item SD karta
-	\item 32 MB NOR Flash
-	\end{itemize}
-	
-\end{frame} 
-
 
 %%%%%%%%%%%%%
 \begin{frame} 
@@ -423,23 +388,43 @@ Celkem & 805 kbit/s (0,1MB/s) \\
 %%%%%%%%%%%%%
 \begin{frame} 
 	\frametitle{Software - čistě inerciální navigace - výsledek}
+	
+	
+		\begin{figure}%
+		\centering
+		\includegraphics[width=0.7\columnwidth]{obrazky/matlab/1measTraj-eps-converted-to}
+		\end{figure}
+
+\end{frame}
+
+%%%%%%%%%%%%%
+\begin{frame} 
+	\frametitle{Software - fúze dat}
+	
 	\begin{columns}[T] 								% prostředí sloupce s umístěním nahoře
 		\begin{column}{0.5\textwidth}		% první sloupec
-		\begin{itemize}
-				\item Velká chyba
+			
+			\begin{itemize}
+				\item Matlab Navigation Toolbox
+				\item  \texttt{insFilterMARG}
+				\item EKF s 22 stavovým vektorem
+				\item Problém s nastavením kovariační matice stavového vektoru a parametrů jednotlivých senzorů
 				
 				
 			\end{itemize}
-
 		\end{column}
 		%
 		\begin{column}{0.5\textwidth}		% druhý sloupec
-		\begin{figure}%
-		\centering
-		\includegraphics[width=1\columnwidth]{obrazky/matlab/1measTraj-eps-converted-to}
-		\end{figure}
+			\begin{figure}%	
+				\centering
+			    \includegraphics[width=1\columnwidth]{obrazky/matlab/2gnss-eps-converted-to}
+			\end{figure}
+
+
 		\end{column}
-	\end{columns}	
+		
+
+	\end{columns}											% ukončení prostředí sloupce
 \end{frame}
 
 
