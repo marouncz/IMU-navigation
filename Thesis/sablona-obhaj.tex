@@ -109,9 +109,20 @@
 				\end{itemize}
 			\item Hardware
 				\begin{itemize}
-					\item vybrat vhodné senzory a komponenty bezdrátové jednotky
-					\item analyzovat potřeby záznamu dat a jejich ukládání
-					\item návrh DPS a realizace
+					\item návrh a realizace samostatné bezdrátové jednotky
+					\item ukládání dat do interní paměti
+					\item výběr vhodných senzorů
+				\end{itemize}
+			\item Firmware
+				\begin{itemize}
+					\item souběžný záznam dat z několika senzorů
+					\item přenos do počítače
+				\end{itemize}	
+							\item Software
+				\begin{itemize}
+					\item převod naměřených dat
+					\item zpracování dat
+					\item využití v rámci laboratorní úlohy MPC-RAR
 				\end{itemize}
 
 	\end{itemize}
@@ -202,38 +213,7 @@
 	
 \end{frame} 
 
-%%%%%%%%%%%%%
-\begin{frame} 
-	\frametitle{Požadavky na sběrnice}
-	\begin{table}[ht]
-\centering
-\begin{tabular}{|c|c|c|}
-\hline 
-Druh periferie & Minimální požadovaný počet & Použití periferie \\ 
-\hline 
-\hline 
-I2C & 3 & \makecell{OLED displej, LSM303AGR, \\MPU6050, USB2514B}  \\ 
-\hline 
-SPI & 1 & ADIS16505 \\ 
-\hline 
-UART & 2 & NEO-M8U, ESP32 \\ 
-\hline 
-QUADSPI & 1 & NOR FLASH paměť \\ 
-\hline 
-SDIO & 1 & microSD karta \\ 
-\hline 
-ADC & 1 & měření napětí akumulátoru \\ 
-\hline 
-\end{tabular} 
 
-%\caption{Minimální požadavky na periferie mikroprocesoru} 
-\label{table:MCUperiferie}
-\end{table} 
-
-	
-
-	
-\end{frame} 
 
 
 %%%%%%%%%%%%%
@@ -302,31 +282,164 @@ Celkem & 805 kbit/s (0,1MB/s) \\
 
 
 
-
+%%%%%%%%%%%%%
 \begin{frame} 
-	\frametitle{3D model desky}
-	\begin{figure}%	
-				\centering
-				
-				\includegraphics[width=0.6\columnwidth]{KiCad/3Dboard}
-				%lze vložit popisek, ale povetšinou je to v prezentaci zbytečné
-				%\caption{3D model navržené DPS}%
-				%\label{obr:ukazka}
-			\end{figure}
+	\frametitle{3D modely}
+	\begin{columns}[T] 								% prostředí sloupce s umístěním nahoře
+		\begin{column}{0.5\textwidth}		% první sloupec
+		\begin{figure}%
+		\centering
+		\includegraphics[width=1\columnwidth]{obrazky/boxNoLid}
+		\end{figure}
+		\end{column}
+		%
+		\begin{column}{0.5\textwidth}		% druhý sloupec
+		\begin{figure}%
+		\centering
+		\includegraphics[width=1\columnwidth]{obrazky/boxWithLid}
+		\end{figure}
+		\end{column}
+	\end{columns}	
 \end{frame}
-
 
 %%%%%%%%%%%%%
 \begin{frame} 
-	\frametitle{Cíle pro bakalářskou práci}
+	\frametitle{Sestavené zařízení}
+	\begin{columns}[T] 								% prostředí sloupce s umístěním nahoře
+		\begin{column}{0.5\textwidth}		% první sloupec
+		\begin{figure}%
+		\centering
+		\includegraphics[width=0.9\columnwidth]{obrazky/imuNavPCB}
+		\end{figure}
+		\end{column}
+		%
+		\begin{column}{0.5\textwidth}		% druhý sloupec
+		\begin{figure}%
+		\centering
+		\includegraphics[width=0.9\columnwidth]{obrazky/ImunavFront}
+		\end{figure}
+		\end{column}
+	\end{columns}	
+\end{frame}
+
+%%%%%%%%%%%%%
+\begin{frame} 
+	\frametitle{Firmware}
 	
-	\begin{itemize}
-	\item Firmware inerciální jednotky
-	\item Navrhnout komunikaci mezi PC a jednotkou + obslužný SW
-	\item Software na zpracování dat (Matlab / Python)
-	\item Možnosti fúze s GNSS, magnetometrem
-	\item Využití v MPC-RAR
-	\end{itemize}
+	\begin{columns}[T] 								% prostředí sloupce s umístěním nahoře
+		\begin{column}{0.5\textwidth}		% první sloupec
+			
+			\begin{itemize}
+				\item STM32CubeIDE
+				\item HAL
+				\item FreeRTOS
+				\item FatFS, USB Mass Storage Class
+				\item Grafické rozhraní, tlačítka
+				\item Zobrazení aktuálních hodnot
+				\item Záznam dat
+				\item Kalibrace IMU pomocí MATLAB Coder
+				\item Převod dat z binární podoby do CSV pomocí Pythonu/
+				
+				
+			\end{itemize}
+		\end{column}
+		%
+		\begin{column}{0.25\textwidth}		% druhý sloupec
+			\begin{figure}%	
+				\centering
+			    \includegraphics[width=1\columnwidth]{obrazky/menuHome}
+			\end{figure}
+			\begin{figure}%	
+				\centering
+			    \includegraphics[width=1\columnwidth]{obrazky/menuADIS}
+			\end{figure}
+			\begin{figure}%	
+				\centering
+			    \includegraphics[width=1\columnwidth]{obrazky/menuMPU}
+			\end{figure}
+
+		\end{column}
+		
+				\begin{column}{0.25\textwidth}		% druhý sloupec
+			\begin{figure}%	
+				\centering
+			    \includegraphics[width=1\columnwidth]{obrazky/menuLSM}
+			\end{figure}
+			\begin{figure}%	
+				\centering
+			    \includegraphics[width=1\columnwidth]{obrazky/menuGPS}
+			\end{figure}
+			\begin{figure}%	
+				\centering
+			    \includegraphics[width=1\columnwidth]{obrazky/menuREC1}
+			\end{figure}
+			\end{column}
+
+	\end{columns}											% ukončení prostředí sloupce
+\end{frame}
+
+%%%%%%%%%%%%%
+\begin{frame} 
+	\frametitle{Software - čistě inerciální navigace - naměřená data}
+	\begin{columns}[T] 								% prostředí sloupce s umístěním nahoře
+		\begin{column}{0.5\textwidth}		% první sloupec
+		\begin{figure}%
+		\centering
+		\includegraphics[width=1\columnwidth]{obrazky/matlab/1measAccel-eps-converted-to}
+		\end{figure}
+
+		\end{column}
+		%
+		\begin{column}{0.5\textwidth}		% druhý sloupec
+		\begin{figure}%
+		\centering
+		\includegraphics[width=1\columnwidth]{obrazky/matlab/1measAngularVel-eps-converted-to}
+		\end{figure}
+		\end{column}
+	\end{columns}	
+\end{frame}
+
+%%%%%%%%%%%%%
+\begin{frame} 
+	\frametitle{Software - čistě inerciální navigace - integrace}
+	\begin{columns}[T] 								% prostředí sloupce s umístěním nahoře
+		\begin{column}{0.5\textwidth}		% první sloupec
+		\begin{figure}%
+		\centering
+		\includegraphics[width=1\columnwidth]{obrazky/matlab/1measOrient-eps-converted-to}
+		\end{figure}
+
+		\end{column}
+		%
+		\begin{column}{0.5\textwidth}		% druhý sloupec
+		\begin{figure}%
+		\centering
+		\includegraphics[width=1\columnwidth]{obrazky/matlab/1measAccelEframeWithoutG-eps-converted-to}
+		\end{figure}
+		\end{column}
+	\end{columns}	
+\end{frame}
+
+%%%%%%%%%%%%%
+\begin{frame} 
+	\frametitle{Software - čistě inerciální navigace - výsledek}
+	\begin{columns}[T] 								% prostředí sloupce s umístěním nahoře
+		\begin{column}{0.5\textwidth}		% první sloupec
+		\begin{itemize}
+				\item Velká chyba
+				
+				
+			\end{itemize}
+
+		\end{column}
+		%
+		\begin{column}{0.5\textwidth}		% druhý sloupec
+		\begin{figure}%
+		\centering
+		\includegraphics[width=1\columnwidth]{obrazky/matlab/1measTraj-eps-converted-to}
+		\end{figure}
+		\end{column}
+	\end{columns}	
 \end{frame}
 
 
