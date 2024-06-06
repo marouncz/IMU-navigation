@@ -111,7 +111,6 @@
 				\begin{itemize}
 					\item návrh a realizace samostatné bezdrátové jednotky
 					\item ukládání dat do interní paměti
-					\item výběr vhodných senzorů
 				\end{itemize}
 			\item Firmware
 				\begin{itemize}
@@ -427,6 +426,27 @@
 	\end{columns}											% ukončení prostředí sloupce
 \end{frame}
 
+%%%%%%%%%%%%%
+\begin{frame} 
+	\frametitle{Software - čistě inerciální navigace - integrace}
+	\begin{columns}[T] 								% prostředí sloupce s umístěním nahoře
+		\begin{column}{0.5\textwidth}		% první sloupec
+		\begin{figure}%
+		\centering
+		\includegraphics[width=1\columnwidth]{obrazky/matlab/2gnssIMU3d-eps-converted-to}
+		\end{figure}
+
+		\end{column}
+		%
+		\begin{column}{0.5\textwidth}		% druhý sloupec
+		\begin{figure}%
+		\centering
+		\includegraphics[width=1\columnwidth]{obrazky/matlab/2gnssIMU-eps-converted-to}
+		\end{figure}
+		\end{column}
+	\end{columns}	
+\end{frame}
+
 
 % podekovani
 \begin{frame}[c] 
@@ -437,5 +457,87 @@
 	\end{center}
 \end{frame}
 
+%%%%%%%%%%%%%
+\begin{frame} 
+	\frametitle{Otázky k obhajobě}
+		\begin{alertblock}{1. otázka}
+		Čím je způsobena chyba a skokové změny v průběhu v grafu 6.6 (b) na straně 52?
+		\end{alertblock}
+		\vspace{1ex}
+		\begin{columns}[T] 								% prostředí sloupce s umístěním nahoře
+		\begin{column}{0.5\textwidth}		% první sloupec
+		\begin{itemize}
+		\item V místech skokových změn dochází k fúzi s GNSS
+		\item Chyba gyroskopu a akcelerometru
+		\item Špatné nastavení kovariační matice EKF
+		\item Špatné nastavení konstant modelů v \texttt{insFilterMARG}
+		\end{itemize}
+
+		\end{column}
+		%
+		\begin{column}{0.5\textwidth}		% druhý sloupec
+		\begin{figure}%
+		\centering
+		\includegraphics[width=0.9\columnwidth]{obrazky/matlab/2gnssIMU-eps-converted-to}
+		\end{figure}
+		\end{column}
+	\end{columns}	
+
+	
+\end{frame} 
+
+
+%%%%%%%%%%%%%
+\begin{frame} 
+	\frametitle{Otázky k obhajobě}
+		\begin{alertblock}{2. otázka}
+		Jsou k dispozici komerční MEMS, případně i součástky vyráběné jinou technologií, které by dosahovaly větší přesnosti?
+		\end{alertblock}
+		
+		\begin{columns}[T] 								% prostředí sloupce s umístěním nahoře
+		\begin{column}{0.5\textwidth}		% první sloupec
+		\begin{figure}%
+		\centering
+		\includegraphics[width=0.5\columnwidth]{obrazky/HG4930}\par
+		HG4930
+		\end{figure}
+		
+		\tiny [2] Honeywell. Online. HG4930 MEMS INERTIAL MEASUREMENT UNIT. Dostupné z: https://aerospace.honeywell.com/content/dam/aerobt/en/documents/
+		learn/products/sensors/brochures/N61-1523-000-010-HG4930-MEMS-Inertial-Measurement-Unit-bro.pdf?download=true. [cit. 2024-06-06].
+		\end{column}
+		%
+		\begin{column}{0.5\textwidth}		% druhý sloupec
+		\begin{figure}%
+		\centering
+		\includegraphics[width=0.7\columnwidth]{obrazky/ADIS16490}\par
+		ADIS16490
+		\end{figure}	
+		
+		\tiny [3] Direct Industry, Inertial measurement unit ADIS16490. Online. Analog Devices. Dostupné z: https://www.directindustry.com/prod/analog-devices/product-22009-1962702.html. [cit. 2024-06-06].
+		
+		
+		\end{column}
+		
+	\end{columns}	
+
+	
+\end{frame} 
+
+%%%%%%%%%%%%%
+\begin{frame} 
+	\frametitle{Otázky k obhajobě}
+		\begin{alertblock}{2. otázka}
+		Jsou k dispozici komerční MEMS, případně i součástky vyráběné jinou technologií, které by dosahovaly větší přesnosti?
+		\end{alertblock}
+	
+	
+		\begin{figure}%
+		\centering
+		\includegraphics[width=0.3\textwidth]{obrazky/FOG120H}\par
+		FOG120H
+		\end{figure}
+		\tiny [4] SkyMEMS. FOG120H Fiber Gyroscope. Online. Professional Inertial Navigation Products Manufacturer-SkyMEMS. Dostupné z: https://www.skymems.com/products/fog120h-fiber-gyroscope/. [cit. 2024-06-06].
+
+\end{frame}
 
 \end{document}
